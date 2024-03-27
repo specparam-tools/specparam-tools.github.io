@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Failed Model Fits &#8212; specparam 2.0.0rc1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../api.html">API</a></li>
+                <li><a href="../../faq.html">FAQ</a></li>
+                <li><a href="../../glossary.html">Glossary</a></li>
+                <li><a href="../../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="../../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../index.html">Examples</a></li>
+                <li><a href="../../visualizers.html">Visualizers</a></li>
+                <li><a href="../../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-manage-plot-failed-fits-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="failed-model-fits">
+<span id="sphx-glr-auto-examples-manage-plot-failed-fits-py"></span><h1>Failed Model Fits<a class="headerlink" href="#failed-model-fits" title="Permalink to this heading">¶</a></h1>
+<p>Example of model fit failures and how to debug them.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the SpectralGroupModel object</span>
+<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a>
+
+<span class="c1"># Import simulation code to create test power spectra</span>
+<span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a>
+
+<span class="c1"># Import FitError, which we will use to help debug model fit errors</span>
+<span class="kn">from</span> <span class="nn">specparam.core.errors</span> <span class="kn">import</span> <span class="n">FitError</span>
+</pre></div>
+</div>
+<section id="model-fit-failures">
+<h2>Model Fit Failures<a class="headerlink" href="#model-fit-failures" title="Permalink to this heading">¶</a></h2>
+<p>The power spectrum model is not guaranteed to fit - sometimes the fit procedure can fail.</p>
+<p>Model fit failures are rare, and they typically only happen on spectra that are
+particular noisy, and/or are some kind of outlier for which the fitting procedure
+fails to find a good model solution.</p>
+<p>In general, model fit failures should lead to a clean exit, meaning that
+a failed model fit does not lead to a code error. The failed fit will be encoded in
+the results as a null model, and the code can continue onwards.</p>
+<p>In this example, we will look through what it looks like when model fits fail.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate some example power spectra to use for the example</span>
+<span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+                                        <span class="n">nlvs</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a SpectralGroupModel object, with some desired settings</span>
+<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">(</span><span class="n">min_peak_height</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">max_n_peaks</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit power spectra</span>
+<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.fit" title="specparam.SpectralGroupModel.fit" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">fit</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting model across 25 power spectra.
+</pre></div>
+</div>
+<p>If there are failed fits, these are stored as null models.</p>
+<p>Let’s check if there were any null models, from model failures, in the models
+that we have fit so far. To do so, the <a class="reference internal" href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> object has some
+attributes that provide information on any null model fits.</p>
+<p>These attributes are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_null_</span></code> : the number of model results that are null</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">null_inds_</span></code> : the indices of any null model results</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check for failed model fits</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of Null models  : </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.n_null_" title="specparam.SpectralGroupModel.n_null_" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fg</span><span class="o">.</span><span class="n">n_null_</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Indices of Null models : </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.null_inds_" title="specparam.SpectralGroupModel.null_inds_" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fg</span><span class="o">.</span><span class="n">null_inds_</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Number of Null models  :         0
+Indices of Null models :         []
+</pre></div>
+</div>
+<section id="inducing-model-fit-failures">
+<h3>Inducing Model Fit Failures<a class="headerlink" href="#inducing-model-fit-failures" title="Permalink to this heading">¶</a></h3>
+<p>So far, we have no model failures (as is typical).</p>
+<p>For this example, to induce some model fits, we will use a trick to change the number of
+iterations the model uses to fit parameters (<cite>_maxfev</cite>), making it much more likely to fail.</p>
+<p>Note that in normal usage, you would likely never want to change the value of <cite>_maxfev</cite>,
+and this here is a ‘hack’ of the code in order to induce reproducible failure modes
+in simulated data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hack the object to induce model failures</span>
+<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="o">.</span><span class="n">_maxfev</span> <span class="o">=</span> <span class="mi">50</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Try fitting again</span>
+<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.fit" title="specparam.SpectralGroupModel.fit" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">fit</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting model across 25 power spectra.
+</pre></div>
+</div>
+<p>As we can see, there are now some model fit failures! Note that, as above, it will
+be printed out if there is as model fit failure when in verbose mode.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check how many model fit failures we have failed model fits</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of Null models  : </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.n_null_" title="specparam.SpectralGroupModel.n_null_" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fg</span><span class="o">.</span><span class="n">n_null_</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Indices of Null models : </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.null_inds_" title="specparam.SpectralGroupModel.null_inds_" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fg</span><span class="o">.</span><span class="n">null_inds_</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Number of Null models  :         0
+Indices of Null models :         []
+</pre></div>
+</div>
+</section>
+</section>
+<section id="debug-mode">
+<h2>Debug Mode<a class="headerlink" href="#debug-mode" title="Permalink to this heading">¶</a></h2>
+<p>There are multiple possible reasons why a model fit failure can occur, or at least
+multiple possible steps in the algorithm at which the fit failure can occur.</p>
+<p>If you have a small number of fit failures, you can likely just exclude them.</p>
+<p>However, if you have multiple fit failures, and/or you want to investigate why the
+model is failing, you can use the debug mode to get a bit more information about
+where the model is failing.</p>
+<p>The debug mode will stop the model object catching and continuing any model
+fit errors, allowing you to see where the error is happening, and get more
+information about where it is failing.</p>
+<p>Note that here we will run the fitting in a try / except to catch the error and
+print it out, without the error actually being raised (for website purposes).
+If you just want to see the error, you can run the fit call without the try/except.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set SpectralGroupModel into debug mode</span>
+<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.set_debug_mode" title="specparam.SpectralGroupModel.set_debug_mode" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">set_debug_mode</span></a><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Refit in debug mode, in which failed fits will raise an error</span>
+<span class="k">try</span><span class="p">:</span>
+    <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.fit" title="specparam.SpectralGroupModel.fit" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">fit</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">FitError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting model across 25 power spectra.
+</pre></div>
+</div>
+<section id="debugging-model-fit-errors">
+<h3>Debugging Model Fit Errors<a class="headerlink" href="#debugging-model-fit-errors" title="Permalink to this heading">¶</a></h3>
+<p>This debug mode should indicate in which step the model is failing, which might indicate
+what aspects of the data to look into, and/or which settings to try and tweak.</p>
+<p>Also, all known model fit failures should be caught by the object, and not raise an
+error (when not in debug mode). If you are finding examples in which the model is failing
+to fit, and raising an error (outside of debug mode), then this might be an unanticipated
+issue with the model fit.</p>
+<p>If you are unsure about why or how the model is failing to fit, consider
+opening an <a class="reference external" href="https://github.com/fooof-tools/fooof/issues">issue</a> on the project
+repository, and we will try to look into what seems to be happening.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.583 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-manage-plot-failed-fits-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/db8de8edd3842461f54f58941cd05cc4/plot_failed_fits.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_failed_fits.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/4e94c842ccdf42fd38a1b8dda5e2d2fb/plot_failed_fits.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_failed_fits.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2024, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

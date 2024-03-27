@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>specparam.analysis.get_band_peak &#8212; specparam 2.0.0rc1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../faq.html">FAQ</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../visualizers.html">Visualizers</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="specparam-analysis-get-band-peak">
+<h1>specparam.analysis.get_band_peak<a class="headerlink" href="#specparam-analysis-get-band-peak" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="specparam.analysis.get_band_peak">
+<span class="sig-prename descclassname"><span class="pre">specparam.analysis.</span></span><span class="sig-name descname"><span class="pre">get_band_peak</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select_highest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh_param</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'PW'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'peak_params'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/analysis/periodic.html#get_band_peak"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.analysis.get_band_peak" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract peaks from a band of interest from a model object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>model</strong><span class="classifier">SpectralModel</span></dt><dd><p>Object to extract peak data from.</p>
+</dd>
+<dt><strong>band</strong><span class="classifier">tuple of (float, float)</span></dt><dd><p>Frequency range for the band of interest.
+Defined as: (lower_frequency_bound, upper_frequency_bound).</p>
+</dd>
+<dt><strong>select_highest</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to return single peak (if True) or all peaks within the range found (if False).
+If True, returns the highest power peak within the search range.</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float, optional</span></dt><dd><p>A minimum threshold value to apply.</p>
+</dd>
+<dt><strong>thresh_param</strong><span class="classifier">{‘PW’, ‘BW’}</span></dt><dd><p>Which parameter to threshold on. ‘PW’ is power and ‘BW’ is bandwidth.</p>
+</dd>
+<dt><strong>attribute</strong><span class="classifier">{‘peak_params’, ‘gaussian_params’}</span></dt><dd><p>Which attribute of peak data to extract data from.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>peaks</strong><span class="classifier">1d or 2d array</span></dt><dd><p>Peak data. Each row is a peak, as [CF, PW, BW].</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Select an alpha peak from a fit model object ‘model’, selecting the highest power alpha:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span> <span class="o">=</span> <span class="n">get_band_peak</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span> <span class="n">select_highest</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+</pre></div>
+</div>
+<p>Select beta peaks from a model object ‘model’, extracting all peaks in the range:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">betas</span> <span class="o">=</span> <span class="n">get_band_peak</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="n">select_highest</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
+</pre></div>
+</div>
+</dd></dl>
+
+<section id="examples-using-specparam-analysis-get-band-peak">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.analysis.get_band_peak</span></code><a class="headerlink" href="#examples-using-specparam-analysis-get-band-peak" title="Permalink to this heading">¶</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Analyze results from fitting power spectrum models."><img alt="" src="../_images/sphx_glr_plot_09-FurtherAnalysis_thumb.png" />
+<p><a class="reference internal" href="../auto_tutorials/plot_09-FurtherAnalysis.html#sphx-glr-auto-tutorials-plot-09-furtheranalysis-py"><span class="std std-ref">08: Further Analysis</span></a></p>
+  <div class="sphx-glr-thumbnail-title">08: Further Analysis</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Comparing how &#x27;Band-by-Band&#x27; approaches relate to periodic &amp; aperiodic components."><img alt="" src="../_images/sphx_glr_plot_BandByBand_thumb.png" />
+<p><a class="reference internal" href="../auto_motivations/measurements/plot_BandByBand.html#sphx-glr-auto-motivations-measurements-plot-bandbyband-py"><span class="std std-ref">Band-by-Band</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Band-by-Band</div>
+</div></div><div style='clear:both'></div></section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2024, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

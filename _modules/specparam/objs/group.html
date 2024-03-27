@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>specparam.objs.group &#8212; specparam 2.0.0rc1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../api.html">API</a></li>
+                <li><a href="../../../faq.html">FAQ</a></li>
+                <li><a href="../../../glossary.html">Glossary</a></li>
+                <li><a href="../../../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../visualizers.html">Visualizers</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for specparam.objs.group</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Group model object and associated code for fitting the model to 2D groups of power spectra.</span>
+
+<span class="sd">Notes</span>
+<span class="sd">-----</span>
+<span class="sd">Methods without defined docstrings import docs at runtime, from aliased external functions.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span><span class="p">,</span> <span class="n">cpu_count</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <span class="n">SpectralModel</span>
+<span class="kn">from</span> <span class="nn">specparam.plts.group</span> <span class="kn">import</span> <span class="n">plot_group_model</span>
+<span class="kn">from</span> <span class="nn">specparam.core.items</span> <span class="kn">import</span> <span class="n">OBJ_DESC</span>
+<span class="kn">from</span> <span class="nn">specparam.core.utils</span> <span class="kn">import</span> <span class="n">check_inds</span>
+<span class="kn">from</span> <span class="nn">specparam.core.errors</span> <span class="kn">import</span> <span class="n">NoModelError</span>
+<span class="kn">from</span> <span class="nn">specparam.core.reports</span> <span class="kn">import</span> <span class="n">save_group_report</span>
+<span class="kn">from</span> <span class="nn">specparam.core.strings</span> <span class="kn">import</span> <span class="n">gen_group_results_str</span>
+<span class="kn">from</span> <span class="nn">specparam.core.io</span> <span class="kn">import</span> <span class="n">save_group</span><span class="p">,</span> <span class="n">load_jsonlines</span>
+<span class="kn">from</span> <span class="nn">specparam.core.modutils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">copy_doc_func_to_method</span><span class="p">,</span> <span class="n">safe_import</span><span class="p">,</span>
+                                     <span class="n">docs_get_section</span><span class="p">,</span> <span class="n">replace_docstring_sections</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">specparam.data.conversions</span> <span class="kn">import</span> <span class="n">group_to_dataframe</span>
+<span class="kn">from</span> <span class="nn">specparam.data.utils</span> <span class="kn">import</span> <span class="n">get_group_params</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+
+<div class="viewcode-block" id="SpectralGroupModel"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel">[docs]</a><span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">SpectralModel</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
+                             <span class="n">docs_get_section</span><span class="p">(</span><span class="n">SpectralModel</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Notes&#39;</span><span class="p">)])</span>
+<span class="k">class</span> <span class="nc">SpectralGroupModel</span><span class="p">(</span><span class="n">SpectralModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Model a group of power spectra as a combination of aperiodic and periodic components.</span>
+
+<span class="sd">    WARNING: frequency and power values inputs must be in linear space.</span>
+
+<span class="sd">    Passing in logged frequencies and/or power spectra is not detected,</span>
+<span class="sd">    and will silently produce incorrect results.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    %copied in from SpectralModel object</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    freqs : 1d array</span>
+<span class="sd">        Frequency values for the power spectra.</span>
+<span class="sd">    power_spectra : 2d array</span>
+<span class="sd">        Power values for the group of power spectra, as [n_power_spectra, n_freqs].</span>
+<span class="sd">        Power values are stored internally in log10 scale.</span>
+<span class="sd">    freq_range : list of [float, float]</span>
+<span class="sd">        Frequency range of the power spectra, as [lowest_freq, highest_freq].</span>
+<span class="sd">    freq_res : float</span>
+<span class="sd">        Frequency resolution of the power spectra.</span>
+<span class="sd">    group_results : list of FitResults</span>
+<span class="sd">        Results of the model fit for each power spectrum.</span>
+<span class="sd">    has_data : bool</span>
+<span class="sd">        Whether data is loaded to the object.</span>
+<span class="sd">    has_model : bool</span>
+<span class="sd">        Whether model results are available in the object.</span>
+<span class="sd">    n_peaks_ : int</span>
+<span class="sd">        The number of peaks fit in the model.</span>
+<span class="sd">    n_null_ : int</span>
+<span class="sd">        The number of models that failed to fit and/or that are marked as null.</span>
+<span class="sd">    null_inds_ : list of int</span>
+<span class="sd">        The indices of any models that are null.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    %copied in from SpectralModel object</span>
+<span class="sd">    - The group object inherits from the model object. As such it also has data</span>
+<span class="sd">      attributes (`power_spectrum` &amp; `modeled_spectrum_`), and parameter attributes</span>
+<span class="sd">      (`aperiodic_params_`, `peak_params_`, `gaussian_params_`, `r_squared_`, `error_`)</span>
+<span class="sd">      which are defined in the context of individual model fits. These attributes are</span>
+<span class="sd">      used during the fitting process, but in the group context do not store results</span>
+<span class="sd">      post-fitting. Rather, all model fit results are collected and stored into the</span>
+<span class="sd">      `group_results` attribute. To access individual parameters of the fit, use</span>
+<span class="sd">      the `get_params` method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># pylint: disable=attribute-defined-outside-init, arguments-differ</span>
+
+<div class="viewcode-block" id="SpectralGroupModel.__init__"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize object with desired settings.&quot;&quot;&quot;</span>
+
+        <span class="n">SpectralModel</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_group_results</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Define the length of the object as the number of model fit results available.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow for indexing into the object to select model fit results.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow for iterating across the object by stepping across model fit results.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator for if the object contains data.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator for if the object contains model fits.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span> <span class="k">else</span> <span class="kc">False</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_peaks_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;How many peaks were fit for each model.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">peak_params</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span> <span class="k">else</span> <span class="kc">None</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_null_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;How many model fits are null.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">aperiodic_params</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span> \
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span> <span class="k">else</span> <span class="kc">None</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">null_inds_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The indices for model fits that are null.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">ind</span> <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">)</span> \
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">aperiodic_params</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> \
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span> <span class="k">else</span> <span class="kc">None</span>
+
+
+    <span class="k">def</span> <span class="nf">_reset_data_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">clear_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectra</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, data &amp; results attributes to empty.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        clear_freqs : bool, optional, default: False</span>
+<span class="sd">            Whether to clear frequency attributes.</span>
+<span class="sd">        clear_spectrum : bool, optional, default: False</span>
+<span class="sd">            Whether to clear power spectrum attribute.</span>
+<span class="sd">        clear_results : bool, optional, default: False</span>
+<span class="sd">            Whether to clear model results attributes.</span>
+<span class="sd">        clear_spectra : bool, optional, default: False</span>
+<span class="sd">            Whether to clear power spectra attribute.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_reset_data_results</span><span class="p">(</span><span class="n">clear_freqs</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="p">,</span> <span class="n">clear_results</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">clear_spectra</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+    <span class="k">def</span> <span class="nf">_reset_group_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, results to be empty.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        length : int, optional, default: 0</span>
+<span class="sd">            Length of list of empty lists to initialize. If 0, creates a single empty list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">length</span>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.add_data"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.add_data">[docs]</a>    <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectra</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add data (frequencies and power spectrum values) to the current object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        freqs : 1d array</span>
+<span class="sd">            Frequency values for the power spectra, in linear space.</span>
+<span class="sd">        power_spectra : 2d array, shape=[n_power_spectra, n_freqs]</span>
+<span class="sd">            Matrix of power values, in linear space.</span>
+<span class="sd">        freq_range : list of [float, float], optional</span>
+<span class="sd">            Frequency range to restrict power spectra to. If not provided, keeps the entire range.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        If called on an object with existing data and/or results</span>
+<span class="sd">        these will be cleared by this method call.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If any data is already present, then clear data &amp; results</span>
+        <span class="c1">#   This is to ensure object consistency of all data &amp; results</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">freqs</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reset_data_results</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reset_group_results</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq_range</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq_res</span> <span class="o">=</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_data</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectra</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.report"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">power_spectra</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit a group of power spectra and display a report, with a plot and printed results.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        freqs : 1d array, optional</span>
+<span class="sd">            Frequency values for the power_spectra, in linear space.</span>
+<span class="sd">        power_spectra : 2d array, shape: [n_power_spectra, n_freqs], optional</span>
+<span class="sd">            Matrix of power spectrum values, in linear space.</span>
+<span class="sd">        freq_range : list of [float, float], optional</span>
+<span class="sd">            Frequency range to fit the model to. If not provided, fits the entire given range.</span>
+<span class="sd">        n_jobs : int, optional, default: 1</span>
+<span class="sd">            Number of jobs to run in parallel.</span>
+<span class="sd">            1 is no parallelization. -1 uses all available cores.</span>
+<span class="sd">        progress : {None, &#39;tqdm&#39;, &#39;tqdm.notebook&#39;}, optional</span>
+<span class="sd">            Which kind of progress bar to use. If None, no progress bar is used.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Data is optional, if data has already been added to the object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectra</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="n">progress</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print_results</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.fit"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">power_spectra</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit a group of power spectra.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        freqs : 1d array, optional</span>
+<span class="sd">            Frequency values for the power_spectra, in linear space.</span>
+<span class="sd">        power_spectra : 2d array, shape: [n_power_spectra, n_freqs], optional</span>
+<span class="sd">            Matrix of power spectrum values, in linear space.</span>
+<span class="sd">        freq_range : list of [float, float], optional</span>
+<span class="sd">            Frequency range to fit the model to. If not provided, fits the entire given range.</span>
+<span class="sd">        n_jobs : int, optional, default: 1</span>
+<span class="sd">            Number of jobs to run in parallel.</span>
+<span class="sd">            1 is no parallelization. -1 uses all available cores.</span>
+<span class="sd">        progress : {None, &#39;tqdm&#39;, &#39;tqdm.notebook&#39;}, optional</span>
+<span class="sd">            Which kind of progress bar to use. If None, no progress bar is used.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Data is optional, if data has already been added to the object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If freqs &amp; power spectra provided together, add data to object</span>
+        <span class="k">if</span> <span class="n">freqs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">power_spectra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectra</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">)</span>
+
+        <span class="c1"># If &#39;verbose&#39;, print out a marker of what is being run</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">progress</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fitting model across </span><span class="si">{}</span><span class="s1"> power spectra.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">)))</span>
+
+        <span class="c1"># Run linearly</span>
+        <span class="k">if</span> <span class="n">n_jobs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reset_group_results</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">power_spectrum</span> <span class="ow">in</span> \
+                <span class="n">_progress</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">),</span> <span class="n">progress</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">power_spectrum</span><span class="o">=</span><span class="n">power_spectrum</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_results</span><span class="p">()</span>
+
+        <span class="c1"># Run in parallel</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reset_group_results</span><span class="p">()</span>
+            <span class="n">n_jobs</span> <span class="o">=</span> <span class="n">cpu_count</span><span class="p">()</span> <span class="k">if</span> <span class="n">n_jobs</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="n">n_jobs</span>
+            <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_progress</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">_par_fit</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="bp">self</span><span class="p">),</span>
+                                                              <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">),</span>
+                                                    <span class="n">progress</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">)))</span>
+
+        <span class="c1"># Clear the individual power spectrum and fit results of the current fit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_data_results</span><span class="p">(</span><span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.drop"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.drop">[docs]</a>    <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inds</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop one or more model fit results from the object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inds : int or array_like of int or array_like of bool</span>
+<span class="sd">            Indices to drop model fit results for.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This method sets the model fits as null, and preserves the shape of the model fits.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">null_model</span> <span class="o">=</span> <span class="n">SpectralModel</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">get_settings</span><span class="p">())</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">check_inds</span><span class="p">(</span><span class="n">inds</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">null_model</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.get_results"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_results">[docs]</a>    <span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the results run across a group of power spectra.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.get_params"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return model fit parameters for specified feature(s).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : {&#39;aperiodic_params&#39;, &#39;peak_params&#39;, &#39;gaussian_params&#39;, &#39;error&#39;, &#39;r_squared&#39;}</span>
+<span class="sd">            Name of the data field to extract across the group.</span>
+<span class="sd">        col : {&#39;CF&#39;, &#39;PW&#39;, &#39;BW&#39;, &#39;offset&#39;, &#39;knee&#39;, &#39;exponent&#39;} or int, optional</span>
+<span class="sd">            Column name / index to extract from selected data, if requested.</span>
+<span class="sd">            Only used for name of {&#39;aperiodic_params&#39;, &#39;peak_params&#39;, &#39;gaussian_params&#39;}.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        out : ndarray</span>
+<span class="sd">            Requested data.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NoModelError</span>
+<span class="sd">            If there are no model fit results available.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the input for the `col` input is not understood.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        When extracting peak information (&#39;peak_params&#39; or &#39;gaussian_params&#39;), an additional</span>
+<span class="sd">        column is appended to the returned array, indicating the index that the peak came from.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoModelError</span><span class="p">(</span><span class="s2">&quot;No model fit results are available, can not proceed.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">get_group_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.plot"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.plot">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">plot_group_model</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_fig</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
+
+        <span class="n">plot_group_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_fig</span><span class="o">=</span><span class="n">save_fig</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span>
+                         <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.save_report"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.save_report">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">save_group_report</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">save_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+        <span class="n">save_group_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">add_settings</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.save"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.save">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">save_group</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+             <span class="n">save_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+        <span class="n">save_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">append</span><span class="p">,</span> <span class="n">save_results</span><span class="p">,</span> <span class="n">save_settings</span><span class="p">,</span> <span class="n">save_data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.load"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load group data from file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        file_name : str</span>
+<span class="sd">            File to load data from.</span>
+<span class="sd">        file_path : Path or str, optional</span>
+<span class="sd">            Path to directory to load from. If None, loads from current directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Clear results so as not to have possible prior results interfere</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_group_results</span><span class="p">()</span>
+
+        <span class="n">power_spectra</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">load_jsonlines</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)):</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="c1"># If settings are loaded, check and update based on the first line</span>
+            <span class="k">if</span> <span class="n">ind</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_check_loaded_settings</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="c1"># If power spectra data is part of loaded data, collect to add to object</span>
+            <span class="k">if</span> <span class="s1">&#39;power_spectrum&#39;</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">power_spectra</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;power_spectrum&#39;</span><span class="p">])</span>
+
+            <span class="c1"># If results part of current data added, check and update object results</span>
+            <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">OBJ_DESC</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_check_loaded_results</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_results</span><span class="p">())</span>
+
+        <span class="c1"># Reconstruct frequency vector, if information is available to do so</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq_range</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_regenerate_freqs</span><span class="p">()</span>
+
+        <span class="c1"># Add power spectra data, if they were loaded</span>
+        <span class="k">if</span> <span class="n">power_spectra</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">power_spectra</span><span class="p">)</span>
+
+        <span class="c1"># Reset peripheral data from last loaded result, keeping freqs info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_data_results</span><span class="p">(</span><span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.get_model"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_model">[docs]</a>    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">,</span> <span class="n">regenerate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a model fit object for a specified index.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ind : int</span>
+<span class="sd">            The index of the model from `group_results` to access.</span>
+<span class="sd">        regenerate : bool, optional, default: False</span>
+<span class="sd">            Whether to regenerate the model fits for the requested model.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        model : SpectralModel</span>
+<span class="sd">            The FitResults data loaded into a model object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Initialize model object, with same settings, metadata, &amp; check mode as current object</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">SpectralModel</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">get_settings</span><span class="p">(),</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">add_meta_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_meta_data</span><span class="p">())</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">set_run_modes</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">get_run_modes</span><span class="p">())</span>
+
+        <span class="c1"># Add data for specified single power spectrum, if available</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">power_spectrum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+        <span class="c1"># Add results for specified power spectrum, regenerating full fit if requested</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">add_results</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">regenerate</span><span class="p">:</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">_regenerate_model</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">model</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.get_group"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_group">[docs]</a>    <span class="k">def</span> <span class="nf">get_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inds</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a Group model object with the specified sub-selection of model fits.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inds : array_like of int or array_like of bool</span>
+<span class="sd">            Indices to extract from the object.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        group : SpectralGroupModel</span>
+<span class="sd">            The requested selection of results data loaded into a new group model object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Initialize a new model object, with same settings as current object</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">SpectralGroupModel</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">get_settings</span><span class="p">(),</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">add_meta_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_meta_data</span><span class="p">())</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">set_run_modes</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">get_run_modes</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="n">inds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="c1"># Check and convert indices encoding to list of int</span>
+            <span class="n">inds</span> <span class="o">=</span> <span class="n">check_inds</span><span class="p">(</span><span class="n">inds</span><span class="p">)</span>
+
+            <span class="c1"># Add data for specified power spectra, if available</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+                <span class="n">group</span><span class="o">.</span><span class="n">power_spectra</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">[</span><span class="n">inds</span><span class="p">,</span> <span class="p">:]</span>
+
+            <span class="c1"># Add results for specified power spectra</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">group_results</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">inds</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">group</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.print_results"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.print_results">[docs]</a>    <span class="k">def</span> <span class="nf">print_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Print out the group results.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        concise : bool, optional, default: False</span>
+<span class="sd">            Whether to print the report in a concise mode, or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">gen_group_results_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concise</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.save_model_report"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.save_model_report">[docs]</a>    <span class="k">def</span> <span class="nf">save_model_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">add_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;Save out an individual model report for a specified model fit.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        index : int</span>
+<span class="sd">            Index of the model fit to save out.</span>
+<span class="sd">        file_name : str</span>
+<span class="sd">            Name to give the saved out file.</span>
+<span class="sd">        file_path : Path or str, optional</span>
+<span class="sd">            Path to directory to save to. If None, saves to current directory.</span>
+<span class="sd">        add_settings : bool, optional, default: True</span>
+<span class="sd">            Whether to add a print out of the model settings to the end of the report.</span>
+<span class="sd">        plot_kwargs : keyword arguments</span>
+<span class="sd">            Keyword arguments to pass into the plot method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="n">ind</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">regenerate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">save_report</span><span class="p">(</span>\
+            <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">add_settings</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralGroupModel.to_df"><a class="viewcode-back" href="../../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.to_df">[docs]</a>    <span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peak_org</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert and extract the model results as a pandas object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        peak_org : int or Bands</span>
+<span class="sd">            How to organize peaks.</span>
+<span class="sd">            If int, extracts the first n peaks.</span>
+<span class="sd">            If Bands, extracts peaks based on band definitions.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            Model results organized into a pandas object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">group_to_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_results</span><span class="p">(),</span> <span class="n">peak_org</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an alias to SpectralModel.fit for the group object, for internal use.&quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an alias to SpectralModel.get_results for the group object, for internal use.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_check_width_limits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check and warn about bandwidth limits / frequency resolution interaction.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Only check &amp; warn on first power spectrum</span>
+        <span class="c1">#   This is to avoid spamming standard output for every spectrum in the group</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_check_width_limits</span><span class="p">()</span></div>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+
+<span class="k">def</span> <span class="nf">_par_fit</span><span class="p">(</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for running in parallel.&quot;&quot;&quot;</span>
+
+    <span class="n">group</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">power_spectrum</span><span class="o">=</span><span class="n">power_spectrum</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">group</span><span class="o">.</span><span class="n">_get_results</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">_progress</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">n_to_run</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a progress bar to an iterable to be processed.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    iterable : list or iterable</span>
+<span class="sd">        Iterable object to potentially apply progress tracking to.</span>
+<span class="sd">    progress : {None, &#39;tqdm&#39;, &#39;tqdm.notebook&#39;}</span>
+<span class="sd">        Which kind of progress bar to use. If None, no progress bar is used.</span>
+<span class="sd">    n_to_run : int</span>
+<span class="sd">        Number of jobs to complete.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pbar : iterable or tqdm object</span>
+<span class="sd">        Iterable object, with tqdm progress functionality, if requested.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the input for `progress` is not understood.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The explicit `n_to_run` input is required as tqdm requires this in the parallel case.</span>
+<span class="sd">    The `tqdm` object that is potentially returned acts the same as the underlying iterable,</span>
+<span class="sd">    with the addition of printing out progress every time items are requested.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check progress specifier is okay</span>
+    <span class="n">tqdm_options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tqdm&#39;</span><span class="p">,</span> <span class="s1">&#39;tqdm.notebook&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">progress</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">progress</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tqdm_options</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Progress bar option not understood.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Set the display text for the progress bar</span>
+    <span class="n">pbar_desc</span> <span class="o">=</span> <span class="s1">&#39;Running group fits.&#39;</span>
+
+    <span class="c1"># Use a tqdm, progress bar, if requested</span>
+    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+
+        <span class="c1"># Try loading the tqdm module</span>
+        <span class="n">tqdm</span> <span class="o">=</span> <span class="n">safe_import</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">tqdm</span><span class="p">:</span>
+
+            <span class="c1"># If tqdm isn&#39;t available, proceed without a progress bar</span>
+            <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;A progress bar requiring the &#39;tqdm&#39; module was requested, &quot;</span>
+                   <span class="s2">&quot;but &#39;tqdm&#39; is not installed. </span><span class="se">\n</span><span class="s2">Proceeding without using a progress bar.&quot;</span><span class="p">))</span>
+            <span class="n">pbar</span> <span class="o">=</span> <span class="n">iterable</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="c1"># If tqdm loaded, apply the progress bar to the iterable</span>
+            <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">pbar_desc</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="n">n_to_run</span><span class="p">,</span> <span class="n">dynamic_ncols</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># If progress is None, return the original iterable without a progress bar applied</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="n">iterable</span>
+
+    <span class="k">return</span> <span class="n">pbar</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2024, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
