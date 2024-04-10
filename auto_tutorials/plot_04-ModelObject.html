@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>04: Exploring the model object &#8212; specparam 2.0.0rc1 documentation</title>
+    <title>04: Exploring the model object &#8212; specparam 2.0.0rc2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -283,6 +283,9 @@ if the current object has data loaded.</p>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.add_data" title="specparam.SpectralModel.add_data" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">add_data</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>FITTING WARNING: Skipping frequency == 0, as this causes a problem with fitting.
+</pre></div>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if the object has data loaded</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Has data loaded: &#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.has_data" title="specparam.SpectralModel.has_data" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fm</span><span class="o">.</span><span class="n">has_data</span></a><span class="p">)</span>
 </pre></div>
@@ -297,10 +300,10 @@ if the current object has data loaded.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Power Values: </span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">power_spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Frequency Range:         [2.441406250001353, 39.55078125002192]
-Frequency Resolution:    0.48828125000027045
-Frequency Values:        [2.44140625 2.9296875  3.41796875 3.90625    4.39453125]
-Power Values:            [-21.99921865 -21.99669556 -22.02605736 -21.96875308 -22.15436702]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Frequency Range:         [0.4882812500002706, 500.0000000002771]
+Frequency Resolution:    0.4882812500002706
+Frequency Values:        [0.48828125 0.9765625  1.46484375 1.953125   2.44140625]
+Power Values:            [-20.57077468 -21.06451885 -21.58001212 -21.83661208 -21.99921865]
 </pre></div>
 </div>
 <p>Now that we have picked our settings, and added the data, let’s fit a power spectrum model.</p>
@@ -343,13 +346,16 @@ which indicates if the current object has model results available.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;modeled spectrum: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">modeled_spectrum_</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic params:        [-21.44373535   1.07510111]
-peak params:     [[ 9.81640203  0.72771297  3.00583448]
- [13.04631978  0.2596321   2.5372394 ]
- [18.12686014  0.15093619  4.62823406]]
-r-squared:       0.9922996525903673
-fit error:       0.029371515222790138
-modeled spectrum:        [-21.86048334 -21.94559555 -22.01750639 -22.0796209  -22.13385474]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic params:        [-18.56387607   2.54175191]
+peak params:     [[292.58444556   4.01087632   8.        ]
+ [313.49476831   4.10023249   8.        ]
+ [332.01543736   4.18794327   8.        ]
+ [349.95649274   4.25018986   8.        ]
+ [367.95684849   4.21123981   8.        ]
+ [385.50712868   4.0193404    8.        ]]
+r-squared:       0.322281800888717
+fit error:       1.1030898336665271
+modeled spectrum:        [-17.77255256 -18.53769613 -18.98527643 -19.3028397  -19.54916091]
 </pre></div>
 </div>
 </section>
@@ -378,7 +384,7 @@ add_settings
 copy
         Return a copy of the current object.
 fit
-        Fit the full power spectrum as a combination of periodic and aperiodic components.
+        Fit a power spectrum as a combination of periodic and aperiodic components.
 get_data
         Get a data component.
 get_meta_data
@@ -409,8 +415,6 @@ save
         Save out data, results and/or settings from a model object into a JSON file.
 save_report
         Generate and save out a PDF report for a power spectrum model fit.
-set_check_data_mode
-        Set check data mode, which controls if an error is raised if NaN or Inf data are added.
 set_check_modes
         Set check modes, which controls if an error is raised based on check on the inputs.
 set_debug_mode
@@ -420,7 +424,7 @@ set_run_modes
 to_df
         Convert and extract the model results as a pandas object.
 
-[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
 </pre></div>
 </div>
 <section id="saving-data-results">
@@ -473,7 +477,7 @@ or append to, or pass in a JSON file object.</p>
 <p>We have now fully explored the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object, and all it contains.
 Next, we will take a deeper dive into how to choose different modes for fitting
 the aperiodic component of power spectra.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.821 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.266 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-modelobject-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/1cead72fc111e2694c8b25e3ff23021c/plot_04-ModelObject.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-ModelObject.py</span></code></a></p>

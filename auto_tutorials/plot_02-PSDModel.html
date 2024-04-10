@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>02: Fitting Power Spectrum Models &#8212; specparam 2.0.0rc1 documentation</title>
+    <title>02: Fitting Power Spectrum Models &#8212; specparam 2.0.0rc2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -180,20 +180,21 @@ produce erroneous results.</p>
 
                                        POWER SPECTRUM MODEL
 
-                        The model was run on the frequency range 2 - 40 Hz
+                        The model was run on the frequency range 1 - 50 Hz
                                  Frequency Resolution is 0.49 Hz
 
                             Aperiodic Parameters (offset, exponent):
-                                         -21.6185, 0.7160
+                                         -21.5643, 0.7580
 
-                                       3 peaks were found:
-                                CF:   9.36, PW:  1.044, BW:  1.59
-                                CF:  11.17, PW:  0.230, BW:  2.88
-                                CF:  18.25, PW:  0.331, BW:  2.85
+                                       4 peaks were found:
+                                CF:   9.37, PW:  1.038, BW:  1.58
+                                CF:  11.26, PW:  0.225, BW:  2.66
+                                CF:  18.26, PW:  0.331, BW:  2.89
+                                CF:  49.12, PW:  0.089, BW:  2.08
 
                                      Goodness of fit metrics:
-                                    R^2 of model fit is 0.9829
-                                    Error of the fit is 0.0356
+                                    R^2 of model fit is 0.9831
+                                    Error of the fit is 0.0366
 
 ==================================================================================================
 </pre></div>
@@ -252,19 +253,20 @@ the model have a trailing underscore, for example:</p>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Aperiodic parameters:
- [-21.61849957   0.71602269]
+ [-21.56429978   0.75803418]
 
 Peak parameters:
- [[ 9.36187382  1.04444622  1.58733674]
- [11.1723471   0.23008765  2.87693709]
- [18.24843214  0.33140755  2.84640768]]
+ [[ 9.36692476  1.03783352  1.57850562]
+ [11.25765994  0.22544837  2.65619342]
+ [18.25938578  0.33088716  2.88526122]
+ [49.11925659  0.08941903  2.07923219]]
 
 Goodness of fit:
- Error -  0.03560819309517319
- R^2   -  0.9828921187692009
+ Error -  0.03662502775346109
+ R^2   -  0.9830952587012804
 
 Number of fit peaks:
- 3
+ 4
 </pre></div>
 </div>
 </section>
@@ -286,7 +288,7 @@ method, which can be used to specify which parameters you want to extract.</p>
                       <span class="n">cfs</span><span class="o">=</span><span class="s1">&#39; &amp; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">cfs</span><span class="p">]))))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>With an error level of 0.04, an exponent of 0.72 and peaks of 9.36 &amp; 11.17 &amp; 18.25 Hz were fit.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>With an error level of 0.04, an exponent of 0.76 and peaks of 9.37 &amp; 11.26 &amp; 18.26 &amp; 49.12 Hz were fit.
 </pre></div>
 </div>
 <p>For a full description of how you can access data with <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_params" title="specparam.SpectralModel.get_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_params()</span></code></a>,
@@ -328,9 +330,10 @@ in the <code class="docutils literal notranslate"><span class="pre">gaussian_par
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  Peak Parameters        Gaussian Parameters
- 9.36  1.04  1.59         9.36  0.98  0.79
-11.17  0.23  2.88        11.17  0.17  1.44
-18.25  0.33  2.85        18.25  0.33  1.42
+ 9.37  1.04  1.58         9.37  0.99  0.79
+11.26  0.23  2.66        11.26  0.16  1.33
+18.26  0.33  2.89        18.26  0.33  1.44
+49.12  0.09  2.08        49.12  0.09  1.04
 </pre></div>
 </div>
 <section id="fitresults">
@@ -360,18 +363,20 @@ object used to organize and collect parameter data.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fit error: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{:5.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">error_</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>FitResults(aperiodic_params=array([-21.61849957,   0.71602269]), peak_params=array([[ 9.36187382,  1.04444622,  1.58733674],
-       [11.1723471 ,  0.23008765,  2.87693709],
-       [18.24843214,  0.33140755,  2.84640768]]), r_squared=0.9828921187692009, error=0.03560819309517319, gaussian_params=array([[ 9.36187382,  0.97903265,  0.79366837],
-       [11.1723471 ,  0.16897043,  1.43846854],
-       [18.24843214,  0.3341275 ,  1.42320384]]))
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>FitResults(aperiodic_params=array([-21.56429978,   0.75803418]), peak_params=array([[ 9.36692476,  1.03783352,  1.57850562],
+       [11.25765994,  0.22544837,  2.65619342],
+       [18.25938578,  0.33088716,  2.88526122],
+       [49.11925659,  0.08941903,  2.07923219]]), r_squared=0.9830952587012804, error=0.03662502775346109, gaussian_params=array([[ 9.36692476,  0.99006278,  0.78925281],
+       [11.25765994,  0.16451828,  1.32809671],
+       [18.25938578,  0.33386059,  1.44263061],
+       [49.11925659,  0.09104142,  1.0396161 ]]))
 
 Aperiodic Parameters:
- [-21.61849957   0.71602269]
+ [-21.56429978   0.75803418]
 R-squared:
- 0.9829
+ 0.9831
 Fit error:
- 0.0356
+ 0.0366
 </pre></div>
 </div>
 </section>
@@ -381,7 +386,7 @@ Fit error:
 <p>In this tutorial, we have explored the basics of the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object,
 fitting power spectrum models, and extracting parameters.</p>
 <p>In the next tutorial, we will explore how this algorithm actually works to fit the model.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.236 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.253 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-02-psdmodel-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/64fb1598639df59c62189fde2cf3541f/plot_02-PSDModel.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_02-PSDModel.py</span></code></a></p>

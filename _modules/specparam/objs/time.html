@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.objs.time &#8212; specparam 2.0.0rc1 documentation</title>
+    <title>specparam.objs.time &#8212; specparam 2.0.0rc2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -57,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -115,15 +115,13 @@
   <h1>Source code for specparam.objs.time</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Time model object and associated code for fitting the model to spectrograms.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
-
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <span class="n">SpectralModel</span><span class="p">,</span> <span class="n">SpectralGroupModel</span>
+<span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <span class="n">SpectralModel</span>
+<span class="kn">from</span> <span class="nn">specparam.objs.base</span> <span class="kn">import</span> <span class="n">BaseObject2DT</span>
+<span class="kn">from</span> <span class="nn">specparam.objs.algorithm</span> <span class="kn">import</span> <span class="n">SpectralFitAlgorithm</span>
+<span class="kn">from</span> <span class="nn">specparam.data.conversions</span> <span class="kn">import</span> <span class="n">group_to_dataframe</span><span class="p">,</span> <span class="n">dict_to_df</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.time</span> <span class="kn">import</span> <span class="n">plot_time_model</span>
-<span class="kn">from</span> <span class="nn">specparam.data.conversions</span> <span class="kn">import</span> <span class="n">group_to_dict</span><span class="p">,</span> <span class="n">group_to_dataframe</span><span class="p">,</span> <span class="n">dict_to_df</span>
-<span class="kn">from</span> <span class="nn">specparam.data.utils</span> <span class="kn">import</span> <span class="n">get_results_by_ind</span>
-<span class="kn">from</span> <span class="nn">specparam.core.utils</span> <span class="kn">import</span> <span class="n">check_inds</span>
 <span class="kn">from</span> <span class="nn">specparam.core.reports</span> <span class="kn">import</span> <span class="n">save_time_report</span>
 <span class="kn">from</span> <span class="nn">specparam.core.modutils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">copy_doc_func_to_method</span><span class="p">,</span> <span class="n">docs_get_section</span><span class="p">,</span>
                                      <span class="n">replace_docstring_sections</span><span class="p">)</span>
@@ -132,26 +130,9 @@
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<span class="k">def</span> <span class="nf">transpose_arg1</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator function to transpose the 1th argument input to a function.&quot;&quot;&quot;</span>
-
-    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">decorated</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-            <span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="k">else</span> <span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s1">&#39;spectrogram&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;spectrogram&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;spectrogram&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
-
-        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">decorated</span>
-
-
 <div class="viewcode-block" id="SpectralTimeModel"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel">[docs]</a><span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">SpectralModel</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
                              <span class="n">docs_get_section</span><span class="p">(</span><span class="n">SpectralModel</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Notes&#39;</span><span class="p">)])</span>
-<span class="k">class</span> <span class="nc">SpectralTimeModel</span><span class="p">(</span><span class="n">SpectralGroupModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">SpectralTimeModel</span><span class="p">(</span><span class="n">SpectralFitAlgorithm</span><span class="p">,</span> <span class="n">BaseObject2DT</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Model a spectrogram as a combination of aperiodic and periodic components.</span>
 
 <span class="sd">    WARNING: frequency and power values inputs must be in linear space.</span>
@@ -193,67 +174,15 @@
 <div class="viewcode-block" id="SpectralTimeModel.__init__"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize object with desired settings.&quot;&quot;&quot;</span>
 
-        <span class="n">SpectralGroupModel</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">BaseObject2DT</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                               <span class="n">aperiodic_mode</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;aperiodic_mode&#39;</span><span class="p">,</span> <span class="s1">&#39;fixed&#39;</span><span class="p">),</span>
+                               <span class="n">periodic_mode</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;periodic_mode&#39;</span><span class="p">,</span> <span class="s1">&#39;gaussian&#39;</span><span class="p">),</span>
+                               <span class="n">debug_mode</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;debug_mode&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+                               <span class="n">verbose</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;verbose&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+
+        <span class="n">SpectralFitAlgorithm</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset_time_results</span><span class="p">()</span></div>
-
-
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow for indexing into the object to select fit results for a specific time window.&quot;&quot;&quot;</span>
-
-        <span class="k">return</span> <span class="n">get_results_by_ind</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_results</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
-
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_peaks_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;How many peaks were fit for each model.&quot;&quot;&quot;</span>
-
-        <span class="k">return</span> <span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">peak_params</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">]</span> \
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span> <span class="k">else</span> <span class="kc">None</span>
-
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_time_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;How many time windows are included in the model object.&quot;&quot;&quot;</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectrogram</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span> <span class="k">else</span> <span class="mi">0</span>
-
-
-    <span class="k">def</span> <span class="nf">_reset_time_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, time results to be empty.&quot;&quot;&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span> <span class="o">=</span> <span class="p">{}</span>
-
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">spectrogram</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Data attribute view on the power spectra, transposed to spectrogram orientation.&quot;&quot;&quot;</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="o">.</span><span class="n">T</span>
-
-
-<div class="viewcode-block" id="SpectralTimeModel.add_data"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.add_data">[docs]</a>    <span class="nd">@transpose_arg1</span>
-    <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spectrogram</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add data (frequencies and spectrogram values) to the current object.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        freqs : 1d array</span>
-<span class="sd">            Frequency values for the spectrogram, in linear space.</span>
-<span class="sd">        spectrogram : 2d array, shape=[n_freqs, n_time_windows]</span>
-<span class="sd">            Matrix of power values, in linear space.</span>
-<span class="sd">        freq_range : list of [float, float], optional</span>
-<span class="sd">            Frequency range to restrict spectrogram to. If not provided, keeps the entire range.</span>
-
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        If called on an object with existing data and/or results</span>
-<span class="sd">        these will be cleared by this method call.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">freqs</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_reset_time_results</span><span class="p">()</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrogram</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SpectralTimeModel.report"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spectrogram</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -286,105 +215,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrogram</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">peak_org</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="n">progress</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">report_type</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">print_results</span><span class="p">(</span><span class="n">report_type</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="SpectralTimeModel.fit"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spectrogram</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">peak_org</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit a spectrogram.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        freqs : 1d array, optional</span>
-<span class="sd">            Frequency values for the spectrogram, in linear space.</span>
-<span class="sd">        spectrogram : 2d array, shape: [n_freqs, n_time_windows], optional</span>
-<span class="sd">            Spectrogram of power spectrum values, in linear space.</span>
-<span class="sd">        freq_range : list of [float, float], optional</span>
-<span class="sd">            Frequency range to fit the model to. If not provided, fits the entire given range.</span>
-<span class="sd">        peak_org : int or Bands</span>
-<span class="sd">            How to organize peaks.</span>
-<span class="sd">            If int, extracts the first n peaks.</span>
-<span class="sd">            If Bands, extracts peaks based on band definitions.</span>
-<span class="sd">        n_jobs : int, optional, default: 1</span>
-<span class="sd">            Number of jobs to run in parallel.</span>
-<span class="sd">            1 is no parallelization. -1 uses all available cores.</span>
-<span class="sd">        progress : {None, &#39;tqdm&#39;, &#39;tqdm.notebook&#39;}, optional</span>
-<span class="sd">            Which kind of progress bar to use. If None, no progress bar is used.</span>
-
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        Data is optional, if data has already been added to the object.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrogram</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">n_jobs</span><span class="p">,</span> <span class="n">progress</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">peak_org</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">convert_results</span><span class="p">(</span><span class="n">peak_org</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="SpectralTimeModel.drop"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.drop">[docs]</a>    <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inds</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop one or more model fit results from the object.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        inds : int or array_like of int or array_like of bool</span>
-<span class="sd">            Indices to drop model fit results for.</span>
-
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        This method sets the model fits as null, and preserves the shape of the model fits.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">inds</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">inds</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span></div>
-
-
-<div class="viewcode-block" id="SpectralTimeModel.get_results"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.get_results">[docs]</a>    <span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the results run across a spectrogram.&quot;&quot;&quot;</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span></div>
-
-
-<div class="viewcode-block" id="SpectralTimeModel.get_group"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.get_group">[docs]</a>    <span class="k">def</span> <span class="nf">get_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inds</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a new model object with the specified sub-selection of model fits.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        inds : array_like of int or array_like of bool</span>
-<span class="sd">            Indices to extract from the object.</span>
-<span class="sd">        output_type : {&#39;time&#39;, &#39;group&#39;}, optional</span>
-<span class="sd">            Type of model object to extract:</span>
-<span class="sd">                &#39;time&#39; : SpectralTimeObject</span>
-<span class="sd">                &#39;group&#39; : SpectralGroupObject</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        output : SpectralTimeModel or SpectralGroupModel</span>
-<span class="sd">            The requested selection of results data loaded into a new model object.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">output_type</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span>
-
-            <span class="c1"># Initialize a new model object, with same settings as current object</span>
-            <span class="n">output</span> <span class="o">=</span> <span class="n">SpectralTimeModel</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">get_settings</span><span class="p">(),</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
-            <span class="n">output</span><span class="o">.</span><span class="n">add_meta_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_meta_data</span><span class="p">())</span>
-
-            <span class="k">if</span> <span class="n">inds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-                <span class="c1"># Check and convert indices encoding to list of int</span>
-                <span class="n">inds</span> <span class="o">=</span> <span class="n">check_inds</span><span class="p">(</span><span class="n">inds</span><span class="p">)</span>
-
-                <span class="c1"># Add data for specified power spectra, if available</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
-                    <span class="n">output</span><span class="o">.</span><span class="n">power_spectra</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">[</span><span class="n">inds</span><span class="p">,</span> <span class="p">:]</span>
-
-                <span class="c1"># Add results for specified power spectra</span>
-                <span class="n">output</span><span class="o">.</span><span class="n">group_results</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">inds</span><span class="p">]</span>
-                <span class="n">output</span><span class="o">.</span><span class="n">time_results</span> <span class="o">=</span> <span class="n">get_results_by_ind</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_results</span><span class="p">,</span> <span class="n">inds</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">output_type</span> <span class="o">==</span> <span class="s1">&#39;group&#39;</span><span class="p">:</span>
-            <span class="n">output</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">inds</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">output</span></div>
 
 
 <div class="viewcode-block" id="SpectralTimeModel.print_results"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.print_results">[docs]</a>    <span class="k">def</span> <span class="nf">print_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_type</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -420,28 +250,6 @@
         <span class="n">save_time_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">add_settings</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeModel.load"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">peak_org</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load time data from file.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        file_name : str</span>
-<span class="sd">            File to load data from.</span>
-<span class="sd">        file_path : str, optional</span>
-<span class="sd">            Path to directory to load from. If None, loads from current directory.</span>
-<span class="sd">        peak_org : int or Bands</span>
-<span class="sd">            How to organize peaks.</span>
-<span class="sd">            If int, extracts the first n peaks.</span>
-<span class="sd">            If Bands, extracts peaks based on band definitions.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="c1"># Clear results so as not to have possible prior results interfere</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_time_results</span><span class="p">()</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">peak_org</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">convert_results</span><span class="p">(</span><span class="n">peak_org</span><span class="p">)</span></div>
-
-
 <div class="viewcode-block" id="SpectralTimeModel.to_df"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.to_df">[docs]</a>    <span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peak_org</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert and extract the model results as a pandas object.</span>
 
@@ -467,18 +275,13 @@
         <span class="k">return</span> <span class="n">df</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeModel.convert_results"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.convert_results">[docs]</a>    <span class="k">def</span> <span class="nf">convert_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peak_org</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the model results to be organized across time windows.</span>
+    <span class="k">def</span> <span class="nf">_check_width_limits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check and warn about bandwidth limits / frequency resolution interaction.&quot;&quot;&quot;</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        peak_org : int or Bands</span>
-<span class="sd">            How to organize peaks.</span>
-<span class="sd">            If int, extracts the first n peaks.</span>
-<span class="sd">            If Bands, extracts peaks based on band definitions.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span> <span class="o">=</span> <span class="n">group_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">,</span> <span class="n">peak_org</span><span class="p">)</span></div></div>
+        <span class="c1"># Only check &amp; warn on first power spectrum</span>
+        <span class="c1">#   This is to avoid spamming standard output for every spectrum in the group</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_spectrum</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]):</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_check_width_limits</span><span class="p">()</span></div>
 </pre></div>
 
     </div>

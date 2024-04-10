@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Developmental Data Demo &#8212; specparam 2.0.0rc1 documentation</title>
+    <title>Developmental Data Demo &#8212; specparam 2.0.0rc2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -210,19 +210,21 @@ Bradley Voytek, and Koraly E Pérez-Edgar.</p>
 
                                        POWER SPECTRUM MODEL
 
-                        The model was run on the frequency range 3 - 40 Hz
+                        The model was run on the frequency range 1 - 50 Hz
                                  Frequency Resolution is 0.50 Hz
 
                             Aperiodic Parameters (offset, exponent):
-                                          2.1629, 1.9838
+                                          1.7022, 1.6830
 
-                                       2 peaks were found:
-                                CF:  10.24, PW:  1.393, BW:  2.38
-                                CF:  19.57, PW:  0.372, BW:  2.19
+                                       4 peaks were found:
+                                CF:   7.48, PW:  0.420, BW:  3.83
+                                CF:  10.31, PW:  1.608, BW:  1.89
+                                CF:  13.11, PW:  0.275, BW:  6.42
+                                CF:  19.70, PW:  0.437, BW:  2.23
 
                                      Goodness of fit metrics:
-                                    R^2 of model fit is 0.9891
-                                    Error of the fit is 0.0583
+                                    R^2 of model fit is 0.9949
+                                    Error of the fit is 0.0412
 
 ==================================================================================================
 </pre></div>
@@ -241,18 +243,20 @@ by running <cite>fm.save_report(‘INDV_demo’, file_path=output_path)</cite>.<
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Aperiodic parameters:
- [2.16288529 1.98377579]
+ [1.70221521 1.68302596]
 
 Peak parameters:
- [[10.23976304  1.39284749  2.38121129]
- [19.56659443  0.37192528  2.19390941]]
+ [[ 7.48092319  0.42012455  3.83022765]
+ [10.30654479  1.60754552  1.89408549]
+ [13.11431335  0.27504672  6.42341988]
+ [19.69571297  0.43705546  2.23360875]]
 
 Goodness of fit:
-Error -  0.05826852822798273
-R^2   -  0.9891333266719852
+Error -  0.041157237430154016
+R^2   -  0.9948650590633596
 
 Number of fit peaks:
- 2
+ 4
 </pre></div>
 </div>
 <p>Another way to access model fit parameters is to use the <cite>get_params</cite> method,
@@ -280,7 +284,7 @@ which can be used to access model fit attributes.</p>
                       <span class="n">cfs</span><span class="o">=</span><span class="s1">&#39; &amp; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">CF</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">CF</span> <span class="ow">in</span> <span class="n">cfs</span><span class="p">]))))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>With an error level of 0.06, specparam fit an exponent of 1.98 and peaks of 10.24 &amp; 19.57 Hz.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>With an error level of 0.04, specparam fit an exponent of 1.68 and peaks of 7.48 &amp; 10.31 &amp; 13.11 &amp; 19.7 Hz.
 </pre></div>
 </div>
 <p>Next, we will plot the flattened power spectrum.</p>
@@ -338,8 +342,8 @@ Further considerations may be necessary for this model fit.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total model fit error: </span><span class="se">\t\t</span><span class="s1"> </span><span class="si">{:1.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">error_</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Average freq-by-freq error:      0.058
-Total model fit error:           0.058
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Average freq-by-freq error:      0.041
+Total model fit error:           0.041
 </pre></div>
 </div>
 </section>
@@ -552,8 +556,8 @@ again using different settings for each one.</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize model objects for spectral parameterization, with some settings</span>
-<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg1</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">(</span><span class="o">*</span><a href="../../generated/specparam.data.ModelSettings.html#specparam.data.ModelSettings" title="specparam.data.ModelSettings" class="sphx-glr-backref-module-specparam-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">settings1</span></a><span class="p">)</span>
-<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg2</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">(</span><span class="o">*</span><a href="../../generated/specparam.data.ModelSettings.html#specparam.data.ModelSettings" title="specparam.data.ModelSettings" class="sphx-glr-backref-module-specparam-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">settings2</span></a><span class="p">)</span>
+<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg1</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">(</span><span class="o">**</span><a href="../../generated/specparam.data.ModelSettings.html#specparam.data.ModelSettings" title="specparam.data.ModelSettings" class="sphx-glr-backref-module-specparam-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">settings1</span></a><span class="o">.</span><span class="n">_asdict</span><span class="p">())</span>
+<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg2</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">(</span><span class="o">**</span><a href="../../generated/specparam.data.ModelSettings.html#specparam.data.ModelSettings" title="specparam.data.ModelSettings" class="sphx-glr-backref-module-specparam-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">settings2</span></a><span class="o">.</span><span class="n">_asdict</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Now, let’s fit models with group model object</p>
@@ -602,13 +606,13 @@ the model objects below correspond to the model fit at the top of this script.</
                                  Frequency Resolution is 0.50 Hz
 
                             Aperiodic Parameters (offset, exponent):
-                                          0.2832, 0.4376
+                                          0.2831, 0.4376
 
                                        1 peaks were found:
                                 CF:   7.45, PW:  0.413, BW:  7.14
 
                                      Goodness of fit metrics:
-                                    R^2 of model fit is 0.7857
+                                    R^2 of model fit is 0.7858
                                     Error of the fit is 0.1071
 
 ==================================================================================================
@@ -709,7 +713,7 @@ The error threshold will vary depending on sample characteristics and data quali
 and/or the
 <a class="reference external" href="https://doi.org/10.1016/j.dcn.2022.101073">associated paper</a>
 for further information.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.605 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.844 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-analyses-plot-dev-demo-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/757ad6996ad8864ea6e92f8318944309/plot_dev_demo.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_dev_demo.py</span></code></a></p>

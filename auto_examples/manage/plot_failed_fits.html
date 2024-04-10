@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Failed Model Fits &#8212; specparam 2.0.0rc1 documentation</title>
+    <title>Failed Model Fits &#8212; specparam 2.0.0rc2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -192,6 +192,11 @@ in simulated data.</p>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting model across 25 power spectra.
+Model fitting was unsuccessful.
+Model fitting was unsuccessful.
+Model fitting was unsuccessful.
+Model fitting was unsuccessful.
+Model fitting was unsuccessful.
 </pre></div>
 </div>
 <p>As we can see, there are now some model fit failures! Note that, as above, it will
@@ -201,8 +206,8 @@ be printed out if there is as model fit failure when in verbose mode.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Indices of Null models : </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.null_inds_" title="specparam.SpectralGroupModel.null_inds_" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fg</span><span class="o">.</span><span class="n">null_inds_</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Number of Null models  :         0
-Indices of Null models :         []
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Number of Null models  :         5
+Indices of Null models :         [5, 14, 15, 21, 24]
 </pre></div>
 </div>
 </section>
@@ -233,6 +238,7 @@ If you just want to see the error, you can run the fit call without the try/exce
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting model across 25 power spectra.
+Model fitting failed due to not finding parameters in the peak component fit.
 </pre></div>
 </div>
 <section id="debugging-model-fit-errors">
@@ -246,7 +252,7 @@ issue with the model fit.</p>
 <p>If you are unsure about why or how the model is failing to fit, consider
 opening an <a class="reference external" href="https://github.com/fooof-tools/fooof/issues">issue</a> on the project
 repository, and we will try to look into what seems to be happening.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.583 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.878 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-manage-plot-failed-fits-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/db8de8edd3842461f54f58941cd05cc4/plot_failed_fits.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_failed_fits.py</span></code></a></p>

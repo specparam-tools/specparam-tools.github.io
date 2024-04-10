@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Frequency-by-Frequency Errors &#8212; specparam 2.0.0rc1 documentation</title>
+    <title>Frequency-by-Frequency Errors &#8212; specparam 2.0.0rc2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -179,8 +179,8 @@ This suggests no particular problem with the fit.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Model fit error: </span><span class="se">\t\t</span><span class="s1"> </span><span class="si">{:1.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">error_</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Average freq-by-freq error:      0.003
-Model fit error:                 0.003
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Average freq-by-freq error:      0.004
+Model fit error:                 0.004
 </pre></div>
 </div>
 </section>
@@ -221,8 +221,8 @@ and the shading indicates the standard deviation of the error, also per frequenc
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Frequency with highest standard deviation of error: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">f_max_std</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Frequency with highest mean error:                       36.0
-Frequency with highest standard deviation of error:      16.5
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Frequency with highest mean error:                       30.5
+Frequency with highest standard deviation of error:      39.0
 </pre></div>
 </div>
 <p>In the plot and checks above, we again see that the error is on average low, and
@@ -258,7 +258,7 @@ between the data properties we simulated and the aperiodic mode used to fit the 
 <p>If you see high errors, especially bunched up around particular frequencies,
 this is a sign that something might be going wrong, and it might be worth
 looking more into the how the model fits are going.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.613 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.898 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-models-plot-freq-by-freq-error-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/6e8b93e073824005a7259de349123aeb/plot_freq_by_freq_error.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_freq_by_freq_error.py</span></code></a></p>

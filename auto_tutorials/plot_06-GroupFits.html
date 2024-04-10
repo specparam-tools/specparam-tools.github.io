@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>06: Fitting group of spectra &#8212; specparam 2.0.0rc1 documentation</title>
+    <title>06: Fitting group of spectra &#8212; specparam 2.0.0rc2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -228,13 +228,13 @@ called <code class="docutils literal notranslate"><span class="pre">group_result
 <span class="nb">print</span><span class="p">(</span><a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[FitResults(aperiodic_params=array([-21.59318324,   0.66653211]), peak_params=array([[ 9.40884349,  1.44216958,  2.13538999],
-       [18.44690064,  0.62328059,  2.36124644]]), r_squared=0.9729491097839974, error=0.0541107770802548, gaussian_params=array([[ 9.40884349,  1.45314926,  1.067695  ],
-       [18.44690064,  0.62588356,  1.18062322]])), FitResults(aperiodic_params=array([-21.64489242,   0.7811353 ]), peak_params=array([[ 9.35008047,  1.59782972,  2.05333541],
-       [11.57656498,  0.45031416,  1.24525305],
-       [18.53931725,  0.73999232,  2.37682592]]), r_squared=0.9795696094205192, error=0.053276472961016196, gaussian_params=array([[ 9.35008047,  1.60146392,  1.0266677 ],
-       [11.57656498,  0.34739875,  0.62262653],
-       [18.53931725,  0.74005421,  1.18841296]]))]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[FitResults(aperiodic_params=array([-21.59315937,   0.66654703]), peak_params=array([[ 9.4088037 ,  1.44223655,  2.13520588],
+       [18.44689677,  0.62328343,  2.36122323]]), r_squared=0.972947704637623, error=0.05410881121030762, gaussian_params=array([[ 9.4088037 ,  1.45321197,  1.06760294],
+       [18.44689677,  0.62588664,  1.18061162]])), FitResults(aperiodic_params=array([-21.64485739,   0.78116382]), peak_params=array([[ 9.34931443,  1.59788754,  2.05215067],
+       [11.57383428,  0.44989782,  1.24937294],
+       [18.5393173 ,  0.73999236,  2.37682558]]), r_squared=0.9795689264306686, error=0.053265515178037695, gaussian_params=array([[ 9.34931443,  1.6014178 ,  1.02607534],
+       [11.57383428,  0.34781375,  0.62468647],
+       [18.5393173 ,  0.74005425,  1.18841279]]))]
 </pre></div>
 </div>
 <section id="get-params">
@@ -332,11 +332,11 @@ FitResults object.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">exps</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[0.66653211 0.7811353  0.97590104 0.35627239 0.66216147 0.58348651
- 0.76023714 0.46595496 0.70967041 0.60542054 0.73819675 0.39583901
- 0.70804225 0.63141845 0.7899675  0.50374908 0.83824913 0.62694516
- 0.72882273 0.71867153 0.74299792 0.88148146 0.35305513 0.39948362
- 0.98211792]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[0.66654703 0.78116382 0.97596319 0.35626813 0.66222008 0.5834865
+ 0.76028338 0.46594578 0.70975766 0.60541614 0.73824334 0.39581644
+ 0.70797695 0.63143897 0.78995515 0.50376861 0.83825229 0.62707641
+ 0.72882427 0.71863448 0.74302618 0.8814779  0.35305533 0.39947473
+ 0.98214346]
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out some of the fit center-frequencies</span>
@@ -345,16 +345,16 @@ FitResults object.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">cfs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[ 9.40884349  0.        ]
- [18.44690064  0.        ]
- [ 9.35008047  1.        ]
- [11.57656498  1.        ]
- [18.53931725  1.        ]
- [ 9.48277656  2.        ]
- [11.25741436  2.        ]
- [12.58286713  2.        ]
- [18.675832    2.        ]
- [10.61408598  3.        ]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[ 9.4088037   0.        ]
+ [18.44689677  0.        ]
+ [ 9.34931443  1.        ]
+ [11.57383428  1.        ]
+ [18.5393173   1.        ]
+ [ 9.48181063  2.        ]
+ [11.25615364  2.        ]
+ [12.57271777  2.        ]
+ [18.67595773  2.        ]
+ [10.61406526  3.        ]]
 </pre></div>
 </div>
 </section>
@@ -437,10 +437,13 @@ want to monitor it’s progress, you can also use a progress bar to print out fi
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Running group fits.:   0%|          | 0/25 [00:00&lt;?, ?it/s]
-Running group fits.:  24%|##4       | 6/25 [00:00&lt;00:00, 58.31it/s]
-Running group fits.:  48%|####8     | 12/25 [00:00&lt;00:00, 37.13it/s]
-Running group fits.:  88%|########8 | 22/25 [00:00&lt;00:00, 54.57it/s]
-Running group fits.: 100%|##########| 25/25 [00:00&lt;00:00, 54.71it/s]
+Running group fits.:  16%|#6        | 4/25 [00:00&lt;00:00, 38.32it/s]
+Running group fits.:  32%|###2      | 8/25 [00:00&lt;00:00, 23.37it/s]
+Running group fits.:  44%|####4     | 11/25 [00:00&lt;00:00, 23.91it/s]
+Running group fits.:  64%|######4   | 16/25 [00:00&lt;00:00, 18.82it/s]
+Running group fits.:  76%|#######6  | 19/25 [00:00&lt;00:00, 20.53it/s]
+Running group fits.:  88%|########8 | 22/25 [00:00&lt;00:00, 22.11it/s]
+Running group fits.: 100%|##########| 25/25 [00:01&lt;00:00, 23.18it/s]
 </pre></div>
 </div>
 </section>
@@ -470,7 +473,7 @@ for visualization. To do so, you can use the <a class="reference internal" href=
                                  Frequency Resolution is 0.49 Hz
 
                             Aperiodic Parameters (offset, exponent):
-                                         -21.1789, 1.0580
+                                         -21.1789, 1.0581
 
                                        6 peaks were found:
                                 CF:   7.18, PW:  0.292, BW:  1.00
@@ -494,7 +497,7 @@ for visualization. To do so, you can use the <a class="reference internal" href=
 <p>Now we have explored fitting power spectrum models and running these fits across multiple
 power spectra. Next we will explore how to fit power spectra across time windows, and
 across different events.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.691 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.927 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-06-groupfits-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5ec02fa5548de1f5c319bb4555f5d978/plot_06-GroupFits.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_06-GroupFits.py</span></code></a></p>

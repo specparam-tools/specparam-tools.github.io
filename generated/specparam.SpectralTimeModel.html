@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>specparam.SpectralTimeModel &#8212; specparam 2.0.0rc1 documentation</title>
+    <title>specparam.SpectralTimeModel &#8212; specparam 2.0.0rc2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -58,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -197,14 +197,14 @@ model results.</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.__init__" title="specparam.SpectralTimeModel.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Initialize object with desired settings.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.add_data" title="specparam.SpectralTimeModel.add_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_data</span></code></a>(freqs, spectrogram[, freq_range])</p></td>
-<td><p>Add data (frequencies and spectrogram values) to the current object.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.add_data" title="specparam.SpectralTimeModel.add_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_data</span></code></a>(freqs, power_spectra[, freq_range, ...])</p></td>
+<td><p>Add data (frequencies and power spectrum values) to the current object.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.add_meta_data" title="specparam.SpectralTimeModel.add_meta_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_meta_data</span></code></a>(meta_data)</p></td>
 <td><p>Add data information into object from a SpectrumMetaData object.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.add_results" title="specparam.SpectralTimeModel.add_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_results</span></code></a>(results)</p></td>
-<td><p>Add results data into object from a FitResults object.</p></td>
+<td><p>Add results data into object.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.add_settings" title="specparam.SpectralTimeModel.add_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_settings</span></code></a>(settings)</p></td>
 <td><p>Add settings into object from a ModelSettings object.</p></td>
@@ -251,14 +251,8 @@ model results.</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.plot" title="specparam.SpectralTimeModel.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([plot_type, save_fig, file_name, file_path])</p></td>
 <td><p>Plot a figure with subplots visualizing the parameters from a SpectralTimeModel object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.print_report_issue" title="specparam.SpectralTimeModel.print_report_issue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_report_issue</span></code></a>([concise])</p></td>
-<td><p>Prints instructions on how to report bugs and/or problematic fits.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.print_results" title="specparam.SpectralTimeModel.print_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_results</span></code></a>([print_type, concise])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.print_results" title="specparam.SpectralTimeModel.print_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_results</span></code></a>([print_type, concise])</p></td>
 <td><p>Print out SpectralTimeModel results.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.print_settings" title="specparam.SpectralTimeModel.print_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_settings</span></code></a>([description, concise])</p></td>
-<td><p>Print out the current settings.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.report" title="specparam.SpectralTimeModel.report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">report</span></code></a>([freqs, spectrogram, freq_range, ...])</p></td>
 <td><p>Fit a spectrogram and display a report, with a plot and printed results.</p></td>
@@ -266,14 +260,8 @@ model results.</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.save" title="specparam.SpectralTimeModel.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(file_name[, file_path, append, ...])</p></td>
 <td><p>Save out results and/or settings from group object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.save_model_report" title="specparam.SpectralTimeModel.save_model_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_model_report</span></code></a>(index, file_name[, ...])</p></td>
-<td><p>&quot;Save out an individual model report for a specified model fit.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.save_report" title="specparam.SpectralTimeModel.save_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_report</span></code></a>(file_name[, file_path, add_settings])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.save_report" title="specparam.SpectralTimeModel.save_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_report</span></code></a>(file_name[, file_path, add_settings])</p></td>
 <td><p>Generate and save out a PDF report for models of a spectrogram.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.set_check_data_mode" title="specparam.SpectralTimeModel.set_check_data_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_check_data_mode</span></code></a>(check_data)</p></td>
-<td><p>Set check data mode, which controls if an error is raised if NaN or Inf data are added.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.set_check_modes" title="specparam.SpectralTimeModel.set_check_modes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_check_modes</span></code></a>([check_freqs, check_data])</p></td>
 <td><p>Set check modes, which controls if an error is raised based on check on the inputs.</p></td>
@@ -321,16 +309,19 @@ model results.</p></li>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeModel.add_data">
-<span class="sig-name descname"><span class="pre">add_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrogram</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/objs/time.html#SpectralTimeModel.add_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeModel.add_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add data (frequencies and spectrogram values) to the current object.</p>
+<span class="sig-name descname"><span class="pre">add_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_spectra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.add_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add data (frequencies and power spectrum values) to the current object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>freqs</strong><span class="classifier">1d array</span></dt><dd><p>Frequency values for the spectrogram, in linear space.</p>
+<dt><strong>freqs</strong><span class="classifier">1d array</span></dt><dd><p>Frequency values for the power spectra, in linear space.</p>
 </dd>
-<dt><strong>spectrogram</strong><span class="classifier">2d array, shape=[n_freqs, n_time_windows]</span></dt><dd><p>Matrix of power values, in linear space.</p>
+<dt><strong>power_spectra</strong><span class="classifier">2d array, shape=[n_power_spectra, n_freqs]</span></dt><dd><p>Matrix of power values, in linear space.</p>
 </dd>
-<dt><strong>freq_range</strong><span class="classifier">list of [float, float], optional</span></dt><dd><p>Frequency range to restrict spectrogram to. If not provided, keeps the entire range.</p>
+<dt><strong>freq_range</strong><span class="classifier">list of [float, float], optional</span></dt><dd><p>Frequency range to restrict power spectra to. If not provided, keeps the entire range.</p>
+</dd>
+<dt><strong>clear_results</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to clear prior results, if any are present in the object.
+This should only be set to False if data for the current results are being re-added.</p>
 </dd>
 </dl>
 </dd>
@@ -357,11 +348,11 @@ these will be cleared by this method call.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeModel.add_results">
 <span class="sig-name descname"><span class="pre">add_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.add_results" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add results data into object from a FitResults object.</p>
+<dd><p>Add results data into object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>results</strong><span class="classifier">FitResults</span></dt><dd><p>A data object containing the results from fitting a power spectrum model.</p>
+<dt><strong>results</strong><span class="classifier">list of list of FitResults</span></dt><dd><p>List of data objects containing the results from fitting power spectrum models.</p>
 </dd>
 </dl>
 </dd>
@@ -384,7 +375,7 @@ these will be cleared by this method call.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeModel.convert_results">
-<span class="sig-name descname"><span class="pre">convert_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peak_org</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/objs/time.html#SpectralTimeModel.convert_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeModel.convert_results" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">convert_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peak_org</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.convert_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert the model results to be organized across time windows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -406,7 +397,7 @@ If Bands, extracts peaks based on band definitions.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeModel.drop">
-<span class="sig-name descname"><span class="pre">drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/objs/time.html#SpectralTimeModel.drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeModel.drop" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.drop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Drop one or more model fit results from the object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -422,7 +413,7 @@ If Bands, extracts peaks based on band definitions.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeModel.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrogram</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_org</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/objs/time.html#SpectralTimeModel.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeModel.fit" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrogram</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_org</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit a spectrogram.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -488,7 +479,7 @@ With space set as ‘linear’, this combination holds in linear space.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeModel.get_group">
-<span class="sig-name descname"><span class="pre">get_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/objs/time.html#SpectralTimeModel.get_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeModel.get_group" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.get_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a new model object with the specified sub-selection of model fits.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -584,7 +575,7 @@ column is appended to the returned array, indicating the index that the peak cam
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeModel.get_results">
-<span class="sig-name descname"><span class="pre">get_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/objs/time.html#SpectralTimeModel.get_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeModel.get_results" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.get_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the results run across a spectrogram.</p>
 </dd></dl>
 
@@ -630,7 +621,7 @@ column is appended to the returned array, indicating the index that the peak cam
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeModel.load">
-<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_org</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/objs/time.html#SpectralTimeModel.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeModel.load" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_org</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load time data from file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -693,20 +684,6 @@ If Bands, extracts peaks based on band definitions.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="specparam.SpectralTimeModel.print_report_issue">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">print_report_issue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.print_report_issue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prints instructions on how to report bugs and/or problematic fits.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print the report in a concise mode, or not.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeModel.print_results">
 <span class="sig-name descname"><span class="pre">print_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">print_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/objs/time.html#SpectralTimeModel.print_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeModel.print_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print out SpectralTimeModel results.</p>
@@ -714,22 +691,6 @@ If Bands, extracts peaks based on band definitions.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>print_type</strong><span class="classifier">{‘time’, ‘group’}</span></dt><dd><p>Which format to print results out in.</p>
-</dd>
-<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print the report in a concise mode, or not.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="specparam.SpectralTimeModel.print_settings">
-<span class="sig-name descname"><span class="pre">print_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.print_settings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print out the current settings.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>description</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out a description with current settings.</p>
 </dd>
 <dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print the report in a concise mode, or not.</p>
 </dd>
@@ -799,28 +760,6 @@ This option is only valid (and only used) if ‘file_name’ is a str.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="specparam.SpectralTimeModel.save_model_report">
-<span class="sig-name descname"><span class="pre">save_model_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plot_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.save_model_report" title="Permalink to this definition">¶</a></dt>
-<dd><p>“Save out an individual model report for a specified model fit.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>Index of the model fit to save out.</p>
-</dd>
-<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd><p>Name to give the saved out file.</p>
-</dd>
-<dt><strong>file_path</strong><span class="classifier">Path or str, optional</span></dt><dd><p>Path to directory to save to. If None, saves to current directory.</p>
-</dd>
-<dt><strong>add_settings</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to add a print out of the model settings to the end of the report.</p>
-</dd>
-<dt><strong>plot_kwargs</strong><span class="classifier">keyword arguments</span></dt><dd><p>Keyword arguments to pass into the plot method.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeModel.save_report">
 <span class="sig-name descname"><span class="pre">save_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/objs/time.html#SpectralTimeModel.save_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeModel.save_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate and save out a PDF report for models of a spectrogram.</p>
@@ -832,20 +771,6 @@ This option is only valid (and only used) if ‘file_name’ is a str.</p>
 <dt><strong>file_path</strong><span class="classifier">str, optional</span></dt><dd><p>Path to directory to save to. If None, saves to current directory.</p>
 </dd>
 <dt><strong>add_settings</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to add a print out of the model settings to the end of the report.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="specparam.SpectralTimeModel.set_check_data_mode">
-<span class="sig-name descname"><span class="pre">set_check_data_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.set_check_data_mode" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set check data mode, which controls if an error is raised if NaN or Inf data are added.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>check_data</strong><span class="classifier">bool</span></dt><dd><p>Whether to run in check data mode.</p>
 </dd>
 </dl>
 </dd>
