@@ -3,24 +3,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>specparam.sim.sim_power_spectrum &#8212; specparam 2.0.0rc2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=301b5801"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -120,7 +118,7 @@
 <span class="sig-prename descclassname"><span class="pre">specparam.sim.</span></span><span class="sig-name descname"><span class="pre">sim_power_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aperiodic_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/sim/sim.html#sim_power_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.sim.sim_power_spectrum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simulate a power spectrum.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>freq_range</strong><span class="classifier">list of [float, float]</span></dt><dd><p>Frequency range to simulate power spectrum across, as [f_low, f_high], inclusive.</p>
 </dd>
@@ -141,7 +139,7 @@ Should only be set if spectrum is to be rotated.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>freqs</strong><span class="classifier">1d array</span></dt><dd><p>Frequency values, in linear spacing.</p>
 </dd>
@@ -217,28 +215,7 @@ setting ‘f_rotation’ with a knee will lead to an error.</p></li>
 
 <section id="examples-using-specparam-sim-sim-power-spectrum">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.sim.sim_power_spectrum</span></code><a class="headerlink" href="#examples-using-specparam-sim-sim-power-spectrum" title="Permalink to this heading">¶</a></h2>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example covers strategies for dealing with line noise."><img alt="" src="../_images/sphx_glr_plot_line_noise_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/processing/plot_line_noise.html#sphx-glr-auto-examples-processing-plot-line-noise-py"><span class="std std-ref">Dealing with Line Noise</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Dealing with Line Noise</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example covers utilities for extracting and exporting model fit results."><img alt="" src="../_images/sphx_glr_plot_data_exporting_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/manage/plot_data_exporting.html#sphx-glr-auto-examples-manage-plot-data-exporting-py"><span class="std std-ref">Exporting Model Results</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Exporting Model Results</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Examples with combining, sub-selecting, dropping, and averaging power spectrum models."><img alt="" src="../_images/sphx_glr_plot_manipulating_models_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/manage/plot_manipulating_models.html#sphx-glr-auto-examples-manage-plot-manipulating-models-py"><span class="std std-ref">Manipulating Objects</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Manipulating Objects</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Exploring properties and topics related to aperiodic parameters."><img alt="" src="../_images/sphx_glr_plot_aperiodic_params_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/models/plot_aperiodic_params.html#sphx-glr-auto-examples-models-plot-aperiodic-params-py"><span class="std std-ref">Aperiodic Parameters</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Aperiodic Parameters</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example explores the different data components, exploring the isolated aperiodic and perio..."><img alt="" src="../_images/sphx_glr_plot_data_components_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/models/plot_data_components.html#sphx-glr-auto-examples-models-plot-data-components-py"><span class="std std-ref">Exploring Data Components</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Exploring Data Components</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Check the error of power spectrum models across frequencies."><img alt="" src="../_images/sphx_glr_plot_freq_by_freq_error_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/models/plot_freq_by_freq_error.html#sphx-glr-auto-examples-models-plot-freq-by-freq-error-py"><span class="std std-ref">Frequency-by-Frequency Errors</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Frequency-by-Frequency Errors</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Exploring properties and topics related to peak parameters."><img alt="" src="../_images/sphx_glr_plot_peak_params_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/models/plot_peak_params.html#sphx-glr-auto-examples-models-plot-peak-params-py"><span class="std std-ref">Periodic Parameters</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Periodic Parameters</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Plotting power spectrum models, directly from specparam objects."><img alt="" src="../_images/sphx_glr_plot_models_thumb.png" />
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Plotting power spectrum models, directly from specparam objects."><img alt="" src="../_images/sphx_glr_plot_models_thumb.png" />
 <p><a class="reference internal" href="../auto_examples/plots/plot_models.html#sphx-glr-auto-examples-plots-plot-models-py"><span class="std std-ref">Plot Power Spectrum Models</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot Power Spectrum Models</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Visualizing power spectra."><img alt="" src="../_images/sphx_glr_plot_power_spectra_thumb.png" />
@@ -287,7 +264,7 @@ setting ‘f_rotation’ with a knee will lead to an error.</p></li>
     </p>
     <p>
         &copy; Copyright 2018-2024, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

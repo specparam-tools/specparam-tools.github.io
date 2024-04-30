@@ -3,24 +3,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>specparam.sim.params.param_iter &#8212; specparam 2.0.0rc2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=301b5801"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -120,7 +118,7 @@
 <span class="sig-prename descclassname"><span class="pre">specparam.sim.params.</span></span><span class="sig-name descname"><span class="pre">param_iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/sim/params.html#param_iter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.sim.params.param_iter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a generator to iterate across parameter ranges.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>params</strong><span class="classifier">list of floats and Stepper</span></dt><dd><p>Parameters over which to iterate, including a Stepper object.
 The Stepper defines the iterated parameter and its range.
@@ -128,13 +126,13 @@ Floats define the other parameters, that will be held constant.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Yields</dt>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of floats</dt><dd><p>Next generated list of parameters.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>ValueError</dt><dd><p>If the number of Stepper objects given is greater than one.</p>
 </dd>
@@ -154,10 +152,7 @@ Floats define the other parameters, that will be held constant.</p>
 
 <section id="examples-using-specparam-sim-params-param-iter">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.sim.params.param_iter</span></code><a class="headerlink" href="#examples-using-specparam-sim-params-param-iter" title="Permalink to this heading">¶</a></h2>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Exploring properties and topics related to aperiodic parameters."><img alt="" src="../_images/sphx_glr_plot_aperiodic_params_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/models/plot_aperiodic_params.html#sphx-glr-auto-examples-models-plot-aperiodic-params-py"><span class="std std-ref">Aperiodic Parameters</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Aperiodic Parameters</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Visualizing power spectra."><img alt="" src="../_images/sphx_glr_plot_power_spectra_thumb.png" />
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Visualizing power spectra."><img alt="" src="../_images/sphx_glr_plot_power_spectra_thumb.png" />
 <p><a class="reference internal" href="../auto_examples/plots/plot_power_spectra.html#sphx-glr-auto-examples-plots-plot-power-spectra-py"><span class="std std-ref">Plot Power Spectra</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot Power Spectra</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Manage parameters for creating simulated power spectra."><img alt="" src="../_images/sphx_glr_plot_sim_params_thumb.png" />
@@ -179,7 +174,7 @@ Floats define the other parameters, that will be held constant.</p>
     </p>
     <p>
         &copy; Copyright 2018-2024, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

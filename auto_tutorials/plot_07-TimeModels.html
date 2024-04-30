@@ -3,24 +3,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>06: Fitting Models over Time &#8212; specparam 2.0.0rc2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=301b5801"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -116,12 +114,12 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-07-timemodels-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="fitting-models-over-time">
 <span id="sphx-glr-auto-tutorials-plot-07-timemodels-py"></span><h1>06: Fitting Models over Time<a class="headerlink" href="#fitting-models-over-time" title="Permalink to this heading">¶</a></h1>
 <p>Use extensions of the model object to fit power spectra across time.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the time &amp; event model objects</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the time &amp; event model objects</span>
 <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel" title="specparam.SpectralTimeModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralTimeModel</span></a><span class="p">,</span> <a href="../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel" title="specparam.SpectralTimeEventModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralTimeEventModel</span></a>
 
 <span class="c1"># Import Bands object to manage oscillation band definitions</span>
@@ -144,7 +142,7 @@ spectra that are organized across time / events.</p>
 <p>For the goal of fitting power spectra that are organized across adjacent time windows,
 we can consider that what we are really trying to do is to parameterize spectrograms.</p>
 <p>Let’s start by simulating an example spectrogram, that we can then parameterize.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create &amp; plot an example spectrogram</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create &amp; plot an example spectrogram</span>
 <span class="n">n_pre_post</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="n">freq_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
 <span class="n">ap_params</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]]</span> <span class="o">*</span> <span class="n">n_pre_post</span> <span class="o">+</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">*</span> <span class="n">n_pre_post</span>
@@ -152,7 +150,7 @@ we can consider that what we are really trying to do is to parameterize spectrog
 <span class="n">freqs</span><span class="p">,</span> <span class="n">spectrogram</span> <span class="o">=</span> <a href="../generated/specparam.sim.sim_spectrogram.html#specparam.sim.sim_spectrogram" title="specparam.sim.sim_spectrogram" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_spectrogram</span></a><span class="p">(</span><span class="n">n_pre_post</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">ap_params</span><span class="p">,</span> <span class="n">pe_params</span><span class="p">,</span> <span class="n">nlvs</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot our simulated spectrogram</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot our simulated spectrogram</span>
 <a href="../generated/specparam.plts.plot_spectrogram.html#specparam.plts.plot_spectrogram" title="specparam.plts.plot_spectrogram" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectrogram</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrogram</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -167,7 +165,7 @@ especially the Group model object. The time object is a mildly updated Group obj
 <p>The main differences with the SpectralTimeModel from previous model objects are that the
 data it accepts and parameterizes should be organized as as array of power spectra over
 time windows - basically as a spectrogram.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a SpectralTimeModel model, which accepts all the same settings as SpectralModel</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a SpectralTimeModel model, which accepts all the same settings as SpectralModel</span>
 <a href="../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel" title="specparam.SpectralTimeModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ft</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel" title="specparam.SpectralTimeModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralTimeModel</span></a><span class="p">()</span>
 </pre></div>
 </div>
@@ -180,13 +178,13 @@ visualize the peaks, the object cannot visualize the results across time.</p>
 <p>We can therefore use the <a class="reference internal" href="../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bands</span></code></a> object to define oscillation bands of interest.
 By doing so, the Time model object will organize peaks based on these band definitions,
 so we can plot, for example, alpha peaks across time windows.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a bands object to organize peak parameters</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a bands object to organize peak parameters</span>
 <a href="../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a> <span class="o">=</span> <a href="../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a><span class="p">({</span><span class="s1">&#39;alpha&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">]})</span>
 </pre></div>
 </div>
 <p>Now we are ready to fit our spectrogram! As with all model objects, we can fit the models
 with the <cite>fit</cite> method, or fit, plot, and print with the <cite>report</cite> method.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the spectrogram and print out report</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the spectrogram and print out report</span>
 <a href="../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel.report" title="specparam.SpectralTimeModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">ft</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrogram</span><span class="p">,</span> <span class="n">peak_org</span><span class="o">=</span><a href="../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a><span class="p">)</span>
 </pre></div>
 </div>
@@ -232,7 +230,7 @@ parameters as before, now organized and plotted across time windows.</p>
 time definition, which can be thought of as representing events (for example, examining
 +/- 5 seconds around an event of interest, that happens multiple times.)</p>
 <p>To start, let’s simulate multiple spectrograms, representing our different events.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate a collection of spectrograms (across events)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate a collection of spectrograms (across events)</span>
 <span class="n">n_events</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">spectrograms</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_events</span><span class="p">):</span>
@@ -240,7 +238,7 @@ time definition, which can be thought of as representing events (for example, ex
     <span class="n">spectrograms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur_spect</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the set of simulated spectrograms</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the set of simulated spectrograms</span>
 <span class="k">for</span> <span class="n">cur_spect</span> <span class="ow">in</span> <span class="n">spectrograms</span><span class="p">:</span>
     <a href="../generated/specparam.plts.plot_spectrogram.html#specparam.plts.plot_spectrogram" title="specparam.plts.plot_spectrogram" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectrogram</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">cur_spect</span><span class="p">)</span>
 </pre></div>
@@ -261,11 +259,11 @@ allows for collecting and examining the results across multiple events. Just lik
 object, the Event object can take in a band definition to organize the peak results.</p>
 <p>The Event object has all the same attributes and methods as the previous model objects,
 with the notably update that it accepts as data to parameterize a 3d array of spectrograms.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the spectral event model</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the spectral event model</span>
 <a href="../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel" title="specparam.SpectralTimeEventModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fe</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel" title="specparam.SpectralTimeEventModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralTimeEventModel</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the spectrograms and print out report</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the spectrograms and print out report</span>
 <a href="../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.report" title="specparam.SpectralTimeEventModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fe</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrograms</span><span class="p">,</span> <span class="n">peak_org</span><span class="o">=</span><a href="../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a><span class="p">)</span>
 </pre></div>
 </div>
@@ -317,13 +315,13 @@ visualized data in the other periodic parameter plots.</p>
 <p>Now we have explored fitting power spectrum models and running these fits across time
 windows, including across multiple events. Next we dig deeper into how to choose and tune
 the algorithm settings, and how to troubleshoot if any of the fitting seems to go wrong.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  16.947 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 20.567 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-07-timemodels-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/5e67d2fc3e851b73f0f59221bdc98f91/plot_07-TimeModels.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_07-TimeModels.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/019fab4c9ce951eeee7c2a309db47193/plot_07-TimeModels.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_07-TimeModels.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/5e67d2fc3e851b73f0f59221bdc98f91/plot_07-TimeModels.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_07-TimeModels.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -343,7 +341,7 @@ the algorithm settings, and how to troubleshoot if any of the fitting seems to g
     </p>
     <p>
         &copy; Copyright 2018-2024, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

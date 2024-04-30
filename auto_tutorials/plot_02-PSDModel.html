@@ -3,24 +3,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>02: Fitting Power Spectrum Models &#8212; specparam 2.0.0rc2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=301b5801"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -116,19 +114,19 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-02-psdmodel-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="fitting-power-spectrum-models">
 <span id="sphx-glr-auto-tutorials-plot-02-psdmodel-py"></span><h1>02: Fitting Power Spectrum Models<a class="headerlink" href="#fitting-power-spectrum-models" title="Permalink to this heading">¶</a></h1>
 <p>Introduction to the module, beginning with the model object.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the model object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the model object</span>
 <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 
 <span class="c1"># Import a utility to download and load example data</span>
 <span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">load_example_data</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download example data files needed for this example</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download example data files needed for this example</span>
 <span class="n">freqs</span> <span class="o">=</span> <span class="n">load_example_data</span><span class="p">(</span><span class="s1">&#39;freqs.npy&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="n">spectrum</span> <span class="o">=</span> <span class="n">load_example_data</span><span class="p">(</span><span class="s1">&#39;spectrum.npy&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 </pre></div>
@@ -161,7 +159,7 @@ produce erroneous results.</p>
 <section id="fitting-an-example-power-spectrum">
 <h2>Fitting an Example Power Spectrum<a class="headerlink" href="#fitting-an-example-power-spectrum" title="Permalink to this heading">¶</a></h2>
 <p>The following example demonstrates fitting a power spectrum model to a single power spectrum.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">()</span>
 
 <span class="c1"># Set the frequency range to fit the model</span>
@@ -208,7 +206,7 @@ produce erroneous results.</p>
 <li><p><a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a>: plots the data and model fit</p></li>
 </ul>
 <p>Each of these methods can also be called individually.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alternatively, just fit the model with SpectralModel.fit() (without printing anything)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alternatively, just fit the model with SpectralModel.fit() (without printing anything)</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.fit" title="specparam.SpectralModel.fit" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">fit</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">)</span>
 
 <span class="c1"># After fitting, plotting and parameter fitting can be called independently:</span>
@@ -237,7 +235,7 @@ the model have a trailing underscore, for example:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">n_peaks_</span></code></p></li>
 </ul>
 <p>Access model fit parameters from specparam object, after fitting:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Aperiodic parameters</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Aperiodic parameters</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aperiodic parameters: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">aperiodic_params_</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="c1"># Peak parameters</span>
@@ -257,13 +255,13 @@ the model have a trailing underscore, for example:</p>
 
 Peak parameters:
  [[ 9.36692476  1.03783352  1.57850562]
- [11.25765994  0.22544837  2.65619342]
+ [11.25765986  0.22544837  2.65619355]
  [18.25938578  0.33088716  2.88526122]
- [49.11925659  0.08941903  2.07923219]]
+ [49.1192566   0.08941903  2.0792322 ]]
 
 Goodness of fit:
- Error -  0.03662502775346109
- R^2   -  0.9830952587012804
+ Error -  0.03662502779184063
+ R^2   -  0.983095258703316
 
 Number of fit peaks:
  4
@@ -274,7 +272,7 @@ Number of fit peaks:
 <h3>Selecting Parameters<a class="headerlink" href="#selecting-parameters" title="Permalink to this heading">¶</a></h3>
 <p>You can also select parameters using the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_params" title="specparam.SpectralModel.get_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_params()</span></code></a>
 method, which can be used to specify which parameters you want to extract.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract a model parameter with `get_params`</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract a model parameter with `get_params`</span>
 <span class="n">err</span> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_params" title="specparam.SpectralModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
 
 <span class="c1"># Extract parameters, indicating sub-selections of parameters</span>
@@ -323,7 +321,7 @@ as ‘power’, as the units of the input data are expected to be units of power
 <p>[2] Gaussian standard deviation is ‘1 sided’, where as the returned BW is ‘2 sided’.</p>
 <p>The underlying gaussian parameters are also available from the model object,
 in the <code class="docutils literal notranslate"><span class="pre">gaussian_params_</span></code> attribute.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the &#39;peak_params_&#39; to the underlying gaussian parameters</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the &#39;peak_params_&#39; to the underlying gaussian parameters</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Peak Parameters </span><span class="se">\t</span><span class="s1"> Gaussian Parameters&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">peak</span><span class="p">,</span> <span class="n">gauss</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">peak_params_</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">gaussian_params_</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:5.2f}</span><span class="s1"> </span><span class="si">{:5.2f}</span><span class="s1"> </span><span class="si">{:5.2f}</span><span class="s1"> </span><span class="se">\t</span><span class="s1"> </span><span class="si">{:5.2f}</span><span class="s1"> </span><span class="si">{:5.2f}</span><span class="s1"> </span><span class="si">{:5.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">peak</span><span class="p">,</span> <span class="o">*</span><span class="n">gauss</span><span class="p">))</span>
@@ -344,7 +342,7 @@ in the <code class="docutils literal notranslate"><span class="pre">gaussian_par
 parameters, collected together into a FitResults object.</p>
 <p>The FitResults object, which in Python terms is a named tuple, is a standard data
 object used to organize and collect parameter data.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab each model fit result with `get_results` to gather all results together</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab each model fit result with `get_results` to gather all results together</span>
 <span class="c1">#   Note that this returns a FitResults object</span>
 <a href="../generated/specparam.data.FitResults.html#specparam.data.FitResults" title="specparam.data.FitResults" class="sphx-glr-backref-module-specparam-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fres</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_results" title="specparam.SpectralModel.get_results" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">get_results</span></a><span class="p">()</span>
 
@@ -352,7 +350,7 @@ object used to organize and collect parameter data.</p>
 <span class="n">ap_params</span><span class="p">,</span> <span class="n">peak_params</span><span class="p">,</span> <span class="n">r_squared</span><span class="p">,</span> <span class="n">fit_error</span><span class="p">,</span> <span class="n">gauss_params</span> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_results" title="specparam.SpectralModel.get_results" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">get_results</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out the FitResults</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out the FitResults</span>
 <span class="nb">print</span><span class="p">(</span><a href="../generated/specparam.data.FitResults.html#specparam.data.FitResults" title="specparam.data.FitResults" class="sphx-glr-backref-module-specparam-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fres</span></a><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="c1"># from specparamResults, you can access the different results</span>
@@ -364,12 +362,12 @@ object used to organize and collect parameter data.</p>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>FitResults(aperiodic_params=array([-21.56429978,   0.75803418]), peak_params=array([[ 9.36692476,  1.03783352,  1.57850562],
-       [11.25765994,  0.22544837,  2.65619342],
+       [11.25765986,  0.22544837,  2.65619355],
        [18.25938578,  0.33088716,  2.88526122],
-       [49.11925659,  0.08941903,  2.07923219]]), r_squared=0.9830952587012804, error=0.03662502775346109, gaussian_params=array([[ 9.36692476,  0.99006278,  0.78925281],
-       [11.25765994,  0.16451828,  1.32809671],
+       [49.1192566 ,  0.08941903,  2.0792322 ]]), r_squared=0.983095258703316, error=0.03662502779184063, gaussian_params=array([[ 9.36692476,  0.99006277,  0.78925281],
+       [11.25765986,  0.16451828,  1.32809677],
        [18.25938578,  0.33386059,  1.44263061],
-       [49.11925659,  0.09104142,  1.0396161 ]]))
+       [49.1192566 ,  0.09104142,  1.0396161 ]]))
 
 Aperiodic Parameters:
  [-21.56429978   0.75803418]
@@ -386,13 +384,13 @@ Fit error:
 <p>In this tutorial, we have explored the basics of the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object,
 fitting power spectrum models, and extracting parameters.</p>
 <p>In the next tutorial, we will explore how this algorithm actually works to fit the model.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.253 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.281 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-02-psdmodel-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/64fb1598639df59c62189fde2cf3541f/plot_02-PSDModel.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_02-PSDModel.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/7997e63a1796593e02f810fe2a8d3aef/plot_02-PSDModel.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_02-PSDModel.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/64fb1598639df59c62189fde2cf3541f/plot_02-PSDModel.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_02-PSDModel.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -412,7 +410,7 @@ fitting power spectrum models, and extracting parameters.</p>
     </p>
     <p>
         &copy; Copyright 2018-2024, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

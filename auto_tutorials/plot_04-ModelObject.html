@@ -3,24 +3,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>04: Exploring the model object &#8212; specparam 2.0.0rc2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=301b5801"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -116,19 +114,19 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-04-modelobject-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="exploring-the-model-object">
 <span id="sphx-glr-auto-tutorials-plot-04-modelobject-py"></span><h1>04: Exploring the model object<a class="headerlink" href="#exploring-the-model-object" title="Permalink to this heading">¶</a></h1>
 <p>Further exploring the SpectralModel object, including algorithm settings and available methods.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the model object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the model object</span>
 <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 
 <span class="c1"># Import utility to download and load example data</span>
 <span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">load_example_data</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">()</span>
 </pre></div>
 </div>
@@ -223,7 +221,7 @@ or relative threshold.</p>
 <h4>Verbosity<a class="headerlink" href="#verbosity" title="Permalink to this heading">¶</a></h4>
 <p><strong>verbose (boolean)</strong> default=’True’</p>
 <p>Whether to print out status updates and warnings.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can check all the user defined settings with check_settings</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can check all the user defined settings with check_settings</span>
 <span class="c1">#  The description parameter here is set to print out quick descriptions of the settings</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_settings" title="specparam.SpectralModel.print_settings" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">print_settings</span></a><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -255,7 +253,7 @@ a new <a class="reference internal" href="../generated/specparam.SpectralModel.h
 the value, and thus may lead to a failure, either creating an error, or not applying
 the settings properly during fit and returning erroneous results.</p>
 <p>Here we will re-initialize a new SpectralModel object, with some new settings.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Re-initialize a new model object, with some new specified settings</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Re-initialize a new model object, with some new specified settings</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">peak_width_limits</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="n">max_n_peaks</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">min_peak_height</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -273,12 +271,12 @@ the settings properly during fit and returning erroneous results.</p>
 <p>During the fit procedure, interim (hidden) data variables are also created and used.</p>
 <p>There is also an indicator attribute, <code class="docutils literal notranslate"><span class="pre">has_data</span></code> which indicates
 if the current object has data loaded.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load example data files needed for this example</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load example data files needed for this example</span>
 <span class="n">freqs</span> <span class="o">=</span> <span class="n">load_example_data</span><span class="p">(</span><span class="s1">&#39;freqs_2.npy&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="n">spectrum</span> <span class="o">=</span> <span class="n">load_example_data</span><span class="p">(</span><span class="s1">&#39;spectrum_2.npy&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set a frequency range and add the data to the object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set a frequency range and add the data to the object</span>
 <span class="n">freq_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.add_data" title="specparam.SpectralModel.add_data" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">add_data</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">)</span>
 </pre></div>
@@ -286,14 +284,14 @@ if the current object has data loaded.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>FITTING WARNING: Skipping frequency == 0, as this causes a problem with fitting.
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if the object has data loaded</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if the object has data loaded</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Has data loaded: &#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.has_data" title="specparam.SpectralModel.has_data" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fm</span><span class="o">.</span><span class="n">has_data</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Has data loaded:  True
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the data attributes in the object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the data attributes in the object</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Frequency Range: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">freq_range</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Frequency Resolution: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">freq_res</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Frequency Values: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">freqs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
@@ -307,7 +305,7 @@ Power Values:            [-20.57077468 -21.06451885 -21.58001212 -21.83661208 -2
 </pre></div>
 </div>
 <p>Now that we have picked our settings, and added the data, let’s fit a power spectrum model.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit a power spectrum model to the loaded data</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit a power spectrum model to the loaded data</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.fit" title="specparam.SpectralModel.fit" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">fit</span></a><span class="p">()</span>
 </pre></div>
 </div>
@@ -331,14 +329,14 @@ indicated by a trailing underscore.</p>
 </ul>
 <p>The <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object also has an indicator attribute, <code class="docutils literal notranslate"><span class="pre">has_model</span></code>
 which indicates if the current object has model results available.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if the object has model results</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if the object has model results</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Has model results: &#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.has_model" title="specparam.SpectralModel.has_model" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fm</span><span class="o">.</span><span class="n">has_model</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Has model results:  True
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out model fit results</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out model fit results</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;aperiodic params: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">aperiodic_params_</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;peak params: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">peak_params_</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;r-squared: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">r_squared_</span><span class="p">)</span>
@@ -346,16 +344,16 @@ which indicates if the current object has model results available.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;modeled spectrum: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">modeled_spectrum_</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic params:        [-18.56387607   2.54175191]
-peak params:     [[292.58444556   4.01087632   8.        ]
- [313.49476831   4.10023249   8.        ]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic params:        [-18.56387609   2.54175191]
+peak params:     [[292.58444556   4.01087631   8.        ]
+ [313.49476832   4.10023249   8.        ]
  [332.01543736   4.18794327   8.        ]
  [349.95649274   4.25018986   8.        ]
  [367.95684849   4.21123981   8.        ]
- [385.50712868   4.0193404    8.        ]]
-r-squared:       0.322281800888717
-fit error:       1.1030898336665271
-modeled spectrum:        [-17.77255256 -18.53769613 -18.98527643 -19.3028397  -19.54916091]
+ [385.50712868   4.01934041   8.        ]]
+r-squared:       0.32228180040533316
+fit error:       1.1030898358285066
+modeled spectrum:        [-17.77255259 -18.53769616 -18.98527645 -19.30283972 -19.54916093]
 </pre></div>
 </div>
 </section>
@@ -368,7 +366,7 @@ with a leading underscore in their name, that are called in the
 fitting procedure. These methods should not be called directly by the user
 as they may depend on internal state of the object as defined by other methods,
 and so may not do as expected in isolation.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># This piece of code is just a way to print out all the public methods with their description</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This piece of code is just a way to print out all the public methods with their description</span>
 <span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="n">it</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;fm.&#39;</span> <span class="o">+</span> <span class="n">it</span> <span class="o">+</span> <span class="s1">&#39;.__doc__&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> \
     <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">)</span> <span class="k">if</span> <span class="n">it</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;_&#39;</span> <span class="ow">and</span> <span class="nb">callable</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;fm.&#39;</span> <span class="o">+</span> <span class="n">it</span><span class="p">))];</span>
 </pre></div>
@@ -438,16 +436,16 @@ to_df
 </ul>
 <p>Selected items are saved out to JSON files. You can specify a file name to save
 or append to, or pass in a JSON file object.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out results, settings, and data</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out results, settings, and data</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.save" title="specparam.SpectralModel.save" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">save</span></a><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">,</span> <span class="n">save_results</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load back in the saved out information</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load back in the saved out information</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nfm</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">()</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.load" title="specparam.SpectralModel.load" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">nfm</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot loaded results</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot loaded results</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">nfm</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
@@ -459,7 +457,7 @@ or append to, or pass in a JSON file object.</p>
 <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_results" title="specparam.SpectralModel.print_results"><code class="xref py py-meth docutils literal notranslate"><span class="pre">print_results()</span></code></a>,
 <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a>, and
 <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_settings" title="specparam.SpectralModel.print_settings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">print_settings()</span></code></a>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out a report of the current model fit &amp; results</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out a report of the current model fit &amp; results</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.save_report" title="specparam.SpectralModel.save_report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">save_report</span></a><span class="p">(</span><span class="s1">&#39;report&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -477,13 +475,13 @@ or append to, or pass in a JSON file object.</p>
 <p>We have now fully explored the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object, and all it contains.
 Next, we will take a deeper dive into how to choose different modes for fitting
 the aperiodic component of power spectra.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.266 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.784 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-modelobject-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/1cead72fc111e2694c8b25e3ff23021c/plot_04-ModelObject.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-ModelObject.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/aae622cd14ff54d579a9e1ef3e8fd556/plot_04-ModelObject.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_04-ModelObject.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/1cead72fc111e2694c8b25e3ff23021c/plot_04-ModelObject.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-ModelObject.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -503,7 +501,7 @@ the aperiodic component of power spectra.</p>
     </p>
     <p>
         &copy; Copyright 2018-2024, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

@@ -3,24 +3,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Manipulating Objects &#8212; specparam 2.0.0rc2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=301b5801"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 
@@ -116,7 +114,7 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-auto-examples-manage-plot-manipulating-models-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="manipulating-objects">
 <span id="sphx-glr-auto-examples-manage-plot-manipulating-models-py"></span><h1>Manipulating Objects<a class="headerlink" href="#manipulating-objects" title="Permalink to this heading">¶</a></h1>
@@ -132,7 +130,7 @@ utilities offered for managing and organizing within and between model objects.<
 <li><p>dropping specified model fits from SpectralGroupModel objects</p></li>
 <li><p>average across groups of model fits</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import model object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import model object</span>
 <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 
 <span class="c1"># Import Bands object, to manage frequency band definitions</span>
@@ -146,7 +144,7 @@ utilities offered for managing and organizing within and between model objects.<
 </pre></div>
 </div>
 <p>First, we will simulate some example data, and fit some individual power spectrum models.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Settings for simulations</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Settings for simulations</span>
 <span class="n">freq_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
 <span class="n">freq_res</span> <span class="o">=</span> <span class="mf">0.25</span>
 
@@ -159,7 +157,7 @@ utilities offered for managing and organizing within and between model objects.<
                                      <span class="n">nlv</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">freq_res</span><span class="o">=</span><span class="n">freq_res</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a set of model objects</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a set of model objects</span>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a><span class="p">,</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm2</span></a><span class="p">,</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm3</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">max_n_peaks</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">max_n_peaks</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">max_n_peaks</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
 <span class="c1"># Fit power spectrum models</span>
@@ -175,7 +173,7 @@ objects, you may want to combine them together, to check some group properties.<
 <p>The <a class="reference internal" href="../../generated/specparam.objs.combine_model_objs.html#specparam.objs.combine_model_objs" title="specparam.objs.combine_model_objs"><code class="xref py py-func docutils literal notranslate"><span class="pre">combine_model_objs()</span></code></a> function takes a list of SpectralModel and/or
 SpectralGroupModel objects, and combines all available fits together into a SpectralGroupModel object.</p>
 <p>Let’s now combine our individual model fits into a SpectralGroupModel object.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combine a list of model objects into a SpectralGroupModel object</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combine a list of model objects into a SpectralGroupModel object</span>
 <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a> <span class="o">=</span> <a href="../../generated/specparam.objs.combine_model_objs.html#specparam.objs.combine_model_objs" title="specparam.objs.combine_model_objs" class="sphx-glr-backref-module-specparam-objs sphx-glr-backref-type-py-function"><span class="n">combine_model_objs</span></a><span class="p">([</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a><span class="p">,</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm2</span></a><span class="p">,</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm3</span></a><span class="p">])</span>
 
 <span class="c1"># Check the number of models in the object</span>
@@ -195,7 +193,7 @@ copy results data - they also check and manage settings and meta-data of objects
 the settings between SpectralModel objects.</p>
 <p>You can also use this function if you wish to compare SpectralModel objects to ensure that
 you are comparing model results that were fit with equivalent settings.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare defined settings across model objects</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare defined settings across model objects</span>
 <a href="../../generated/specparam.objs.compare_model_objs.html#specparam.objs.compare_model_objs" title="specparam.objs.compare_model_objs" class="sphx-glr-backref-module-specparam-objs sphx-glr-backref-type-py-function"><span class="n">compare_model_objs</span></a><span class="p">([</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">],</span> <span class="s1">&#39;settings&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -218,7 +216,7 @@ This method takes in an input specifying which indices to sub-select, and return
 new SpectralGroupModel object, containing only the requested model fits.</p>
 <p>Note that if you want to sub-select a single model you can
 use the <a class="reference internal" href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_model" title="specparam.SpectralGroupModel.get_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_model()</span></code></a> method.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define indices of desired sub-selection of model fits</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define indices of desired sub-selection of model fits</span>
 <span class="c1">#   This could be a the indices for a &#39;region of interest&#39;, for example</span>
 <span class="n">inds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 
@@ -244,7 +242,7 @@ the object, and noticed some outlier model fits, you may want to exclude them fr
 future analyses.</p>
 <p>In this case, we’ll use an example in which we drop any model fits that
 have particularly high error.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop all model fits above an error threshold</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop all model fits above an error threshold</span>
 <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.drop" title="specparam.SpectralGroupModel.drop" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">drop</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.01</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -256,7 +254,7 @@ is done to preserve the ordering of the SpectralGroupModel, so that the <cite>n-
 doesn’t change if some models are dropped.</p>
 <p>Note that there may in some cases be Null models in a SpectralGroupModel without
 explicitly dropping them, if any models failed during the fitting process.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check information on null models (dropped models)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check information on null models (dropped models)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of Null models  : </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.n_null_" title="specparam.SpectralGroupModel.n_null_" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fg</span><span class="o">.</span><span class="n">n_null_</span></a><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Indices of Null models : </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.null_inds_" title="specparam.SpectralGroupModel.null_inds_" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fg</span><span class="o">.</span><span class="n">null_inds_</span></a><span class="p">)</span>
 
@@ -270,7 +268,7 @@ Indices of Null models :         [2]
 Number of model fits:  3
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Null models are defined as all NaN (not a number)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Null models are defined as all NaN (not a number)</span>
 <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.null_inds_" title="specparam.SpectralGroupModel.null_inds_" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fg</span><span class="o">.</span><span class="n">null_inds_</span></a><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
 </pre></div>
@@ -294,7 +292,7 @@ the average model of the data.</p>
 <p>Note that in order to be able to average across individual models, we need to define
 a set of frequency bands to average peaks across. Otherwise, there is no clear way
 to average across all the peaks across all models.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the periodic band regions to use to average across</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the periodic band regions to use to average across</span>
 <span class="c1">#   Since our simulated data only had alpha peaks, we will only define alpha here</span>
 <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a> <span class="o">=</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a><span class="p">({</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">]})</span>
 
@@ -305,13 +303,13 @@ to average across all the peaks across all models.</p>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">afm</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_manipulating_models_001.png" srcset="../../_images/sphx_glr_plot_manipulating_models_001.png" alt="plot manipulating models" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.675 seconds)</p>
+<img src="../../_images/sphx_glr_plot_manipulating_models_001.png" srcset="../../_images/sphx_glr_plot_manipulating_models_001.png" alt="plot manipulating models" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.755 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-manage-plot-manipulating-models-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/81ccb63a62dcb348f68733eddeca9e1c/plot_manipulating_models.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_manipulating_models.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/3691bea31530416ecd6a44f092b50ad3/plot_manipulating_models.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_manipulating_models.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/81ccb63a62dcb348f68733eddeca9e1c/plot_manipulating_models.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_manipulating_models.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -331,7 +329,7 @@ to average across all the peaks across all models.</p>
     </p>
     <p>
         &copy; Copyright 2018-2024, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>
