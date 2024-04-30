@@ -147,7 +147,7 @@ to characterize the 1/f-like aperiodic component of the data.</p>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">aperiodic_params_</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.00301403, 1.00157733])
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.00340646, 1.00225053])
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot annotated model of aperiodic parameters</span>
@@ -194,7 +194,7 @@ in the offset and/or exponent values of a set of models, which we will now explo
 <span class="n">spearmanr</span><span class="p">(</span><span class="n">ap_values</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">ap_values</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SpearmanrResult(correlation=0.9999999999999999, pvalue=nan)
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SpearmanrResult(correlation=-0.9999999999999999, pvalue=nan)
 </pre></div>
 </div>
 <p>What we see above matches the common finding that that the offset and exponent are
@@ -229,7 +229,7 @@ an offset, knee, and exponent value.</p>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">aperiodic_params_</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([-2.12477098e-03,  1.48869340e+01,  9.98986332e-01])
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([-6.51364788e-03,  1.47754702e+01,  9.95559054e-01])
 </pre></div>
 </div>
 <section id="knee-frequency">
@@ -245,7 +245,7 @@ at which the knee occurs.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Knee frequency: &#39;</span><span class="p">,</span> <span class="n">knee_frequency</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee frequency:  14.927782667101853
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee frequency:  14.954033484868603
 </pre></div>
 </div>
 </section>
@@ -260,10 +260,10 @@ time constant.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Knee derived time constant: &#39;</span><span class="p">,</span> <span class="n">time_constant</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee derived time constant:  0.0106909148230848
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee derived time constant:  0.010771565377276802
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.439 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.588 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-models-plot-aperiodic-params-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/db26135e85e3f8b4440c4fc4f5b0ad17/plot_aperiodic_params.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_aperiodic_params.ipynb</span></code></a></p>

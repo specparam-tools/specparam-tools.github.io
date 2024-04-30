@@ -195,9 +195,6 @@ prior to fitting any models.</p>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.add_data" title="specparam.SpectralModel.add_data" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">add_data</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>FITTING WARNING: Skipping frequency == 0, as this causes a problem with fitting.
-</pre></div>
-</div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the power spectrum</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">plt_log</span><span class="p">)</span>
 </pre></div>
@@ -207,9 +204,6 @@ prior to fitting any models.</p>
 and visualize each step the algorithm took to come to that final fit.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the power spectrum model</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.fit" title="specparam.SpectralModel.fit" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">fit</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
-</pre></div>
-</div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>FITTING WARNING: Skipping frequency == 0, as this causes a problem with fitting.
 </pre></div>
 </div>
 <section id="step-1-initial-aperiodic-fit">
@@ -269,10 +263,6 @@ unless <cite>max_n_peaks</cite> has been reached</p></li>
 <li><img src="../_images/sphx_glr_plot_03-Algorithm_004.png" srcset="../_images/sphx_glr_plot_03-Algorithm_004.png" alt="Iteration #1" class = "sphx-glr-multi-img"/></li>
 <li><img src="../_images/sphx_glr_plot_03-Algorithm_005.png" srcset="../_images/sphx_glr_plot_03-Algorithm_005.png" alt="Iteration #2" class = "sphx-glr-multi-img"/></li>
 <li><img src="../_images/sphx_glr_plot_03-Algorithm_006.png" srcset="../_images/sphx_glr_plot_03-Algorithm_006.png" alt="Iteration #3" class = "sphx-glr-multi-img"/></li>
-<li><img src="../_images/sphx_glr_plot_03-Algorithm_007.png" srcset="../_images/sphx_glr_plot_03-Algorithm_007.png" alt="Iteration #4" class = "sphx-glr-multi-img"/></li>
-<li><img src="../_images/sphx_glr_plot_03-Algorithm_008.png" srcset="../_images/sphx_glr_plot_03-Algorithm_008.png" alt="Iteration #5" class = "sphx-glr-multi-img"/></li>
-<li><img src="../_images/sphx_glr_plot_03-Algorithm_009.png" srcset="../_images/sphx_glr_plot_03-Algorithm_009.png" alt="Iteration #6" class = "sphx-glr-multi-img"/></li>
-<li><img src="../_images/sphx_glr_plot_03-Algorithm_010.png" srcset="../_images/sphx_glr_plot_03-Algorithm_010.png" alt="Iteration #7" class = "sphx-glr-multi-img"/></li>
 </ul>
 </section>
 <section id="step-4-create-full-peak-fit">
@@ -284,7 +274,7 @@ This creates the full peak fit of the data.</p>
 <a href="../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">_peak_fit</span><span class="p">,</span> <span class="n">plt_log</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Final Periodic Fit&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_03-Algorithm_011.png" srcset="../_images/sphx_glr_plot_03-Algorithm_011.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
+<img src="../_images/sphx_glr_plot_03-Algorithm_007.png" srcset="../_images/sphx_glr_plot_03-Algorithm_007.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
 <section id="step-5-create-a-peak-removed-spectrum">
 <h3>Step 5: Create a Peak-Removed Spectrum<a class="headerlink" href="#step-5-create-a-peak-removed-spectrum" title="Permalink to this heading">¶</a></h3>
 <p>Now that the peak component of the fit is completed and available, this fit is then
@@ -296,7 +286,7 @@ leaving an ‘aperiodic-only’ spectrum for re-fitting.</p>
              <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Peak Removed Spectrum&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_03-Algorithm_012.png" srcset="../_images/sphx_glr_plot_03-Algorithm_012.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
+<img src="../_images/sphx_glr_plot_03-Algorithm_008.png" srcset="../_images/sphx_glr_plot_03-Algorithm_008.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
 <section id="step-6-re-fit-the-aperiodic-component">
 <h3>Step 6: Re-fit the Aperiodic Component<a class="headerlink" href="#step-6-re-fit-the-aperiodic-component" title="Permalink to this heading">¶</a></h3>
 <p>The initial aperiodic component fit we made was a robust fit approach that was
@@ -311,7 +301,7 @@ re-estimate a better fit, without the peaks getting in the way.</p>
              <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_03-Algorithm_013.png" srcset="../_images/sphx_glr_plot_03-Algorithm_013.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
+<img src="../_images/sphx_glr_plot_03-Algorithm_009.png" srcset="../_images/sphx_glr_plot_03-Algorithm_009.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
 <section id="step-7-combine-the-full-model-fit">
 <h3>Step 7: Combine the Full Model Fit<a class="headerlink" href="#step-7-combine-the-full-model-fit" title="Permalink to this heading">¶</a></h3>
 <p>Now that we have the final aperiodic fit, we can combine the aperiodic components
@@ -324,7 +314,7 @@ full model fit to the original data.</p>
              <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Full Model&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_03-Algorithm_014.png" srcset="../_images/sphx_glr_plot_03-Algorithm_014.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/><p>The last stage is to calculate the goodness of fit metrics, meaning the fit error &amp; R^2.</p>
+<img src="../_images/sphx_glr_plot_03-Algorithm_010.png" srcset="../_images/sphx_glr_plot_03-Algorithm_010.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/><p>The last stage is to calculate the goodness of fit metrics, meaning the fit error &amp; R^2.</p>
 <p>At the end of the fitting process, the model object also organizes parameters, such as
 updating gaussian parameters to be peak parameters,</p>
 <p>These results are part of what are stored, and printed, as the model results.</p>
@@ -336,23 +326,19 @@ updating gaussian parameters to be peak parameters,</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was run on the frequency range 0 - 501 Hz
+                        The model was run on the frequency range 3 - 40 Hz
                                  Frequency Resolution is 0.49 Hz
 
                             Aperiodic Parameters (offset, exponent):
-                                         -18.5639, 2.5418
+                                         -21.3713, 1.1239
 
-                                       6 peaks were found:
-                                CF: 292.58, PW:  4.011, BW:  8.00
-                                CF: 313.49, PW:  4.100, BW:  8.00
-                                CF: 332.02, PW:  4.188, BW:  8.00
-                                CF: 349.96, PW:  4.250, BW:  8.00
-                                CF: 367.96, PW:  4.211, BW:  8.00
-                                CF: 385.51, PW:  4.019, BW:  8.00
+                                       2 peaks were found:
+                                CF:  10.00, PW:  0.685, BW:  3.18
+                                CF:  16.32, PW:  0.138, BW:  7.03
 
                                      Goodness of fit metrics:
-                                    R^2 of model fit is 0.3223
-                                    Error of the fit is 1.1031
+                                    R^2 of model fit is 0.9909
+                                    Error of the fit is 0.0332
 
 ==================================================================================================
 </pre></div>
@@ -363,7 +349,7 @@ updating gaussian parameters to be peak parameters,</p>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">plt_log</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_03-Algorithm_015.png" srcset="../_images/sphx_glr_plot_03-Algorithm_015.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
+<img src="../_images/sphx_glr_plot_03-Algorithm_011.png" srcset="../_images/sphx_glr_plot_03-Algorithm_011.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
 <section id="addendum-data-model-component-attributes">
 <h3>Addendum: Data &amp; Model Component Attributes<a class="headerlink" href="#addendum-data-model-component-attributes" title="Permalink to this heading">¶</a></h3>
 <p>As you may have noticed through this tutorial, the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object keeps
@@ -411,7 +397,7 @@ useful for some analyses, and so are briefly described here.</p>
 power spectrum models.</p>
 <p>Next, we will continue to explore the model object by properly introducing and more
 fully describing the settings for the algorithm.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.763 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.512 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-03-algorithm-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/094cb612d738221b30ce84624b7577e6/plot_03-Algorithm.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_03-Algorithm.ipynb</span></code></a></p>

@@ -281,9 +281,6 @@ if the current object has data loaded.</p>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.add_data" title="specparam.SpectralModel.add_data" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">add_data</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>FITTING WARNING: Skipping frequency == 0, as this causes a problem with fitting.
-</pre></div>
-</div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if the object has data loaded</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Has data loaded: &#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.has_data" title="specparam.SpectralModel.has_data" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-property"><span class="n">fm</span><span class="o">.</span><span class="n">has_data</span></a><span class="p">)</span>
 </pre></div>
@@ -298,10 +295,10 @@ if the current object has data loaded.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Power Values: </span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">power_spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Frequency Range:         [0.4882812500002706, 500.0000000002771]
-Frequency Resolution:    0.4882812500002706
-Frequency Values:        [0.48828125 0.9765625  1.46484375 1.953125   2.44140625]
-Power Values:            [-20.57077468 -21.06451885 -21.58001212 -21.83661208 -21.99921865]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Frequency Range:         [2.441406250001353, 39.55078125002192]
+Frequency Resolution:    0.48828125000027045
+Frequency Values:        [2.44140625 2.9296875  3.41796875 3.90625    4.39453125]
+Power Values:            [-21.99921865 -21.99669556 -22.02605736 -21.96875308 -22.15436702]
 </pre></div>
 </div>
 <p>Now that we have picked our settings, and added the data, let’s fit a power spectrum model.</p>
@@ -344,16 +341,13 @@ which indicates if the current object has model results available.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;modeled spectrum: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">modeled_spectrum_</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic params:        [-18.56387609   2.54175191]
-peak params:     [[292.58444556   4.01087631   8.        ]
- [313.49476832   4.10023249   8.        ]
- [332.01543736   4.18794327   8.        ]
- [349.95649274   4.25018986   8.        ]
- [367.95684849   4.21123981   8.        ]
- [385.50712868   4.01934041   8.        ]]
-r-squared:       0.32228180040533316
-fit error:       1.1030898358285066
-modeled spectrum:        [-17.77255259 -18.53769616 -18.98527645 -19.30283972 -19.54916093]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic params:        [-21.44372545   1.07510692]
+peak params:     [[ 9.81511892  0.72768575  3.00442108]
+ [13.04276131  0.25957047  2.54345957]
+ [18.12826739  0.15093636  4.62563187]]
+r-squared:       0.9922991770720878
+fit error:       0.029372423936023677
+modeled spectrum:        [-21.86047573 -21.94558849 -22.01750002 -22.07961578 -22.13385217]
 </pre></div>
 </div>
 </section>
@@ -475,7 +469,7 @@ or append to, or pass in a JSON file object.</p>
 <p>We have now fully explored the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object, and all it contains.
 Next, we will take a deeper dive into how to choose different modes for fitting
 the aperiodic component of power spectra.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.784 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.825 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-modelobject-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/aae622cd14ff54d579a9e1ef3e8fd556/plot_04-ModelObject.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_04-ModelObject.ipynb</span></code></a></p>
