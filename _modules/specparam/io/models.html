@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>specparam.io.models &#8212; specparam 2.0.0rc3 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=54d48845"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../api.html">API</a></li>
+                <li><a href="../../../faq.html">FAQ</a></li>
+                <li><a href="../../../glossary.html">Glossary</a></li>
+                <li><a href="../../../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../visualizers.html">Visualizers</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for specparam.io.models</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;File I/O for model objects.</span>
+
+<span class="sd">Notes</span>
+<span class="sd">-----</span>
+<span class="sd">Model loader function import model objects locally to prevent circular imports.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">io</span>
+
+<span class="kn">from</span> <span class="nn">specparam.io.files</span> <span class="kn">import</span> <span class="n">save_json</span>
+<span class="kn">from</span> <span class="nn">specparam.io.utils</span> <span class="kn">import</span> <span class="n">create_file_path</span>
+<span class="kn">from</span> <span class="nn">specparam.core.items</span> <span class="kn">import</span> <span class="n">OBJ_DESC</span>
+<span class="kn">from</span> <span class="nn">specparam.utils.select</span> <span class="kn">import</span> <span class="n">dict_select_keys</span>
+<span class="kn">from</span> <span class="nn">specparam.utils.convert</span> <span class="kn">import</span> <span class="n">dict_array_to_lst</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+
+<div class="viewcode-block" id="save_model"><a class="viewcode-back" href="../../../generated/specparam.io.models.save_model.html#specparam.io.models.save_model">[docs]</a><span class="k">def</span> <span class="nf">save_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+               <span class="n">save_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save out data, results and/or settings from a model object into a JSON file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model : SpectralModel</span>
+<span class="sd">        Object to save data from.</span>
+<span class="sd">    file_name : str or FileObject</span>
+<span class="sd">        File to save data to.</span>
+<span class="sd">    file_path : Path or str, optional</span>
+<span class="sd">        Path to directory to save to. If None, saves to current directory.</span>
+<span class="sd">    append : bool, optional, default: False</span>
+<span class="sd">        Whether to append to an existing file, if available.</span>
+<span class="sd">        This option is only valid (and only used) if &#39;file_name&#39; is a str.</span>
+<span class="sd">    save_results : bool, optional</span>
+<span class="sd">        Whether to save out model fit results.</span>
+<span class="sd">    save_settings : bool, optional</span>
+<span class="sd">        Whether to save out settings.</span>
+<span class="sd">    save_data : bool, optional</span>
+<span class="sd">        Whether to save out input data.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the save file is not understood.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Convert object to dictionary &amp; convert all arrays to lists, for JSON serializing</span>
+    <span class="n">obj_dict</span> <span class="o">=</span> <span class="n">dict_array_to_lst</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+    <span class="c1"># Set and select which variables to keep. Use a set to drop any potential overlap</span>
+    <span class="c1">#   Note that results also saves frequency information to be able to recreate freq vector</span>
+    <span class="n">keep</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">OBJ_DESC</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">OBJ_DESC</span><span class="p">[</span><span class="s1">&#39;meta_data&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">save_results</span> <span class="k">else</span> <span class="p">[])</span> <span class="o">+</span> \
+               <span class="p">(</span><span class="n">OBJ_DESC</span><span class="p">[</span><span class="s1">&#39;settings&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">save_settings</span> <span class="k">else</span> <span class="p">[])</span> <span class="o">+</span> \
+               <span class="p">(</span><span class="n">OBJ_DESC</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">save_data</span> <span class="k">else</span> <span class="p">[]))</span>
+    <span class="n">obj_dict</span> <span class="o">=</span> <span class="n">dict_select_keys</span><span class="p">(</span><span class="n">obj_dict</span><span class="p">,</span> <span class="n">keep</span><span class="p">)</span>
+
+    <span class="c1"># Save out to json file</span>
+    <span class="n">save_json</span><span class="p">(</span><span class="n">obj_dict</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">append</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="save_group"><a class="viewcode-back" href="../../../generated/specparam.io.models.save_group.html#specparam.io.models.save_group">[docs]</a><span class="k">def</span> <span class="nf">save_group</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+               <span class="n">save_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save out results and/or settings from group object. Saves out to a JSON file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group : SpectralGroupModel</span>
+<span class="sd">        Object to save data from.</span>
+<span class="sd">    file_name : str or FileObject</span>
+<span class="sd">        File to save data to.</span>
+<span class="sd">    file_path : Path or str, optional</span>
+<span class="sd">        Path to directory to load from. If None, saves to current directory.</span>
+<span class="sd">    append : bool, optional, default: False</span>
+<span class="sd">        Whether to append to an existing file, if available.</span>
+<span class="sd">        This option is only valid (and only used) if &#39;file_name&#39; is a str.</span>
+<span class="sd">    save_results : bool, optional</span>
+<span class="sd">        Whether to save out model fit results.</span>
+<span class="sd">    save_settings : bool, optional</span>
+<span class="sd">        Whether to save out settings.</span>
+<span class="sd">    save_data : bool, optional</span>
+<span class="sd">        Whether to save out power spectra data.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the data or save file specified are not understood.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">save_results</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">save_settings</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">save_data</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No data specified for saving.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Save to string specified file, specifying whether to append or not</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">full_path</span> <span class="o">=</span> <span class="n">create_file_path</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span> <span class="k">if</span> <span class="n">append</span> <span class="k">else</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_obj</span><span class="p">:</span>
+            <span class="n">_save_group</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">f_obj</span><span class="p">,</span> <span class="n">save_results</span><span class="p">,</span> <span class="n">save_settings</span><span class="p">,</span> <span class="n">save_data</span><span class="p">)</span>
+
+    <span class="c1"># Save to file-object specified file</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">io</span><span class="o">.</span><span class="n">IOBase</span><span class="p">):</span>
+        <span class="n">_save_group</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">save_results</span><span class="p">,</span> <span class="n">save_settings</span><span class="p">,</span> <span class="n">save_data</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Save file not understood.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="save_event"><a class="viewcode-back" href="../../../generated/specparam.io.models.save_event.html#specparam.io.models.save_event">[docs]</a><span class="k">def</span> <span class="nf">save_event</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+               <span class="n">save_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save out results and/or settings from event object. Saves out to a JSON file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    event : SpectralTimeEventModel</span>
+<span class="sd">        Object to save data from.</span>
+<span class="sd">    file_name : str or FileObject</span>
+<span class="sd">        File to save data to.</span>
+<span class="sd">    file_path : str, optional</span>
+<span class="sd">        Path to directory to load from. If None, saves to current directory.</span>
+<span class="sd">    append : bool, optional, default: False</span>
+<span class="sd">        Whether to append to an existing file, if available.</span>
+<span class="sd">        This option is only valid (and only used) if &#39;file_name&#39; is a str.</span>
+<span class="sd">    save_results : bool, optional</span>
+<span class="sd">        Whether to save out model fit results.</span>
+<span class="sd">    save_settings : bool, optional</span>
+<span class="sd">        Whether to save out settings.</span>
+<span class="sd">    save_data : bool, optional</span>
+<span class="sd">        Whether to save out power spectra data.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the data or save file specified are not understood.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">fg</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">save_settings</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">save_results</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">save_data</span><span class="p">:</span>
+        <span class="n">fg</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="n">append</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ndigits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">gres</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">):</span>
+            <span class="n">fg</span><span class="o">.</span><span class="n">group_results</span> <span class="o">=</span> <span class="n">gres</span>
+            <span class="k">if</span> <span class="n">save_data</span><span class="p">:</span>
+                <span class="n">fg</span><span class="o">.</span><span class="n">power_spectra</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">spectrograms</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">fg</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file_name</span> <span class="o">+</span> <span class="s1">&#39;_{:0</span><span class="si">{ndigits}</span><span class="s1">d}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="n">ndigits</span><span class="p">),</span>
+                    <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="n">append</span><span class="p">,</span> <span class="n">save_results</span><span class="o">=</span><span class="n">save_results</span><span class="p">,</span>
+                    <span class="n">save_settings</span><span class="o">=</span><span class="n">save_settings</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="n">save_data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="load_model"><a class="viewcode-back" href="../../../generated/specparam.io.models.load_model.html#specparam.io.models.load_model">[docs]</a><span class="k">def</span> <span class="nf">load_model</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">regenerate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load a SpectralModel object from file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_name : str</span>
+<span class="sd">        File to load the data from.</span>
+<span class="sd">    file_path : Path or str, optional</span>
+<span class="sd">        Path to directory to load from. If None, loads from current directory.</span>
+<span class="sd">    regenerate : bool, optional, default: True</span>
+<span class="sd">        Whether to regenerate the model fit from the loaded data, if data is available.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    model : SpectralModel</span>
+<span class="sd">        Loaded model object with data from file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <span class="n">SpectralModel</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">SpectralModel</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">regenerate</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span></div>
+
+
+<div class="viewcode-block" id="load_group"><a class="viewcode-back" href="../../../generated/specparam.io.models.load_group.html#specparam.io.models.load_group">[docs]</a><span class="k">def</span> <span class="nf">load_group</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load a SpectralGroupModel object from file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_name : str</span>
+<span class="sd">        File(s) to load data from.</span>
+<span class="sd">    file_path : Path or str, optional</span>
+<span class="sd">        Path to directory to load from. If None, loads from current directory.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    group : SpectralGroupModel</span>
+<span class="sd">        Loaded model object with data from file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <span class="n">SpectralGroupModel</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">SpectralGroupModel</span><span class="p">()</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">group</span></div>
+
+
+<div class="viewcode-block" id="load_time"><a class="viewcode-back" href="../../../generated/specparam.io.models.load_time.html#specparam.io.models.load_time">[docs]</a><span class="k">def</span> <span class="nf">load_time</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">peak_org</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load a SpectralTimeModel object from file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_name : str</span>
+<span class="sd">        File(s) to load data from.</span>
+<span class="sd">    file_path : Path or str, optional</span>
+<span class="sd">        Path to directory to load from. If None, loads from current directory.</span>
+<span class="sd">    peak_org : int or Bands, optional</span>
+<span class="sd">        How to organize peaks.</span>
+<span class="sd">        If int, extracts the first n peaks.</span>
+<span class="sd">        If Bands, extracts peaks based on band definitions.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    time : SpectralTimeModel</span>
+<span class="sd">        Loaded model object with data from file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <span class="n">SpectralTimeModel</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">SpectralTimeModel</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">peak_org</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">time</span></div>
+
+
+<div class="viewcode-block" id="load_event"><a class="viewcode-back" href="../../../generated/specparam.io.models.load_event.html#specparam.io.models.load_event">[docs]</a><span class="k">def</span> <span class="nf">load_event</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">peak_org</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load a SpectralTimeEventModel object from file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_name : str</span>
+<span class="sd">        File(s) to load data from.</span>
+<span class="sd">    file_path : Path or str, optional</span>
+<span class="sd">        Path to directory to load from. If None, loads from current directory.</span>
+<span class="sd">    peak_org : int or Bands, optional</span>
+<span class="sd">        How to organize peaks.</span>
+<span class="sd">        If int, extracts the first n peaks.</span>
+<span class="sd">        If Bands, extracts peaks based on band definitions.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    event : SpectralTimeEventModel</span>
+<span class="sd">        Loaded model object with data from file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <span class="n">SpectralTimeEventModel</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">SpectralTimeEventModel</span><span class="p">()</span>
+    <span class="n">event</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">peak_org</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">event</span></div>
+
+
+<span class="k">def</span> <span class="nf">_save_group</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">f_obj</span><span class="p">,</span> <span class="n">save_results</span><span class="p">,</span> <span class="n">save_settings</span><span class="p">,</span> <span class="n">save_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for saving a group object - saves data given a file object.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group : SpectralGroupModel</span>
+<span class="sd">        Object to save data from.</span>
+<span class="sd">    f_obj : FileObject</span>
+<span class="sd">        File object to save data to.</span>
+<span class="sd">    save_results : bool</span>
+<span class="sd">        Whether to save out model fit results.</span>
+<span class="sd">    save_settings : bool</span>
+<span class="sd">        Whether to save out settings.</span>
+<span class="sd">    save_data : bool</span>
+<span class="sd">        Whether to save out power spectra data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Since there is a single set of object settings, save them out once, at the top</span>
+    <span class="k">if</span> <span class="n">save_settings</span><span class="p">:</span>
+        <span class="n">save_model</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">f_obj</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># For results &amp; data, loop across all data and/or models, and save each out to a new line</span>
+    <span class="k">if</span> <span class="n">save_results</span> <span class="ow">or</span> <span class="n">save_data</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">group_results</span><span class="p">)):</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">regenerate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">save_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">f_obj</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                       <span class="n">save_results</span><span class="o">=</span><span class="n">save_results</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="n">save_data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

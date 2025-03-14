@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Topographical Analyses with MNE &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>Topographical Analyses with MNE &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=54d48845"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -119,10 +119,10 @@ to download the full example code.</p>
 <section class="sphx-glr-example-title" id="topographical-analyses-with-mne">
 <span id="sphx-glr-auto-examples-analyses-plot-mne-example-py"></span><h1>Topographical Analyses with MNE<a class="headerlink" href="#topographical-analyses-with-mne" title="Permalink to this heading">¶</a></h1>
 <p>Parameterizing neural power spectra with MNE, doing a topographical analysis.</p>
-<p>This tutorial requires that you have <a class="reference external" href="https://mne-tools.github.io/">MNE</a>
+<p>This tutorial requires that you have <a class="reference external" href="https://mne.tools/">MNE</a>
 installed. This tutorial needs mne &gt;= 1.2.</p>
 <p>If you don’t already have MNE, you can follow instructions to get it
-<a class="reference external" href="https://mne-tools.github.io/stable/getting_started.html">here</a>.</p>
+<a class="reference external" href="https://mne.tools/stable/getting_started.html">here</a>.</p>
 <p>For this example, we will explore how to parameterize power spectra using data loaded
 and managed with MNE, and how to plot topographies of resulting model parameters.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># General imports</span>
@@ -137,14 +137,14 @@ and managed with MNE, and how to plot topographies of resulting model parameters
 <span class="c1"># Spectral parameterization imports</span>
 <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a>
 <span class="kn">from</span> <span class="nn">specparam.bands</span> <span class="kn">import</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
-<span class="kn">from</span> <span class="nn">specparam.analysis</span> <span class="kn">import</span> <a href="../../generated/specparam.analysis.get_band_peak_group.html#specparam.analysis.get_band_peak_group" title="specparam.analysis.get_band_peak_group" class="sphx-glr-backref-module-specparam-analysis sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a>
+<span class="kn">from</span> <span class="nn">specparam.data.periodic</span> <span class="kn">import</span> <a href="../../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a>
 <span class="kn">from</span> <span class="nn">specparam.plts.spectra</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
 </pre></div>
 </div>
 <section id="load-check-mne-data">
 <h2>Load &amp; Check MNE Data<a class="headerlink" href="#load-check-mne-data" title="Permalink to this heading">¶</a></h2>
 <p>We will use the
-<a class="reference external" href="https://mne.tools/stable/overview/datasets_index.html?#sample">MNE sample dataset</a>
+<a class="reference external" href="https://mne.tools/stable/documentation/datasets.html#sample">MNE sample dataset</a>
 which is a combined MEG/EEG recording with an audiovisual task.</p>
 <p>First we will load the dataset from MNE, have a quick look at the data,
 and extract the EEG data that we will use for this example.</p>
@@ -225,7 +225,8 @@ method, that takes in MNE data objects and calculates and returns power spectra.
 <section id="fitting-power-spectrum-models">
 <h2>Fitting Power Spectrum Models<a class="headerlink" href="#fitting-power-spectrum-models" title="Permalink to this heading">¶</a></h2>
 <p>Now that we have power spectra, we can fit some power spectrum models.</p>
-<p>Since we have multiple power spectra, we will use the <a class="reference internal" href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> object.</p>
+<p>Since we have multiple power spectra, we will use the
+<a class="reference internal" href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> object.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a SpectralGroupModel object, with desired settings</span>
 <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">(</span><span class="n">peak_width_limits</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">min_peak_height</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>
                 <span class="n">peak_threshold</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">max_n_peaks</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -266,7 +267,7 @@ definitions, and some analysis utilities to extracts peaks from bands of interes
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract alpha peaks</span>
-<span class="n">alphas</span> <span class="o">=</span> <a href="../../generated/specparam.analysis.get_band_peak_group.html#specparam.analysis.get_band_peak_group" title="specparam.analysis.get_band_peak_group" class="sphx-glr-backref-module-specparam-analysis sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+<span class="n">alphas</span> <span class="o">=</span> <a href="../../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
 
 <span class="c1"># Extract the power values from the detected peaks</span>
 <span class="n">alpha_pw</span> <span class="o">=</span> <span class="n">alphas</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
@@ -276,7 +277,7 @@ definitions, and some analysis utilities to extracts peaks from bands of interes
 <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">plot_topomap</span><span class="p">(</span><span class="n">alpha_pw</span><span class="p">,</span> <span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span> <span class="n">contours</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_mne_example_002.png" srcset="../../_images/sphx_glr_plot_mne_example_002.png" alt="plot mne example" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(&lt;matplotlib.image.AxesImage object at 0x7fc5c2cdca90&gt;, None)
+<img src="../../_images/sphx_glr_plot_mne_example_002.png" srcset="../../_images/sphx_glr_plot_mne_example_002.png" alt="plot mne example" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(&lt;matplotlib.image.AxesImage object at 0x7fbbbefd7b50&gt;, None)
 </pre></div>
 </div>
 <p>And there we have it, our first topography of parameterized spectra, showing alpha power!</p>
@@ -287,7 +288,7 @@ definitions, and some analysis utilities to extracts peaks from bands of interes
 <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">band_def</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a><span class="p">):</span>
 
     <span class="c1"># Get the power values across channels for the current band</span>
-    <span class="n">band_power</span> <span class="o">=</span> <span class="n">check_nans</span><span class="p">(</span><a href="../../generated/specparam.analysis.get_band_peak_group.html#specparam.analysis.get_band_peak_group" title="specparam.analysis.get_band_peak_group" class="sphx-glr-backref-module-specparam-analysis sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <span class="n">band_def</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">band_power</span> <span class="o">=</span> <span class="n">check_nans</span><span class="p">(</span><a href="../../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <span class="n">band_def</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">])</span>
 
     <span class="c1"># Create a topomap for the current oscillation band</span>
     <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">plot_topomap</span><span class="p">(</span><span class="n">band_power</span><span class="p">,</span> <span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span> <span class="n">contours</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
@@ -306,7 +307,7 @@ what these peaks look like in the underlying power spectra.</p>
 <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">band_def</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a><span class="p">):</span>
 
     <span class="c1"># Get the power values across channels for the current band</span>
-    <span class="n">band_power</span> <span class="o">=</span> <span class="n">check_nans</span><span class="p">(</span><a href="../../generated/specparam.analysis.get_band_peak_group.html#specparam.analysis.get_band_peak_group" title="specparam.analysis.get_band_peak_group" class="sphx-glr-backref-module-specparam-analysis sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <span class="n">band_def</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">band_power</span> <span class="o">=</span> <span class="n">check_nans</span><span class="p">(</span><a href="../../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <span class="n">band_def</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">])</span>
 
     <span class="c1"># Extracted and plot the power spectrum model with the most band power</span>
     <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_model" title="specparam.SpectralGroupModel.get_model" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_model</span></a><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">band_power</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">add_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -330,7 +331,7 @@ and plot them.</p>
 <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">plot_topomap</span><span class="p">(</span><span class="n">exps</span><span class="p">,</span> <span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span> <span class="n">contours</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_mne_example_005.png" srcset="../../_images/sphx_glr_plot_mne_example_005.png" alt="plot mne example" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(&lt;matplotlib.image.AxesImage object at 0x7fc5bc6a9a30&gt;, None)
+<img src="../../_images/sphx_glr_plot_mne_example_005.png" srcset="../../_images/sphx_glr_plot_mne_example_005.png" alt="plot mne example" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(&lt;matplotlib.image.AxesImage object at 0x7fbbb8aabaf0&gt;, None)
 </pre></div>
 </div>
 <p>In the topography above, we can see that there is a fair amount of variation
@@ -353,7 +354,7 @@ spectra, in this case extracting those with the highest and lower exponent value
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p>In this example, we have seen how to apply power spectrum models to data that is
 managed and processed with MNE.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.692 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.916 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-analyses-plot-mne-example-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/22eca51ea62d18a21f9995a7bdfe8c49/plot_mne_example.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_mne_example.ipynb</span></code></a></p>
@@ -378,7 +379,7 @@ managed and processed with MNE.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

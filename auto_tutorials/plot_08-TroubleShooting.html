@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>07: Tuning &amp; Troubleshooting &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>08: Tuning &amp; Troubleshooting &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=54d48845"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -117,7 +117,7 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="tuning-troubleshooting">
-<span id="sphx-glr-auto-tutorials-plot-08-troubleshooting-py"></span><h1>07: Tuning &amp; Troubleshooting<a class="headerlink" href="#tuning-troubleshooting" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-tutorials-plot-08-troubleshooting-py"></span><h1>08: Tuning &amp; Troubleshooting<a class="headerlink" href="#tuning-troubleshooting" title="Permalink to this heading">¶</a></h1>
 <p>Tips &amp; tricks for choosing algorithm settings, tuning fits, and troubleshooting.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># General imports</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -249,11 +249,11 @@ function to simulate individual power spectra, following the power spectrum mode
 
                                        7 peaks were found:
                                 CF:   9.83, PW:  0.908, BW:  4.90
-                                CF:  19.92, PW:  0.826, BW:  3.60
-                                CF:  22.69, PW:  0.525, BW:  0.50
+                                CF:  19.92, PW:  0.826, BW:  3.59
+                                CF:  22.68, PW:  0.524, BW:  0.52
                                 CF:  31.85, PW:  0.566, BW:  2.22
-                                CF:  38.65, PW:  0.262, BW:  0.59
-                                CF:  39.50, PW:  0.239, BW:  0.54
+                                CF:  38.60, PW:  0.262, BW:  0.56
+                                CF:  39.44, PW:  0.240, BW:  0.60
                                 CF:  49.46, PW:  0.209, BW:  0.50
 
                                      Goodness of fit metrics:
@@ -396,8 +396,8 @@ allowing you to define an absolute threshold for extracting peaks.</p>
 <p>So far we have explored troubleshooting individual model fits. When starting
 a new analysis, or working with a new dataset, we do recommend starting by
 trying some individual fits like this.</p>
-<p>If and when you move to using <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> to fit groups of power spectra,
-there are some slightly different ways to investigate groups of fits,
+<p>If and when you move to using <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> to fit groups of
+power spectra, there are some slightly different ways to investigate groups of fits,
 which we’ll step through now, using some simulated data.</p>
 <section id="simulating-a-group-of-power-spectra">
 <h3>Simulating a Group of Power Spectra<a class="headerlink" href="#simulating-a-group-of-power-spectra" title="Permalink to this heading">¶</a></h3>
@@ -406,7 +406,7 @@ which we’ll step through now, using some simulated data.</p>
 in combination with called <a class="reference internal" href="../generated/specparam.sim.params.param_sampler.html#specparam.sim.params.param_sampler" title="specparam.sim.params.param_sampler"><code class="xref py py-func docutils literal notranslate"><span class="pre">param_sampler()</span></code></a> that is used to sample across
 possible parameters.</p>
 <p>For more and descriptions and example of how the simulations work, check out the
-<a class="reference external" href="https://fooof-tools.github.io/fooof/auto_examples/index.html">examples</a> section.</p>
+<a class="reference external" href="https://specparam-tools.github.io/auto_examples/index.html">examples</a> section.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulation settings for a group of power spectra</span>
 <span class="n">n_spectra</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">sim_freq_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
@@ -453,9 +453,9 @@ possible parameters.</p>
 ==================================================================================================
 </pre></div>
 </div>
-<p>In the <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> report we can get a sense of the overall performance
-by looking at the information about the goodness of fit metrics, and also things like
-the distribution of peaks.</p>
+<p>In the <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> report we can get a sense of the overall
+performance by looking at the information about the goodness of fit metrics, and also things
+like the distribution of peaks.</p>
 <p>However, while these metrics can help identify if fits are, on average, going well (or not)
 they don’t necessarily indicate the source of any problems.</p>
 <p>To do so, we will typically still want to visualize some example fits, to see
@@ -494,8 +494,8 @@ and select these fits from the <a class="reference internal" href="../generated/
 ==================================================================================================
 </pre></div>
 </div>
-<p>You can also loop through all the results in a <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a>, extracting
-all fits that meet some criterion that makes them worth checking.</p>
+<p>You can also loop through all the results in a <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a>,
+extracting all fits that meet some criterion that makes them worth checking.</p>
 <p>This might be checking for fits above some error threshold, as below, but note
 that you may also want to do a similar procedure to examine fits with the lowest
 error, to check if the model may be overfitting, or perhaps fits with a particularly
@@ -522,12 +522,12 @@ large number of gaussians.</p>
 <li><img src="../_images/sphx_glr_plot_08-TroubleShooting_006.png" srcset="../_images/sphx_glr_plot_08-TroubleShooting_006.png" alt="plot 08 TroubleShooting" class = "sphx-glr-multi-img"/></li>
 <li><img src="../_images/sphx_glr_plot_08-TroubleShooting_007.png" srcset="../_images/sphx_glr_plot_08-TroubleShooting_007.png" alt="plot 08 TroubleShooting" class = "sphx-glr-multi-img"/></li>
 </ul>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/core/reports.py:64: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  plt.savefig(fpath(file_path, fname(file_name, SAVE_FORMAT)))
-/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/core/reports.py:64: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  plt.savefig(fpath(file_path, fname(file_name, SAVE_FORMAT)))
-/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/core/reports.py:64: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  plt.savefig(fpath(file_path, fname(file_name, SAVE_FORMAT)))
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/reports/save.py:64: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(create_file_path(file_name, file_path, SAVE_FORMAT))
+/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/reports/save.py:64: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(create_file_path(file_name, file_path, SAVE_FORMAT))
+/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/reports/save.py:64: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(create_file_path(file_name, file_path, SAVE_FORMAT))
 </pre></div>
 </div>
 <p>Another thing that can be worth keeping an eye on is the average number of fit
@@ -551,15 +551,14 @@ and why model fitting fails, so that we can continue to make it better.</p>
 <p>There is also a helper method to print out instructions for reporting
 bad fits / bugs back to us, as demonstrated below.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out instructions to report bad fits</span>
-<span class="c1">#  Note you can also call this from SpectralGroupModel, and from instances (ex: `fm.print_report_issue()`)</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_report_issue" title="specparam.SpectralModel.print_report_issue" class="sphx-glr-backref-module-specparam-SpectralModel sphx-glr-backref-type-py-method"><span class="n">SpectralModel</span><span class="o">.</span><span class="n">print_report_issue</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                   SpecParam - ISSUE REPORTING
+                                   specparam - ISSUE REPORTING
 
-                      Please report any bugs or unexpected errors on Github.
+                      Please report any bugs or unexpected errors on Github:
                            https://github.com/fooof-tools/fooof/issues
 
                If model fitting gives you any weird / bad fits, please let us know!
@@ -574,13 +573,16 @@ bad fits / bugs back to us, as demonstrated below.</p>
 ==================================================================================================
 </pre></div>
 </div>
+<p>Note that you can also call this method from SpectralGroupModel
+(ex: <cite>SpectralGroupModel.print_report_issue()</cite>) as well as from instances of these objects
+(ex: <cite>fm.print_report_issue()</cite>, <cite>fg.print_report_issue()</cite>)</p>
 </section>
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p>We have now stepped through the full work-flow of fitting power spectrum models, using
 model objects, picking settings, and troubleshooting model fits. In the next
 and final tutorial, we will introduce how to start analyzing model results.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.121 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.886 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-08-troubleshooting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/db5ec17d085dc6324dca25691b64a7cd/plot_08-TroubleShooting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_08-TroubleShooting.ipynb</span></code></a></p>
@@ -605,7 +607,7 @@ and final tutorial, we will introduce how to start analyzing model results.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

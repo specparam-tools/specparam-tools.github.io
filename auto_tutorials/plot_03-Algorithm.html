@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>03: Fitting Algorithm &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>03: Fitting Algorithm &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=54d48845"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -188,9 +188,9 @@ and goodness of fit metrics are calculated.</p></li>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">peak_width_limits</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="n">max_n_peaks</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">min_peak_height</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Note that data can be added to a SpectralModel object independent of fitting the model, using the
-<a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.add_data" title="specparam.SpectralModel.add_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_data()</span></code></a> method. Model objects can also be used to plot data,
-prior to fitting any models.</p>
+<p>Note that data can be added to a SpectralModel object independent of fitting the model, using
+the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.add_data" title="specparam.SpectralModel.add_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_data()</span></code></a> method. Model objects can also be used to plot
+data, prior to fitting any models.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add data to the object</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.add_data" title="specparam.SpectralModel.add_data" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">add_data</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
 </pre></div>
@@ -334,7 +334,7 @@ updating gaussian parameters to be peak parameters,</p>
 
                                        2 peaks were found:
                                 CF:  10.00, PW:  0.685, BW:  3.18
-                                CF:  16.32, PW:  0.138, BW:  7.03
+                                CF:  16.32, PW:  0.138, BW:  7.02
 
                                      Goodness of fit metrics:
                                     R^2 of model fit is 0.9909
@@ -352,8 +352,8 @@ updating gaussian parameters to be peak parameters,</p>
 <img src="../_images/sphx_glr_plot_03-Algorithm_011.png" srcset="../_images/sphx_glr_plot_03-Algorithm_011.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
 <section id="addendum-data-model-component-attributes">
 <h3>Addendum: Data &amp; Model Component Attributes<a class="headerlink" href="#addendum-data-model-component-attributes" title="Permalink to this heading">¶</a></h3>
-<p>As you may have noticed through this tutorial, the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object keeps
-track of some versions of the original data as well as individual model components fits,
+<p>As you may have noticed through this tutorial, the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object
+keeps track of some versions of the original data as well as individual model components fits,
 as well as the final model fit, the ultimate outcome of the fitting procedure.</p>
 <p>These attributes in the SpectralModel object are kept at the end of the fitting procedure.
 Though they are primarily computed for internal use (hence being considered ‘private’
@@ -397,7 +397,7 @@ useful for some analyses, and so are briefly described here.</p>
 power spectrum models.</p>
 <p>Next, we will continue to explore the model object by properly introducing and more
 fully describing the settings for the algorithm.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.017 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.274 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-03-algorithm-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/094cb612d738221b30ce84624b7577e6/plot_03-Algorithm.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_03-Algorithm.ipynb</span></code></a></p>
@@ -422,7 +422,7 @@ fully describing the settings for the algorithm.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

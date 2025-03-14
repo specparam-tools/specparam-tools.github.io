@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Aperiodic Parameters &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>Aperiodic Parameters &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=54d48845"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -127,7 +127,7 @@ to download the full example code.</p>
 <span class="kn">from</span> <span class="nn">specparam.plts.aperiodic</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_params.html#specparam.plts.aperiodic.plot_aperiodic_params" title="specparam.plts.aperiodic.plot_aperiodic_params" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_params</span></a>
 <span class="kn">from</span> <span class="nn">specparam.sim.params</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.params.Stepper.html#specparam.sim.params.Stepper" title="specparam.sim.params.Stepper" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-class"><span class="n">Stepper</span></a><span class="p">,</span> <a href="../../generated/specparam.sim.params.param_iter.html#specparam.sim.params.param_iter" title="specparam.sim.params.param_iter" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-function"><span class="n">param_iter</span></a>
 <span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">,</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a>
-<span class="kn">from</span> <span class="nn">specparam.utils.params</span> <span class="kn">import</span> <span class="n">compute_time_constant</span><span class="p">,</span> <a href="../../generated/specparam.utils.params.compute_knee_frequency.html#specparam.utils.params.compute_knee_frequency" title="specparam.utils.params.compute_knee_frequency" class="sphx-glr-backref-module-specparam-utils-params sphx-glr-backref-type-py-function"><span class="n">compute_knee_frequency</span></a>
+<span class="kn">from</span> <span class="nn">specparam.measures.params</span> <span class="kn">import</span> <a href="../../generated/specparam.measures.params.compute_time_constant.html#specparam.measures.params.compute_time_constant" title="specparam.measures.params.compute_time_constant" class="sphx-glr-backref-module-specparam-measures-params sphx-glr-backref-type-py-function"><span class="n">compute_time_constant</span></a><span class="p">,</span> <a href="../../generated/specparam.measures.params.compute_knee_frequency.html#specparam.measures.params.compute_knee_frequency" title="specparam.measures.params.compute_knee_frequency" class="sphx-glr-backref-module-specparam-measures-params sphx-glr-backref-type-py-function"><span class="n">compute_knee_frequency</span></a>
 </pre></div>
 </div>
 <section id="fixed-model">
@@ -147,7 +147,7 @@ to characterize the 1/f-like aperiodic component of the data.</p>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">aperiodic_params_</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.00231232, 1.00125184])
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.00504249, 1.00309973])
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot annotated model of aperiodic parameters</span>
@@ -229,7 +229,7 @@ an offset, knee, and exponent value.</p>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">aperiodic_params_</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([ 0.0210882 , 15.88552889,  1.01325761])
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([-0.01445238, 14.40218154,  0.99174061])
 </pre></div>
 </div>
 <section id="knee-frequency">
@@ -239,13 +239,13 @@ value as extracted from the model is something of an abstract quantify based on 
 formalization of the underlying fit function. A more intuitive measure that we may
 be interested in is the ‘knee frequency’, which is an estimate of the frequency value
 at which the knee occurs.</p>
-<p>The <a class="reference internal" href="../../generated/specparam.utils.params.compute_knee_frequency.html#specparam.utils.params.compute_knee_frequency" title="specparam.utils.params.compute_knee_frequency"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_knee_frequency()</span></code></a> function can be used to compute the knee frequency.</p>
+<p>The <a class="reference internal" href="../../generated/specparam.measures.params.compute_knee_frequency.html#specparam.measures.params.compute_knee_frequency" title="specparam.measures.params.compute_knee_frequency"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_knee_frequency()</span></code></a> function can be used to compute the knee frequency.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the knee frequency from aperiodic parameters</span>
-<span class="n">knee_frequency</span> <span class="o">=</span> <a href="../../generated/specparam.utils.params.compute_knee_frequency.html#specparam.utils.params.compute_knee_frequency" title="specparam.utils.params.compute_knee_frequency" class="sphx-glr-backref-module-specparam-utils-params sphx-glr-backref-type-py-function"><span class="n">compute_knee_frequency</span></a><span class="p">(</span><span class="o">*</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">aperiodic_params_</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">knee_frequency</span> <span class="o">=</span> <a href="../../generated/specparam.measures.params.compute_knee_frequency.html#specparam.measures.params.compute_knee_frequency" title="specparam.measures.params.compute_knee_frequency" class="sphx-glr-backref-module-specparam-measures-params sphx-glr-backref-type-py-function"><span class="n">compute_knee_frequency</span></a><span class="p">(</span><span class="o">*</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">aperiodic_params_</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Knee frequency: &#39;</span><span class="p">,</span> <span class="n">knee_frequency</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee frequency:  15.321017221359204
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee frequency:  14.725697653730954
 </pre></div>
 </div>
 </section>
@@ -253,17 +253,17 @@ at which the knee occurs.</p>
 <h3>Time Constant<a class="headerlink" href="#time-constant" title="Permalink to this heading">¶</a></h3>
 <p>Another interesting property of the knee parameter is that it has a direct relationship
 to the auto-correlation function, and from there to the empirical time constant of the data.</p>
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">compute_time_constant()</span></code> function can be used to compute the knee-derived
+<p>The <a class="reference internal" href="../../generated/specparam.measures.params.compute_time_constant.html#specparam.measures.params.compute_time_constant" title="specparam.measures.params.compute_time_constant"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_time_constant()</span></code></a> function can be used to compute the knee-derived
 time constant.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the characteristic time constant of a knee value</span>
-<span class="n">time_constant</span> <span class="o">=</span> <span class="n">compute_time_constant</span><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_params" title="specparam.SpectralModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">,</span> <span class="s1">&#39;knee&#39;</span><span class="p">))</span>
+<span class="n">time_constant</span> <span class="o">=</span> <a href="../../generated/specparam.measures.params.compute_time_constant.html#specparam.measures.params.compute_time_constant" title="specparam.measures.params.compute_time_constant" class="sphx-glr-backref-module-specparam-measures-params sphx-glr-backref-type-py-function"><span class="n">compute_time_constant</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_params" title="specparam.SpectralModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">,</span> <span class="s1">&#39;knee&#39;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Knee derived time constant: &#39;</span><span class="p">,</span> <span class="n">time_constant</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee derived time constant:  0.010018863343319995
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee derived time constant:  0.011050752463415001
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.309 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.263 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-models-plot-aperiodic-params-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/db26135e85e3f8b4440c4fc4f5b0ad17/plot_aperiodic_params.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_aperiodic_params.ipynb</span></code></a></p>
@@ -289,7 +289,7 @@ time constant.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

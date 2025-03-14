@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Spectral Parameterization &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>Spectral Parameterization &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=54d48845"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="#">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -113,7 +113,7 @@
       
   <section id="spectral-parameterization">
 <h1>Spectral Parameterization<a class="headerlink" href="#spectral-parameterization" title="Permalink to this heading">¶</a></h1>
-<p><a class="reference external" href="https://www.repostatus.org/#active"><img alt="ProjectStatus" src="http://www.repostatus.org/badges/latest/active.svg" /></a> <a class="reference external" href="https://pypi.python.org/pypi/fooof/"><img alt="Version" src="https://img.shields.io/pypi/v/fooof.svg" /></a> <a class="reference external" href="https://github.com/fooof-tools/fooof/actions/workflows/build.yml"><img alt="BuildStatus" src="https://github.com/fooof-tools/fooof/actions/workflows/build.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/fooof-tools/fooof"><img alt="Coverage" src="https://codecov.io/gh/fooof-tools/fooof/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/pypi/l/fooof.svg" /></a> <a class="reference external" href="https://pypi.python.org/pypi/fooof/"><img alt="PythonVersions" src="https://img.shields.io/pypi/pyversions/fooof.svg" /></a> <a class="reference external" href="https://doi.org/10.1038/s41593-020-00744-x"><img alt="Paper" src="https://img.shields.io/badge/paper-nn10.1038-informational.svg" /></a></p>
+<p><a class="reference external" href="https://www.repostatus.org/#active"><img alt="project status" src="https://www.repostatus.org/badges/latest/active.svg" /></a> <a class="reference external" href="https://pypi.org/project/fooof/"><img alt="version" src="https://img.shields.io/pypi/v/fooof.svg" /></a> <a class="reference external" href="https://github.com/fooof-tools/fooof/actions/workflows/build.yml"><img alt="build status" src="https://github.com/fooof-tools/fooof/actions/workflows/build.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/fooof-tools/fooof"><img alt="coverage" src="https://codecov.io/gh/fooof-tools/fooof/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://opensource.org/license/apache-2-0"><img alt="license" src="https://img.shields.io/pypi/l/fooof.svg" /></a> <a class="reference external" href="https://pypi.org/project/fooof/"><img alt="python versions" src="https://img.shields.io/pypi/pyversions/fooof.svg" /></a> <a class="reference external" href="https://doi.org/10.1038/s41593-020-00744-x"><img alt="publication" src="https://img.shields.io/badge/paper-nn10.1038-informational.svg" /></a></p>
 <p>Spectral parameterization (<cite>specparam</cite>, formerly <cite>fooof</cite>) is a fast, efficient, and physiologically-informed tool to parameterize neural power spectra.</p>
 <p>WARNING: this Github repository has been updated to a major update / breaking change from previous releases, which were under the <cite>fooof</cite> name, and now contains major breaking update for the new <cite>specparam</cite> version of the code. The new version is not fully released, though a test version is available (see installation instructions below).</p>
 <section id="overview">
@@ -190,7 +190,6 @@ with information for how to reference and report on using the module</p></li>
 <li><p><a class="reference external" href="https://github.com/pandas-dev/pandas">pandas</a> is needed for exporting model fit results to dataframes</p></li>
 <li><p><a class="reference external" href="https://github.com/pytest-dev/pytest">pytest</a> is needed to run the test suite locally</p></li>
 </ul>
-<p>We recommend using the <a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a> distribution to manage these requirements.</p>
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
@@ -249,7 +248,7 @@ guaranteed to stay the same (there may be further breaking changes in the ultima
 <p>In Matlab, there is a reimplementation available in common toolboxes:
 - The <a class="reference external" href="https://neuroimage.usc.edu/brainstorm/Introduction">Brainstorm</a> toolbox has a reimplementation of specparam (see the <a class="reference external" href="https://neuroimage.usc.edu/brainstorm/Tutorials/Fooof">Brainstorm fooof tutorial</a>)
 - The <a class="reference external" href="https://www.fieldtriptoolbox.org/">Fieldtrip</a> toolbox also uses the same reimplementation (see the <a class="reference external" href="https://www.fieldtriptoolbox.org/example/fooof/">Fieldtrip fooof tutorial</a>)</p>
-<p>There is also a Matlab wrapper in the <a class="reference external" href="http://github.com/fooof-tools/fooof_mat">fooof_mat</a> repository.</p>
+<p>There is also a Matlab wrapper in the <a class="reference external" href="https://github.com/fooof-tools/fooof_mat">fooof_mat</a> repository.</p>
 <p>Note that another option is to use Python FOOOF within a Matlab pipeline, as explored in the
 <a class="reference external" href="https://github.com/fooof-tools/mat_py_mat">mat_py_mat</a> repository.</p>
 </section>
@@ -380,7 +379,7 @@ plotting models and parameters, and simulating power spectra, all of which is de
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

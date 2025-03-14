@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Band-by-Band &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>Band-by-Band &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=54d48845"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -131,10 +131,10 @@ often done in the context of development. The paper for that project is availabl
 
 <span class="c1"># Import simulation, utility, and plotting tools</span>
 <span class="kn">from</span> <span class="nn">specparam.bands</span> <span class="kn">import</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
-<span class="kn">from</span> <span class="nn">specparam.utils</span> <span class="kn">import</span> <a href="../../generated/specparam.utils.trim_spectrum.html#specparam.utils.trim_spectrum" title="specparam.utils.trim_spectrum" class="sphx-glr-backref-module-specparam-utils sphx-glr-backref-type-py-function"><span class="n">trim_spectrum</span></a>
-<span class="kn">from</span> <span class="nn">specparam.analysis</span> <span class="kn">import</span> <a href="../../generated/specparam.analysis.get_band_peak.html#specparam.analysis.get_band_peak" title="specparam.analysis.get_band_peak" class="sphx-glr-backref-module-specparam-analysis sphx-glr-backref-type-py-function"><span class="n">get_band_peak</span></a>
 <span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
 <span class="kn">from</span> <span class="nn">specparam.sim.utils</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.utils.set_random_seed.html#specparam.sim.utils.set_random_seed" title="specparam.sim.utils.set_random_seed" class="sphx-glr-backref-module-specparam-sim-utils sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a>
+<span class="kn">from</span> <span class="nn">specparam.data.periodic</span> <span class="kn">import</span> <a href="../../generated/specparam.data.periodic.get_band_peak.html#specparam.data.periodic.get_band_peak" title="specparam.data.periodic.get_band_peak" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak</span></a>
+<span class="kn">from</span> <span class="nn">specparam.utils.spectral</span> <span class="kn">import</span> <span class="n">trim_spectrum</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.spectra</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.spectra.plot_spectra_shading.html#specparam.plts.spectra.plot_spectra_shading" title="specparam.plts.spectra.plot_spectra_shading" class="sphx-glr-backref-module-specparam-plts-spectra sphx-glr-backref-type-py-function"><span class="n">plot_spectra_shading</span></a>
 </pre></div>
 </div>
@@ -210,16 +210,16 @@ power spectra. Here, we will define some helper functions to do so.</p>
 <span class="k">def</span> <span class="nf">compare_peak_pw</span><span class="p">(</span><span class="n">fm1</span><span class="p">,</span> <span class="n">fm2</span><span class="p">,</span> <span class="n">band_def</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare the power of detected peaks.&quot;&quot;&quot;</span>
 
-    <span class="n">pw1</span> <span class="o">=</span> <a href="../../generated/specparam.analysis.get_band_peak.html#specparam.analysis.get_band_peak" title="specparam.analysis.get_band_peak" class="sphx-glr-backref-module-specparam-analysis sphx-glr-backref-type-py-function"><span class="n">get_band_peak</span></a><span class="p">(</span><span class="n">fm1</span><span class="p">,</span> <span class="n">band_def</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">pw2</span> <span class="o">=</span> <a href="../../generated/specparam.analysis.get_band_peak.html#specparam.analysis.get_band_peak" title="specparam.analysis.get_band_peak" class="sphx-glr-backref-module-specparam-analysis sphx-glr-backref-type-py-function"><span class="n">get_band_peak</span></a><span class="p">(</span><span class="n">fm2</span><span class="p">,</span> <span class="n">band_def</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">pw1</span> <span class="o">=</span> <a href="../../generated/specparam.data.periodic.get_band_peak.html#specparam.data.periodic.get_band_peak" title="specparam.data.periodic.get_band_peak" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak</span></a><span class="p">(</span><span class="n">fm1</span><span class="p">,</span> <span class="n">band_def</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">pw2</span> <span class="o">=</span> <a href="../../generated/specparam.data.periodic.get_band_peak.html#specparam.data.periodic.get_band_peak" title="specparam.data.periodic.get_band_peak" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak</span></a><span class="p">(</span><span class="n">fm2</span><span class="p">,</span> <span class="n">band_def</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">pw1</span> <span class="o">-</span> <span class="n">pw2</span>
 
 <span class="k">def</span> <span class="nf">compare_band_pw</span><span class="p">(</span><span class="n">fm1</span><span class="p">,</span> <span class="n">fm2</span><span class="p">,</span> <span class="n">band_def</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare the power of frequency band ranges.&quot;&quot;&quot;</span>
 
-    <span class="n">pw1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><a href="../../generated/specparam.utils.trim_spectrum.html#specparam.utils.trim_spectrum" title="specparam.utils.trim_spectrum" class="sphx-glr-backref-module-specparam-utils sphx-glr-backref-type-py-function"><span class="n">trim_spectrum</span></a><span class="p">(</span><span class="n">fm1</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <span class="n">fm1</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">band_def</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">pw2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><a href="../../generated/specparam.utils.trim_spectrum.html#specparam.utils.trim_spectrum" title="specparam.utils.trim_spectrum" class="sphx-glr-backref-module-specparam-utils sphx-glr-backref-type-py-function"><span class="n">trim_spectrum</span></a><span class="p">(</span><span class="n">fm1</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <span class="n">fm2</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">band_def</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">pw1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">trim_spectrum</span><span class="p">(</span><span class="n">fm1</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <span class="n">fm1</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">band_def</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">pw2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">trim_spectrum</span><span class="p">(</span><span class="n">fm1</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <span class="n">fm2</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">band_def</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
 
     <span class="k">return</span> <span class="n">pw1</span> <span class="o">-</span> <span class="n">pw2</span>
 </pre></div>
@@ -439,7 +439,7 @@ came from using the parameterization approach, but was not evidence in prior
 work using only a band-by-band approach.
 You can find more on that project
 <a class="reference external" href="https://doi.org/10.1101/839258">here</a>.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.087 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.898 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-motivations-measurements-plot-bandbyband-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/b6191b178a287c7db5f8ad9da5406ff5/plot_BandByBand.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_BandByBand.ipynb</span></code></a></p>
@@ -464,7 +464,7 @@ You can find more on that project
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

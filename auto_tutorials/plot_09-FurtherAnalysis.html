@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>08: Further Analysis &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>09: Further Analysis &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=54d48845"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -117,7 +117,7 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="further-analysis">
-<span id="sphx-glr-auto-tutorials-plot-09-furtheranalysis-py"></span><h1>08: Further Analysis<a class="headerlink" href="#further-analysis" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-tutorials-plot-09-furtheranalysis-py"></span><h1>09: Further Analysis<a class="headerlink" href="#further-analysis" title="Permalink to this heading">¶</a></h1>
 <p>Analyze results from fitting power spectrum models.</p>
 <section id="exploring-power-spectrum-model-results">
 <h2>Exploring Power Spectrum Model Results<a class="headerlink" href="#exploring-power-spectrum-model-results" title="Permalink to this heading">¶</a></h2>
@@ -145,8 +145,8 @@ power spectra to fit with power spectrum models, to use as examples for this tut
 <span class="kn">from</span> <span class="nn">specparam.sim.params</span> <span class="kn">import</span> <a href="../generated/specparam.sim.params.param_sampler.html#specparam.sim.params.param_sampler" title="specparam.sim.params.param_sampler" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-function"><span class="n">param_sampler</span></a>
 <span class="kn">from</span> <span class="nn">specparam.sim.utils</span> <span class="kn">import</span> <a href="../generated/specparam.sim.utils.set_random_seed.html#specparam.sim.utils.set_random_seed" title="specparam.sim.utils.set_random_seed" class="sphx-glr-backref-module-specparam-sim-utils sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a>
 
-<span class="c1"># Import some analysis functions</span>
-<span class="kn">from</span> <span class="nn">specparam.analysis</span> <span class="kn">import</span> <a href="../generated/specparam.analysis.get_band_peak.html#specparam.analysis.get_band_peak" title="specparam.analysis.get_band_peak" class="sphx-glr-backref-module-specparam-analysis sphx-glr-backref-type-py-function"><span class="n">get_band_peak</span></a><span class="p">,</span> <a href="../generated/specparam.analysis.get_band_peak_group.html#specparam.analysis.get_band_peak_group" title="specparam.analysis.get_band_peak_group" class="sphx-glr-backref-module-specparam-analysis sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a>
+<span class="c1"># Import some functions to interact with peak fitting results</span>
+<span class="kn">from</span> <span class="nn">specparam.data.periodic</span> <span class="kn">import</span> <a href="../generated/specparam.data.periodic.get_band_peak.html#specparam.data.periodic.get_band_peak" title="specparam.data.periodic.get_band_peak" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak</span></a><span class="p">,</span> <a href="../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a>
 
 <span class="c1"># Import a utility to download and load example data</span>
 <span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">load_example_data</span>
@@ -214,7 +214,7 @@ that is provided to store frequency band definitions.</p>
 </div>
 <section id="extracting-peaks-from-spectralmodel-objects">
 <h3>Extracting peaks from SpectralModel Objects<a class="headerlink" href="#extracting-peaks-from-spectralmodel-objects" title="Permalink to this heading">¶</a></h3>
-<p>The <a class="reference internal" href="../generated/specparam.analysis.get_band_peak.html#specparam.analysis.get_band_peak" title="specparam.analysis.get_band_peak"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_band_peak()</span></code></a> function takes in a
+<p>The <a class="reference internal" href="../generated/specparam.data.periodic.get_band_peak.html#specparam.data.periodic.get_band_peak" title="specparam.data.periodic.get_band_peak"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_band_peak()</span></code></a> function takes in a
 <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object and extracts peak(s) from a requested frequency range.</p>
 <p>You can optionally specify:</p>
 <ul class="simple">
@@ -224,38 +224,39 @@ returned, or whether to return all peaks from within the band</p></li>
 peaks only above some minimum power threshold</p></li>
 </ul>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract any alpha band peaks from the power spectrum model</span>
-<span class="n">alpha</span> <span class="o">=</span> <a href="../generated/specparam.analysis.get_band_peak.html#specparam.analysis.get_band_peak" title="specparam.analysis.get_band_peak" class="sphx-glr-backref-module-specparam-analysis sphx-glr-backref-type-py-function"><span class="n">get_band_peak</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <a href="../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+<span class="n">alpha</span> <span class="o">=</span> <a href="../generated/specparam.data.periodic.get_band_peak.html#specparam.data.periodic.get_band_peak" title="specparam.data.periodic.get_band_peak" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <a href="../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[9.48375518 0.91782335 2.        ]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[9.48376672 0.91782115 2.        ]
 </pre></div>
 </div>
 </section>
 <section id="extracting-peaks-from-spectralgroupmodel-objects">
 <h3>Extracting peaks from SpectralGroupModel Objects<a class="headerlink" href="#extracting-peaks-from-spectralgroupmodel-objects" title="Permalink to this heading">¶</a></h3>
-<p>Similarly, the <a class="reference internal" href="../generated/specparam.analysis.get_band_peak_group.html#specparam.analysis.get_band_peak_group" title="specparam.analysis.get_band_peak_group"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_band_peak_group()</span></code></a> function can be used
-to select peaks from specified frequency ranges, from <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> objects.</p>
+<p>Similarly, the <a class="reference internal" href="../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_band_peak_group()</span></code></a> function can be used
+to select peaks from specified frequency ranges, from
+<a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> objects.</p>
 <p>Note that you can also apply a threshold to extract group peaks but, as discussed below,
 this approach will always only extract at most one peak per individual model fit from
 the SpectralGroupModel object.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get all alpha peaks from a group of power spectrum models</span>
-<span class="n">alphas</span> <span class="o">=</span> <a href="../generated/specparam.analysis.get_band_peak_group.html#specparam.analysis.get_band_peak_group" title="specparam.analysis.get_band_peak_group" class="sphx-glr-backref-module-specparam-analysis sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a><span class="p">(</span><a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <a href="../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+<span class="n">alphas</span> <span class="o">=</span> <a href="../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a><span class="p">(</span><a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <a href="../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands</span></a><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
 
 <span class="c1"># Check out some of the alpha parameters</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">alphas</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[10.03969822  0.48627641  3.78825893]
- [10.03394581  0.4880723   3.82623257]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[10.03970097  0.48627814  3.78823186]
+ [10.03394843  0.48807386  3.82620803]
  [        nan         nan         nan]
- [10.04095458  0.49087164  3.81810629]
+ [10.04095697  0.49087309  3.81808357]
  [        nan         nan         nan]]
 </pre></div>
 </div>
 <p>When selecting peaks from a group of model fits, we want to retain information about
 which model each peak comes from.</p>
-<p>To do so, the output of <a class="reference internal" href="../generated/specparam.analysis.get_band_peak_group.html#specparam.analysis.get_band_peak_group" title="specparam.analysis.get_band_peak_group"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_band_peak_group()</span></code></a> is organized such that each row
+<p>To do so, the output of <a class="reference internal" href="../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_band_peak_group()</span></code></a> is organized such that each row
 corresponds to a specific model fit. This means that returned array has the shape
 [n_models, 3], and so the index of each row corresponds to the index of the model
 from the SpectralGroupModel object.</p>
@@ -308,8 +309,8 @@ just need to be extracted from specparam objects and fit into analyses of intere
 <span class="nb">print</span><span class="p">(</span><span class="n">exps</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[1.51748191 1.51806639 1.99827884 1.51563434 2.00559925 2.01700177
- 2.00089211 2.02010911 1.51575117 1.99955831]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[1.5174828  1.51806721 1.99827884 1.5156351  2.00559925 2.01700246
+ 2.00089211 2.02010985 1.51575182 1.99955831]
 </pre></div>
 </div>
 </section>
@@ -328,7 +329,7 @@ properties, and behavioral states</p></li>
 examining power spectrum model parameters.</p>
 <p>To further explore some of these specific analyses, and explore other
 utilities that may be useful, check out the
-<a class="reference external" href="https://fooof-tools.github.io/fooof/auto_examples/index.html">examples</a>
+<a class="reference external" href="https://specparam-tools.github.io/auto_examples/index.html">examples</a>
 page.</p>
 </section>
 <section id="conclusion">
@@ -336,7 +337,7 @@ page.</p>
 <p>This is the end of the main tutorial materials!</p>
 <p>If you are having any troubles, please submit an issue on Github
 <a class="reference external" href="https://github.com/fooof-tools/fooof">here</a>.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.375 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.411 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-09-furtheranalysis-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/8e5253e56ee15dadc545763722a1c517/plot_09-FurtherAnalysis.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_09-FurtherAnalysis.ipynb</span></code></a></p>
@@ -361,7 +362,7 @@ page.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>02: Fitting Power Spectrum Models &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>02: Fitting Power Spectrum Models &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=54d48845"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -133,8 +133,8 @@ to download the full example code.</p>
 </div>
 <section id="model-object">
 <h2>Model Object<a class="headerlink" href="#model-object" title="Permalink to this heading">¶</a></h2>
-<p>At the core of the module is the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object, which holds relevant data
-and settings as attributes, and contains methods to run the algorithm to parameterize
+<p>At the core of the module is the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object, which holds relevant
+data and settings as attributes, and contains methods to run the algorithm to parameterize
 neural power spectra.</p>
 <p>The organization and use of the model object is similar to scikit-learn:</p>
 <ul class="simple">
@@ -144,9 +144,9 @@ neural power spectra.</p>
 </ul>
 <section id="calculating-power-spectra">
 <h3>Calculating Power Spectra<a class="headerlink" href="#calculating-power-spectra" title="Permalink to this heading">¶</a></h3>
-<p>The <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object fits models to power spectra. The module itself does not
-compute power spectra. Computing power spectra needs to be done prior to using
-the specparam module.</p>
+<p>The <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object fits models to power spectra.
+The module itself does not compute power spectra. Computing power spectra needs
+to be done prior to using the specparam module.</p>
 <p>The model is broadly agnostic to exactly how power spectra are computed. Common
 methods, such as Welch’s method, can be used to compute the spectrum.</p>
 <p>If you need a module in Python that has functionality for computing power spectra, try
@@ -250,16 +250,16 @@ the model have a trailing underscore, for example:</p>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Aperiodic parameters:
- [-21.61849464   0.71602468]
+ [-21.61849957   0.71602269]
 
 Peak parameters:
- [[ 9.36187745  1.04444653  1.58739815]
- [11.17320508  0.23009279  2.87553548]
- [18.24842747  0.33142173  2.84617078]]
+ [[ 9.36187382  1.04444622  1.58733674]
+ [11.1723471   0.23008765  2.87693709]
+ [18.24843214  0.33140755  2.84640768]]
 
 Goodness of fit:
- Error -  0.03560699607369899
- R^2   -  0.9828918511262451
+ Error -  0.03560819309517319
+ R^2   -  0.9828921187692009
 
 Number of fit peaks:
  3
@@ -287,8 +287,8 @@ method, which can be used to specify which parameters you want to extract.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>With an error level of 0.04, an exponent of 0.72 and peaks of 9.36 &amp; 11.17 &amp; 18.25 Hz were fit.
 </pre></div>
 </div>
-<p>For a full description of how you can access data with <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_params" title="specparam.SpectralModel.get_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_params()</span></code></a>,
-check the method’s documentation.</p>
+<p>For a full description of how you can access data with
+<a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_params" title="specparam.SpectralModel.get_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_params()</span></code></a>, check the method’s documentation.</p>
 <p>As a reminder, you can access the documentation for a function using ‘?’ in a
 Jupyter notebook (ex: <cite>fm.get_params?</cite>), or more generally with the <cite>help</cite> function
 in general Python (ex: <cite>help(fm.get_params)</cite>).</p>
@@ -358,14 +358,14 @@ object used to organize and collect parameter data.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fit error: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{:5.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">error_</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>FitResults(aperiodic_params=array([-21.61849464,   0.71602468]), peak_params=array([[ 9.36187745,  1.04444653,  1.58739815],
-       [11.17320508,  0.23009279,  2.87553548],
-       [18.24842747,  0.33142173,  2.84617078]]), r_squared=0.9828918511262451, error=0.03560699607369899, gaussian_params=array([[ 9.36187745,  0.97915803,  0.79369908],
-       [11.17320508,  0.16895001,  1.43776774],
-       [18.24842747,  0.33414213,  1.42308539]]))
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>FitResults(aperiodic_params=array([-21.61849957,   0.71602269]), peak_params=array([[ 9.36187382,  1.04444622,  1.58733674],
+       [11.1723471 ,  0.23008765,  2.87693709],
+       [18.24843214,  0.33140755,  2.84640768]]), r_squared=0.9828921187692009, error=0.03560819309517319, gaussian_params=array([[ 9.36187382,  0.97903265,  0.79366837],
+       [11.1723471 ,  0.16897043,  1.43846854],
+       [18.24843214,  0.3341275 ,  1.42320384]]))
 
 Aperiodic Parameters:
- [-21.61849464   0.71602468]
+ [-21.61849957   0.71602269]
 R-squared:
  0.9829
 Fit error:
@@ -379,7 +379,7 @@ Fit error:
 <p>In this tutorial, we have explored the basics of the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object,
 fitting power spectrum models, and extracting parameters.</p>
 <p>In the next tutorial, we will explore how this algorithm actually works to fit the model.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.237 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.274 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-02-psdmodel-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/7997e63a1796593e02f810fe2a8d3aef/plot_02-PSDModel.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_02-PSDModel.ipynb</span></code></a></p>
@@ -404,7 +404,7 @@ fitting power spectrum models, and extracting parameters.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

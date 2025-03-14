@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.plts.event &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>specparam.plts.event &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=54d48845"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -120,13 +120,13 @@
 
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
 
+<span class="kn">from</span> <span class="nn">specparam.modutils.errors</span> <span class="kn">import</span> <span class="n">NoModelError</span>
+<span class="kn">from</span> <span class="nn">specparam.modutils.dependencies</span> <span class="kn">import</span> <span class="n">safe_import</span><span class="p">,</span> <span class="n">check_dependency</span>
 <span class="kn">from</span> <span class="nn">specparam.data.utils</span> <span class="kn">import</span> <span class="n">get_periodic_labels</span><span class="p">,</span> <span class="n">get_band_labels</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.data</span> <span class="kn">import</span> <span class="n">compute_presence</span>
+<span class="kn">from</span> <span class="nn">specparam.measures.properties</span> <span class="kn">import</span> <span class="n">compute_presence</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.utils</span> <span class="kn">import</span> <span class="n">savefig</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.templates</span> <span class="kn">import</span> <span class="n">plot_param_over_time_yshade</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.settings</span> <span class="kn">import</span> <span class="n">PARAM_COLORS</span>
-<span class="kn">from</span> <span class="nn">specparam.core.errors</span> <span class="kn">import</span> <span class="n">NoModelError</span>
-<span class="kn">from</span> <span class="nn">specparam.core.modutils</span> <span class="kn">import</span> <span class="n">safe_import</span><span class="p">,</span> <span class="n">check_dependency</span>
 
 <span class="n">plt</span> <span class="o">=</span> <span class="n">safe_import</span><span class="p">(</span><span class="s1">&#39;.pyplot&#39;</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">)</span>
 
@@ -183,14 +183,15 @@
     <span class="c1"># 02: periodic params</span>
     <span class="k">for</span> <span class="n">band_ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bands</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">plabel</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cf&#39;</span><span class="p">,</span> <span class="s1">&#39;pw&#39;</span><span class="p">,</span> <span class="s1">&#39;bw&#39;</span><span class="p">]:</span>
-            <span class="n">plot_param_over_time_yshade</span><span class="p">(</span>\
-                <span class="kc">None</span><span class="p">,</span> <span class="n">event_model</span><span class="o">.</span><span class="n">event_time_results</span><span class="p">[</span><span class="n">pe_labels</span><span class="p">[</span><span class="n">plabel</span><span class="p">][</span><span class="n">band_ind</span><span class="p">]],</span>
+            <span class="n">plot_param_over_time_yshade</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> \
+                <span class="n">event_model</span><span class="o">.</span><span class="n">event_time_results</span><span class="p">[</span><span class="n">pe_labels</span><span class="p">[</span><span class="n">plabel</span><span class="p">][</span><span class="n">band_ind</span><span class="p">]],</span>
                 <span class="n">label</span><span class="o">=</span><span class="n">plabel</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">drop_xticks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">add_xlabel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="n">xlim</span><span class="p">,</span>
                 <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Periodic Parameters - &#39;</span> <span class="o">+</span> <span class="n">band_labels</span><span class="p">[</span><span class="n">band_ind</span><span class="p">]</span> <span class="k">if</span> <span class="n">plabel</span> <span class="o">==</span> <span class="s1">&#39;cf&#39;</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="n">color</span><span class="o">=</span><span class="n">PARAM_COLORS</span><span class="p">[</span><span class="n">plabel</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">axes</span><span class="p">))</span>
-        <span class="n">plot_param_over_time_yshade</span><span class="p">(</span>\
-            <span class="kc">None</span><span class="p">,</span> <span class="n">compute_presence</span><span class="p">(</span><span class="n">event_model</span><span class="o">.</span><span class="n">event_time_results</span><span class="p">[</span><span class="n">pe_labels</span><span class="p">[</span><span class="n">plabel</span><span class="p">][</span><span class="n">band_ind</span><span class="p">]]),</span>
-            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Presence&#39;</span><span class="p">,</span> <span class="n">drop_xticks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">add_xlabel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="n">xlim</span><span class="p">,</span>
+        <span class="n">plot_param_over_time_yshade</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> \
+            <span class="n">compute_presence</span><span class="p">(</span><span class="n">event_model</span><span class="o">.</span><span class="n">event_time_results</span><span class="p">[</span><span class="n">pe_labels</span><span class="p">[</span><span class="n">plabel</span><span class="p">][</span><span class="n">band_ind</span><span class="p">]],</span>
+                             <span class="n">output</span><span class="o">=</span><span class="s1">&#39;percent&#39;</span><span class="p">),</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Presence (%)&#39;</span><span class="p">,</span> <span class="n">drop_xticks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">add_xlabel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="n">xlim</span><span class="p">,</span>
             <span class="n">color</span><span class="o">=</span><span class="n">PARAM_COLORS</span><span class="p">[</span><span class="s1">&#39;presence&#39;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">axes</span><span class="p">))</span>
         <span class="nb">next</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 
@@ -215,7 +216,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

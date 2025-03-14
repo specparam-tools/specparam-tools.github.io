@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>API Documentation &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>API Documentation &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=54d48845"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -120,7 +120,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#model-objects" id="id2">Model Objects</a></p>
 <ul>
-<li><p><a class="reference internal" href="#base-object" id="id3">Base Object</a></p></li>
+<li><p><a class="reference internal" href="#model-object" id="id3">Model Object</a></p></li>
 <li><p><a class="reference internal" href="#group-object" id="id4">Group Object</a></p></li>
 <li><p><a class="reference internal" href="#time-event-objects" id="id5">Time &amp; Event Objects</a></p></li>
 <li><p><a class="reference internal" href="#object-utilities" id="id6">Object Utilities</a></p></li>
@@ -131,37 +131,42 @@
 <li><p><a class="reference internal" href="#bands-object" id="id8">Bands Object</a></p></li>
 <li><p><a class="reference internal" href="#model-information" id="id9">Model Information</a></p></li>
 <li><p><a class="reference internal" href="#simulation-parameters" id="id10">Simulation Parameters</a></p></li>
+<li><p><a class="reference internal" href="#periodic-components" id="id11">Periodic Components</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#analyze-model-results" id="id11">Analyze Model Results</a></p>
+<li><p><a class="reference internal" href="#measures" id="id12">Measures</a></p>
 <ul>
-<li><p><a class="reference internal" href="#analyze-model-errors" id="id12">Analyze Model Errors</a></p></li>
-<li><p><a class="reference internal" href="#analyze-periodic-components" id="id13">Analyze Periodic Components</a></p></li>
+<li><p><a class="reference internal" href="#model-errors" id="id13">Model Errors</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id14">Parameters</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#simulation-code" id="id14">Simulation Code</a></p>
+<li><p><a class="reference internal" href="#simulation-code" id="id15">Simulation Code</a></p>
 <ul>
-<li><p><a class="reference internal" href="#generate-power-spectra" id="id15">Generate Power Spectra</a></p></li>
-<li><p><a class="reference internal" href="#manage-parameters" id="id16">Manage Parameters</a></p></li>
-<li><p><a class="reference internal" href="#transform-power-spectra" id="id17">Transform Power Spectra</a></p></li>
-<li><p><a class="reference internal" href="#simulation-utilities" id="id18">Simulation Utilities</a></p></li>
+<li><p><a class="reference internal" href="#generate-power-spectra" id="id16">Generate Power Spectra</a></p></li>
+<li><p><a class="reference internal" href="#manage-parameters" id="id17">Manage Parameters</a></p></li>
+<li><p><a class="reference internal" href="#transform-power-spectra" id="id18">Transform Power Spectra</a></p></li>
+<li><p><a class="reference internal" href="#simulation-utilities" id="id19">Simulation Utilities</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#plotting-functions" id="id19">Plotting Functions</a></p>
+<li><p><a class="reference internal" href="#plotting-functions" id="id20">Plotting Functions</a></p>
 <ul>
-<li><p><a class="reference internal" href="#plot-power-spectra" id="id20">Plot Power Spectra</a></p></li>
-<li><p><a class="reference internal" href="#plot-model-properties-parameters" id="id21">Plot Model Properties &amp; Parameters</a></p></li>
-<li><p><a class="reference internal" href="#plot-model-objects" id="id22">Plot Model Objects</a></p></li>
-<li><p><a class="reference internal" href="#annotated-plots" id="id23">Annotated Plots</a></p></li>
-<li><p><a class="reference internal" href="#plot-utilities-styling" id="id24">Plot Utilities &amp; Styling</a></p></li>
+<li><p><a class="reference internal" href="#plot-power-spectra" id="id21">Plot Power Spectra</a></p></li>
+<li><p><a class="reference internal" href="#plot-model-properties-parameters" id="id22">Plot Model Properties &amp; Parameters</a></p></li>
+<li><p><a class="reference internal" href="#plot-model-objects" id="id23">Plot Model Objects</a></p></li>
+<li><p><a class="reference internal" href="#annotated-plots" id="id24">Annotated Plots</a></p></li>
+<li><p><a class="reference internal" href="#plot-utilities-styling" id="id25">Plot Utilities &amp; Styling</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#utilities" id="id25">Utilities</a></p>
+<li><p><a class="reference internal" href="#input-output-io" id="id26">Input / Output (IO)</a></p></li>
+<li><p><a class="reference internal" href="#reports" id="id27">Reports</a></p>
 <ul>
-<li><p><a class="reference internal" href="#data-utilities" id="id26">Data Utilities</a></p></li>
-<li><p><a class="reference internal" href="#parameter-utilities" id="id27">Parameter Utilities</a></p></li>
-<li><p><a class="reference internal" href="#input-output-io" id="id28">Input / Output (IO)</a></p></li>
-<li><p><a class="reference internal" href="#methods-reports" id="id29">Methods Reports</a></p></li>
+<li><p><a class="reference internal" href="#methods-reports" id="id28">Methods Reports</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#utilities" id="id29">Utilities</a></p>
+<ul>
+<li><p><a class="reference internal" href="#spectral-utilities" id="id30">Spectral Utilities</a></p></li>
+<li><p><a class="reference internal" href="#array-utilities" id="id31">Array Utilities</a></p></li>
 </ul>
 </li>
 </ul>
@@ -169,8 +174,8 @@
 <section id="model-objects">
 <h3><a class="toc-backref" href="#id2" role="doc-backlink">Model Objects</a><a class="headerlink" href="#model-objects" title="Permalink to this heading">¶</a></h3>
 <p>Objects that manage data and fit the model to parameterize neural power spectra.</p>
-<section id="base-object">
-<h4><a class="toc-backref" href="#id3" role="doc-backlink">Base Object</a><a class="headerlink" href="#base-object" title="Permalink to this heading">¶</a></h4>
+<section id="model-object">
+<h4><a class="toc-backref" href="#id3" role="doc-backlink">Model Object</a><a class="headerlink" href="#model-object" title="Permalink to this heading">¶</a></h4>
 <p>The SpectralModel object is the base object for the model, and can be used to fit individual power spectra.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -278,49 +283,20 @@
 </tbody>
 </table>
 </section>
-</section>
-<section id="analyze-model-results">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Analyze Model Results</a><a class="headerlink" href="#analyze-model-results" title="Permalink to this heading">¶</a></h3>
-<p>Functions to analyze power spectrum models and the results parameters / components.</p>
-<section id="analyze-model-errors">
-<h4><a class="toc-backref" href="#id12" role="doc-backlink">Analyze Model Errors</a><a class="headerlink" href="#analyze-model-errors" title="Permalink to this heading">¶</a></h4>
-<p>Functions for analyzing the error of model fits.</p>
-<p><strong>Object Inputs</strong></p>
-<p>The following functions take in model objects directly.</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.analysis.compute_pointwise_error.html#specparam.analysis.compute_pointwise_error" title="specparam.analysis.compute_pointwise_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error</span></code></a>(model[, ...])</p></td>
-<td><p>Calculate the frequency by frequency error of a model fit.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.analysis.compute_pointwise_error_group.html#specparam.analysis.compute_pointwise_error_group" title="specparam.analysis.compute_pointwise_error_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error_group</span></code></a>(group[, ...])</p></td>
-<td><p>Calculate the frequency by frequency error of model fits for a group of fits.</p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Array Inputs</strong></p>
-<p>The following functions operate on arrays of models and data, which may be useful for more custom work-flows.</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.analysis.error.compute_pointwise_error_arr.html#specparam.analysis.error.compute_pointwise_error_arr" title="specparam.analysis.error.compute_pointwise_error_arr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error_arr</span></code></a>(data_model, data)</p></td>
-<td><p>Calculate point-wise error between original data and a model fit of that data.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="analyze-periodic-components">
-<h4><a class="toc-backref" href="#id13" role="doc-backlink">Analyze Periodic Components</a><a class="headerlink" href="#analyze-periodic-components" title="Permalink to this heading">¶</a></h4>
-<p>Functions for analyzing the periodic components of model fits.</p>
+<section id="periodic-components">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Periodic Components</a><a class="headerlink" href="#periodic-components" title="Permalink to this heading">¶</a></h4>
+<p>Functions for accessing the periodic components of model fits.</p>
 <p><strong>Object Inputs</strong></p>
 <p>The following functions take in model objects directly, which is the typical use case.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.analysis.get_band_peak.html#specparam.analysis.get_band_peak" title="specparam.analysis.get_band_peak"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_band_peak</span></code></a>(model, band[, select_highest, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.data.periodic.get_band_peak.html#specparam.data.periodic.get_band_peak" title="specparam.data.periodic.get_band_peak"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_band_peak</span></code></a>(model, band[, select_highest, ...])</p></td>
 <td><p>Extract peaks from a band of interest from a model object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.analysis.get_band_peak_group.html#specparam.analysis.get_band_peak_group" title="specparam.analysis.get_band_peak_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_band_peak_group</span></code></a>(group, band[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_band_peak_group</span></code></a>(group, band[, ...])</p></td>
 <td><p>Extract peaks from a band of interest from a group model object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.analysis.get_band_peak_event.html#specparam.analysis.get_band_peak_event" title="specparam.analysis.get_band_peak_event"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_band_peak_event</span></code></a>(event, band[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.data.periodic.get_band_peak_event.html#specparam.data.periodic.get_band_peak_event" title="specparam.data.periodic.get_band_peak_event"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_band_peak_event</span></code></a>(event, band[, ...])</p></td>
 <td><p>Extract peaks from a band of interest from an event model object.</p></td>
 </tr>
 </tbody>
@@ -329,27 +305,70 @@
 <p>The following functions operate on arrays of peak parameters, which may be useful for more custom work-flows.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.analysis.periodic.get_band_peak_arr.html#specparam.analysis.periodic.get_band_peak_arr" title="specparam.analysis.periodic.get_band_peak_arr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_band_peak_arr</span></code></a>(peak_params, band[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.data.periodic.get_band_peak_arr.html#specparam.data.periodic.get_band_peak_arr" title="specparam.data.periodic.get_band_peak_arr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_band_peak_arr</span></code></a>(peak_params, band[, ...])</p></td>
 <td><p>Extract peaks within a given band of interest.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.analysis.periodic.get_band_peak_group_arr.html#specparam.analysis.periodic.get_band_peak_group_arr" title="specparam.analysis.periodic.get_band_peak_group_arr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_band_peak_group_arr</span></code></a>(peak_params, band, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.data.periodic.get_band_peak_group_arr.html#specparam.data.periodic.get_band_peak_group_arr" title="specparam.data.periodic.get_band_peak_group_arr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_band_peak_group_arr</span></code></a>(peak_params, band, ...)</p></td>
 <td><p>Extract peaks within a given band of interest, from peaks from a group fit.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.analysis.periodic.get_highest_peak.html#specparam.analysis.periodic.get_highest_peak" title="specparam.analysis.periodic.get_highest_peak"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_highest_peak</span></code></a>(peak_params)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.data.periodic.get_highest_peak.html#specparam.data.periodic.get_highest_peak" title="specparam.data.periodic.get_highest_peak"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_highest_peak</span></code></a>(peak_params)</p></td>
 <td><p>Extract the highest power peak.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.analysis.periodic.threshold_peaks.html#specparam.analysis.periodic.threshold_peaks" title="specparam.analysis.periodic.threshold_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">threshold_peaks</span></code></a>(peak_params, threshold[, param])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.data.periodic.threshold_peaks.html#specparam.data.periodic.threshold_peaks" title="specparam.data.periodic.threshold_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">threshold_peaks</span></code></a>(peak_params, threshold[, param])</p></td>
 <td><p>Extract peaks that are above a given threshold value.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 </section>
+<section id="measures">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Measures</a><a class="headerlink" href="#measures" title="Permalink to this heading">¶</a></h3>
+<p>Functionality to analyze power spectrum models and the results parameters / components.</p>
+<section id="model-errors">
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">Model Errors</a><a class="headerlink" href="#model-errors" title="Permalink to this heading">¶</a></h4>
+<p>Functions for analyzing the error of model fits.</p>
+<p><strong>Object Inputs</strong></p>
+<p>The following functions take in model objects directly.</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.measures.error.compute_pointwise_error.html#specparam.measures.error.compute_pointwise_error" title="specparam.measures.error.compute_pointwise_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error</span></code></a>(model[, ...])</p></td>
+<td><p>Calculate the frequency by frequency error of a model fit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.measures.error.compute_pointwise_error_group.html#specparam.measures.error.compute_pointwise_error_group" title="specparam.measures.error.compute_pointwise_error_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error_group</span></code></a>(group[, ...])</p></td>
+<td><p>Calculate the frequency by frequency error of model fits for a group of fits.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Array Inputs</strong></p>
+<p>The following functions operate on arrays of models and data, which may be useful for more custom work-flows.</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.measures.error.compute_pointwise_error_arr.html#specparam.measures.error.compute_pointwise_error_arr" title="specparam.measures.error.compute_pointwise_error_arr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error_arr</span></code></a>(data_model, data)</p></td>
+<td><p>Calculate point-wise error between original data and a model fit of that data.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="parameters">
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h4>
+<p>Measures &amp; utilities for working with and converting parameters.</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.measures.params.compute_knee_frequency.html#specparam.measures.params.compute_knee_frequency" title="specparam.measures.params.compute_knee_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_knee_frequency</span></code></a>(knee, exponent)</p></td>
+<td><p>Compute the frequency value of the knee given the aperiodic parameter values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.measures.params.compute_time_constant.html#specparam.measures.params.compute_time_constant" title="specparam.measures.params.compute_time_constant"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_time_constant</span></code></a>(knee_freq)</p></td>
+<td><p>Compute the characteristic time constant from the estimated knee frequency.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
 <section id="simulation-code">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Simulation Code</a><a class="headerlink" href="#simulation-code" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Simulation Code</a><a class="headerlink" href="#simulation-code" title="Permalink to this heading">¶</a></h3>
 <p>Code &amp; utilities for simulating power spectra.</p>
 <section id="generate-power-spectra">
-<h4><a class="toc-backref" href="#id15" role="doc-backlink">Generate Power Spectra</a><a class="headerlink" href="#generate-power-spectra" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">Generate Power Spectra</a><a class="headerlink" href="#generate-power-spectra" title="Permalink to this heading">¶</a></h4>
 <p>Functions for simulating neural power spectra and spectrograms.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -366,7 +385,7 @@
 </table>
 </section>
 <section id="manage-parameters">
-<h4><a class="toc-backref" href="#id16" role="doc-backlink">Manage Parameters</a><a class="headerlink" href="#manage-parameters" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id17" role="doc-backlink">Manage Parameters</a><a class="headerlink" href="#manage-parameters" title="Permalink to this heading">¶</a></h4>
 <p>Functions and objects for managing parameters for simulated power spectra.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -389,7 +408,7 @@
 </table>
 </section>
 <section id="transform-power-spectra">
-<h4><a class="toc-backref" href="#id17" role="doc-backlink">Transform Power Spectra</a><a class="headerlink" href="#transform-power-spectra" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id18" role="doc-backlink">Transform Power Spectra</a><a class="headerlink" href="#transform-power-spectra" title="Permalink to this heading">¶</a></h4>
 <p>Functions for transforming power spectra.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -415,7 +434,7 @@
 </table>
 </section>
 <section id="simulation-utilities">
-<h4><a class="toc-backref" href="#id18" role="doc-backlink">Simulation Utilities</a><a class="headerlink" href="#simulation-utilities" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id19" role="doc-backlink">Simulation Utilities</a><a class="headerlink" href="#simulation-utilities" title="Permalink to this heading">¶</a></h4>
 <p>Utilities for simulating power spectra.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -430,10 +449,10 @@
 </section>
 </section>
 <section id="plotting-functions">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink">Plotting Functions</a><a class="headerlink" href="#plotting-functions" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Plotting Functions</a><a class="headerlink" href="#plotting-functions" title="Permalink to this heading">¶</a></h3>
 <p>Visualizations.</p>
 <section id="plot-power-spectra">
-<h4><a class="toc-backref" href="#id20" role="doc-backlink">Plot Power Spectra</a><a class="headerlink" href="#plot-power-spectra" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id21" role="doc-backlink">Plot Power Spectra</a><a class="headerlink" href="#plot-power-spectra" title="Permalink to this heading">¶</a></h4>
 <p>Plots for visualizing power spectra and spectrograms.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -458,7 +477,7 @@
 </table>
 </section>
 <section id="plot-model-properties-parameters">
-<h4><a class="toc-backref" href="#id21" role="doc-backlink">Plot Model Properties &amp; Parameters</a><a class="headerlink" href="#plot-model-properties-parameters" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id22" role="doc-backlink">Plot Model Properties &amp; Parameters</a><a class="headerlink" href="#plot-model-properties-parameters" title="Permalink to this heading">¶</a></h4>
 <p>Plots for visualizing <strong>periodic</strong> parameters and model components.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -491,7 +510,7 @@
 </table>
 </section>
 <section id="plot-model-objects">
-<h4><a class="toc-backref" href="#id22" role="doc-backlink">Plot Model Objects</a><a class="headerlink" href="#plot-model-objects" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id23" role="doc-backlink">Plot Model Objects</a><a class="headerlink" href="#plot-model-objects" title="Permalink to this heading">¶</a></h4>
 <p>Plots for visualizing from model objects.
 Note that these are the same plotting functions that can be called from the model objects directly.</p>
 <table class="autosummary longtable docutils align-default">
@@ -524,7 +543,7 @@ Note that these are the same plotting functions that can be called from the mode
 </table>
 </section>
 <section id="annotated-plots">
-<h4><a class="toc-backref" href="#id23" role="doc-backlink">Annotated Plots</a><a class="headerlink" href="#annotated-plots" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id24" role="doc-backlink">Annotated Plots</a><a class="headerlink" href="#annotated-plots" title="Permalink to this heading">¶</a></h4>
 <p>Annotated plots that describe the model and fitting process.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -538,93 +557,113 @@ Note that these are the same plotting functions that can be called from the mode
 </table>
 </section>
 <section id="plot-utilities-styling">
-<h4><a class="toc-backref" href="#id24" role="doc-backlink">Plot Utilities &amp; Styling</a><a class="headerlink" href="#plot-utilities-styling" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id25" role="doc-backlink">Plot Utilities &amp; Styling</a><a class="headerlink" href="#plot-utilities-styling" title="Permalink to this heading">¶</a></h4>
 <p>Plot related utilies for styling and managing plots.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/fooof.plts.style.check_style_options.html#fooof.plts.style.check_style_options" title="fooof.plts.style.check_style_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_style_options</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.plts.style.check_style_options.html#specparam.plts.style.check_style_options" title="specparam.plts.style.check_style_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_style_options</span></code></a>()</p></td>
 <td><p>Check the list of valid style arguments that can be passed into plot functions.</p></td>
 </tr>
 </tbody>
 </table>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/fooof.plts.utils.check_ax.html#fooof.plts.utils.check_ax" title="fooof.plts.utils.check_ax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_ax</span></code></a>(ax[, figsize])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.plts.utils.check_ax.html#specparam.plts.utils.check_ax" title="specparam.plts.utils.check_ax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_ax</span></code></a>(ax[, figsize])</p></td>
 <td><p>Check whether a figure axes object is defined, and define if not.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/fooof.plts.utils.recursive_plot.html#fooof.plts.utils.recursive_plot" title="fooof.plts.utils.recursive_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recursive_plot</span></code></a>(data, plot_function, ax, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.plts.utils.recursive_plot.html#specparam.plts.utils.recursive_plot" title="specparam.plts.utils.recursive_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recursive_plot</span></code></a>(data, plot_function, ax, **kwargs)</p></td>
 <td><p>A utility to recursively plot sets of data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/fooof.plts.utils.save_figure.html#fooof.plts.utils.save_figure" title="fooof.plts.utils.save_figure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_figure</span></code></a>(file_name[, file_path, close])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.plts.utils.save_figure.html#specparam.plts.utils.save_figure" title="specparam.plts.utils.save_figure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_figure</span></code></a>(file_name[, file_path, close])</p></td>
 <td><p>Save out a figure.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 </section>
-<section id="utilities">
-<h3><a class="toc-backref" href="#id25" role="doc-backlink">Utilities</a><a class="headerlink" href="#utilities" title="Permalink to this heading">¶</a></h3>
-<p>Utility functions and objects.</p>
-<section id="data-utilities">
-<h4><a class="toc-backref" href="#id26" role="doc-backlink">Data Utilities</a><a class="headerlink" href="#data-utilities" title="Permalink to this heading">¶</a></h4>
-<p>Utilities for working with data.</p>
+<section id="input-output-io">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Input / Output (IO)</a><a class="headerlink" href="#input-output-io" title="Permalink to this heading">¶</a></h3>
+<p>Save &amp; load related functionality.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.utils.trim_spectrum.html#specparam.utils.trim_spectrum" title="specparam.utils.trim_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trim_spectrum</span></code></a>(freqs, power_spectra, f_range)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.io.models.save_model.html#specparam.io.models.save_model" title="specparam.io.models.save_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_model</span></code></a>(model, file_name[, file_path, ...])</p></td>
+<td><p>Save out data, results and/or settings from a model object into a JSON file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.io.models.save_group.html#specparam.io.models.save_group" title="specparam.io.models.save_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_group</span></code></a>(group, file_name[, file_path, ...])</p></td>
+<td><p>Save out results and/or settings from group object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.io.models.save_event.html#specparam.io.models.save_event" title="specparam.io.models.save_event"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_event</span></code></a>(event, file_name[, file_path, ...])</p></td>
+<td><p>Save out results and/or settings from event object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.io.models.load_model.html#specparam.io.models.load_model" title="specparam.io.models.load_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_model</span></code></a>(file_name[, file_path, regenerate])</p></td>
+<td><p>Load a SpectralModel object from file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.io.models.load_group.html#specparam.io.models.load_group" title="specparam.io.models.load_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_group</span></code></a>(file_name[, file_path])</p></td>
+<td><p>Load a SpectralGroupModel object from file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.io.models.load_time.html#specparam.io.models.load_time" title="specparam.io.models.load_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_time</span></code></a>(file_name[, file_path, peak_org])</p></td>
+<td><p>Load a SpectralTimeModel object from file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.io.models.load_event.html#specparam.io.models.load_event" title="specparam.io.models.load_event"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_event</span></code></a>(file_name[, file_path, peak_org, ...])</p></td>
+<td><p>Load a SpectralTimeEventModel object from file.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reports">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Reports</a><a class="headerlink" href="#reports" title="Permalink to this heading">¶</a></h3>
+<p>Utilities related to creating reports.</p>
+<section id="methods-reports">
+<h4><a class="toc-backref" href="#id28" role="doc-backlink">Methods Reports</a><a class="headerlink" href="#methods-reports" title="Permalink to this heading">¶</a></h4>
+<p>Utilities for creating draft methods sections.</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.reports.methods.methods_report_info.html#specparam.reports.methods.methods_report_info" title="specparam.reports.methods.methods_report_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">methods_report_info</span></code></a>([model_obj, concise])</p></td>
+<td><p>Prints out a report of information required for methods reporting.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.reports.methods.methods_report_text.html#specparam.reports.methods.methods_report_text" title="specparam.reports.methods.methods_report_text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">methods_report_text</span></code></a>([model_obj])</p></td>
+<td><p>Prints out a text template of methods reporting information.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="utilities">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">Utilities</a><a class="headerlink" href="#utilities" title="Permalink to this heading">¶</a></h3>
+<p>Utility functions and objects.</p>
+<section id="spectral-utilities">
+<h4><a class="toc-backref" href="#id30" role="doc-backlink">Spectral Utilities</a><a class="headerlink" href="#spectral-utilities" title="Permalink to this heading">¶</a></h4>
+<p>Utilities for working with spectral data.</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.utils.spectral.trim_spectrum.html#specparam.utils.spectral.trim_spectrum" title="specparam.utils.spectral.trim_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trim_spectrum</span></code></a>(freqs, power_spectra, f_range)</p></td>
 <td><p>Extract a frequency range from power spectra.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.utils.interpolate_spectrum.html#specparam.utils.interpolate_spectrum" title="specparam.utils.interpolate_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate_spectrum</span></code></a>(freqs, powers, interp_range)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.utils.spectral.interpolate_spectrum.html#specparam.utils.spectral.interpolate_spectrum" title="specparam.utils.spectral.interpolate_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate_spectrum</span></code></a>(freqs, powers, interp_range)</p></td>
 <td><p>Interpolate a frequency region in a power spectrum.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.utils.interpolate_spectra.html#specparam.utils.interpolate_spectra" title="specparam.utils.interpolate_spectra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate_spectra</span></code></a>(freqs, powers, interp_range)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.utils.spectral.interpolate_spectra.html#specparam.utils.spectral.interpolate_spectra" title="specparam.utils.spectral.interpolate_spectra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate_spectra</span></code></a>(freqs, powers, interp_range)</p></td>
 <td><p>Interpolate a frequency region across a group of power spectra.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.utils.subsample_spectra.html#specparam.utils.subsample_spectra" title="specparam.utils.subsample_spectra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subsample_spectra</span></code></a>(spectra, selection[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.utils.spectral.subsample_spectra.html#specparam.utils.spectral.subsample_spectra" title="specparam.utils.spectral.subsample_spectra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subsample_spectra</span></code></a>(spectra, selection[, ...])</p></td>
 <td><p>Subsample a group of power spectra.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="parameter-utilities">
-<h4><a class="toc-backref" href="#id27" role="doc-backlink">Parameter Utilities</a><a class="headerlink" href="#parameter-utilities" title="Permalink to this heading">¶</a></h4>
-<p>Utilities for working with parameters</p>
+<section id="array-utilities">
+<h4><a class="toc-backref" href="#id31" role="doc-backlink">Array Utilities</a><a class="headerlink" href="#array-utilities" title="Permalink to this heading">¶</a></h4>
+<p>Utilities that can be applied to arrays.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.utils.params.compute_knee_frequency.html#specparam.utils.params.compute_knee_frequency" title="specparam.utils.params.compute_knee_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_knee_frequency</span></code></a>(knee, exponent)</p></td>
-<td><p>Compute the frequency value of the knee given the aperiodic parameter values.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.utils.array.normalize.html#specparam.utils.array.normalize" title="specparam.utils.array.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize</span></code></a>(data)</p></td>
+<td><p>Normalize an array of numerical data (to the range of 0-1).</p></td>
 </tr>
-</tbody>
-</table>
-</section>
-<section id="input-output-io">
-<h4><a class="toc-backref" href="#id28" role="doc-backlink">Input / Output (IO)</a><a class="headerlink" href="#input-output-io" title="Permalink to this heading">¶</a></h4>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.utils.io.load_model.html#specparam.utils.io.load_model" title="specparam.utils.io.load_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_model</span></code></a>(file_name[, file_path, regenerate])</p></td>
-<td><p>Load a model file into a model object.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.utils.array.unlog.html#specparam.utils.array.unlog" title="specparam.utils.array.unlog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unlog</span></code></a>(arr[, base])</p></td>
+<td><p>Helper function to unlog an array.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.utils.io.load_group_model.html#specparam.utils.io.load_group_model" title="specparam.utils.io.load_group_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_group_model</span></code></a>(file_name[, file_path])</p></td>
-<td><p>Load a group file into a group model object.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.utils.io.load_time_model.html#specparam.utils.io.load_time_model" title="specparam.utils.io.load_time_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_time_model</span></code></a>(file_name[, file_path, peak_org])</p></td>
-<td><p>Load a time file into a time model object.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.utils.io.load_event_model.html#specparam.utils.io.load_event_model" title="specparam.utils.io.load_event_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_event_model</span></code></a>(file_name[, file_path, ...])</p></td>
-<td><p>Load an event file into an event model object.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="methods-reports">
-<h4><a class="toc-backref" href="#id29" role="doc-backlink">Methods Reports</a><a class="headerlink" href="#methods-reports" title="Permalink to this heading">¶</a></h4>
-<p>Utilities to creating methods reports.</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.utils.reports.methods_report_info.html#specparam.utils.reports.methods_report_info" title="specparam.utils.reports.methods_report_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">methods_report_info</span></code></a>([model_obj, concise])</p></td>
-<td><p>Prints out a report of information required for methods reporting.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.utils.reports.methods_report_text.html#specparam.utils.reports.methods_report_text" title="specparam.utils.reports.methods_report_text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">methods_report_text</span></code></a>([model_obj])</p></td>
-<td><p>Prints out a text template of methods reporting information.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.utils.array.compute_arr_desc.html#specparam.utils.array.compute_arr_desc" title="specparam.utils.array.compute_arr_desc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_arr_desc</span></code></a>(data)</p></td>
+<td><p>Compute descriptive measures of an array of data.</p></td>
 </tr>
 </tbody>
 </table>
@@ -645,7 +684,7 @@ Note that these are the same plotting functions that can be called from the mode
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

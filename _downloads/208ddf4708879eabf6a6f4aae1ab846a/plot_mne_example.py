@@ -4,11 +4,11 @@ Topographical Analyses with MNE
 
 Parameterizing neural power spectra with MNE, doing a topographical analysis.
 
-This tutorial requires that you have `MNE <https://mne-tools.github.io/>`_
+This tutorial requires that you have `MNE <https://mne.tools/>`_
 installed. This tutorial needs mne >= 1.2.
 
 If you don't already have MNE, you can follow instructions to get it
-`here <https://mne-tools.github.io/stable/getting_started.html>`_.
+`here <https://mne.tools/stable/getting_started.html>`_.
 
 For this example, we will explore how to parameterize power spectra using data loaded
 and managed with MNE, and how to plot topographies of resulting model parameters.
@@ -28,7 +28,7 @@ from mne.datasets import sample
 # Spectral parameterization imports
 from specparam import SpectralGroupModel
 from specparam.bands import Bands
-from specparam.analysis import get_band_peak_group
+from specparam.data.periodic import get_band_peak_group
 from specparam.plts.spectra import plot_spectra
 
 ###################################################################################################
@@ -36,7 +36,7 @@ from specparam.plts.spectra import plot_spectra
 # ---------------------
 #
 # We will use the
-# `MNE sample dataset <https://mne.tools/stable/overview/datasets_index.html?#sample>`_
+# `MNE sample dataset <https://mne.tools/stable/documentation/datasets.html#sample>`_
 # which is a combined MEG/EEG recording with an audiovisual task.
 #
 # First we will load the dataset from MNE, have a quick look at the data,
@@ -123,7 +123,8 @@ spectra, freqs = psd.get_data(return_freqs=True)
 #
 # Now that we have power spectra, we can fit some power spectrum models.
 #
-# Since we have multiple power spectra, we will use the :class:`~specparam.SpectralGroupModel` object.
+# Since we have multiple power spectra, we will use the
+# :class:`~specparam.SpectralGroupModel` object.
 #
 
 ###################################################################################################

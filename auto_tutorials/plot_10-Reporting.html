@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>09: Reporting &amp; Referencing &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>10: Reporting &amp; Referencing &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=54d48845"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -117,10 +117,10 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="reporting-referencing">
-<span id="sphx-glr-auto-tutorials-plot-10-reporting-py"></span><h1>09: Reporting &amp; Referencing<a class="headerlink" href="#reporting-referencing" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-tutorials-plot-10-reporting-py"></span><h1>10: Reporting &amp; Referencing<a class="headerlink" href="#reporting-referencing" title="Permalink to this heading">¶</a></h1>
 <p>This section covers how to access reporting info and reference use of the module.</p>
 <p>This page is a hands-on example of the reporting and referencing information on the
-<a class="reference external" href="https://fooof-tools.github.io/fooof/reference.html">Reference page</a>.</p>
+<a class="reference external" href="https://specparam-tools.github.io/reference.html">Reference page</a>.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import model objects</span>
 <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">,</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a>
 
@@ -128,7 +128,7 @@ to download the full example code.</p>
 <span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">,</span> <a href="../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a>
 
 <span class="c1"># Import utilities to print out information for reporting</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.reports</span> <span class="kn">import</span> <a href="../generated/specparam.utils.reports.methods_report_info.html#specparam.utils.reports.methods_report_info" title="specparam.utils.reports.methods_report_info" class="sphx-glr-backref-module-specparam-utils-reports sphx-glr-backref-type-py-function"><span class="n">methods_report_info</span></a><span class="p">,</span> <a href="../generated/specparam.utils.reports.methods_report_text.html#specparam.utils.reports.methods_report_text" title="specparam.utils.reports.methods_report_text" class="sphx-glr-backref-module-specparam-utils-reports sphx-glr-backref-type-py-function"><span class="n">methods_report_text</span></a>
+<span class="kn">from</span> <span class="nn">specparam.reports.methods</span> <span class="kn">import</span> <a href="../generated/specparam.reports.methods.methods_report_info.html#specparam.reports.methods.methods_report_info" title="specparam.reports.methods.methods_report_info" class="sphx-glr-backref-module-specparam-reports-methods sphx-glr-backref-type-py-function"><span class="n">methods_report_info</span></a><span class="p">,</span> <a href="../generated/specparam.reports.methods.methods_report_text.html#specparam.reports.methods.methods_report_text" title="specparam.reports.methods.methods_report_text" class="sphx-glr-backref-module-specparam-reports-methods sphx-glr-backref-type-py-function"><span class="n">methods_report_text</span></a>
 </pre></div>
 </div>
 <img src="../_images/sphx_glr_plot_10-Reporting_001.png" srcset="../_images/sphx_glr_plot_10-Reporting_001.png" alt="plot 10 Reporting" class = "sphx-glr-single-img"/><section id="checking-module-version">
@@ -144,7 +144,7 @@ including checking what is installed in the Python environment you are using.</p
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Current specparam version:&#39;</span><span class="p">,</span> <span class="n">specparam_version</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Current specparam version: 2.0.0rc2
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Current specparam version: 2.0.0rc3
 </pre></div>
 </div>
 </section>
@@ -152,8 +152,8 @@ including checking what is installed in the Python environment you are using.</p
 <h2>Getting Model Reporting Information<a class="headerlink" href="#getting-model-reporting-information" title="Permalink to this heading">¶</a></h2>
 <p>To assist with reporting information, the module has the following utilities:</p>
 <ul class="simple">
-<li><p>the <a class="reference internal" href="../generated/specparam.utils.reports.methods_report_info.html#specparam.utils.reports.methods_report_info" title="specparam.utils.reports.methods_report_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">methods_report_info()</span></code></a>, which prints out methods reporting information</p></li>
-<li><p>the <a class="reference internal" href="../generated/specparam.utils.reports.methods_report_text.html#specparam.utils.reports.methods_report_text" title="specparam.utils.reports.methods_report_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">methods_report_text()</span></code></a>, which prints out a template of methods reporting text</p></li>
+<li><p>the <a class="reference internal" href="../generated/specparam.reports.methods.methods_report_info.html#specparam.reports.methods.methods_report_info" title="specparam.reports.methods.methods_report_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">methods_report_info()</span></code></a>, which prints out methods reporting information</p></li>
+<li><p>the <a class="reference internal" href="../generated/specparam.reports.methods.methods_report_text.html#specparam.reports.methods.methods_report_text" title="specparam.reports.methods.methods_report_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">methods_report_text()</span></code></a>, which prints out a template of methods reporting text</p></li>
 </ul>
 <p>Both of the these functions take as input a model object, and use the object to
 collect and return information related to the model fits.</p>
@@ -166,12 +166,12 @@ you use them with objects that match the settings and data used in the analysis 
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out all the methods information for reporting</span>
-<a href="../generated/specparam.utils.reports.methods_report_info.html#specparam.utils.reports.methods_report_info" title="specparam.utils.reports.methods_report_info" class="sphx-glr-backref-module-specparam-utils-reports sphx-glr-backref-type-py-function"><span class="n">methods_report_info</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">model</span></a><span class="p">)</span>
+<a href="../generated/specparam.reports.methods.methods_report_info.html#specparam.reports.methods.methods_report_info" title="specparam.reports.methods.methods_report_info" class="sphx-glr-backref-module-specparam-reports-methods sphx-glr-backref-type-py-function"><span class="n">methods_report_info</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">model</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                      SpecParam - REPORTING
+                                      specparam - REPORTING
 
                Reports using spectral parameterization should include (at minimum):
 
@@ -182,14 +182,14 @@ you use them with objects that match the settings and data used in the analysis 
 ==================================================================================================
 ==================================================================================================
 
-                                       SpecParam - VERSION
+                                       specparam - VERSION
 
-                                             2.0.0rc2
+                                             2.0.0rc3
 
 ==================================================================================================
 ==================================================================================================
 
-                                       SpecParam - SETTINGS
+                                       specparam - SETTINGS
 
                                  Peak Width Limits : (0.5, 12.0)
                                     Max Number of Peaks : inf
@@ -200,7 +200,7 @@ you use them with objects that match the settings and data used in the analysis 
 ==================================================================================================
 ==================================================================================================
 
-                                      SpecParam - FIT RANGE
+                                      specparam - FIT RANGE
 
                                The model was fit from XX to XX Hz.
 
@@ -213,10 +213,10 @@ some of which might look familiar.</p>
 # - <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_settings" title="specparam.SpectralModel.print_settings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">print_settings()</span></code></a> method.</p>
 <p>Next, let’s check out the text version of the methods report.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate methods text, with methods information inserted</span>
-<a href="../generated/specparam.utils.reports.methods_report_text.html#specparam.utils.reports.methods_report_text" title="specparam.utils.reports.methods_report_text" class="sphx-glr-backref-module-specparam-utils-reports sphx-glr-backref-type-py-function"><span class="n">methods_report_text</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">model</span></a><span class="p">)</span>
+<a href="../generated/specparam.reports.methods.methods_report_text.html#specparam.reports.methods.methods_report_text" title="specparam.reports.methods.methods_report_text" class="sphx-glr-backref-module-specparam-reports-methods sphx-glr-backref-type-py-function"><span class="n">methods_report_text</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">model</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc2) was used to parameterize neural power spectra. Settings for the algorithm were set as: peak width limits : (0.5, 12.0); max number of peaks : inf; minimum peak height : 0.0; peak threshold : 2.0; and aperiodic mode : &#39;fixed&#39;. Power spectra were parameterized across the frequency range XX to XX Hz.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc3) was used to parameterize neural power spectra. Settings for the algorithm were set as: peak width limits : (0.5, 12.0); max number of peaks : inf; minimum peak height : 0.0; peak threshold : 2.0; and aperiodic mode : &#39;fixed&#39;. Power spectra were parameterized across the frequency range XX to XX Hz.
 </pre></div>
 </div>
 <section id="additional-examples">
@@ -233,12 +233,12 @@ available in the example object (for example, it had no data).</p>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate methods text, with methods information inserted</span>
-<a href="../generated/specparam.utils.reports.methods_report_info.html#specparam.utils.reports.methods_report_info" title="specparam.utils.reports.methods_report_info" class="sphx-glr-backref-module-specparam-utils-reports sphx-glr-backref-type-py-function"><span class="n">methods_report_info</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">)</span>
+<a href="../generated/specparam.reports.methods.methods_report_info.html#specparam.reports.methods.methods_report_info" title="specparam.reports.methods.methods_report_info" class="sphx-glr-backref-module-specparam-reports-methods sphx-glr-backref-type-py-function"><span class="n">methods_report_info</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                      SpecParam - REPORTING
+                                      specparam - REPORTING
 
                Reports using spectral parameterization should include (at minimum):
 
@@ -249,14 +249,14 @@ available in the example object (for example, it had no data).</p>
 ==================================================================================================
 ==================================================================================================
 
-                                       SpecParam - VERSION
+                                       specparam - VERSION
 
-                                             2.0.0rc2
+                                             2.0.0rc3
 
 ==================================================================================================
 ==================================================================================================
 
-                                       SpecParam - SETTINGS
+                                       specparam - SETTINGS
 
                                     Peak Width Limits : [1, 6]
                                     Max Number of Peaks : inf
@@ -267,7 +267,7 @@ available in the example object (for example, it had no data).</p>
 ==================================================================================================
 ==================================================================================================
 
-                                      SpecParam - FIT RANGE
+                                      specparam - FIT RANGE
 
                               The model was fit from 1.0 to 50.0 Hz.
 
@@ -275,10 +275,10 @@ available in the example object (for example, it had no data).</p>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate methods text, with methods information inserted</span>
-<a href="../generated/specparam.utils.reports.methods_report_text.html#specparam.utils.reports.methods_report_text" title="specparam.utils.reports.methods_report_text" class="sphx-glr-backref-module-specparam-utils-reports sphx-glr-backref-type-py-function"><span class="n">methods_report_text</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">)</span>
+<a href="../generated/specparam.reports.methods.methods_report_text.html#specparam.reports.methods.methods_report_text" title="specparam.reports.methods.methods_report_text" class="sphx-glr-backref-module-specparam-reports-methods sphx-glr-backref-type-py-function"><span class="n">methods_report_text</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc2) was used to parameterize neural power spectra. Settings for the algorithm were set as: peak width limits : [1, 6]; max number of peaks : inf; minimum peak height : 0.1; peak threshold : 2.0; and aperiodic mode : &#39;knee&#39;. Power spectra were parameterized across the frequency range 1.0 to 50.0 Hz.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc3) was used to parameterize neural power spectra. Settings for the algorithm were set as: peak width limits : [1, 6]; max number of peaks : inf; minimum peak height : 0.1; peak threshold : 2.0; and aperiodic mode : &#39;knee&#39;. Power spectra were parameterized across the frequency range 1.0 to 50.0 Hz.
 </pre></div>
 </div>
 <p>The report text is meant as a template / example that could be added to a methods section.</p>
@@ -307,12 +307,12 @@ WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the methods report information</span>
-<a href="../generated/specparam.utils.reports.methods_report_info.html#specparam.utils.reports.methods_report_info" title="specparam.utils.reports.methods_report_info" class="sphx-glr-backref-module-specparam-utils-reports sphx-glr-backref-type-py-function"><span class="n">methods_report_info</span></a><span class="p">(</span><a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">)</span>
+<a href="../generated/specparam.reports.methods.methods_report_info.html#specparam.reports.methods.methods_report_info" title="specparam.reports.methods.methods_report_info" class="sphx-glr-backref-module-specparam-reports-methods sphx-glr-backref-type-py-function"><span class="n">methods_report_info</span></a><span class="p">(</span><a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                      SpecParam - REPORTING
+                                      specparam - REPORTING
 
                Reports using spectral parameterization should include (at minimum):
 
@@ -323,14 +323,14 @@ WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.
 ==================================================================================================
 ==================================================================================================
 
-                                       SpecParam - VERSION
+                                       specparam - VERSION
 
-                                             2.0.0rc2
+                                             2.0.0rc3
 
 ==================================================================================================
 ==================================================================================================
 
-                                       SpecParam - SETTINGS
+                                       specparam - SETTINGS
 
                                  Peak Width Limits : (0.5, 12.0)
                                      Max Number of Peaks : 4
@@ -341,7 +341,7 @@ WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.
 ==================================================================================================
 ==================================================================================================
 
-                                      SpecParam - FIT RANGE
+                                      specparam - FIT RANGE
 
                               The model was fit from 1.0 to 75.0 Hz.
 
@@ -349,14 +349,14 @@ WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the methods report text</span>
-<a href="../generated/specparam.utils.reports.methods_report_text.html#specparam.utils.reports.methods_report_text" title="specparam.utils.reports.methods_report_text" class="sphx-glr-backref-module-specparam-utils-reports sphx-glr-backref-type-py-function"><span class="n">methods_report_text</span></a><span class="p">(</span><a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">)</span>
+<a href="../generated/specparam.reports.methods.methods_report_text.html#specparam.reports.methods.methods_report_text" title="specparam.reports.methods.methods_report_text" class="sphx-glr-backref-module-specparam-reports-methods sphx-glr-backref-type-py-function"><span class="n">methods_report_text</span></a><span class="p">(</span><a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc2) was used to parameterize neural power spectra. Settings for the algorithm were set as: peak width limits : (0.5, 12.0); max number of peaks : 4; minimum peak height : 0.0; peak threshold : 1.75; and aperiodic mode : &#39;fixed&#39;. Power spectra were parameterized across the frequency range 1.0 to 75.0 Hz.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc3) was used to parameterize neural power spectra. Settings for the algorithm were set as: peak width limits : (0.5, 12.0); max number of peaks : 4; minimum peak height : 0.0; peak threshold : 1.75; and aperiodic mode : &#39;fixed&#39;. Power spectra were parameterized across the frequency range 1.0 to 75.0 Hz.
 </pre></div>
 </div>
 <p>That concludes the example of using the helper utilities for generating methods reports!</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.483 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.263 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-10-reporting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/d649e6a9b669ed6cefe973deadec2eb8/plot_10-Reporting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_10-Reporting.ipynb</span></code></a></p>
@@ -382,7 +382,7 @@ WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

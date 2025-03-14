@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>04: Exploring the model object &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>04: Exploring the model object &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=54d48845"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -132,7 +132,8 @@ to download the full example code.</p>
 </div>
 <section id="description-of-methods-and-attributes">
 <h2>Description of methods and attributes<a class="headerlink" href="#description-of-methods-and-attributes" title="Permalink to this heading">¶</a></h2>
-<p>The <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object contents consist of 4 main components (groups of data / code):</p>
+<p>The <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object contents consist of 4 main components
+(groups of data / code):</p>
 <ul class="simple">
 <li><ol class="arabic simple">
 <li><p>settings attributes, that control the algorithm fitting</p></li>
@@ -228,7 +229,7 @@ or relative threshold.</p>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                       SpecParam - SETTINGS
+                                       specparam - SETTINGS
 
                                  Peak Width Limits : (0.5, 12.0)
                         Limits for minimum and maximum peak widths, in Hz.
@@ -341,13 +342,13 @@ which indicates if the current object has model results available.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;modeled spectrum: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">modeled_spectrum_</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic params:        [-21.44372545   1.07510692]
-peak params:     [[ 9.81511892  0.72768575  3.00442108]
- [13.04276131  0.25957047  2.54345957]
- [18.12826739  0.15093636  4.62563187]]
-r-squared:       0.9922991770720878
-fit error:       0.029372423936023677
-modeled spectrum:        [-21.86047573 -21.94558849 -22.01750002 -22.07961578 -22.13385217]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic params:        [-21.44373535   1.07510111]
+peak params:     [[ 9.81640203  0.72771297  3.00583448]
+ [13.04631978  0.2596321   2.5372394 ]
+ [18.12686014  0.15093619  4.62823406]]
+r-squared:       0.9922996525903673
+fit error:       0.029371515222790138
+modeled spectrum:        [-21.86048334 -21.94559555 -22.01750639 -22.0796209  -22.13385474]
 </pre></div>
 </div>
 </section>
@@ -455,10 +456,10 @@ or append to, or pass in a JSON file object.</p>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.save_report" title="specparam.SpectralModel.save_report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">save_report</span></a><span class="p">(</span><span class="s1">&#39;report&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/core/reports.py:64: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  plt.savefig(fpath(file_path, fname(file_name, SAVE_FORMAT)))
-/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/core/reports.py:64: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  plt.savefig(fpath(file_path, fname(file_name, SAVE_FORMAT)))
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/reports/save.py:64: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(create_file_path(file_name, file_path, SAVE_FORMAT))
+/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/reports/save.py:64: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(create_file_path(file_name, file_path, SAVE_FORMAT))
 </pre></div>
 </div>
 </section>
@@ -469,7 +470,7 @@ or append to, or pass in a JSON file object.</p>
 <p>We have now fully explored the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object, and all it contains.
 Next, we will take a deeper dive into how to choose different modes for fitting
 the aperiodic component of power spectra.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.815 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.043 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-modelobject-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/aae622cd14ff54d579a9e1ef3e8fd556/plot_04-ModelObject.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_04-ModelObject.ipynb</span></code></a></p>
@@ -494,7 +495,7 @@ the aperiodic component of power spectra.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

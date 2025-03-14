@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Dealing with Line Noise &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>Dealing with Line Noise &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=54d48845"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -122,7 +122,7 @@ to download the full example code.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the spectral parameterization object and utilities</span>
 <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 <span class="kn">from</span> <span class="nn">specparam.plts</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
-<span class="kn">from</span> <span class="nn">specparam.utils</span> <span class="kn">import</span> <a href="../../generated/specparam.utils.trim_spectrum.html#specparam.utils.trim_spectrum" title="specparam.utils.trim_spectrum" class="sphx-glr-backref-module-specparam-utils sphx-glr-backref-type-py-function"><span class="n">trim_spectrum</span></a><span class="p">,</span> <a href="../../generated/specparam.utils.interpolate_spectrum.html#specparam.utils.interpolate_spectrum" title="specparam.utils.interpolate_spectrum" class="sphx-glr-backref-module-specparam-utils sphx-glr-backref-type-py-function"><span class="n">interpolate_spectrum</span></a>
+<span class="kn">from</span> <span class="nn">specparam.utils.spectral</span> <span class="kn">import</span> <span class="n">trim_spectrum</span><span class="p">,</span> <span class="n">interpolate_spectrum</span>
 
 <span class="c1"># Import simulation functions to create some example data</span>
 <span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
@@ -143,7 +143,7 @@ where the data were collected, which can impact spectral parameterization.</p>
 <p>One approach is to interpolate away line noise peaks, in the frequency domain. This
 approach simply gets rid of the peaks, interpolating the data to maintain the 1/f
 character of the data, allowing for subsequent fitting.</p>
-<p>The <a class="reference internal" href="../../generated/specparam.utils.interpolate_spectrum.html#specparam.utils.interpolate_spectrum" title="specparam.utils.interpolate_spectrum"><code class="xref py py-func docutils literal notranslate"><span class="pre">interpolate_spectrum()</span></code></a> function allows for doing simple
+<p>The <a class="reference internal" href="../../generated/specparam.utils.spectral.interpolate_spectrum.html#specparam.utils.spectral.interpolate_spectrum" title="specparam.utils.spectral.interpolate_spectrum"><code class="xref py py-func docutils literal notranslate"><span class="pre">interpolate_spectrum()</span></code></a> function allows for doing simple
 interpolation. Given a narrow frequency region, this function interpolates the spectrum,
 such that the ‘peak’ of the line noise is removed.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate an example power spectrum, with line noise</span>
@@ -158,7 +158,7 @@ such that the ‘peak’ of the line noise is removed.</p>
 <p>To prepare this data for fitting, we can interpolate away the line noise region.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interpolate away the line noise region</span>
 <span class="n">interp_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">58</span><span class="p">,</span> <span class="mi">62</span><span class="p">]</span>
-<span class="n">freqs_int1</span><span class="p">,</span> <span class="n">powers_int1</span> <span class="o">=</span> <a href="../../generated/specparam.utils.interpolate_spectrum.html#specparam.utils.interpolate_spectrum" title="specparam.utils.interpolate_spectrum" class="sphx-glr-backref-module-specparam-utils sphx-glr-backref-type-py-function"><span class="n">interpolate_spectrum</span></a><span class="p">(</span><span class="n">freqs1</span><span class="p">,</span> <span class="n">powers1</span><span class="p">,</span> <span class="n">interp_range</span><span class="p">)</span>
+<span class="n">freqs_int1</span><span class="p">,</span> <span class="n">powers_int1</span> <span class="o">=</span> <span class="n">interpolate_spectrum</span><span class="p">(</span><span class="n">freqs1</span><span class="p">,</span> <span class="n">powers1</span><span class="p">,</span> <span class="n">interp_range</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the spectra for the power spectra before and after interpolation</span>
@@ -181,14 +181,14 @@ such that the ‘peak’ of the line noise is removed.</p>
                                  Frequency Resolution is 0.50 Hz
 
                             Aperiodic Parameters (offset, exponent):
-                                          1.0299, 1.0184
+                                          1.0293, 1.0174
 
                                        1 peaks were found:
-                                CF:  10.03, PW:  0.734, BW:  3.80
+                                CF:  10.02, PW:  0.732, BW:  3.82
 
                                      Goodness of fit metrics:
                                     R^2 of model fit is 0.9996
-                                    Error of the fit is 0.0064
+                                    Error of the fit is 0.0060
 
 ==================================================================================================
 </pre></div>
@@ -199,14 +199,14 @@ such that the ‘peak’ of the line noise is removed.</p>
 <p>Line noise artifacts often also display harmonics, such that when analyzing broader
 frequency ranges, there may be multiple peaks that need to be interpolated.</p>
 <p>This can be done by passing in multiple interpolation regions to
-<a class="reference internal" href="../../generated/specparam.utils.interpolate_spectrum.html#specparam.utils.interpolate_spectrum" title="specparam.utils.interpolate_spectrum"><code class="xref py py-func docutils literal notranslate"><span class="pre">interpolate_spectrum()</span></code></a>, which we will do in the next example.</p>
+<a class="reference internal" href="../../generated/specparam.utils.spectral.interpolate_spectrum.html#specparam.utils.spectral.interpolate_spectrum" title="specparam.utils.spectral.interpolate_spectrum"><code class="xref py py-func docutils literal notranslate"><span class="pre">interpolate_spectrum()</span></code></a>, which we will do in the next example.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate an example power spectrum, with line noise &amp; harmonics</span>
 <span class="n">freqs2</span><span class="p">,</span> <span class="n">powers2</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span>
                                      <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
 
 <span class="c1"># Interpolate away the line noise region &amp; harmonics</span>
 <span class="n">interp_ranges</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">58</span><span class="p">,</span> <span class="mi">62</span><span class="p">],</span> <span class="p">[</span><span class="mi">118</span><span class="p">,</span> <span class="mi">122</span><span class="p">]]</span>
-<span class="n">freqs_int2</span><span class="p">,</span> <span class="n">powers_int2</span> <span class="o">=</span> <a href="../../generated/specparam.utils.interpolate_spectrum.html#specparam.utils.interpolate_spectrum" title="specparam.utils.interpolate_spectrum" class="sphx-glr-backref-module-specparam-utils sphx-glr-backref-type-py-function"><span class="n">interpolate_spectrum</span></a><span class="p">(</span><span class="n">freqs2</span><span class="p">,</span> <span class="n">powers2</span><span class="p">,</span> <span class="n">interp_ranges</span><span class="p">)</span>
+<span class="n">freqs_int2</span><span class="p">,</span> <span class="n">powers_int2</span> <span class="o">=</span> <span class="n">interpolate_spectrum</span><span class="p">(</span><span class="n">freqs2</span><span class="p">,</span> <span class="n">powers2</span><span class="p">,</span> <span class="n">interp_ranges</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the power spectrum before and after interpolation</span>
@@ -227,14 +227,15 @@ frequency ranges, there may be multiple peaks that need to be interpolated.</p>
                                  Frequency Resolution is 0.50 Hz
 
                          Aperiodic Parameters (offset, knee, exponent):
-                                     0.9362, 420.9466, 1.4713
+                                     0.9633, 451.6230, 1.4837
 
-                                       1 peaks were found:
-                                CF:  10.01, PW:  0.486, BW:  3.84
+                                       2 peaks were found:
+                                CF:  10.00, PW:  0.491, BW:  3.84
+                                CF:  87.38, PW:  0.020, BW:  0.50
 
                                      Goodness of fit metrics:
                                     R^2 of model fit is 0.9995
-                                    Error of the fit is 0.0045
+                                    Error of the fit is 0.0044
 
 ==================================================================================================
 </pre></div>
@@ -267,15 +268,15 @@ better fit the rest of the data.</p>
                                  Frequency Resolution is 0.50 Hz
 
                             Aperiodic Parameters (offset, exponent):
-                                          1.0273, 1.0168
+                                          1.0280, 1.0168
 
                                        2 peaks were found:
-                                CF:  10.02, PW:  0.735, BW:  3.81
-                                CF:  60.00, PW:  1.011, BW:  1.00
+                                CF:  10.01, PW:  0.733, BW:  3.83
+                                CF:  60.00, PW:  0.998, BW:  1.00
 
                                      Goodness of fit metrics:
                                     R^2 of model fit is 0.9996
-                                    Error of the fit is 0.0061
+                                    Error of the fit is 0.0059
 
 ==================================================================================================
 ==================================================================================================
@@ -286,12 +287,12 @@ better fit the rest of the data.</p>
                                  Frequency Resolution is 0.50 Hz
 
                          Aperiodic Parameters (offset, knee, exponent):
-                                     0.9373, 422.6075, 1.4718
+                                     0.9720, 462.0121, 1.4877
 
                                        3 peaks were found:
-                                CF:  10.01, PW:  0.487, BW:  3.85
-                                CF:  60.00, PW:  0.757, BW:  0.99
-                                CF: 120.01, PW:  0.499, BW:  1.00
+                                CF:  10.00, PW:  0.492, BW:  3.86
+                                CF:  60.01, PW:  0.744, BW:  1.00
+                                CF: 120.00, PW:  0.502, BW:  1.00
 
                                      Goodness of fit metrics:
                                     R^2 of model fit is 0.9995
@@ -339,8 +340,8 @@ apply the interpolation from above.</p>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute a power spectrum of the simulated signal</span>
-<span class="n">freqs</span><span class="p">,</span> <span class="n">powers_pre</span> <span class="o">=</span> <a href="../../generated/specparam.utils.trim_spectrum.html#specparam.utils.trim_spectrum" title="specparam.utils.trim_spectrum" class="sphx-glr-backref-module-specparam-utils sphx-glr-backref-type-py-function"><span class="n">trim_spectrum</span></a><span class="p">(</span><span class="o">*</span><a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.spectral.compute_spectrum.html#neurodsp.spectral.compute_spectrum" title="neurodsp.spectral.compute_spectrum" class="sphx-glr-backref-module-neurodsp-spectral sphx-glr-backref-type-py-function"><span class="n">compute_spectrum</span></a><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">fs</span><span class="p">),</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
-<span class="n">freqs</span><span class="p">,</span> <span class="n">powers_post</span> <span class="o">=</span> <a href="../../generated/specparam.utils.trim_spectrum.html#specparam.utils.trim_spectrum" title="specparam.utils.trim_spectrum" class="sphx-glr-backref-module-specparam-utils sphx-glr-backref-type-py-function"><span class="n">trim_spectrum</span></a><span class="p">(</span><span class="o">*</span><a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.spectral.compute_spectrum.html#neurodsp.spectral.compute_spectrum" title="neurodsp.spectral.compute_spectrum" class="sphx-glr-backref-module-neurodsp-spectral sphx-glr-backref-type-py-function"><span class="n">compute_spectrum</span></a><span class="p">(</span><span class="n">sig_filt</span><span class="p">,</span> <span class="n">fs</span><span class="p">),</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+<span class="n">freqs</span><span class="p">,</span> <span class="n">powers_pre</span> <span class="o">=</span> <span class="n">trim_spectrum</span><span class="p">(</span><span class="o">*</span><a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.spectral.compute_spectrum.html#neurodsp.spectral.compute_spectrum" title="neurodsp.spectral.compute_spectrum" class="sphx-glr-backref-module-neurodsp-spectral sphx-glr-backref-type-py-function"><span class="n">compute_spectrum</span></a><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">fs</span><span class="p">),</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+<span class="n">freqs</span><span class="p">,</span> <span class="n">powers_post</span> <span class="o">=</span> <span class="n">trim_spectrum</span><span class="p">(</span><span class="o">*</span><a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.spectral.compute_spectrum.html#neurodsp.spectral.compute_spectrum" title="neurodsp.spectral.compute_spectrum" class="sphx-glr-backref-module-neurodsp-spectral sphx-glr-backref-type-py-function"><span class="n">compute_spectrum</span></a><span class="p">(</span><span class="n">sig_filt</span><span class="p">,</span> <span class="n">fs</span><span class="p">),</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the spectrum of the data, pre and post bandstop filtering</span>
@@ -368,14 +369,14 @@ leaving a “dip” in the power spectrum. This dip causes issues with subsequen
                                  Frequency Resolution is 1.00 Hz
 
                             Aperiodic Parameters (offset, exponent):
-                                         -1.4709, 1.8475
+                                         -1.7004, 1.8313
 
                                        1 peaks were found:
-                                CF:  10.08, PW:  3.054, BW:  1.99
+                                CF:  10.07, PW:  3.304, BW:  1.95
 
                                      Goodness of fit metrics:
-                                    R^2 of model fit is 0.7157
-                                    Error of the fit is 0.3081
+                                    R^2 of model fit is 0.7440
+                                    Error of the fit is 0.2978
 
 ==================================================================================================
 </pre></div>
@@ -384,7 +385,7 @@ leaving a “dip” in the power spectrum. This dip causes issues with subsequen
 gets ‘pulled’ down, leading to an inaccurate fit of the aperiodic component. This is
 why fitting frequency regions that included frequency regions that have been filtered
 out is not recommended.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.064 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.181 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-processing-plot-line-noise-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/3f6c1c3c444799e38b8295c41ccb69c4/plot_line_noise.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_line_noise.ipynb</span></code></a></p>
@@ -410,7 +411,7 @@ out is not recommended.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>

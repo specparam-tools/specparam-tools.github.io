@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Plot Power Spectrum Models &#8212; specparam 2.0.0rc2 documentation</title>
+    <title>Plot Power Spectrum Models &#8212; specparam 2.0.0rc3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=301b5801"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=54d48845"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -122,8 +122,8 @@ to download the full example code.</p>
 <p>In order to the get a qualitative sense of if the model is fitting well, and what
 the results look like, it can be useful to visualize power spectrum model reconstructions.</p>
 <p>This example dives deeper into plotting model reconstructions, using the
-<a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> method from a <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object, and explores
-options for tuning these these visualizations.</p>
+<a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> method from a <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object,
+and explores options for tuning these these visualizations.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import matplotlib to help manage plotting</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -141,8 +141,8 @@ options for tuning these these visualizations.</p>
 </div>
 <section id="plotting-from-model-objects">
 <h2>Plotting from model objects<a class="headerlink" href="#plotting-from-model-objects" title="Permalink to this heading">¶</a></h2>
-<p>The model object has a <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> method that can be used to visualize
-data and models available in the <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object.</p>
+<p>The model object has a <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> method that can be used to
+visualize data and models available in the <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object, and add some data to it</span>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.add_data" title="specparam.SpectralModel.add_data" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">add_data</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
@@ -164,8 +164,8 @@ full model reconstruction, in red.</p>
 <img src="../../_images/sphx_glr_plot_models_002.png" srcset="../../_images/sphx_glr_plot_models_002.png" alt="plot models" class = "sphx-glr-single-img"/></section>
 <section id="plotting-aperiodic-components">
 <h2>Plotting Aperiodic Components<a class="headerlink" href="#plotting-aperiodic-components" title="Permalink to this heading">¶</a></h2>
-<p>As you can see above, the <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> call by default also plots the
-aperiodic component, in a dashed blue line.</p>
+<p>As you can see above, the <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> call by default also plots
+the aperiodic component, in a dashed blue line.</p>
 <p>You can toggle whether to display the aperiodic component with the
 <code class="docutils literal notranslate"><span class="pre">plot_aperiodic</span></code> parameter.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Control whether to plot the aperiodic component</span>
@@ -222,7 +222,8 @@ where peaks were fit with the full-length vertical lines.</p>
 <img src="../../_images/sphx_glr_plot_models_006.png" srcset="../../_images/sphx_glr_plot_models_006.png" alt="plot models" class = "sphx-glr-single-img"/></section>
 <section id="other-plotting-options">
 <h2>Other Plotting Options<a class="headerlink" href="#other-plotting-options" title="Permalink to this heading">¶</a></h2>
-<p>There are also some other optional inputs to the <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> call, including:</p>
+<p>There are also some other optional inputs to the <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> call,
+including:</p>
 <ul class="simple">
 <li><p><cite>plt_log</cite> : Optional input for plotting the frequency axis in log10 spacing</p></li>
 <li><p><cite>add_legend</cite> : Optional input to toggle whether to add a legend</p></li>
@@ -238,7 +239,7 @@ where peaks were fit with the full-length vertical lines.</p>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">plt_log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">add_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_models_007.png" srcset="../../_images/sphx_glr_plot_models_007.png" alt="plot models" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.617 seconds)</p>
+<img src="../../_images/sphx_glr_plot_models_007.png" srcset="../../_images/sphx_glr_plot_models_007.png" alt="plot models" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.158 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plots-plot-models-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/a2c1d0c5584b794a8cb72b1f524a4a2c/plot_models.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_models.ipynb</span></code></a></p>
@@ -263,7 +264,7 @@ where peaks were fit with the full-length vertical lines.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2024, VoytekLab.<br/>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
