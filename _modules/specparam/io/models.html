@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.io.models &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>specparam.io.models &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -122,15 +122,16 @@
 
 <span class="kn">from</span> <span class="nn">specparam.io.files</span> <span class="kn">import</span> <span class="n">save_json</span>
 <span class="kn">from</span> <span class="nn">specparam.io.utils</span> <span class="kn">import</span> <span class="n">create_file_path</span>
-<span class="kn">from</span> <span class="nn">specparam.core.items</span> <span class="kn">import</span> <span class="n">OBJ_DESC</span>
 <span class="kn">from</span> <span class="nn">specparam.utils.select</span> <span class="kn">import</span> <span class="n">dict_select_keys</span>
 <span class="kn">from</span> <span class="nn">specparam.utils.convert</span> <span class="kn">import</span> <span class="n">dict_array_to_lst</span>
+<span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="p">(</span><span class="n">docs_get_section</span><span class="p">,</span> <span class="n">replace_docstring_sections</span><span class="p">,</span>
+                                     <span class="n">docs_replace_param</span><span class="p">)</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
 <div class="viewcode-block" id="save_model"><a class="viewcode-back" href="../../../generated/specparam.io.models.save_model.html#specparam.io.models.save_model">[docs]</a><span class="k">def</span> <span class="nf">save_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-               <span class="n">save_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+               <span class="n">save_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_base</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Save out data, results and/or settings from a model object into a JSON file.</span>
 
 <span class="sd">    Parameters</span>
@@ -150,6 +151,9 @@
 <span class="sd">        Whether to save out settings.</span>
 <span class="sd">    save_data : bool, optional</span>
 <span class="sd">        Whether to save out input data.</span>
+<span class="sd">    save_base : bool, optional</span>
+<span class="sd">        Whether to save out base data.</span>
+<span class="sd">        Can be set to False to remove redundant information when saving from multiple models.</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
@@ -157,14 +161,44 @@
 <span class="sd">        If the save file is not understood.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># Convert object to dictionary &amp; convert all arrays to lists, for JSON serializing</span>
-    <span class="n">obj_dict</span> <span class="o">=</span> <span class="n">dict_array_to_lst</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+    <span class="c1"># &#39;Flatten&#39; the model object by extracting relevant attributes to a dictionary</span>
+    <span class="n">obj_dict</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="o">**</span><span class="n">model</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">values</span><span class="p">}</span>
+
+    <span class="c1"># Convert modes object to their saveable string name</span>
+    <span class="n">obj_dict</span><span class="p">[</span><span class="s1">&#39;aperiodic_mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">obj_dict</span><span class="p">[</span><span class="s1">&#39;periodic_mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">mode_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;aperiodic_mode&#39;</span><span class="p">,</span> <span class="s1">&#39;periodic_mode&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Add bands information to saveable information</span>
+    <span class="n">obj_dict</span><span class="p">[</span><span class="s1">&#39;bands&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">bands</span><span class="o">.</span><span class="n">bands</span><span class="p">)</span> \
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">bands</span><span class="o">.</span><span class="n">_n_bands</span> <span class="k">else</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">bands</span><span class="o">.</span><span class="n">_n_bands</span>
+    <span class="n">bands_label</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bands&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">bands</span> <span class="k">else</span> <span class="p">[]</span>
+
+    <span class="c1"># Add parameter results to information to saveable information</span>
+    <span class="n">res_dict</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">asdict</span><span class="p">()</span>
+    <span class="n">obj_dict</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">obj_dict</span><span class="p">,</span> <span class="o">**</span><span class="n">res_dict</span><span class="p">}</span>
+    <span class="n">results_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">res_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="c1"># Add metrics to information to saveable information</span>
+    <span class="n">obj_dict</span><span class="p">[</span><span class="s1">&#39;metrics&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">results</span>
+
+    <span class="c1"># Convert all arrays to list for JSON serialization</span>
+    <span class="n">obj_dict</span> <span class="o">=</span> <span class="n">dict_array_to_lst</span><span class="p">(</span><span class="n">obj_dict</span><span class="p">)</span>
+
+    <span class="c1"># Check for saving out base information / check if base only</span>
+    <span class="k">if</span> <span class="n">save_base</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">save_base</span> <span class="o">=</span> <span class="n">save_results</span> <span class="ow">or</span> <span class="n">save_data</span>
+    <span class="n">base_only</span> <span class="o">=</span> <span class="p">(</span><span class="ow">not</span> <span class="n">save_settings</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">save_results</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">save_data</span><span class="p">)</span>
 
     <span class="c1"># Set and select which variables to keep. Use a set to drop any potential overlap</span>
     <span class="c1">#   Note that results also saves frequency information to be able to recreate freq vector</span>
-    <span class="n">keep</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">OBJ_DESC</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">OBJ_DESC</span><span class="p">[</span><span class="s1">&#39;meta_data&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">save_results</span> <span class="k">else</span> <span class="p">[])</span> <span class="o">+</span> \
-               <span class="p">(</span><span class="n">OBJ_DESC</span><span class="p">[</span><span class="s1">&#39;settings&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">save_settings</span> <span class="k">else</span> <span class="p">[])</span> <span class="o">+</span> \
-               <span class="p">(</span><span class="n">OBJ_DESC</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">save_data</span> <span class="k">else</span> <span class="p">[]))</span>
+    <span class="n">keep</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>\
+        <span class="p">(</span><span class="n">mode_labels</span> <span class="o">+</span> <span class="n">bands_label</span> <span class="k">if</span> <span class="n">save_base</span> <span class="k">else</span> <span class="p">[])</span> <span class="o">+</span> \
+        <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">_meta_fields</span> <span class="k">if</span> <span class="n">save_base</span> <span class="ow">or</span> <span class="n">base_only</span> <span class="k">else</span> <span class="p">[])</span> <span class="o">+</span> \
+        <span class="p">(</span><span class="n">results_labels</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;metrics&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">save_results</span> <span class="k">else</span> <span class="p">[])</span> <span class="o">+</span> \
+        <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">names</span> <span class="k">if</span> <span class="n">save_settings</span> <span class="k">else</span> <span class="p">[])</span> <span class="o">+</span> \
+        <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">_fields</span> <span class="k">if</span> <span class="n">save_data</span> <span class="k">else</span> <span class="p">[]))</span>
+
     <span class="n">obj_dict</span> <span class="o">=</span> <span class="n">dict_select_keys</span><span class="p">(</span><span class="n">obj_dict</span><span class="p">,</span> <span class="n">keep</span><span class="p">)</span>
 
     <span class="c1"># Save out to json file</span>
@@ -216,6 +250,23 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Save file not understood.&quot;</span><span class="p">)</span></div>
 
 
+<span class="nd">@replace_docstring_sections</span><span class="p">(</span>\
+    <span class="n">docs_replace_param</span><span class="p">(</span><span class="n">docs_get_section</span><span class="p">(</span>\
+        <span class="n">save_group</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="s1">&#39;time : SpectralTimeModel</span><span class="se">\n</span><span class="s1">        Object to save data from.&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">save_time</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">save_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save out results and/or settings from time object. Saves out to a JSON file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    % copied in from save_group function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">save_group</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">append</span><span class="p">,</span>
+               <span class="n">save_results</span><span class="p">,</span> <span class="n">save_settings</span><span class="p">,</span> <span class="n">save_data</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="save_event"><a class="viewcode-back" href="../../../generated/specparam.io.models.save_event.html#specparam.io.models.save_event">[docs]</a><span class="k">def</span> <span class="nf">save_event</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                <span class="n">save_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Save out results and/or settings from event object. Saves out to a JSON file.</span>
@@ -246,13 +297,13 @@
 
     <span class="n">fg</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">save_settings</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">save_results</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">save_data</span><span class="p">:</span>
-        <span class="n">fg</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="n">append</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">fg</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="n">append</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="n">save_settings</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">ndigits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event</span><span class="p">)))</span>
-        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">gres</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">):</span>
-            <span class="n">fg</span><span class="o">.</span><span class="n">group_results</span> <span class="o">=</span> <span class="n">gres</span>
+        <span class="n">ndigits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">results</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">gres</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">):</span>
+            <span class="n">fg</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">group_results</span> <span class="o">=</span> <span class="n">gres</span>
             <span class="k">if</span> <span class="n">save_data</span><span class="p">:</span>
-                <span class="n">fg</span><span class="o">.</span><span class="n">power_spectra</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">spectrograms</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span>
+                <span class="n">fg</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">power_spectra</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">spectrograms</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span>
             <span class="n">fg</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file_name</span> <span class="o">+</span> <span class="s1">&#39;_{:0</span><span class="si">{ndigits}</span><span class="s1">d}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="n">ndigits</span><span class="p">),</span>
                     <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="n">append</span><span class="p">,</span> <span class="n">save_results</span><span class="o">=</span><span class="n">save_results</span><span class="p">,</span>
                     <span class="n">save_settings</span><span class="o">=</span><span class="n">save_settings</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="n">save_data</span><span class="p">)</span></div>
@@ -276,7 +327,7 @@
 <span class="sd">        Loaded model object with data from file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <span class="n">SpectralModel</span>
+    <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <span class="n">SpectralModel</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">SpectralModel</span><span class="p">()</span>
     <span class="n">model</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">regenerate</span><span class="p">)</span>
 
@@ -299,14 +350,14 @@
 <span class="sd">        Loaded model object with data from file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <span class="n">SpectralGroupModel</span>
+    <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <span class="n">SpectralGroupModel</span>
     <span class="n">group</span> <span class="o">=</span> <span class="n">SpectralGroupModel</span><span class="p">()</span>
     <span class="n">group</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">group</span></div>
 
 
-<div class="viewcode-block" id="load_time"><a class="viewcode-back" href="../../../generated/specparam.io.models.load_time.html#specparam.io.models.load_time">[docs]</a><span class="k">def</span> <span class="nf">load_time</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">peak_org</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_time"><a class="viewcode-back" href="../../../generated/specparam.io.models.load_time.html#specparam.io.models.load_time">[docs]</a><span class="k">def</span> <span class="nf">load_time</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Load a SpectralTimeModel object from file.</span>
 
 <span class="sd">    Parameters</span>
@@ -315,10 +366,6 @@
 <span class="sd">        File(s) to load data from.</span>
 <span class="sd">    file_path : Path or str, optional</span>
 <span class="sd">        Path to directory to load from. If None, loads from current directory.</span>
-<span class="sd">    peak_org : int or Bands, optional</span>
-<span class="sd">        How to organize peaks.</span>
-<span class="sd">        If int, extracts the first n peaks.</span>
-<span class="sd">        If Bands, extracts peaks based on band definitions.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -326,14 +373,14 @@
 <span class="sd">        Loaded model object with data from file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <span class="n">SpectralTimeModel</span>
+    <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <span class="n">SpectralTimeModel</span>
     <span class="n">time</span> <span class="o">=</span> <span class="n">SpectralTimeModel</span><span class="p">()</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">peak_org</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">time</span></div>
 
 
-<div class="viewcode-block" id="load_event"><a class="viewcode-back" href="../../../generated/specparam.io.models.load_event.html#specparam.io.models.load_event">[docs]</a><span class="k">def</span> <span class="nf">load_event</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">peak_org</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_event"><a class="viewcode-back" href="../../../generated/specparam.io.models.load_event.html#specparam.io.models.load_event">[docs]</a><span class="k">def</span> <span class="nf">load_event</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Load a SpectralTimeEventModel object from file.</span>
 
 <span class="sd">    Parameters</span>
@@ -342,10 +389,6 @@
 <span class="sd">        File(s) to load data from.</span>
 <span class="sd">    file_path : Path or str, optional</span>
 <span class="sd">        Path to directory to load from. If None, loads from current directory.</span>
-<span class="sd">    peak_org : int or Bands, optional</span>
-<span class="sd">        How to organize peaks.</span>
-<span class="sd">        If int, extracts the first n peaks.</span>
-<span class="sd">        If Bands, extracts peaks based on band definitions.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -353,9 +396,9 @@
 <span class="sd">        Loaded model object with data from file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <span class="n">SpectralTimeEventModel</span>
+    <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <span class="n">SpectralTimeEventModel</span>
     <span class="n">event</span> <span class="o">=</span> <span class="n">SpectralTimeEventModel</span><span class="p">()</span>
-    <span class="n">event</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">peak_org</span><span class="p">)</span>
+    <span class="n">event</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">event</span></div>
 
@@ -379,14 +422,17 @@
 
     <span class="c1"># Since there is a single set of object settings, save them out once, at the top</span>
     <span class="k">if</span> <span class="n">save_settings</span><span class="p">:</span>
-        <span class="n">save_model</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">f_obj</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">save_model</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">f_obj</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                   <span class="n">save_settings</span><span class="o">=</span><span class="n">save_settings</span><span class="p">,</span> <span class="n">save_base</span><span class="o">=</span><span class="n">save_results</span> <span class="ow">or</span> <span class="n">save_data</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">save_model</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">f_obj</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_base</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="c1"># For results &amp; data, loop across all data and/or models, and save each out to a new line</span>
     <span class="k">if</span> <span class="n">save_results</span> <span class="ow">or</span> <span class="n">save_data</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">group_results</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">group_results</span><span class="p">)):</span>
             <span class="n">model</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">regenerate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="n">save_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">f_obj</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                       <span class="n">save_results</span><span class="o">=</span><span class="n">save_results</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="n">save_data</span><span class="p">)</span>
+                       <span class="n">save_results</span><span class="o">=</span><span class="n">save_results</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="n">save_data</span><span class="p">,</span> <span class="n">save_base</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>

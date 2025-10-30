@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.plts.spectra &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>specparam.plts.spectra &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -124,6 +124,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">specparam.modutils.dependencies</span> <span class="kn">import</span> <span class="n">safe_import</span><span class="p">,</span> <span class="n">check_dependency</span>
+<span class="kn">from</span> <span class="nn">specparam.utils.select</span> <span class="kn">import</span> <span class="n">dict_extract_keys</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.templates</span> <span class="kn">import</span> <span class="n">plot_yshade</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.settings</span> <span class="kn">import</span> <span class="n">PLT_FIGSIZES</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.style</span> <span class="kn">import</span> <span class="n">style_spectrum_plot</span><span class="p">,</span> <span class="n">style_plot</span>
@@ -231,16 +232,21 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    Parameters for `plot_spectra` can also be passed into this function as keyword arguments.</span>
+<span class="sd">    Additional parameters for `plot_spectra` can also be provded as keyword arguments, including</span>
+<span class="sd">    `log_freqs`, `log_powers` &amp; `labels`. See `plot_spectra` for usage details.</span>
 
-<span class="sd">    This includes `log_freqs`, `log_powers` &amp; `labels`. See `plot_spectra` for usage details.</span>
+<span class="sd">    Additional keyword arguments can be passed to manage the shade styling, including</span>
+<span class="sd">    &#39;shade_alpha&#39; and &#39;center_alpha&#39;. See `add_shades` for usage details.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">ax</span> <span class="o">=</span> <span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">plot_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="n">PLT_FIGSIZES</span><span class="p">[</span><span class="s1">&#39;spectral&#39;</span><span class="p">]))</span>
 
+    <span class="n">shade_kwargs</span> <span class="o">=</span> <span class="n">dict_extract_keys</span><span class="p">(</span><span class="n">plot_kwargs</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;shade_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;center_alpha&#39;</span><span class="p">])</span>
+
     <span class="n">plot_spectra</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectra</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
 
-    <span class="n">add_shades</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">shades</span><span class="p">,</span> <span class="n">shade_colors</span><span class="p">,</span> <span class="n">add_center</span><span class="p">,</span> <span class="n">plot_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;log_freqs&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+    <span class="n">add_shades</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">shades</span><span class="p">,</span> <span class="n">shade_colors</span><span class="p">,</span> <span class="n">add_center</span><span class="o">=</span><span class="n">add_center</span><span class="p">,</span>
+               <span class="n">logged</span><span class="o">=</span><span class="n">plot_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;log_freqs&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span> <span class="o">**</span><span class="n">shade_kwargs</span><span class="p">)</span>
 
     <span class="n">style_spectrum_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">plot_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;log_freqs&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
                         <span class="n">plot_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;log_powers&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>

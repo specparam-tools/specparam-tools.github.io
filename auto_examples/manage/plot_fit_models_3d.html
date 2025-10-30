@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Fitting Power Spectrum Models Across 3D Arrays &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>Fitting Power Spectrum Models Across 3D Arrays &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -156,7 +156,7 @@ across the data, which also uses the same underlying code.</p>
 <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a>
 
 <span class="c1"># Import utilities for working with model objects</span>
-<span class="kn">from</span> <span class="nn">specparam.objs</span> <span class="kn">import</span> <a href="../../generated/specparam.fit_models_3d.html#specparam.fit_models_3d" title="specparam.fit_models_3d" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-function"><span class="n">fit_models_3d</span></a><span class="p">,</span> <a href="../../generated/specparam.objs.combine_model_objs.html#specparam.objs.combine_model_objs" title="specparam.objs.combine_model_objs" class="sphx-glr-backref-module-specparam-objs sphx-glr-backref-type-py-function"><span class="n">combine_model_objs</span></a>
+<span class="kn">from</span> <span class="nn">specparam.models</span> <span class="kn">import</span> <a href="../../generated/specparam.models.fit_models_3d.html#specparam.models.fit_models_3d" title="specparam.models.fit_models_3d" class="sphx-glr-backref-module-specparam-models sphx-glr-backref-type-py-function"><span class="n">fit_models_3d</span></a><span class="p">,</span> <a href="../../generated/specparam.models.combine_model_objs.html#specparam.models.combine_model_objs" title="specparam.models.combine_model_objs" class="sphx-glr-backref-module-specparam-models sphx-glr-backref-type-py-function"><span class="n">combine_model_objs</span></a>
 
 <span class="c1"># Import simulation &amp; IO utilities to help with the example</span>
 <span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a>
@@ -189,13 +189,17 @@ data across several different ‘conditions’, from multiple ‘channels’.</p
 <span class="c1"># Define parameters for the simulated power spectra</span>
 <span class="n">ap_opts</span> <span class="o">=</span> <a href="../../generated/specparam.sim.params.param_sampler.html#specparam.sim.params.param_sampler" title="specparam.sim.params.param_sampler" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-function"><span class="n">param_sampler</span></a><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
 <span class="n">pe_opts</span> <span class="o">=</span> <a href="../../generated/specparam.sim.params.param_sampler.html#specparam.sim.params.param_sampler" title="specparam.sim.params.param_sampler" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-function"><span class="n">param_sampler</span></a><span class="p">([[],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># Collect together simulation parameters</span>
+<span class="n">ap_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="n">ap_opts</span><span class="p">}</span>
+<span class="n">pe_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="n">pe_opts</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate power spectra, and organize into a 3D array</span>
 <span class="n">spectra</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_conditions</span><span class="p">):</span>
-    <span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a><span class="p">(</span><span class="n">n_channels</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">ap_opts</span><span class="p">,</span>
-                                            <span class="n">pe_opts</span><span class="p">,</span> <span class="n">freq_res</span><span class="o">=</span><span class="n">freq_res</span><span class="p">)</span>
+    <span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a><span class="p">(</span><span class="n">n_channels</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">ap_params</span><span class="p">,</span>
+                                            <span class="n">pe_params</span><span class="p">,</span> <span class="n">freq_res</span><span class="o">=</span><span class="n">freq_res</span><span class="p">)</span>
     <span class="n">spectra</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">powers</span><span class="p">)</span>
 
 <span class="c1"># Convert collected spectra into a numpy array</span>
@@ -218,14 +222,14 @@ Number of conditions, channels &amp; frequencies:   3, 10, 149
 <p>The goal, for fitting all these power spectra, is to apply our power spectrum model
 efficiently across all power spectra, while keeping our data and results organized
 in a way that we keep track of which model results reflect which data.</p>
-<p>For working with 3D arrays of power spectra, we have the <a class="reference internal" href="../../generated/specparam.fit_models_3d.html#specparam.fit_models_3d" title="specparam.fit_models_3d"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_models_3d()</span></code></a>
+<p>For working with 3D arrays of power spectra, we have the <a class="reference internal" href="../../generated/specparam.models.fit_models_3d.html#specparam.models.fit_models_3d" title="specparam.models.fit_models_3d"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_models_3d()</span></code></a>
 function which takes in data and a pre-initialized model object, and uses it to fit
 power spectrum models across all the data, while maintaining the organization of
 the input data.</p>
 </section>
 <section id="fit-models-3d">
 <h3>fit_models_3d<a class="headerlink" href="#fit-models-3d" title="Permalink to this heading">¶</a></h3>
-<p>More specifically, <a class="reference internal" href="../../generated/specparam.fit_models_3d.html#specparam.fit_models_3d" title="specparam.fit_models_3d"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_models_3d()</span></code></a> takes in:</p>
+<p>More specifically, <a class="reference internal" href="../../generated/specparam.models.fit_models_3d.html#specparam.models.fit_models_3d" title="specparam.models.fit_models_3d"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_models_3d()</span></code></a> takes in:</p>
 <ul class="simple">
 <li><p>a SpectralGroupModel object, pre-initialized with the desired settings</p></li>
 <li><p>an array of frequency values and a 3D array of power spectra</p></li>
@@ -239,7 +243,7 @@ which collectively store all the model fit results.</p>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the 3D array of power spectra</span>
-<span class="n">fgs</span> <span class="o">=</span> <a href="../../generated/specparam.fit_models_3d.html#specparam.fit_models_3d" title="specparam.fit_models_3d" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-function"><span class="n">fit_models_3d</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spectra</span><span class="p">)</span>
+<span class="n">fgs</span> <span class="o">=</span> <a href="../../generated/specparam.models.fit_models_3d.html#specparam.models.fit_models_3d" title="specparam.models.fit_models_3d" class="sphx-glr-backref-module-specparam-models sphx-glr-backref-type-py-function"><span class="n">fit_models_3d</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spectra</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting model across 30 power spectra.
@@ -249,7 +253,7 @@ which collectively store all the model fit results.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">fgs</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;specparam.objs.group.SpectralGroupModel object at 0x7fbbd1d78820&gt;, &lt;specparam.objs.group.SpectralGroupModel object at 0x7fbbd1d78880&gt;, &lt;specparam.objs.group.SpectralGroupModel object at 0x7fbbd1d78910&gt;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;specparam.models.group.SpectralGroupModel object at 0x7faa5e799370&gt;, &lt;specparam.models.group.SpectralGroupModel object at 0x7faa5e799a30&gt;, &lt;specparam.models.group.SpectralGroupModel object at 0x7faa5e722760&gt;]
 </pre></div>
 </div>
 <p>Note that the length of the returned list of objects should be equivalent to
@@ -272,7 +276,7 @@ Number of conditions:   3
 these the same way as you would look into any other model objects. You can check out the
 other examples and tutorials for more information on how to do this.</p>
 <p>A general strategy for analyzing model fit results as they get returned from
-<a class="reference internal" href="../../generated/specparam.fit_models_3d.html#specparam.fit_models_3d" title="specparam.fit_models_3d"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_models_3d()</span></code></a> is to loop across all the objects in the
+<a class="reference internal" href="../../generated/specparam.models.fit_models_3d.html#specparam.models.fit_models_3d" title="specparam.models.fit_models_3d"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_models_3d()</span></code></a> is to loop across all the objects in the
 returned list, and then within the loop you can collect and/or analyze and/or plot
 any data of interest.</p>
 <p>For a simple example analysis here, we can investigate if there appears to be a
@@ -280,12 +284,12 @@ difference in aperiodic exponent between different conditions.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the aperiodic exponent results across conditions</span>
 <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fgs</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Aperiodic exponent for condition </span><span class="si">{}</span><span class="s2"> is </span><span class="si">{:1.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-        <span class="n">ind</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;aperiodic_params&#39;</span><span class="p">,</span> <span class="s1">&#39;exponent&#39;</span><span class="p">))))</span>
+        <span class="n">ind</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">,</span> <span class="s1">&#39;exponent&#39;</span><span class="p">))))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Aperiodic exponent for condition 0 is 1.3510
-Aperiodic exponent for condition 1 is 1.4010
-Aperiodic exponent for condition 2 is 1.4508
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Aperiodic exponent for condition 0 is 1.5005
+Aperiodic exponent for condition 1 is 1.3008
+Aperiodic exponent for condition 2 is 1.5511
 </pre></div>
 </div>
 </section>
@@ -315,37 +319,34 @@ and these object utility functions is available in other examples.</p>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combine a list of model objects into a single SpectralGroupModel object</span>
-<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">all_fg</span></a> <span class="o">=</span> <a href="../../generated/specparam.objs.combine_model_objs.html#specparam.objs.combine_model_objs" title="specparam.objs.combine_model_objs" class="sphx-glr-backref-module-specparam-objs sphx-glr-backref-type-py-function"><span class="n">combine_model_objs</span></a><span class="p">(</span><span class="n">fgs</span><span class="p">)</span>
+<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">all_fg</span></a> <span class="o">=</span> <a href="../../generated/specparam.models.combine_model_objs.html#specparam.models.combine_model_objs" title="specparam.models.combine_model_objs" class="sphx-glr-backref-module-specparam-models sphx-glr-backref-type-py-function"><span class="n">combine_model_objs</span></a><span class="p">(</span><span class="n">fgs</span><span class="p">)</span>
 
 <span class="c1"># Explore the results from across all model fits</span>
 <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.print_results" title="specparam.SpectralGroupModel.print_results" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">all_fg</span><span class="o">.</span><span class="n">print_results</span></a><span class="p">()</span>
 <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.plot" title="specparam.SpectralGroupModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">all_fg</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_fit_models_3d_001.png" srcset="../../_images/sphx_glr_plot_fit_models_3d_001.png" alt="Aperiodic Fit, Goodness of Fit, Peaks - Center Frequencies" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+<img src="../../_images/sphx_glr_plot_fit_models_3d_001.png" srcset="../../_images/sphx_glr_plot_fit_models_3d_001.png" alt="Aperiodic Fit, Fit Quality, Peaks - Center Frequencies" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                          GROUP RESULTS
+                            GROUP SPECTRAL MODEL RESULTS (30 spectra)
 
-                             Number of power spectra in the Group: 30
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 3-40 Hz frequency range with 0.25 Hz resolution
 
-                        The model was run on the frequency range 3 - 40 Hz
-                                 Frequency Resolution is 0.25 Hz
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                         offset   - Min:  -0.00, Max:   0.01, Mean:  0.00
+                         exponent - Min:   1.00, Max:   2.00, Mean:  1.45
 
-                              Power spectra were fit without a knee.
+                      Peak Parameters (&#39;gaussian&#39; mode) 33 total peaks found
 
-                                      Aperiodic Fit Values:
-                        Exponents - Min:  0.999, Max:  2.003, Mean: 1.401
-
-                         In total 31 peaks were extracted from the group
-
-                                     Goodness of fit metrics:
-                            R2s -  Min:  1.000, Max:  1.000, Mean: 1.000
-                         Errors -  Min:  0.004, Max:  0.004, Mean: 0.004
+                                    Model fit quality metrics:
+                          error (mae) -  Min:  0.003, Max:  0.004, Mean: 0.004
+                       gof (rsquared) -  Min:  1.000, Max:  1.000, Mean: 1.000
 
 ==================================================================================================
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.490 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.480 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-manage-plot-fit-models-3d-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/46e69bf49fb2e5486bf8d62dc2c4e50d/plot_fit_models_3d.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_fit_models_3d.ipynb</span></code></a></p>

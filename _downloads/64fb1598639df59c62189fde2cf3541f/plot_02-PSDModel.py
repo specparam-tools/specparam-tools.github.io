@@ -100,36 +100,19 @@ fm.fit(freqs, spectrum, freq_range)
 # Once the power spectrum model has been calculated, the model fit parameters are stored
 # as object attributes that can be accessed after fitting.
 #
-# Following scikit-learn conventions, attributes that are fit as a result of
-# the model have a trailing underscore, for example:
-#
-# - ``aperiodic_params_``
-# - ``peak_params_``
-# - ``error_``
-# - ``r2_``
-# - ``n_peaks_``
-#
-
-###################################################################################################
-#
 # Access model fit parameters from specparam object, after fitting:
 #
 
 ###################################################################################################
 
 # Aperiodic parameters
-print('Aperiodic parameters: \n', fm.aperiodic_params_, '\n')
+print('Aperiodic parameters: \n', fm.results.params.aperiodic.params, '\n')
 
 # Peak parameters
-print('Peak parameters: \n', fm.peak_params_, '\n')
-
-# Goodness of fit measures
-print('Goodness of fit:')
-print(' Error - ', fm.error_)
-print(' R^2   - ', fm.r_squared_, '\n')
+print('Peak parameters: \n', fm.results.params.periodic.params, '\n')
 
 # Check how many peaks were fit
-print('Number of fit peaks: \n', fm.n_peaks_)
+print('Number of fit peaks: \n', fm.results.n_peaks)
 
 ###################################################################################################
 # Selecting Parameters
@@ -141,18 +124,9 @@ print('Number of fit peaks: \n', fm.n_peaks_)
 
 ###################################################################################################
 
-# Extract a model parameter with `get_params`
-err = fm.get_params('error')
-
 # Extract parameters, indicating sub-selections of parameters
-exp = fm.get_params('aperiodic_params', 'exponent')
-cfs = fm.get_params('peak_params', 'CF')
-
-# Print out a custom parameter report
-template = ("With an error level of {error:1.2f}, an exponent "
-            "of {exponent:1.2f} and peaks of {cfs:s} Hz were fit.")
-print(template.format(error=err, exponent=exp,
-                      cfs=' & '.join(map(str, [round(cf, 2) for cf in cfs]))))
+exp = fm.get_params('aperiodic', 'exponent')
+cfs = fm.get_params('periodic', 'CF')
 
 ###################################################################################################
 #
@@ -165,45 +139,50 @@ print(template.format(error=err, exponent=exp,
 #
 
 ###################################################################################################
-# Notes on Interpreting Peak Parameters
-# -------------------------------------
+# Model Metrics
+# ~~~~~~~~~~~~~
 #
-# Peak parameters are labeled as:
-#
-# - CF: center frequency of the extracted peak
-# - PW: power of the peak, over and above the aperiodic component
-# - BW: bandwidth of the extracted peak
-#
-# Note that the peak parameters that are returned are not exactly the same as the
-# parameters of the Gaussians used internally to fit the peaks.
-#
-# Specifically:
-#
-# - CF is the exact same as mean parameter of the Gaussian
-# - PW is the height of the model fit above the aperiodic component [1],
-#   which is not necessarily the same as the Gaussian height
-# - BW is 2 * the standard deviation of the Gaussian [2]
-#
-# [1] Since the Gaussians are fit together, if any Gaussians overlap,
-# than the actual height of the fit at a given point can only be assessed
-# when considering all Gaussians. To be better able to interpret heights
-# for individual peaks, we re-define the peak height as above, and label it
-# as 'power', as the units of the input data are expected to be units of power.
-#
-# [2] Gaussian standard deviation is '1 sided', where as the returned BW is '2 sided'.
+# In addition to model fit parameters, the fitting procedure computes and stores various
+# metrics that can be used to evaluate model fit quality.
 #
 
 ###################################################################################################
+
+# Goodness of fit metrics
+print('Goodness of fit:')
+print(' Error - ', fm.results.metrics.results['error_mae'])
+print(' R^2   - ', fm.results.metrics.results['gof_rsquared'], '\n')
+
+###################################################################################################
 #
-# The underlying gaussian parameters are also available from the model object,
-# in the ``gaussian_params_`` attribute.
+# You can also access metrics with the :meth:`~specparam.SpectralModel.results.get_metrics` method.
 #
+
+###################################################################################################
+
+# Extract a model metric with `get_metrics`
+err = fm.get_metrics('error')
+
+###################################################################################################
+#
+# Extracting model fit parameters and model metrics can also be combined to evaluate
+# model properties, for example using the following template:
+#
+
+###################################################################################################
+
+# Print out a custom parameter report
+template = ("With an error level of {error:1.2f}, an exponent "
+            "of {exponent:1.2f} and peaks of {cfs:s} Hz were fit.")
+print(template.format(error=err, exponent=exp,
+                      cfs=' & '.join(map(str, [round(cf, 2) for cf in cfs]))))
 
 ###################################################################################################
 
 # Compare the 'peak_params_' to the underlying gaussian parameters
 print('  Peak Parameters \t Gaussian Parameters')
-for peak, gauss in zip(fm.peak_params_, fm.gaussian_params_):
+for peak, gauss in zip(fm.results.params.periodic.get_params('converted'),
+                       fm.results.params.periodic.get_params('fit')):
     print('{:5.2f} {:5.2f} {:5.2f} \t {:5.2f} {:5.2f} {:5.2f}'.format(*peak, *gauss))
 
 ####################################################################################################
@@ -211,7 +190,7 @@ for peak, gauss in zip(fm.peak_params_, fm.gaussian_params_):
 # ~~~~~~~~~~
 #
 # There is also a convenience method to return all model fit results:
-# :func:`~specparam.SpectralModel.get_results`.
+# :func:`~specparam.SpectralModel.results.get_results`.
 #
 # This method returns all the model fit parameters, including the underlying Gaussian
 # parameters, collected together into a FitResults object.
@@ -224,10 +203,10 @@ for peak, gauss in zip(fm.peak_params_, fm.gaussian_params_):
 
 # Grab each model fit result with `get_results` to gather all results together
 #   Note that this returns a FitResults object
-fres = fm.get_results()
+fres = fm.results.get_results()
 
 # You can also unpack all fit parameters when using `get_results`
-ap_params, peak_params, r_squared, fit_error, gauss_params = fm.get_results()
+ap_fit, ap_conv, peak_fit, peak_conv, metrics = fm.results.get_results()
 
 ###################################################################################################
 
@@ -235,11 +214,11 @@ ap_params, peak_params, r_squared, fit_error, gauss_params = fm.get_results()
 print(fres, '\n')
 
 # from specparamResults, you can access the different results
-print('Aperiodic Parameters: \n', fres.aperiodic_params)
+print('Aperiodic Parameters: \n', fres.aperiodic_fit)
 
 # Check the R^2 and error of the model fit
-print('R-squared: \n {:5.4f}'.format(fm.r_squared_))
-print('Fit error: \n {:5.4f}'.format(fm.error_))
+print('R-squared: \n {:5.4f}'.format(fres.metrics['gof_rsquared']))
+print('Fit error: \n {:5.4f}'.format(fres.metrics['error_mae']))
 
 ###################################################################################################
 # Conclusion

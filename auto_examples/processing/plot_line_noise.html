@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Dealing with Line Noise &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>Dealing with Line Noise &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -147,8 +147,8 @@ character of the data, allowing for subsequent fitting.</p>
 interpolation. Given a narrow frequency region, this function interpolates the spectrum,
 such that the ‘peak’ of the line noise is removed.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate an example power spectrum, with line noise</span>
-<span class="n">freqs1</span><span class="p">,</span> <span class="n">powers1</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">75</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-                                     <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+<span class="n">freqs1</span><span class="p">,</span> <span class="n">powers1</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">75</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span>
+                                     <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]]})</span>
 
 <span class="c1"># Visualize the simulated power spectrum</span>
 <a href="../../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a><span class="p">(</span><span class="n">freqs1</span><span class="p">,</span> <span class="n">powers1</span><span class="p">,</span> <span class="n">log_powers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -177,18 +177,19 @@ such that the ‘peak’ of the line noise is removed.</p>
 
                                        POWER SPECTRUM MODEL
 
-                        The model was run on the frequency range 3 - 75 Hz
-                                 Frequency Resolution is 0.50 Hz
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 3-75 Hz frequency range with 0.50 Hz resolution
 
-                            Aperiodic Parameters (offset, exponent):
-                                          1.0293, 1.0174
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                          1.0306, 1.0181
 
-                                       1 peaks were found:
-                                CF:  10.02, PW:  0.732, BW:  3.82
+                         Peak Parameters (&#39;gaussian&#39; mode) 1 peaks found
+                                CF:  10.04, PW:   0.73, BW:   3.81
 
-                                     Goodness of fit metrics:
-                                    R^2 of model fit is 0.9996
-                                    Error of the fit is 0.0060
+                                    Model fit quality metrics:
+                                     error (mae) is 0.0064
+                                  gof (rsquared) is 0.9996
 
 ==================================================================================================
 </pre></div>
@@ -201,8 +202,9 @@ frequency ranges, there may be multiple peaks that need to be interpolated.</p>
 <p>This can be done by passing in multiple interpolation regions to
 <a class="reference internal" href="../../generated/specparam.utils.spectral.interpolate_spectrum.html#specparam.utils.spectral.interpolate_spectrum" title="specparam.utils.spectral.interpolate_spectrum"><code class="xref py py-func docutils literal notranslate"><span class="pre">interpolate_spectrum()</span></code></a>, which we will do in the next example.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate an example power spectrum, with line noise &amp; harmonics</span>
-<span class="n">freqs2</span><span class="p">,</span> <span class="n">powers2</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span>
-                                     <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+<span class="n">freqs2</span><span class="p">,</span> <span class="n">powers2</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">(</span>\
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;knee&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]]})</span>
 
 <span class="c1"># Interpolate away the line noise region &amp; harmonics</span>
 <span class="n">interp_ranges</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">58</span><span class="p">,</span> <span class="mi">62</span><span class="p">],</span> <span class="p">[</span><span class="mi">118</span><span class="p">,</span> <span class="mi">122</span><span class="p">]]</span>
@@ -223,19 +225,19 @@ frequency ranges, there may be multiple peaks that need to be interpolated.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was run on the frequency range 1 - 150 Hz
-                                 Frequency Resolution is 0.50 Hz
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+              Model was fit to the 1-150 Hz frequency range with 0.50 Hz resolution
 
-                         Aperiodic Parameters (offset, knee, exponent):
-                                     0.9633, 451.6230, 1.4837
+                                Aperiodic Parameters (&#39;knee&#39; mode)
+                                     (offset, knee, exponent)
+                                     0.9443, 429.5026, 1.4752
 
-                                       2 peaks were found:
-                                CF:  10.00, PW:  0.491, BW:  3.84
-                                CF:  87.38, PW:  0.020, BW:  0.50
+                         Peak Parameters (&#39;gaussian&#39; mode) 1 peaks found
+                                CF:  10.04, PW:   0.49, BW:   3.84
 
-                                     Goodness of fit metrics:
-                                    R^2 of model fit is 0.9995
-                                    Error of the fit is 0.0044
+                                    Model fit quality metrics:
+                                     error (mae) is 0.0043
+                                  gof (rsquared) is 0.9995
 
 ==================================================================================================
 </pre></div>
@@ -264,39 +266,41 @@ better fit the rest of the data.</p>
 
                                        POWER SPECTRUM MODEL
 
-                        The model was run on the frequency range 3 - 75 Hz
-                                 Frequency Resolution is 0.50 Hz
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 3-75 Hz frequency range with 0.50 Hz resolution
 
-                            Aperiodic Parameters (offset, exponent):
-                                          1.0280, 1.0168
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                          1.0295, 1.0178
 
-                                       2 peaks were found:
-                                CF:  10.01, PW:  0.733, BW:  3.83
-                                CF:  60.00, PW:  0.998, BW:  1.00
+                         Peak Parameters (&#39;gaussian&#39; mode) 2 peaks found
+                                CF:  10.03, PW:   0.73, BW:   3.83
+                                CF:  60.00, PW:   1.00, BW:   1.01
 
-                                     Goodness of fit metrics:
-                                    R^2 of model fit is 0.9996
-                                    Error of the fit is 0.0059
+                                    Model fit quality metrics:
+                                     error (mae) is 0.0061
+                                  gof (rsquared) is 0.9997
 
 ==================================================================================================
 ==================================================================================================
 
                                        POWER SPECTRUM MODEL
 
-                       The model was run on the frequency range 1 - 150 Hz
-                                 Frequency Resolution is 0.50 Hz
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+              Model was fit to the 1-150 Hz frequency range with 0.50 Hz resolution
 
-                         Aperiodic Parameters (offset, knee, exponent):
-                                     0.9720, 462.0121, 1.4877
+                                Aperiodic Parameters (&#39;knee&#39; mode)
+                                     (offset, knee, exponent)
+                                     0.9502, 436.2544, 1.4779
 
-                                       3 peaks were found:
-                                CF:  10.00, PW:  0.492, BW:  3.86
-                                CF:  60.01, PW:  0.744, BW:  1.00
-                                CF: 120.00, PW:  0.502, BW:  1.00
+                         Peak Parameters (&#39;gaussian&#39; mode) 3 peaks found
+                                CF:  10.03, PW:   0.49, BW:   3.85
+                                CF:  60.00, PW:   0.76, BW:   1.00
+                                CF: 120.01, PW:   0.50, BW:   1.00
 
-                                     Goodness of fit metrics:
-                                    R^2 of model fit is 0.9995
-                                    Error of the fit is 0.0045
+                                    Model fit quality metrics:
+                                     error (mae) is 0.0044
+                                  gof (rsquared) is 0.9995
 
 ==================================================================================================
 </pre></div>
@@ -365,18 +369,19 @@ leaving a “dip” in the power spectrum. This dip causes issues with subsequen
 
                                        POWER SPECTRUM MODEL
 
-                        The model was run on the frequency range 3 - 75 Hz
-                                 Frequency Resolution is 1.00 Hz
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 3-75 Hz frequency range with 1.00 Hz resolution
 
-                            Aperiodic Parameters (offset, exponent):
-                                         -1.7004, 1.8313
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                         -1.4166, 1.8853
 
-                                       1 peaks were found:
-                                CF:  10.07, PW:  3.304, BW:  1.95
+                         Peak Parameters (&#39;gaussian&#39; mode) 1 peaks found
+                                CF:  10.09, PW:   3.06, BW:   1.96
 
-                                     Goodness of fit metrics:
-                                    R^2 of model fit is 0.7440
-                                    Error of the fit is 0.2978
+                                    Model fit quality metrics:
+                                     error (mae) is 0.3079
+                                  gof (rsquared) is 0.7130
 
 ==================================================================================================
 </pre></div>
@@ -385,7 +390,7 @@ leaving a “dip” in the power spectrum. This dip causes issues with subsequen
 gets ‘pulled’ down, leading to an inaccurate fit of the aperiodic component. This is
 why fitting frequency regions that included frequency regions that have been filtered
 out is not recommended.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.181 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.756 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-processing-plot-line-noise-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/3f6c1c3c444799e38b8295c41ccb69c4/plot_line_noise.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_line_noise.ipynb</span></code></a></p>

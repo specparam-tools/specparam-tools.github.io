@@ -106,13 +106,15 @@ fm.fit(freqs, spectrum, [3, 40])
 
 # Do an initial aperiodic fit - a robust fit, that excludes outliers
 #   This recreates an initial fit that isn't ultimately stored in the model object
-init_ap_fit = gen_aperiodic(fm.freqs, fm._robust_ap_fit(fm.freqs, fm.power_spectrum))
+init_ap_fit = gen_aperiodic(\
+    fm.data.freqs, fm.modes.aperiodic,
+    fm.algorithm._robust_ap_fit(fm.data.freqs, fm.data.power_spectrum))
 
 # Plot the initial aperiodic fit
 _, ax = plt.subplots(figsize=(12, 10))
-plot_spectra(fm.freqs, fm.power_spectrum, plt_log,
+plot_spectra(fm.data.freqs, fm.data.power_spectrum, plt_log,
              label='Original Power Spectrum', color='black', ax=ax)
-plot_spectra(fm.freqs, init_ap_fit, plt_log, label='Initial Aperiodic Fit',
+plot_spectra(fm.data.freqs, init_ap_fit, plt_log, label='Initial Aperiodic Fit',
              color='blue', alpha=0.5, linestyle='dashed', ax=ax)
 
 ###################################################################################################
@@ -128,10 +130,10 @@ plot_spectra(fm.freqs, init_ap_fit, plt_log, label='Initial Aperiodic Fit',
 ###################################################################################################
 
 # Recompute the flattened spectrum using the initial aperiodic fit
-init_flat_spec = fm.power_spectrum - init_ap_fit
+init_flat_spec = fm.data.power_spectrum - init_ap_fit
 
 # Plot the flattened the power spectrum
-plot_spectra(fm.freqs, init_flat_spec, plt_log,
+plot_spectra(fm.data.freqs, init_flat_spec, plt_log,
              label='Flattened Spectrum', color='black')
 
 ###################################################################################################
@@ -172,7 +174,8 @@ plot_annotated_peak_search(fm)
 ###################################################################################################
 
 # Plot the peak fit: created by re-fitting all of the candidate peaks together
-plot_spectra(fm.freqs, fm._peak_fit, plt_log, color='green', label='Final Periodic Fit')
+plot_spectra(fm.data.freqs, fm.results.model.get_component('peak'), plt_log,
+             color='green', label='Final Periodic Fit')
 
 ###################################################################################################
 # Step 5: Create a Peak-Removed Spectrum
@@ -188,7 +191,7 @@ plot_spectra(fm.freqs, fm._peak_fit, plt_log, color='green', label='Final Period
 ###################################################################################################
 
 # Plot the peak removed power spectrum, created by removing peak fit from original spectrum
-plot_spectra(fm.freqs, fm._spectrum_peak_rm, plt_log,
+plot_spectra(fm.data.freqs, fm.get_data('aperiodic'), plt_log,
              label='Peak Removed Spectrum', color='black')
 
 ###################################################################################################
@@ -206,10 +209,10 @@ plot_spectra(fm.freqs, fm._spectrum_peak_rm, plt_log,
 
 # Plot the final aperiodic fit, calculated on the peak removed power spectrum
 _, ax = plt.subplots(figsize=(12, 10))
-plot_spectra(fm.freqs, fm._spectrum_peak_rm, plt_log,
+plot_spectra(fm.data.freqs, fm.get_data('aperiodic'), plt_log,
              label='Peak Removed Spectrum', color='black', ax=ax)
-plot_spectra(fm.freqs, fm._ap_fit, plt_log, label='Final Aperiodic Fit',
-             color='blue', alpha=0.5, linestyle='dashed', ax=ax)
+plot_spectra(fm.data.freqs, fm.results.model.get_component('aperiodic'), plt_log,
+             label='Final Aperiodic Fit', color='blue', alpha=0.5, linestyle='dashed', ax=ax)
 
 ###################################################################################################
 # Step 7: Combine the Full Model Fit
@@ -226,7 +229,7 @@ plot_spectra(fm.freqs, fm._ap_fit, plt_log, label='Final Aperiodic Fit',
 ###################################################################################################
 
 # Plot full model, created by combining the peak and aperiodic fits
-plot_spectra(fm.freqs, fm.modeled_spectrum_, plt_log,
+plot_spectra(fm.data.freqs, fm.results.model.modeled_spectrum, plt_log,
              label='Full Model', color='red')
 
 ###################################################################################################
@@ -270,27 +273,27 @@ fm.plot(plt_log)
 #
 # Stored model components:
 #
-# - Aperiodic Component: ``_ap_fit``
+# - Aperiodic Component (``SpectralModel.results.model.get_component('aperiodic')``)
 #
 #   - This is the aperiodic-only fit of the data.
 #   - It is computed by generating a reconstruction of the measured aperiodic parameters
 #
-# - Periodic Component: ``_peak_fit``
+# - Periodic Component: (``SpectralModel.results.model.get_component('peak')``)
 #
 #   - This is the periodic-only (or peak) fit of the data.
 #   - It is computed by generating a reconstruction of the measured periodic (peak) parameters
 #
 # Stored data attributes:
 #
-# - Flattened Spectrum: ``_spectrum_flat``
+# - Flattened Spectrum: (``SpectralModel.get_data('aperiodic')``)
 #
 #   - The original data, with the aperiodic component removed
-#   - This is computed as ``power_spectrum`` - ``_ap_fit``
+#   - This is computed as the power_spectrum minus the model aperiodic fit
 #
-# - Peak Removed Spectrum: ``_spectrum_peak_rm``
+# - Peak Removed Spectrum: (``SpectralModel.get_data('aperiodic')``)
 #
 #   - The original data, with the periodic component (peaks) removed
-#   - This is computed as ``power_spectrum`` - ``_peak_fit``
+#   - This is computed as the power_spectrum minus the model peak fit
 #
 
 ###################################################################################################

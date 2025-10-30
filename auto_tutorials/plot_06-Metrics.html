@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>06: Metrics &amp; Model Evaluation &#8212; specparam 2.0.0rc4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../faq.html">FAQ</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../visualizers.html">Visualizers</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-06-metrics-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="metrics-model-evaluation">
+<span id="sphx-glr-auto-tutorials-plot-06-metrics-py"></span><h1>06: Metrics &amp; Model Evaluation<a class="headerlink" href="#metrics-model-evaluation" title="Permalink to this heading">¶</a></h1>
+<p>An overview of metrics &amp; model evaluation to examine model fit quality.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the model object</span>
+<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+
+<span class="c1"># Import function to check available list of metrics</span>
+<span class="kn">from</span> <span class="nn">specparam.metrics.definitions</span> <span class="kn">import</span> <span class="n">check_metrics</span>
+
+<span class="c1"># Import a utility to download and load example data</span>
+<span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">load_example_data</span>
+</pre></div>
+</div>
+<section id="model-metrics">
+<h2>Model Metrics<a class="headerlink" href="#model-metrics" title="Permalink to this heading">¶</a></h2>
+<p>In this tutorial, we will explore model metrics.</p>
+<p>The <cite>specparam</cite> module uses the term <cite>metric</cite> to refer to a measure that reflect something
+about the spectral model (but that is not computed as part of the model fit).</p>
+<p>Generally, these metrics are used to evaluate how well the model fits the data
+and thus to assess the quality of the model fits.</p>
+<p>The module comes with various available metrics. To see the list of available metrics,
+we can use the <code class="xref py py-func docutils literal notranslate"><span class="pre">check_metrics()</span></code> function.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the list of available metrics</span>
+<span class="n">check_metrics</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Available metrics:
+    error    mae          : Mean absolute error of the model fit to the data.
+    error    mse          : Mean squared error of the model fit to the data.
+    error    rmse         : Root mean squared error of the model fit to the data.
+    error    medae        : Median absolute error of the model fit to the data.
+    gof      rsquared     : R-squared between the model fit and the data.
+    gof      adjrsquared  : Adjusted R-squared between the model fit and the data.
+</pre></div>
+</div>
+<p>As we can see above, metrics are organized into categories, including ‘error’ and ‘gof’
+(goodness of fit). Within each category there are different specific measures.</p>
+<p>Broadly, error measures compute an error measure reflecting the difference between the
+full model fit and the original data. Goodness-of-fit measures compute the correspondence
+between the model and data.</p>
+<section id="specifying-metrics">
+<h3>Specifying Metrics<a class="headerlink" href="#specifying-metrics" title="Permalink to this heading">¶</a></h3>
+<p>Which metrics are computed depends on how the model object is initialized. When initializing
+a model object, which metrics to use can be specified using the <cite>metrics</cite> argument.
+When fitting a model, these metrics will then be automatically calculated after the
+model fitting and stored in the model object.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download example data files needed for this example</span>
+<span class="n">freqs</span> <span class="o">=</span> <span class="n">load_example_data</span><span class="p">(</span><span class="s1">&#39;freqs.npy&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">spectrum</span> <span class="o">=</span> <span class="n">load_example_data</span><span class="p">(</span><span class="s1">&#39;spectrum.npy&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a set of metrics to use</span>
+<span class="n">metrics1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;error_mae&#39;</span><span class="p">,</span> <span class="s1">&#39;gof_rsquared&#39;</span><span class="p">]</span>
+
+<span class="c1"># Initialize model with metric specification &amp; fit model</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="n">metrics1</span><span class="p">)</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm1</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_06-Metrics_001.png" srcset="../_images/sphx_glr_plot_06-Metrics_001.png" alt="plot 06 Metrics" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.49
+        Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
+        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        We recommend a lower bound of approximately 2x the frequency resolution.
+
+==================================================================================================
+
+                                       POWER SPECTRUM MODEL
+
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 1-50 Hz frequency range with 0.49 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                         -21.5643, 0.7580
+
+                         Peak Parameters (&#39;gaussian&#39; mode) 4 peaks found
+                                CF:   9.37, PW:   1.04, BW:   1.58
+                                CF:  11.26, PW:   0.23, BW:   2.65
+                                CF:  18.26, PW:   0.33, BW:   2.89
+                                CF:  49.12, PW:   0.09, BW:   2.08
+
+                                    Model fit quality metrics:
+                                     error (mae) is 0.0366
+                                  gof (rsquared) is 0.9831
+
+==================================================================================================
+</pre></div>
+</div>
+<p>After model fitting, values of the computed metrics can be accessed with the
+<code class="xref py py-func docutils literal notranslate"><span class="pre">get_metrics()</span></code> method.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error: &#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_metrics" title="specparam.SpectralModel.get_metrics" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm1</span><span class="o">.</span><span class="n">get_metrics</span></a><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;mae&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;GOF: &#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_metrics" title="specparam.SpectralModel.get_metrics" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm1</span><span class="o">.</span><span class="n">get_metrics</span></a><span class="p">(</span><span class="s1">&#39;gof&#39;</span><span class="p">,</span> <span class="s1">&#39;squared&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Error:  0.03662237267237785
+GOF:  0.983095137562883
+</pre></div>
+</div>
+<p>All the metric results are stored with a Metrics sub-component of the model results, from
+which you can also directly access all the metric results.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the full set of metric results</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;error_mae&#39;: 0.03662237267237785, &#39;gof_rsquared&#39;: 0.983095137562883}
+</pre></div>
+</div>
+</section>
+<section id="default-metrics">
+<h3>Default Metrics<a class="headerlink" href="#default-metrics" title="Permalink to this heading">¶</a></h3>
+<p>You might notice that when specifying the metrics above, we specified metrics that have been
+available during model fitting previously, even when we did not explicitly specify them.</p>
+<p>The two specified metrics above are actually the default metrics, which are selected
+if no explicit metrics definition is given, as we’ve seen in previous examples.</p>
+</section>
+<section id="changing-metrics">
+<h3>Changing Metrics<a class="headerlink" href="#changing-metrics" title="Permalink to this heading">¶</a></h3>
+<p>We can use explicit metric specification to select different metrics to compute, as in the
+next example.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a new set of metrics to use</span>
+<span class="n">metrics2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;error_mse&#39;</span><span class="p">,</span> <span class="s1">&#39;gof_adjrsquared&#39;</span><span class="p">]</span>
+
+<span class="c1"># Initialize model with metric specification &amp; fit model</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm2</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="n">metrics2</span><span class="p">)</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm2</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_06-Metrics_002.png" srcset="../_images/sphx_glr_plot_06-Metrics_002.png" alt="plot 06 Metrics" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.49
+        Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
+        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        We recommend a lower bound of approximately 2x the frequency resolution.
+
+==================================================================================================
+
+                                       POWER SPECTRUM MODEL
+
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 1-50 Hz frequency range with 0.49 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                         -21.5643, 0.7580
+
+                         Peak Parameters (&#39;gaussian&#39; mode) 4 peaks found
+                                CF:   9.37, PW:   1.04, BW:   1.58
+                                CF:  11.26, PW:   0.23, BW:   2.65
+                                CF:  18.26, PW:   0.33, BW:   2.89
+                                CF:  49.12, PW:   0.09, BW:   2.08
+
+                                    Model fit quality metrics:
+                                     error (mse) is 0.0022
+                               gof (adjrsquared) is 0.9803
+
+==================================================================================================
+</pre></div>
+</div>
+</section>
+<section id="adding-additional-metrics">
+<h3>Adding Additional Metrics<a class="headerlink" href="#adding-additional-metrics" title="Permalink to this heading">¶</a></h3>
+<p>We are also not limited to a specific number of metrics. In the following example, we can
+specify a whole selection of different metrics.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a new set of metrics to use</span>
+<span class="n">metrics3</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;error_mae&#39;</span><span class="p">,</span> <span class="s1">&#39;error_mse&#39;</span><span class="p">,</span> <span class="s1">&#39;gof_rsquared&#39;</span><span class="p">,</span> <span class="s1">&#39;gof_adjrsquared&#39;</span><span class="p">]</span>
+
+<span class="c1"># Initialize model with metric specification &amp; fit model</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm3</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="n">metrics3</span><span class="p">)</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm3</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_06-Metrics_003.png" srcset="../_images/sphx_glr_plot_06-Metrics_003.png" alt="plot 06 Metrics" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.49
+        Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
+        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        We recommend a lower bound of approximately 2x the frequency resolution.
+
+==================================================================================================
+
+                                       POWER SPECTRUM MODEL
+
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 1-50 Hz frequency range with 0.49 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                         -21.5643, 0.7580
+
+                         Peak Parameters (&#39;gaussian&#39; mode) 4 peaks found
+                                CF:   9.37, PW:   1.04, BW:   1.58
+                                CF:  11.26, PW:   0.23, BW:   2.65
+                                CF:  18.26, PW:   0.33, BW:   2.89
+                                CF:  49.12, PW:   0.09, BW:   2.08
+
+                                    Model fit quality metrics:
+                                     error (mae) is 0.0366
+                                     error (mse) is 0.0022
+                                  gof (rsquared) is 0.9831
+                               gof (adjrsquared) is 0.9803
+
+==================================================================================================
+</pre></div>
+</div>
+<p>Note that when using get_metrics, you specify the category and measure names.</p>
+<p>To return all available metrics within a specific category, leave the measure specification blank.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_metrics" title="specparam.SpectralModel.get_metrics" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm3</span><span class="o">.</span><span class="n">get_metrics</span></a><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_metrics" title="specparam.SpectralModel.get_metrics" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm3</span><span class="o">.</span><span class="n">get_metrics</span></a><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;mse&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[0.03662237 0.00221921]
+0.002219207489658516
+</pre></div>
+</div>
+<p>As before you can also check the full set of metric results from the object results.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm3</span></a><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;error_mae&#39;: 0.03662237267237785, &#39;error_mse&#39;: 0.002219207489658516, &#39;gof_rsquared&#39;: 0.983095137562883, &#39;gof_adjrsquared&#39;: 0.9803108072791226}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="interpreting-model-fit-quality-measures">
+<h2>Interpreting Model Fit Quality Measures<a class="headerlink" href="#interpreting-model-fit-quality-measures" title="Permalink to this heading">¶</a></h2>
+<p>These scores can be used to assess how the model is performing. However interpreting these
+measures requires a bit of nuance. Model fitting is NOT optimized to minimize fit error /
+maximize r-squared at all costs. To do so typically results in fitting a large number of peaks,
+in a way that overfits noise, and only artificially reduces error / maximizes r-squared.</p>
+<p>The power spectrum model is therefore tuned to try and measure the aperiodic component
+and peaks in a parsimonious manner, and, fit the <cite>right</cite> model (meaning the right aperiodic
+component and the right number of peaks) rather than the model with the lowest error.</p>
+<p>Given this, while high error / low r-squared may indicate a poor model fit, very low
+error / high r-squared may also indicate a power spectrum that is overfit, in particular
+in which the peak parameters from the model may reflect overfitting by fitting too many peaks.</p>
+<p>We therefore recommend that, for a given dataset, initial explorations should involve
+checking both cases in which model fit error is particularly large, as well as when it
+is particularly low. These explorations can be used to pick settings that are suitable
+for running across a group. There are not universal settings that optimize this, and so
+it is left up to the user to choose settings appropriately to not under- or over-fit
+for a given modality / dataset / application.</p>
+</section>
+<section id="defining-custom-metrics">
+<h2>Defining Custom Metrics<a class="headerlink" href="#defining-custom-metrics" title="Permalink to this heading">¶</a></h2>
+<p>In this tutorial, we have explored specifying and using metrics by selecting from measures
+that are defined and available within the module. You can also define custom metrics if
+that is useful for your use case - see an example of this in the Examples.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.588 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-06-metrics-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/36497a82a2feacdfb8bc12fd829742a4/plot_06-Metrics.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_06-Metrics.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/180776dad70ea972439cfad19fad1cc6/plot_06-Metrics.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_06-Metrics.py</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

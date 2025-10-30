@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>specparam.data.FitResults &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>specparam.data.FitResults &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -115,22 +115,20 @@
 <h1>specparam.data.FitResults<a class="headerlink" href="#specparam-data-fitresults" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="specparam.data.FitResults">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.data.</span></span><span class="sig-name descname"><span class="pre">FitResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aperiodic_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_squared</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gaussian_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#FitResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.FitResults" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.data.</span></span><span class="sig-name descname"><span class="pre">FitResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aperiodic_fit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aperiodic_converted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_fit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_converted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/stores.html#FitResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.FitResults" title="Permalink to this definition">¶</a></dt>
 <dd><p>Model results from parameterizing a power spectrum.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>aperiodic_params</strong><span class="classifier">1d array</span></dt><dd><p>Parameters that define the aperiodic fit. As [Offset, (Knee), Exponent].
-The knee parameter is only included if aperiodic is fit with knee.</p>
+<dt><strong>aperiodic_fit</strong><span class="classifier">1d array</span></dt><dd><p>Parameters that define the aperiodic fit.</p>
 </dd>
-<dt><strong>peak_params</strong><span class="classifier">2d array</span></dt><dd><p>Fitted parameter values for the peaks. Each row is a peak, as [CF, PW, BW].</p>
+<dt><strong>aperiodic_fit</strong><span class="classifier">1d array</span></dt><dd><p>Parameters for the aperiodic fit after any applied conversions.</p>
 </dd>
-<dt><strong>r_squared</strong><span class="classifier">float</span></dt><dd><p>R-squared of the fit between the full model fit and the input data.</p>
+<dt><strong>peak_fit</strong><span class="classifier">2d array</span></dt><dd><p>Parameters that define the peak(s) that make up the periodic fit.</p>
 </dd>
-<dt><strong>error</strong><span class="classifier">float</span></dt><dd><p>Error of the full model fit.</p>
+<dt><strong>peak_converted</strong><span class="classifier">2d array</span></dt><dd><p>Parameters for the periodic fit after any applied conversions.</p>
 </dd>
-<dt><strong>gaussian_params</strong><span class="classifier">2d array</span></dt><dd><p>Parameters that define the gaussian fit(s).
-Each row is a gaussian, as [mean, height, standard deviation].</p>
+<dt><strong>metrics</strong><span class="classifier">dict</span></dt><dd><p>Metrics results.</p>
 </dd>
 </dl>
 </dd>
@@ -147,12 +145,12 @@ Each row is a gaussian, as [mean, height, standard deviation].</p>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Introduction to the module, beginning with the model object."><img alt="" src="../_images/sphx_glr_plot_02-PSDModel_thumb.png" />
 <p><a class="reference internal" href="../auto_tutorials/plot_02-PSDModel.html#sphx-glr-auto-tutorials-plot-02-psdmodel-py"><span class="std std-ref">02: Fitting Power Spectrum Models</span></a></p>
   <div class="sphx-glr-thumbnail-title">02: Fitting Power Spectrum Models</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Using the group model object to run fit models across multiple power spectra."><img alt="" src="../_images/sphx_glr_plot_06-GroupFits_thumb.png" />
-<p><a class="reference internal" href="../auto_tutorials/plot_06-GroupFits.html#sphx-glr-auto-tutorials-plot-06-groupfits-py"><span class="std std-ref">06: Fitting group of spectra</span></a></p>
-  <div class="sphx-glr-thumbnail-title">06: Fitting group of spectra</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Tips &amp; tricks for choosing algorithm settings, tuning fits, and troubleshooting."><img alt="" src="../_images/sphx_glr_plot_08-TroubleShooting_thumb.png" />
-<p><a class="reference internal" href="../auto_tutorials/plot_08-TroubleShooting.html#sphx-glr-auto-tutorials-plot-08-troubleshooting-py"><span class="std std-ref">08: Tuning &amp; Troubleshooting</span></a></p>
-  <div class="sphx-glr-thumbnail-title">08: Tuning & Troubleshooting</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Using the group model object to run fit models across multiple power spectra."><img alt="" src="../_images/sphx_glr_plot_08-GroupFits_thumb.png" />
+<p><a class="reference internal" href="../auto_tutorials/plot_08-GroupFits.html#sphx-glr-auto-tutorials-plot-08-groupfits-py"><span class="std std-ref">08: Fitting group of spectra</span></a></p>
+  <div class="sphx-glr-thumbnail-title">08: Fitting group of spectra</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Tips &amp; tricks for choosing algorithm settings, tuning fits, and troubleshooting."><img alt="" src="../_images/sphx_glr_plot_10-TroubleShooting_thumb.png" />
+<p><a class="reference internal" href="../auto_tutorials/plot_10-TroubleShooting.html#sphx-glr-auto-tutorials-plot-10-troubleshooting-py"><span class="std std-ref">10: Tuning &amp; Troubleshooting</span></a></p>
+  <div class="sphx-glr-thumbnail-title">10: Tuning & Troubleshooting</div>
 </div></div></section>
 </section>
 

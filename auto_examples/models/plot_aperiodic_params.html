@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Aperiodic Parameters &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>Aperiodic Parameters &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -135,7 +135,8 @@ to download the full example code.</p>
 <p>First, we will explore the ‘fixed’ model, which fits an offset and exponent value
 to characterize the 1/f-like aperiodic component of the data.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate an example power spectrum</span>
-<span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">(</span>\
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span> <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">2</span><span class="p">]},</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize model object and fit power spectrum</span>
@@ -144,10 +145,10 @@ to characterize the 1/f-like aperiodic component of the data.</p>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the aperiodic parameters</span>
-<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">aperiodic_params_</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">params</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.00504249, 1.00309973])
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.00414911, 1.00246698])
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot annotated model of aperiodic parameters</span>
@@ -166,8 +167,8 @@ in the offset and/or exponent values of a set of models, which we will now explo
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate a group of power spectra</span>
-<span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a><span class="p">(</span>\
-    <span class="nb">len</span><span class="p">(</span><a href="../../generated/specparam.sim.params.Stepper.html#specparam.sim.params.Stepper" title="specparam.sim.params.Stepper" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">exp_steps</span></a><span class="p">),</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="n">ap_params</span><span class="p">,</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">f_rotation</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a><span class="p">(</span><span class="nb">len</span><span class="p">(</span><a href="../../generated/specparam.sim.params.Stepper.html#specparam.sim.params.Stepper" title="specparam.sim.params.Stepper" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">exp_steps</span></a><span class="p">),</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="n">ap_params</span><span class="p">},</span>
+                                        <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">f_rotation</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the set of example power spectra</span>
@@ -194,7 +195,7 @@ in the offset and/or exponent values of a set of models, which we will now explo
 <span class="n">spearmanr</span><span class="p">(</span><span class="n">ap_values</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">ap_values</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SpearmanrResult(correlation=-0.9999999999999999, pvalue=nan)
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SignificanceResult(statistic=0.9999999999999999, pvalue=nan)
 </pre></div>
 </div>
 <p>What we see above matches the common finding that that the offset and exponent are
@@ -213,7 +214,8 @@ two parameters are highly correlated and likely reflect the same change in the d
 <p>Next, let’s explore the knee model, which parameterizes the aperiodic component with
 an offset, knee, and exponent value.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a power spectrum with a knee</span>
-<span class="n">freqs2</span><span class="p">,</span> <span class="n">powers2</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">],</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">freqs2</span><span class="p">,</span> <span class="n">powers2</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">(</span>\
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;knee&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span> <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]},</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize model object and fit power spectrum</span>
@@ -226,10 +228,10 @@ an offset, knee, and exponent value.</p>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_aperiodic_params_004.png" srcset="../../_images/sphx_glr_plot_aperiodic_params_004.png" alt="plot aperiodic params" class = "sphx-glr-single-img"/><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the measured aperiodic parameters</span>
-<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">aperiodic_params_</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">params</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([-0.01445238, 14.40218154,  0.99174061])
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([7.68846836e-03, 1.52916737e+01, 1.00484681e+00])
 </pre></div>
 </div>
 <section id="knee-frequency">
@@ -241,11 +243,11 @@ be interested in is the ‘knee frequency’, which is an estimate of the freque
 at which the knee occurs.</p>
 <p>The <a class="reference internal" href="../../generated/specparam.measures.params.compute_knee_frequency.html#specparam.measures.params.compute_knee_frequency" title="specparam.measures.params.compute_knee_frequency"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_knee_frequency()</span></code></a> function can be used to compute the knee frequency.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the knee frequency from aperiodic parameters</span>
-<span class="n">knee_frequency</span> <span class="o">=</span> <a href="../../generated/specparam.measures.params.compute_knee_frequency.html#specparam.measures.params.compute_knee_frequency" title="specparam.measures.params.compute_knee_frequency" class="sphx-glr-backref-module-specparam-measures-params sphx-glr-backref-type-py-function"><span class="n">compute_knee_frequency</span></a><span class="p">(</span><span class="o">*</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">aperiodic_params_</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">knee_frequency</span> <span class="o">=</span> <a href="../../generated/specparam.measures.params.compute_knee_frequency.html#specparam.measures.params.compute_knee_frequency" title="specparam.measures.params.compute_knee_frequency" class="sphx-glr-backref-module-specparam-measures-params sphx-glr-backref-type-py-function"><span class="n">compute_knee_frequency</span></a><span class="p">(</span><span class="o">*</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Knee frequency: &#39;</span><span class="p">,</span> <span class="n">knee_frequency</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee frequency:  14.725697653730954
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee frequency:  15.091829361463423
 </pre></div>
 </div>
 </section>
@@ -260,10 +262,10 @@ time constant.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Knee derived time constant: &#39;</span><span class="p">,</span> <span class="n">time_constant</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee derived time constant:  0.011050752463415001
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Knee derived time constant:  0.010407947887289304
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.263 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.090 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-models-plot-aperiodic-params-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/db26135e85e3f8b4440c4fc4f5b0ad17/plot_aperiodic_params.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_aperiodic_params.ipynb</span></code></a></p>

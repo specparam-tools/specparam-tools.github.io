@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>08: Fitting group of spectra &#8212; specparam 2.0.0rc4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../faq.html">FAQ</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../visualizers.html">Visualizers</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-tutorials-plot-08-groupfits-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="fitting-group-of-spectra">
+<span id="sphx-glr-auto-tutorials-plot-08-groupfits-py"></span><h1>08: Fitting group of spectra<a class="headerlink" href="#fitting-group-of-spectra" title="Permalink to this heading">¶</a></h1>
+<p>Using the group model object to run fit models across multiple power spectra.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the group model object</span>
+<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a>
+
+<span class="c1"># Import a utility to download and load example data</span>
+<span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">load_example_data</span>
+</pre></div>
+</div>
+<section id="fitting-multiple-spectra">
+<h2>Fitting Multiple Spectra<a class="headerlink" href="#fitting-multiple-spectra" title="Permalink to this heading">¶</a></h2>
+<p>So far, we have explored using the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object to fit
+individual power spectra.</p>
+<p>However, many potential analyses will including many power spectra that need to be fit.</p>
+<p>To support this, here we will introduce the <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> object,
+which applies the model fitting procedure across multiple power spectra.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load examples data files needed for this example</span>
+<span class="n">freqs</span> <span class="o">=</span> <span class="n">load_example_data</span><span class="p">(</span><span class="s1">&#39;group_freqs.npy&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">spectra</span> <span class="o">=</span> <span class="n">load_example_data</span><span class="p">(</span><span class="s1">&#39;group_powers.npy&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For parameterizing a group of spectra, we can use a 1d array of frequency values
+corresponding to a 2d array for power spectra.</p>
+<p>This is the organization of the data we just loaded.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the shape of the loaded data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">freqs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spectra</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(100,)
+(25, 100)
+</pre></div>
+</div>
+</section>
+<section id="spectralgroupmodel">
+<h2>SpectralGroupModel<a class="headerlink" href="#spectralgroupmodel" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> object is very similar to the SpectralModel object
+(programmatically, it inherits from the SpectralModel object), and can be used in the same way.</p>
+<p>The main difference is that instead of running across a single power spectrum, it
+operates across 2D matrices containing multiple power spectra.</p>
+<p>Note that by ‘group’ we mean merely to refer to a group of power-spectra. We
+are not using the term ‘group’ in terms of necessarily referring to multiple subjects
+or any particular idea of what a ‘group’ may be. A group of power spectra could
+be spectra from across channels, or across trials, or across subjects, or
+whatever organization makes sense for the analysis at hand.</p>
+<p>The main differences with the <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> object, are that it uses
+a <cite>power_spectra</cite> attribute, which stores the matrix of power-spectra to be fit,
+and collects fit results into a <cite>group_results</cite> attribute.</p>
+<p>Otherwise, <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> supports all the same functionality,
+accessed in the same way as the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object.</p>
+<p>Internally, it runs the exact same fitting procedure, per spectrum, as the SpectralModel object.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a SpectralGroupModel object, which accepts all the same settings as SpectralModel</span>
+<a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">(</span><span class="n">peak_width_limits</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="n">min_peak_height</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">max_n_peaks</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit a group of power spectra with the .fit() method</span>
+<span class="c1">#  The key difference (compared to SpectralModel) is that it takes a 2D array of spectra</span>
+<span class="c1">#     This matrix should have the shape of [n_spectra, n_freqs]</span>
+<a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.fit" title="specparam.SpectralGroupModel.fit" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">fit</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectra</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting model across 25 power spectra.
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out results</span>
+<a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.print_results" title="specparam.SpectralGroupModel.print_results" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">print_results</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                            GROUP SPECTRAL MODEL RESULTS (25 spectra)
+
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 3-30 Hz frequency range with 0.49 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                        offset   - Min: -22.63, Max: -21.11, Mean: -21.95
+                         exponent - Min:   0.35, Max:   0.98, Mean:  0.66
+
+                      Peak Parameters (&#39;gaussian&#39; mode) 85 total peaks found
+
+                                    Model fit quality metrics:
+                          error (mae) -  Min:  0.025, Max:  0.121, Mean: 0.042
+                       gof (rsquared) -  Min:  0.902, Max:  0.990, Mean: 0.970
+
+==================================================================================================
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a summary of the results across the group</span>
+<a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.plot" title="specparam.SpectralGroupModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_08-GroupFits_001.png" srcset="../_images/sphx_glr_plot_08-GroupFits_001.png" alt="Aperiodic Fit, Fit Quality, Peaks - Center Frequencies" class = "sphx-glr-single-img"/><p>Just as with the SpectralModel object, you can call the convenience method
+<a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.report" title="specparam.SpectralGroupModel.report"><code class="xref py py-meth docutils literal notranslate"><span class="pre">specparam.SpectralGroupModel.report()</span></code></a> to run the fitting, and then print
+the results and plots.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can also save out PDF reports of the group fits, same as for an individual model</span>
+<a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.save_report" title="specparam.SpectralGroupModel.save_report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">save_report</span></a><span class="p">(</span><span class="s1">&#39;group_report&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="group-results">
+<h2>Group Results<a class="headerlink" href="#group-results" title="Permalink to this heading">¶</a></h2>
+<p>The group model object collects fits across power spectra, and stores them in an attribute
+called <code class="docutils literal notranslate"><span class="pre">group_results</span></code>, which is a list of FitResults objects.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out some of the results stored in &#39;group_results&#39;</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[FitResults(aperiodic_fit=array([-21.59318319,   0.66653215]), aperiodic_converted=array([nan, nan]), peak_fit=array([[ 9.40884349,  1.45314926,  1.067695  ],
+       [18.44690064,  0.62588356,  1.18062322]]), peak_converted=array([[ 9.40884349,  1.44216958,  2.13538999],
+       [18.44690064,  0.62328059,  2.36124644]]), metrics={&#39;error_mae&#39;: 0.0541107744579252, &#39;gof_rsquared&#39;: 0.9729491092905388}), FitResults(aperiodic_fit=array([-21.64489241,   0.78113531]), aperiodic_converted=array([nan, nan]), peak_fit=array([[ 9.35008047,  1.60146392,  1.0266677 ],
+       [11.57656498,  0.34739875,  0.62262653],
+       [18.53931725,  0.74005421,  1.18841296]]), peak_converted=array([[ 9.35008047,  1.59782972,  2.05333541],
+       [11.57656498,  0.45031416,  1.24525305],
+       [18.53931725,  0.73999232,  2.37682592]]), metrics={&#39;error_mae&#39;: 0.05327647286380632, &#39;gof_rsquared&#39;: 0.9795696093491033})]
+</pre></div>
+</div>
+<section id="get-params">
+<h3>get_params<a class="headerlink" href="#get-params" title="Permalink to this heading">¶</a></h3>
+<p>To collect results from across all model fits, and to select specific parameters
+you can use the <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_params()</span></code></a> method.</p>
+<p>This method works the same as in the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object, and lets
+you extract specific results by specifying a field, as a string, and (optionally) a
+specific column to extract.</p>
+<p>Since the <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> object collects results from across multiple
+model fits, you should always use <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_params()</span></code></a> to access
+model parameters. The results attributes introduced with the SpectralModel object
+(such as <cite>aperiodic_params_</cite> or <cite>peak_params_</cite>) do not store results across the group,
+as they are defined for individual model fits (and used internally as such by the
+SpectralGroupModel object).</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract aperiodic parameters</span>
+<span class="n">aps</span> <span class="o">=</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">)</span>
+<span class="n">exps</span> <span class="o">=</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">,</span> <span class="s1">&#39;exponent&#39;</span><span class="p">)</span>
+
+<span class="c1"># Extract peak parameters</span>
+<span class="n">peaks</span> <span class="o">=</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;peak&#39;</span><span class="p">)</span>
+<span class="n">cfs</span> <span class="o">=</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;peak&#39;</span><span class="p">,</span> <span class="s1">&#39;CF&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The full list of parameters you can extract is available in the documentation of `get_params`</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_params</span></a><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Return model fit parameters for specified feature(s).
+
+        Parameters
+        ----------
+        field : str or int, optional
+            Column name / index to extract from selected data, if requested.
+            If str, should align with a parameter label for the component fit mode.
+
+        Returns
+        -------
+        out : ndarray
+            Requested data.
+
+        Raises
+        ------
+        NoModelError
+            If there are no model fit results available.
+        ValueError
+            If the input for the `field` input is not understood.
+
+        Notes
+        -----
+        When extracting peak parameters, an additional column is appended to the
+        returned array, indicating the index that the peak came from.
+</pre></div>
+</div>
+<p>Similarly, goodness of fit metrics can be accessed with the
+the <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_metrics" title="specparam.SpectralGroupModel.get_metrics"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_metrics()</span></code></a> method.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract goodness-of-fit metrics</span>
+<span class="n">errors</span> <span class="o">=</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_metrics" title="specparam.SpectralGroupModel.get_metrics" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_metrics</span></a><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
+<span class="n">r2s</span> <span class="o">=</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_metrics" title="specparam.SpectralGroupModel.get_metrics" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_metrics</span></a><span class="p">(</span><span class="s1">&#39;gof&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>More information about the parameters and metrics you can extract is also documented in the
+FitResults object.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab a particular FitResults data object</span>
+<span class="c1">#   Note: you can also index the SpectralGroupModel object directly to access &#39;group_results&#39;</span>
+<a href="../generated/specparam.data.FitResults.html#specparam.data.FitResults" title="specparam.data.FitResults" class="sphx-glr-backref-module-specparam-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">f_res</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Check the documentation for the FitResults, which has descriptions of the parameters</span>
+<span class="nb">print</span><span class="p">(</span><a href="../generated/specparam.data.FitResults.html#specparam.data.FitResults" title="specparam.data.FitResults" class="sphx-glr-backref-module-specparam-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">f_res</span></a><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Model results from parameterizing a power spectrum.
+
+    Parameters
+    ----------
+    aperiodic_fit : 1d array
+        Parameters that define the aperiodic fit.
+    aperiodic_fit : 1d array
+        Parameters for the aperiodic fit after any applied conversions.
+    peak_fit : 2d array
+        Parameters that define the peak(s) that make up the periodic fit.
+    peak_converted : 2d array
+        Parameters for the periodic fit after any applied conversions.
+    metrics : dict
+        Metrics results.
+
+    Notes
+    -----
+    This object is a data object, based on a NamedTuple, with immutable data attributes.
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the extracted exponent values</span>
+<span class="c1">#  Note that this extraction will return an array of length equal to the number of model fits</span>
+<span class="c1">#    The model fit that each parameter relates to is the index of this array</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">exps</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[0.66653215 0.78113531 0.97590104 0.35627236 0.6621615  0.5834865
+ 0.76023717 0.46595493 0.70967039 0.60542052 0.73819673 0.39583901
+ 0.70804224 0.63141843 0.78996749 0.5037491  0.83824914 0.62694516
+ 0.72882274 0.71867155 0.7429979  0.88148144 0.35305517 0.39948363
+ 0.98211792]
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out some of the fit center-frequencies</span>
+<span class="c1">#  Note when you extract peak parameters, an extra column is returned,</span>
+<span class="c1">#  specifying which model fit it came from</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cfs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[ 9.40884349  0.        ]
+ [18.44690064  0.        ]
+ [ 9.35008047  1.        ]
+ [11.57656498  1.        ]
+ [18.53931725  1.        ]
+ [ 9.48277656  2.        ]
+ [11.25741436  2.        ]
+ [12.58286713  2.        ]
+ [18.675832    2.        ]
+ [10.61408598  3.        ]]
+</pre></div>
+</div>
+</section>
+<section id="saving-loading-group-objects">
+<h3>Saving &amp; Loading Group Objects<a class="headerlink" href="#saving-loading-group-objects" title="Permalink to this heading">¶</a></h3>
+<p>The group object also support saving and loading, with the same options for saving out
+different things as defined and described for the SpectralModel object.</p>
+<p>The only difference in saving SpectralGroupModel, is that it saves out a ‘jsonlines’ file,
+in which each line is a JSON object, saving the specified data, settings, and results for
+a single power spectrum.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out group settings &amp; results</span>
+<a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.save" title="specparam.SpectralGroupModel.save" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">save</span></a><span class="p">(</span><span class="s1">&#39;group_results&#39;</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_results</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can then reload this group</span>
+<a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nfg</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">()</span>
+<a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.load" title="specparam.SpectralGroupModel.load" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">nfg</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><span class="s1">&#39;group_results&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print results to check that the loaded group</span>
+<a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.print_results" title="specparam.SpectralGroupModel.print_results" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">nfg</span><span class="o">.</span><span class="n">print_results</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                            GROUP SPECTRAL MODEL RESULTS (25 spectra)
+
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 3-30 Hz frequency range with 0.49 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                        offset   - Min: -22.63, Max: -21.11, Mean: -21.95
+                         exponent - Min:   0.35, Max:   0.98, Mean:  0.66
+
+                      Peak Parameters (&#39;gaussian&#39; mode) 85 total peaks found
+
+                                    Model fit quality metrics:
+                          error (mae) -  Min:  0.025, Max:  0.121, Mean: 0.042
+                       gof (rsquared) -  Min:  0.902, Max:  0.990, Mean: 0.970
+
+==================================================================================================
+</pre></div>
+</div>
+</section>
+<section id="parallel-support">
+<h3>Parallel Support<a class="headerlink" href="#parallel-support" title="Permalink to this heading">¶</a></h3>
+<p>SpectralGroupModel also has support for running in parallel, which can speed things up, since
+each power spectrum can be fit independently.</p>
+<p>The fit method includes an optional parameter <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code>, which if set at 1 (as default),
+will fit models linearly (one at a time, in order). If you set this parameter to some other
+integer, fitting will launch ‘n_jobs’ number of jobs, in parallel. Setting n_jobs to -1 will
+launch model fitting in parallel across all available cores.</p>
+<p>Note, however, that fitting power spectrum models in parallel does not guarantee a quicker
+runtime overall. The computation time per model fit scales with the frequency range fit over,
+and the ‘complexity’ of the power spectra, in terms of number of peaks. For relatively small
+numbers of power spectra (less than ~100), across relatively small frequency ranges
+(say ~3-40Hz), running in parallel may offer no appreciable speed up.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit power spectrum models across a group of power spectra in parallel, using all cores</span>
+<a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.fit" title="specparam.SpectralGroupModel.fit" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">fit</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectra</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting model across 25 power spectra.
+</pre></div>
+</div>
+</section>
+<section id="progress-bar">
+<h3>Progress Bar<a class="headerlink" href="#progress-bar" title="Permalink to this heading">¶</a></h3>
+<p>If you have a large number of spectra to fit with a <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a>,
+and you want to monitor it’s progress, you can also use a progress bar to print out
+fitting progress.</p>
+<p>Progress bar options are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tqdm</span></code> : a progress bar for running in terminals</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tqdm.notebook</span></code> : a progress bar for running in Jupyter notebooks</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit power spectrum models across a group of power spectra, printing a progress bar</span>
+<a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.fit" title="specparam.SpectralGroupModel.fit" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">fit</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectra</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="s1">&#39;tqdm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Running specparam:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+Running specparam:  24%|██▍       | 6/25 [00:00&lt;00:00, 53.30it/s]
+Running specparam:  48%|████▊     | 12/25 [00:00&lt;00:00, 53.00it/s]
+Running specparam:  80%|████████  | 20/25 [00:00&lt;00:00, 62.99it/s]
+Running specparam: 100%|██████████| 25/25 [00:00&lt;00:00, 63.16it/s]
+</pre></div>
+</div>
+</section>
+<section id="extracting-individual-fits">
+<h3>Extracting Individual Fits<a class="headerlink" href="#extracting-individual-fits" title="Permalink to this heading">¶</a></h3>
+<p>When fitting power spectrum models for a group of power spectra, results are stored
+in FitResults objects, which store (only) the results of the model fit,
+not the full model fits themselves.</p>
+<p>To examine individual model fits, <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> can regenerate
+<a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> objects for individual power spectra, with the full
+model available for visualization.
+To do so, you can use the <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_model" title="specparam.SpectralGroupModel.get_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_model()</span></code></a> method.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract a particular spectrum, specified by index</span>
+<span class="c1">#  Here we also specify to regenerate the the full model fit, from the results</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_model" title="specparam.SpectralGroupModel.get_model" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_model</span></a><span class="p">(</span><span class="n">ind</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">regenerate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print results and plot extracted model fit</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_results" title="specparam.SpectralModel.print_results" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">print_results</span></a><span class="p">()</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_08-GroupFits_002.png" srcset="../_images/sphx_glr_plot_08-GroupFits_002.png" alt="plot 08 GroupFits" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                       POWER SPECTRUM MODEL
+
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 1-50 Hz frequency range with 0.49 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                         -21.1789, 1.0580
+
+                         Peak Parameters (&#39;gaussian&#39; mode) 6 peaks found
+                                CF:   7.18, PW:   0.29, BW:   1.00
+                                CF:   9.38, PW:   1.35, BW:   1.74
+                                CF:  11.07, PW:   0.72, BW:   1.17
+                                CF:  12.17, PW:   0.34, BW:   3.82
+                                CF:  18.50, PW:   0.71, BW:   1.90
+                                CF:  19.97, PW:   0.38, BW:   5.52
+
+                                    Model fit quality metrics:
+                                     error (mae) is 0.0304
+                                  gof (rsquared) is 0.9940
+
+==================================================================================================
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<p>Now we have explored fitting power spectrum models and running these fits across multiple
+power spectra. Next we will explore how to fit power spectra across time windows, and
+across different events.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.663 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-08-groupfits-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/068583efad81297580b1ef22ab03df1a/plot_08-GroupFits.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_08-GroupFits.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/0f43446d0a36dab95a6787867cb4decc/plot_08-GroupFits.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_08-GroupFits.py</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

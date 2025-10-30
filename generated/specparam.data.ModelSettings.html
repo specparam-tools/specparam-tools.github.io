@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>specparam.data.ModelSettings &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>specparam.data.ModelSettings &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -115,7 +115,7 @@
 <h1>specparam.data.ModelSettings<a class="headerlink" href="#specparam-data-modelsettings" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="specparam.data.ModelSettings">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.data.</span></span><span class="sig-name descname"><span class="pre">ModelSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peak_width_limits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_n_peaks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_peak_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aperiodic_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#ModelSettings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.ModelSettings" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.data.</span></span><span class="sig-name descname"><span class="pre">ModelSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peak_width_limits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_n_peaks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_peak_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_threshold</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/stores.html#ModelSettings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.ModelSettings" title="Permalink to this definition">¶</a></dt>
 <dd><p>User defined settings for the fitting algorithm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -127,8 +127,6 @@
 <dt><strong>min_peak_height</strong><span class="classifier">float</span></dt><dd><p>Absolute threshold for detecting peaks, in units of the input data.</p>
 </dd>
 <dt><strong>peak_threshold</strong><span class="classifier">float</span></dt><dd><p>Relative threshold for detecting peaks, in units of standard deviation of the input data.</p>
-</dd>
-<dt><strong>aperiodic_mode</strong><span class="classifier">{‘fixed’, ‘knee’}</span></dt><dd><p>Which approach to take for fitting the aperiodic component.</p>
 </dd>
 </dl>
 </dd>

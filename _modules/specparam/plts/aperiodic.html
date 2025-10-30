@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.plts.aperiodic &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>specparam.plts.aperiodic &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -116,10 +116,11 @@
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">specparam.sim.gen</span> <span class="kn">import</span> <span class="n">gen_freqs</span><span class="p">,</span> <span class="n">gen_aperiodic</span>
+<span class="kn">from</span> <span class="nn">specparam.sim.gen</span> <span class="kn">import</span> <span class="n">gen_freqs</span>
 <span class="kn">from</span> <span class="nn">specparam.modutils.dependencies</span> <span class="kn">import</span> <span class="n">safe_import</span><span class="p">,</span> <span class="n">check_dependency</span>
+<span class="kn">from</span> <span class="nn">specparam.modes.modes</span> <span class="kn">import</span> <span class="n">check_mode_definition</span>
+<span class="kn">from</span> <span class="nn">specparam.modes.definitions</span> <span class="kn">import</span> <span class="n">AP_MODES</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.settings</span> <span class="kn">import</span> <span class="n">PLT_FIGSIZES</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.templates</span> <span class="kn">import</span> <span class="n">plot_yshade</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.style</span> <span class="kn">import</span> <span class="n">style_param_plot</span><span class="p">,</span> <span class="n">style_plot</span>
@@ -175,10 +176,9 @@
 <div class="viewcode-block" id="plot_aperiodic_fits"><a class="viewcode-back" href="../../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits">[docs]</a><span class="nd">@savefig</span>
 <span class="nd">@style_plot</span>
 <span class="nd">@check_dependency</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">plot_aperiodic_fits</span><span class="p">(</span><span class="n">aps</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">control_offset</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                        <span class="n">average</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="s1">&#39;sem&#39;</span><span class="p">,</span> <span class="n">plot_individual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                        <span class="n">log_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                        <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">plot_aperiodic_fits</span><span class="p">(</span><span class="n">aps</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_mode</span><span class="p">,</span> <span class="n">control_offset</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+                        <span class="n">shade</span><span class="o">=</span><span class="s1">&#39;sem&#39;</span><span class="p">,</span> <span class="n">plot_individual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot reconstructions of model aperiodic fits.</span>
 
 <span class="sd">    Parameters</span>
@@ -187,6 +187,8 @@
 <span class="sd">        Aperiodic parameters. Each row is a parameter set, as [Off, Exp] or [Off, Knee, Exp].</span>
 <span class="sd">    freq_range : list of [float, float]</span>
 <span class="sd">        The frequency range to plot the peak fits across, as [f_min, f_max].</span>
+<span class="sd">    aperiodic_mode : Mode or str</span>
+<span class="sd">        Aperiodic mode definition.</span>
 <span class="sd">    average : {&#39;mean&#39;, &#39;median&#39;}, optional, default: &#39;mean&#39;</span>
 <span class="sd">        Approach to take to average across components.</span>
 <span class="sd">        If set to None, no average is plotted.</span>
@@ -210,6 +212,8 @@
 <span class="sd">        Additional plot related keyword arguments, with styling options managed by ``style_plot``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="n">aperiodic_mode</span> <span class="o">=</span> <span class="n">check_mode_definition</span><span class="p">(</span><span class="n">aperiodic_mode</span><span class="p">,</span> <span class="n">AP_MODES</span><span class="p">)</span>
+
     <span class="n">ax</span> <span class="o">=</span> <span class="n">check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">plot_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="n">PLT_FIGSIZES</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]))</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">aps</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
@@ -217,9 +221,10 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">colors</span><span class="p">:</span>
             <span class="n">colors</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">by_key</span><span class="p">()[</span><span class="s1">&#39;color&#39;</span><span class="p">])</span>
 
-        <span class="n">recursive_plot</span><span class="p">(</span><span class="n">aps</span><span class="p">,</span> <span class="n">plot_aperiodic_fits</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">freq_range</span><span class="p">),</span>
-                       <span class="n">control_offset</span><span class="o">=</span><span class="n">control_offset</span><span class="p">,</span> <span class="n">log_freqs</span><span class="o">=</span><span class="n">log_freqs</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
-                       <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
+        <span class="n">recursive_plot</span><span class="p">(</span><span class="n">aps</span><span class="p">,</span> <span class="n">plot_function</span><span class="o">=</span><span class="n">plot_aperiodic_fits</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                       <span class="n">freq_range</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">freq_range</span><span class="p">),</span> <span class="n">aperiodic_mode</span><span class="o">=</span><span class="n">aperiodic_mode</span><span class="p">,</span>
+                       <span class="n">control_offset</span><span class="o">=</span><span class="n">control_offset</span><span class="p">,</span> <span class="n">log_freqs</span><span class="o">=</span><span class="n">log_freqs</span><span class="p">,</span>
+                       <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
 
         <span class="n">freqs</span> <span class="o">=</span> <span class="n">gen_freqs</span><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
@@ -237,7 +242,7 @@
                 <span class="n">ap_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
             <span class="c1"># Create &amp; collect the aperiodic component model from parameters</span>
-            <span class="n">ap_vals</span> <span class="o">=</span> <span class="n">gen_aperiodic</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">ap_params</span><span class="p">)</span>
+            <span class="n">ap_vals</span> <span class="o">=</span> <span class="n">aperiodic_mode</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="o">*</span><span class="n">ap_params</span><span class="p">)</span>
             <span class="n">all_ap_vals</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">ap_vals</span>
 
             <span class="k">if</span> <span class="n">plot_individual</span><span class="p">:</span>

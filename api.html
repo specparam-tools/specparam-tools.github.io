@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>API Documentation &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>API Documentation &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -215,23 +215,19 @@
 <p>Functions to manipulate, examine, and analyze model objects.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.objs.compare_model_objs.html#specparam.objs.compare_model_objs" title="specparam.objs.compare_model_objs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_model_objs</span></code></a>(model_objs, aspect)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.models.compare_model_objs.html#specparam.models.compare_model_objs" title="specparam.models.compare_model_objs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_model_objs</span></code></a>(model_objs, aspect)</p></td>
 <td><p>Compare multiple model, checking for consistent attributes.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.objs.combine_model_objs.html#specparam.objs.combine_model_objs" title="specparam.objs.combine_model_objs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combine_model_objs</span></code></a>(model_objs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.models.combine_model_objs.html#specparam.models.combine_model_objs" title="specparam.models.combine_model_objs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combine_model_objs</span></code></a>(model_objs)</p></td>
 <td><p>Combine a group of model objects into a single group model object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.objs.average_group.html#specparam.objs.average_group" title="specparam.objs.average_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">average_group</span></code></a>(group, bands[, avg_method, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.models.average_group.html#specparam.models.average_group" title="specparam.models.average_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">average_group</span></code></a>(group, bands[, avg_method, ...])</p></td>
 <td><p>Average across model fits in a group model object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.objs.average_reconstructions.html#specparam.objs.average_reconstructions" title="specparam.objs.average_reconstructions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">average_reconstructions</span></code></a>(group[, avg_method])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.models.average_reconstructions.html#specparam.models.average_reconstructions" title="specparam.models.average_reconstructions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">average_reconstructions</span></code></a>(group[, avg_method])</p></td>
 <td><p>Average across model reconstructions for a group of power spectra.</p></td>
 </tr>
-</tbody>
-</table>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.fit_models_3d.html#specparam.fit_models_3d" title="specparam.fit_models_3d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_models_3d</span></code></a>(group, freqs, power_spectra[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.models.fit_models_3d.html#specparam.models.fit_models_3d" title="specparam.models.fit_models_3d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_models_3d</span></code></a>(group, freqs, power_spectra[, ...])</p></td>
 <td><p>Fit power spectrum models across a 3d array of power spectra.</p></td>
 </tr>
 </tbody>
@@ -246,7 +242,7 @@
 <p>An object to handle frequency band definitions.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bands</span></code></a>([input_bands])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bands</span></code></a>([input_bands, n_bands])</p></td>
 <td><p>Frequency band definitions.</p></td>
 </tr>
 </tbody>
@@ -260,13 +256,16 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.data.SpectrumMetaData.html#specparam.data.SpectrumMetaData" title="specparam.data.SpectrumMetaData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpectrumMetaData</span></code></a>(freq_range, freq_res)</p></td>
 <td><p>Metadata information about a power spectrum.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.data.ModelSettings.html#specparam.data.ModelSettings" title="specparam.data.ModelSettings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelSettings</span></code></a>(peak_width_limits, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.data.ModelModes.html#specparam.data.ModelModes" title="specparam.data.ModelModes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelModes</span></code></a>(aperiodic_mode, periodic_mode)</p></td>
+<td><p>User defined fit modes for model fitting.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.data.ModelSettings.html#specparam.data.ModelSettings" title="specparam.data.ModelSettings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelSettings</span></code></a>(peak_width_limits, ...)</p></td>
 <td><p>User defined settings for the fitting algorithm.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.data.ModelRunModes.html#specparam.data.ModelRunModes" title="specparam.data.ModelRunModes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelRunModes</span></code></a>(debug, check_freqs, check_data)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.data.ModelChecks.html#specparam.data.ModelChecks" title="specparam.data.ModelChecks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelChecks</span></code></a>(check_freqs, check_data)</p></td>
 <td><p>Checks performed and errors raised by the model.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.data.FitResults.html#specparam.data.FitResults" title="specparam.data.FitResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FitResults</span></code></a>(aperiodic_params, peak_params, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.data.FitResults.html#specparam.data.FitResults" title="specparam.data.FitResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FitResults</span></code></a>(aperiodic_fit, ...)</p></td>
 <td><p>Model results from parameterizing a power spectrum.</p></td>
 </tr>
 </tbody>
@@ -317,6 +316,9 @@
 <tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.data.periodic.threshold_peaks.html#specparam.data.periodic.threshold_peaks" title="specparam.data.periodic.threshold_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">threshold_peaks</span></code></a>(peak_params, threshold[, param])</p></td>
 <td><p>Extract peaks that are above a given threshold value.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.data.periodic.sort_peaks.html#specparam.data.periodic.sort_peaks" title="specparam.data.periodic.sort_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_peaks</span></code></a>(peak_params, sort_param[, direction])</p></td>
+<td><p>Sort peak parameters by specified parameter and direction.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -331,10 +333,10 @@
 <p>The following functions take in model objects directly.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.measures.error.compute_pointwise_error.html#specparam.measures.error.compute_pointwise_error" title="specparam.measures.error.compute_pointwise_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error</span></code></a>(model[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.measures.pointwise.compute_pointwise_error.html#specparam.measures.pointwise.compute_pointwise_error" title="specparam.measures.pointwise.compute_pointwise_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error</span></code></a>(model[, ...])</p></td>
 <td><p>Calculate the frequency by frequency error of a model fit.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.measures.error.compute_pointwise_error_group.html#specparam.measures.error.compute_pointwise_error_group" title="specparam.measures.error.compute_pointwise_error_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error_group</span></code></a>(group[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.measures.pointwise.compute_pointwise_error_group.html#specparam.measures.pointwise.compute_pointwise_error_group" title="specparam.measures.pointwise.compute_pointwise_error_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error_group</span></code></a>(group[, ...])</p></td>
 <td><p>Calculate the frequency by frequency error of model fits for a group of fits.</p></td>
 </tr>
 </tbody>
@@ -343,7 +345,7 @@
 <p>The following functions operate on arrays of models and data, which may be useful for more custom work-flows.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.measures.error.compute_pointwise_error_arr.html#specparam.measures.error.compute_pointwise_error_arr" title="specparam.measures.error.compute_pointwise_error_arr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error_arr</span></code></a>(data_model, data)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.measures.pointwise.compute_pointwise_error_arr.html#specparam.measures.pointwise.compute_pointwise_error_arr" title="specparam.measures.pointwise.compute_pointwise_error_arr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pointwise_error_arr</span></code></a>(model, data)</p></td>
 <td><p>Calculate point-wise error between original data and a model fit of that data.</p></td>
 </tr>
 </tbody>
@@ -481,7 +483,7 @@
 <p>Plots for visualizing <strong>periodic</strong> parameters and model components.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_peak_fits</span></code></a>(peaks[, freq_range, average, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_peak_fits</span></code></a>(peaks, periodic_mode[, ...])</p></td>
 <td><p>Plot reconstructions of model peak fits.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.plts.periodic.plot_peak_params.html#specparam.plts.periodic.plot_peak_params" title="specparam.plts.periodic.plot_peak_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_peak_params</span></code></a>(peaks[, freq_range, ...])</p></td>
@@ -492,7 +494,7 @@
 <p>Plots for visualizing <strong>aperiodic</strong> parameters and model components.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_aperiodic_fits</span></code></a>(aps, freq_range[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_aperiodic_fits</span></code></a>(aps, freq_range, ...[, ...])</p></td>
 <td><p>Plot reconstructions of model aperiodic fits.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.plts.aperiodic.plot_aperiodic_params.html#specparam.plts.aperiodic.plot_aperiodic_params" title="specparam.plts.aperiodic.plot_aperiodic_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_aperiodic_params</span></code></a>(aps[, colors, labels, ax])</p></td>
@@ -529,14 +531,14 @@ Note that these are the same plotting functions that can be called from the mode
 </table>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.plts.time.plot_time_model.html#specparam.plts.time.plot_time_model" title="specparam.plts.time.plot_time_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_time_model</span></code></a>(time_model, **plot_kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.plts.time.plot_time_model.html#specparam.plts.time.plot_time_model" title="specparam.plts.time.plot_time_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_time_model</span></code></a>(time, **plot_kwargs)</p></td>
 <td><p>Plot a figure with subplots visualizing the parameters from a SpectralTimeModel object.</p></td>
 </tr>
 </tbody>
 </table>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.plts.event.plot_event_model.html#specparam.plts.event.plot_event_model" title="specparam.plts.event.plot_event_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_event_model</span></code></a>(event_model, **plot_kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.plts.event.plot_event_model.html#specparam.plts.event.plot_event_model" title="specparam.plts.event.plot_event_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_event_model</span></code></a>(event, **plot_kwargs)</p></td>
 <td><p>Plot a figure with subplots visualizing the parameters from a SpectralTimeEventModel object.</p></td>
 </tr>
 </tbody>
@@ -601,10 +603,10 @@ Note that these are the same plotting functions that can be called from the mode
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.io.models.load_group.html#specparam.io.models.load_group" title="specparam.io.models.load_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_group</span></code></a>(file_name[, file_path])</p></td>
 <td><p>Load a SpectralGroupModel object from file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.io.models.load_time.html#specparam.io.models.load_time" title="specparam.io.models.load_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_time</span></code></a>(file_name[, file_path, peak_org])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/specparam.io.models.load_time.html#specparam.io.models.load_time" title="specparam.io.models.load_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_time</span></code></a>(file_name[, file_path])</p></td>
 <td><p>Load a SpectralTimeModel object from file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.io.models.load_event.html#specparam.io.models.load_event" title="specparam.io.models.load_event"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_event</span></code></a>(file_name[, file_path, peak_org, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/specparam.io.models.load_event.html#specparam.io.models.load_event" title="specparam.io.models.load_event"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_event</span></code></a>(file_name[, file_path])</p></td>
 <td><p>Load a SpectralTimeEventModel object from file.</p></td>
 </tr>
 </tbody>

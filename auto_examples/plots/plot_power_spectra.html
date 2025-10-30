@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Plot Power Spectra &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>Plot Power Spectra &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -150,8 +150,8 @@ aperiodic components with the same oscillations, including theta, alpha &amp; be
 <span class="n">peaks</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
 
 <span class="c1"># Simulate two example power spectra</span>
-<span class="n">freqs</span><span class="p">,</span> <span class="n">powers1</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="n">ap_1</span><span class="p">,</span> <span class="n">peaks</span><span class="p">)</span>
-<span class="n">freqs</span><span class="p">,</span> <span class="n">powers2</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="n">ap_2</span><span class="p">,</span> <span class="n">peaks</span><span class="p">)</span>
+<span class="n">freqs</span><span class="p">,</span> <span class="n">powers1</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="n">ap_1</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="n">peaks</span><span class="p">})</span>
+<span class="n">freqs</span><span class="p">,</span> <span class="n">powers2</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="n">ap_2</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="n">peaks</span><span class="p">})</span>
 </pre></div>
 </div>
 </section>
@@ -217,13 +217,13 @@ in alpha region.</p>
 <span class="n">ap_params</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 
 <span class="c1"># Simulate a single 10 Hz centered alpha</span>
-<span class="n">freqs_al10</span><span class="p">,</span> <span class="n">powers_al10</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="n">ap_params</span><span class="p">,</span>
-                                             <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">nlv</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">freqs_al10</span><span class="p">,</span> <span class="n">powers_al10</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="n">ap_params</span><span class="p">},</span>
+                                             <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span> <span class="n">nlv</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Simulate spectra stepping across alpha center frequency</span>
 <a href="../../generated/specparam.sim.params.Stepper.html#specparam.sim.params.Stepper" title="specparam.sim.params.Stepper" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cf_steps</span></a> <span class="o">=</span> <a href="../../generated/specparam.sim.params.Stepper.html#specparam.sim.params.Stepper" title="specparam.sim.params.Stepper" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-class"><span class="n">Stepper</span></a><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">freqs_al</span><span class="p">,</span> <span class="n">powers_al</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a><span class="p">(</span><span class="nb">len</span><span class="p">(</span><a href="../../generated/specparam.sim.params.Stepper.html#specparam.sim.params.Stepper" title="specparam.sim.params.Stepper" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cf_steps</span></a><span class="p">),</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">ap_params</span><span class="p">,</span>
-                                              <a href="../../generated/specparam.sim.params.param_iter.html#specparam.sim.params.param_iter" title="specparam.sim.params.param_iter" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-function"><span class="n">param_iter</span></a><span class="p">([</span><a href="../../generated/specparam.sim.params.Stepper.html#specparam.sim.params.Stepper" title="specparam.sim.params.Stepper" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cf_steps</span></a><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="n">freqs_al</span><span class="p">,</span> <span class="n">powers_al</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a><span class="p">(</span><span class="nb">len</span><span class="p">(</span><a href="../../generated/specparam.sim.params.Stepper.html#specparam.sim.params.Stepper" title="specparam.sim.params.Stepper" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cf_steps</span></a><span class="p">),</span> <span class="n">freq_range</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="n">ap_params</span><span class="p">},</span>
+                                              <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <a href="../../generated/specparam.sim.params.param_iter.html#specparam.sim.params.param_iter" title="specparam.sim.params.param_iter" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-function"><span class="n">param_iter</span></a><span class="p">([</span><a href="../../generated/specparam.sim.params.Stepper.html#specparam.sim.params.Stepper" title="specparam.sim.params.Stepper" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cf_steps</span></a><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">])})</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the plot, plotting onto the same axes object</span>
@@ -238,7 +238,7 @@ in alpha region.</p>
 <img src="../../_images/sphx_glr_plot_power_spectra_005.png" srcset="../../_images/sphx_glr_plot_power_spectra_005.png" alt="Comparing Alphas" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Comparing Alphas&#39;)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.056 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.889 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plots-plot-power-spectra-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/dc1a2813add9611c09fb37514f162d27/plot_power_spectra.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_power_spectra.ipynb</span></code></a></p>

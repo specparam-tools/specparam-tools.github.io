@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>specparam.models.model &#8212; specparam 2.0.0rc4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../api.html">API</a></li>
+                <li><a href="../../../faq.html">FAQ</a></li>
+                <li><a href="../../../glossary.html">Glossary</a></li>
+                <li><a href="../../../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../visualizers.html">Visualizers</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for specparam.models.model</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Model object, which defines the power spectrum model.</span>
+
+<span class="sd">Code Notes</span>
+<span class="sd">----------</span>
+<span class="sd">Methods without defined docstrings import docs at runtime, from aliased external functions.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">specparam.models.base</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">specparam.data.data</span> <span class="kn">import</span> <span class="n">Data</span>
+<span class="kn">from</span> <span class="nn">specparam.data.conversions</span> <span class="kn">import</span> <span class="n">model_to_dataframe</span>
+<span class="kn">from</span> <span class="nn">specparam.results.results</span> <span class="kn">import</span> <span class="n">Results</span>
+<span class="kn">from</span> <span class="nn">specparam.algorithms.spectral_fit</span> <span class="kn">import</span> <span class="n">SpectralFitAlgorithm</span><span class="p">,</span> <span class="n">SPECTRAL_FIT_SETTINGS_DEF</span>
+<span class="kn">from</span> <span class="nn">specparam.reports.save</span> <span class="kn">import</span> <span class="n">save_model_report</span>
+<span class="kn">from</span> <span class="nn">specparam.reports.strings</span> <span class="kn">import</span> <span class="n">gen_model_results_str</span>
+<span class="kn">from</span> <span class="nn">specparam.modutils.errors</span> <span class="kn">import</span> <span class="n">NoDataError</span><span class="p">,</span> <span class="n">FitError</span>
+<span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="p">(</span><span class="n">copy_doc_func_to_method</span><span class="p">,</span> <span class="n">replace_docstring_sections</span><span class="p">,</span>
+                                     <span class="n">docs_get_section</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">specparam.io.files</span> <span class="kn">import</span> <span class="n">load_json</span>
+<span class="kn">from</span> <span class="nn">specparam.io.models</span> <span class="kn">import</span> <span class="n">save_model</span>
+<span class="kn">from</span> <span class="nn">specparam.plts.model</span> <span class="kn">import</span> <span class="n">plot_model</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+
+<div class="viewcode-block" id="SpectralModel"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel">[docs]</a><span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">SPECTRAL_FIT_SETTINGS_DEF</span><span class="o">.</span><span class="n">make_docstring</span><span class="p">()])</span>
+<span class="k">class</span> <span class="nc">SpectralModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Model a power spectrum as a combination of aperiodic and periodic components.</span>
+
+<span class="sd">    WARNING: frequency and power values inputs must be in linear space. Passing in logged</span>
+<span class="sd">    frequencies and/or power spectra is not detected, and will silently produce incorrect results.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    % copied in from Spectral Fit Algorithm Settings</span>
+<span class="sd">    aperiodic_mode : {&#39;fixed&#39;, &#39;knee&#39;}</span>
+<span class="sd">        Which approach to take for fitting the aperiodic component.</span>
+<span class="sd">    periodic_mode : {&#39;gaussian&#39;, &#39;skewed_gaussian&#39;, &#39;cauchy&#39;}</span>
+<span class="sd">        Which approach to take for fitting the periodic component.</span>
+<span class="sd">    metrics : Metrics or list of Metric or list or str</span>
+<span class="sd">        Metrics definition(s) to use to evaluate the model.</span>
+<span class="sd">    bands : Bands or dict or int or None, optional</span>
+<span class="sd">        Bands object with band definitions, or definition that can be turned into a Bands object.</span>
+<span class="sd">    debug : bool, optional, default: False</span>
+<span class="sd">        Whether to run in debug mode.</span>
+<span class="sd">        If in debug, any errors encountered during fitting will raise an error.</span>
+<span class="sd">    verbose : bool, optional, default: True</span>
+<span class="sd">        Verbosity mode. If True, prints out warnings and general status updates.</span>
+<span class="sd">    **model_kwargs</span>
+<span class="sd">        Additional model fitting related keyword arguments.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    algorithm : Algorithm</span>
+<span class="sd">        Algorithm object with model fitting settings and procedures.</span>
+<span class="sd">    modes : Modes</span>
+<span class="sd">        Modes object with fit mode definitions.</span>
+<span class="sd">    data : Data</span>
+<span class="sd">        Data object with spectral data and metadata.</span>
+<span class="sd">    results : Results</span>
+<span class="sd">        Results object with model fit results and metrics.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - Input power spectra must be provided in linear scale.</span>
+<span class="sd">      Internally they are stored in log10 scale, as this is what the model operates upon.</span>
+<span class="sd">    - Input power spectra should be smooth, as overly noisy power spectra may lead to bad fits.</span>
+<span class="sd">      For example, raw FFT inputs are not appropriate. Where possible and appropriate, use</span>
+<span class="sd">      longer time segments for power spectrum calculation to get smoother power spectra,</span>
+<span class="sd">      as this will give better model fits.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SpectralModel.__init__"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peak_width_limits</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">),</span> <span class="n">max_n_peaks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">min_peak_height</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                 <span class="n">peak_threshold</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">aperiodic_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">periodic_mode</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span>
+                 <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">model_kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize model object.&quot;&quot;&quot;</span>
+
+        <span class="n">BaseModel</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                           <span class="n">aperiodic_mode</span><span class="o">=</span><span class="n">aperiodic_mode</span><span class="p">,</span>
+                           <span class="n">periodic_mode</span><span class="o">=</span><span class="n">periodic_mode</span><span class="p">,</span>
+                           <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="n">modes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="n">bands</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">SpectralFitAlgorithm</span><span class="p">(</span>
+            <span class="n">peak_width_limits</span><span class="o">=</span><span class="n">peak_width_limits</span><span class="p">,</span> <span class="n">max_n_peaks</span><span class="o">=</span><span class="n">max_n_peaks</span><span class="p">,</span>
+            <span class="n">min_peak_height</span><span class="o">=</span><span class="n">min_peak_height</span><span class="p">,</span> <span class="n">peak_threshold</span><span class="o">=</span><span class="n">peak_threshold</span><span class="p">,</span>
+            <span class="n">modes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span>
+            <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">,</span> <span class="o">**</span><span class="n">model_kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralModel.add_data"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.add_data">[docs]</a>    <span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">Data</span><span class="o">.</span><span class="n">add_data</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
+                                 <span class="n">docs_get_section</span><span class="p">(</span><span class="n">Data</span><span class="o">.</span><span class="n">add_data</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Notes&#39;</span><span class="p">)])</span>
+    <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add data (frequencies, and power spectrum values) to the current object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        % copied in from Data object</span>
+<span class="sd">        clear_results : bool, optional, default: True</span>
+<span class="sd">            Whether to clear prior results, if any are present in the object.</span>
+<span class="sd">            This should only be set to False if data for the current results are being re-added.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        % copied in from Data object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Clear results, if present, unless indicated not to</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">_reset_results</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">has_model</span> <span class="ow">and</span> <span class="n">clear_results</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="n">freq_range</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralModel.fit"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">prechecks</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit a power spectrum as a combination of periodic and aperiodic components.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        freqs : 1d array, optional</span>
+<span class="sd">            Frequency values for the power spectrum, in linear space.</span>
+<span class="sd">        power_spectrum : 1d array, optional</span>
+<span class="sd">            Power values, which must be input in linear space.</span>
+<span class="sd">        freq_range : list of [float, float], optional</span>
+<span class="sd">            Frequency range to restrict power spectrum to.</span>
+<span class="sd">            If not provided, keeps the entire range.</span>
+<span class="sd">        prechecks : bool, optional, default: True</span>
+<span class="sd">            Whether to run model fitting pre-checks.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NoDataError</span>
+<span class="sd">            If no data is available to fit.</span>
+<span class="sd">        FitError</span>
+<span class="sd">            If model fitting fails to fit. Only raised in debug mode.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Data is optional, if data has already been added to the object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If freqs &amp; power_spectrum provided together, add data to object.</span>
+        <span class="k">if</span> <span class="n">freqs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">power_spectrum</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">)</span>
+
+        <span class="c1"># Check that data is available</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoDataError</span><span class="p">(</span><span class="s2">&quot;No data available to fit, can not proceed.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">prechecks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">_fit_prechecks</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
+
+        <span class="c1"># In rare cases, the model fails to fit, and so uses try / except</span>
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="c1"># If not set to fail on NaN or Inf data at add time, check data here</span>
+            <span class="c1">#   This serves as a catch all for curve_fits which will fail given NaN or Inf</span>
+            <span class="c1">#   Because FitError&#39;s are by default caught, this allows fitting to continue</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">checks</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">))</span> <span class="ow">or</span> \
+                    <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">)):</span>
+                    <span class="k">raise</span> <span class="n">FitError</span><span class="p">(</span><span class="s2">&quot;Model fitting was skipped because there are NaN or Inf &quot;</span>
+                                   <span class="s2">&quot;values in the data, which preclude model fitting.&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Call the fit function from the algorithm object</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">_fit</span><span class="p">()</span>
+
+            <span class="c1"># Compute post-fit metrics</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">compute_metrics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="n">FitError</span><span class="p">:</span>
+
+            <span class="c1"># If in debug mode, re-raise the error</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">_debug</span><span class="p">:</span>
+                <span class="k">raise</span>
+
+            <span class="c1"># Clear any interim model results that may have run</span>
+            <span class="c1">#   Partial model results shouldn&#39;t be interpreted in light of overall failure</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">_reset_results</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="c1"># Print out status</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model fitting was unsuccessful.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralModel.report"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+               <span class="n">plt_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot_full_range</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run model fit, and display a report, which includes a plot, and printed results.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        freqs : 1d array, optional</span>
+<span class="sd">            Frequency values for the power spectrum.</span>
+<span class="sd">        power_spectrum : 1d array, optional</span>
+<span class="sd">            Power values, which must be input in linear space.</span>
+<span class="sd">        freq_range : list of [float, float], optional</span>
+<span class="sd">            Frequency range to fit the model to.</span>
+<span class="sd">            If not provided, fits across the entire given range.</span>
+<span class="sd">        plt_log : bool, optional, default: False</span>
+<span class="sd">            Whether or not to plot the frequency axis in log space.</span>
+<span class="sd">        plot_full_range : bool, default: False</span>
+<span class="sd">            If True, plots the full range of the given power spectrum.</span>
+<span class="sd">            Only relevant / effective if `freqs` and `power_spectrum` passed in in this call.</span>
+<span class="sd">        **plot_kwargs</span>
+<span class="sd">            Keyword arguments to pass into the plot method.</span>
+<span class="sd">            Plot options with a name conflict be passed by pre-pending &#39;plot_&#39;.</span>
+<span class="sd">            e.g. `freqs`, `power_spectrum` and `freq_range`.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Data is optional, if data has already been added to the object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plt_log</span><span class="o">=</span><span class="n">plt_log</span><span class="p">,</span>
+                  <span class="n">freqs</span><span class="o">=</span><span class="n">freqs</span> <span class="k">if</span> <span class="n">plot_full_range</span> <span class="k">else</span> <span class="n">plot_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;plot_freqs&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                  <span class="n">power_spectrum</span><span class="o">=</span><span class="n">power_spectrum</span> <span class="k">if</span> \
+                      <span class="n">plot_full_range</span> <span class="k">else</span> <span class="n">plot_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;plot_power_spectrum&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                  <span class="n">freq_range</span><span class="o">=</span><span class="n">plot_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;plot_freq_range&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                  <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print_results</span><span class="p">(</span><span class="n">concise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralModel.print_results"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_results">[docs]</a>    <span class="k">def</span> <span class="nf">print_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Print out model fitting results.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        concise : bool, optional, default: False</span>
+<span class="sd">            Whether to print the report in a concise mode, or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">gen_model_results_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concise</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="SpectralModel.plot"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">plot_model</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot_peaks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot_aperiodic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plt_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">add_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">model_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aperiodic_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">peak_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
+
+        <span class="n">plot_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot_peaks</span><span class="o">=</span><span class="n">plot_peaks</span><span class="p">,</span> <span class="n">plot_aperiodic</span><span class="o">=</span><span class="n">plot_aperiodic</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="n">freqs</span><span class="p">,</span>
+                   <span class="n">power_spectrum</span><span class="o">=</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="n">freq_range</span><span class="p">,</span> <span class="n">plt_log</span><span class="o">=</span><span class="n">plt_log</span><span class="p">,</span>
+                   <span class="n">add_legend</span><span class="o">=</span><span class="n">add_legend</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">data_kwargs</span><span class="o">=</span><span class="n">data_kwargs</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="o">=</span><span class="n">model_kwargs</span><span class="p">,</span>
+                   <span class="n">aperiodic_kwargs</span><span class="o">=</span><span class="n">aperiodic_kwargs</span><span class="p">,</span> <span class="n">peak_kwargs</span><span class="o">=</span><span class="n">peak_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralModel.save"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.save">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">save_model</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+             <span class="n">save_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+        <span class="n">save_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">append</span><span class="p">,</span> <span class="n">save_results</span><span class="p">,</span> <span class="n">save_settings</span><span class="p">,</span> <span class="n">save_data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralModel.load"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">regenerate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load in a data file to the current object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        file_name : str or FileObject</span>
+<span class="sd">            File to load data from.</span>
+<span class="sd">        file_path : Path or str, optional</span>
+<span class="sd">            Path to directory to load from. If None, loads from current directory.</span>
+<span class="sd">        regenerate : bool, optional, default: True</span>
+<span class="sd">            Whether to regenerate the model fit from the loaded data, if data is available.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Reset data in object, so old data can&#39;t interfere</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_data_results</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Load JSON file</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+
+        <span class="c1"># Add loaded data to object and check loaded data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="c1"># If settings are not loaded, clear defaults to not have potentially incorrect values</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">names</span><span class="p">)</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+        <span class="c1"># Regenerate model components, based on what is available</span>
+        <span class="k">if</span> <span class="n">regenerate</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freq_res</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">_regenerate_freqs</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">aperiodic</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">_regenerate_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralModel.get_params"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_params">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">Results</span><span class="o">.</span><span class="n">get_params</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralModel.get_metrics"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_metrics">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">Results</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralModel.save_report"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.save_report">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">save_model_report</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">save_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
+
+        <span class="n">save_model_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">add_settings</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpectralModel.to_df"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.to_df">[docs]</a>    <span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert and extract the model results as a pandas object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bands : Bands or int, optional</span>
+<span class="sd">            How to organize peaks into bands.</span>
+<span class="sd">            If Bands, extracts peaks based on band definitions.</span>
+<span class="sd">            If int, extracts the first n peaks.</span>
+<span class="sd">            If not provided, uses the bands definition available in the object.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.Series</span>
+<span class="sd">            Model results organized into a pandas object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">bands</span><span class="p">:</span>
+            <span class="n">bands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">bands</span>
+
+        <span class="k">return</span> <span class="n">model_to_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_results</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="n">bands</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_reset_data_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, data &amp; results attributes to empty.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        clear_freqs : bool, optional, default: False</span>
+<span class="sd">            Whether to clear frequency attributes.</span>
+<span class="sd">        clear_spectrum : bool, optional, default: False</span>
+<span class="sd">            Whether to clear power spectrum attribute.</span>
+<span class="sd">        clear_results : bool, optional, default: False</span>
+<span class="sd">            Whether to clear model results attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">_reset_data</span><span class="p">(</span><span class="n">clear_freqs</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">_reset_results</span><span class="p">(</span><span class="n">clear_results</span><span class="p">)</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

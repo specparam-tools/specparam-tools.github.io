@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.sim.sim &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>specparam.sim.sim &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -115,30 +115,30 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_iter</span><span class="p">,</span> <span class="n">check_flat</span>
-<span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="p">(</span><span class="n">docs_get_section</span><span class="p">,</span> <span class="n">replace_docstring_sections</span><span class="p">,</span>
-                                     <span class="n">docs_replace_param</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_iter</span>
 <span class="kn">from</span> <span class="nn">specparam.sim.params</span> <span class="kn">import</span> <span class="n">collect_sim_params</span>
 <span class="kn">from</span> <span class="nn">specparam.sim.gen</span> <span class="kn">import</span> <span class="n">gen_freqs</span><span class="p">,</span> <span class="n">gen_power_vals</span><span class="p">,</span> <span class="n">gen_rotated_power_vals</span>
 <span class="kn">from</span> <span class="nn">specparam.sim.transform</span> <span class="kn">import</span> <span class="n">compute_rotation_offset</span>
+<span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="p">(</span><span class="n">docs_get_section</span><span class="p">,</span> <span class="n">replace_docstring_sections</span><span class="p">,</span>
+                                     <span class="n">docs_replace_param</span><span class="p">)</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="sim_power_spectrum"><a class="viewcode-back" href="../../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum">[docs]</a><span class="k">def</span> <span class="nf">sim_power_spectrum</span><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span> <span class="n">nlv</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span>
-                       <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">f_rotation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_params</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="sim_power_spectrum"><a class="viewcode-back" href="../../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum">[docs]</a><span class="k">def</span> <span class="nf">sim_power_spectrum</span><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span>
+                       <span class="n">nlv</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">f_rotation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_params</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate a power spectrum.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    freq_range : list of [float, float]</span>
 <span class="sd">        Frequency range to simulate power spectrum across, as [f_low, f_high], inclusive.</span>
-<span class="sd">    aperiodic_params : list of float</span>
-<span class="sd">        Parameters to create the aperiodic component of a power spectrum.</span>
-<span class="sd">        Length should be 2 or 3 (see note).</span>
+<span class="sd">    aperiodic_params : dict of {str : array}</span>
+<span class="sd">        Mode definition and parameters to create the aperiodic component of a power spectrum.</span>
+<span class="sd">        Should be organized as {mode : params}.</span>
 <span class="sd">    periodic_params : list of float or list of list of float</span>
-<span class="sd">        Parameters to create the periodic component of a power spectrum.</span>
-<span class="sd">        Total length of n_peaks * 3 (see note).</span>
+<span class="sd">        Mode definition and parameters to create the periodic component of a power spectrum.</span>
+<span class="sd">        Should be organized as {mode : params}.</span>
 <span class="sd">    nlv : float, optional, default: 0.005</span>
 <span class="sd">        Noise level to add to generated power spectrum.</span>
 <span class="sd">    freq_res : float, optional, default: 0.5</span>
@@ -204,31 +204,35 @@
 <span class="sd">    --------</span>
 <span class="sd">    Generate a power spectrum with a single peak, at 10 Hz:</span>
 
-<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_power_spectrum([1, 50], [0, 2], [10, 0.5, 1])</span>
+<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_power_spectrum([1, 50], {&#39;fixed&#39; : [0, 2]},</span>
+<span class="sd">    ...                                    {&#39;gaussian&#39; : [10, 0.5, 1]})</span>
 
 <span class="sd">    Generate a power spectrum with alpha and beta peaks:</span>
 
-<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_power_spectrum([1, 50], [0, 2], [[10, 0.5, 1], [20, 0.5, 1]])</span>
+<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_power_spectrum([1, 50], {&#39;fixed&#39; : [0, 2]},</span>
+<span class="sd">    ...                                    {&#39;gaussian&#39; : [[10, 0.5, 1], [20, 0.5, 1]]})</span>
 
 <span class="sd">    Generate a power spectrum, that was rotated around a particular frequency point:</span>
 
-<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_power_spectrum([1, 50], [None, 2], [10, 0.5, 1], f_rotation=15)</span>
+<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_power_spectrum([1, 50], {&#39;fixed&#39; : [None, 2]},</span>
+<span class="sd">    ...                                    {&#39;gaussian&#39; : [10, 0.5, 1]}, f_rotation=15)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">freqs</span> <span class="o">=</span> <span class="n">gen_freqs</span><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">f_rotation</span><span class="p">:</span>
 
-        <span class="n">powers</span> <span class="o">=</span> <span class="n">gen_rotated_power_vals</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span>
-                                        <span class="n">check_flat</span><span class="p">(</span><span class="n">periodic_params</span><span class="p">),</span> <span class="n">nlv</span><span class="p">,</span> <span class="n">f_rotation</span><span class="p">)</span>
+        <span class="n">powers</span> <span class="o">=</span> <span class="n">gen_rotated_power_vals</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">aperiodic_params</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">],</span>
+                                        <span class="nb">list</span><span class="p">(</span><span class="n">periodic_params</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nlv</span><span class="p">,</span> <span class="n">f_rotation</span><span class="p">)</span>
 
         <span class="c1"># The rotation changes the offset, so recalculate it&#39;s value &amp; update params</span>
-        <span class="n">new_offset</span> <span class="o">=</span> <span class="n">compute_rotation_offset</span><span class="p">(</span><span class="n">aperiodic_params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">f_rotation</span><span class="p">)</span>
-        <span class="n">aperiodic_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_offset</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">new_offset</span> <span class="o">=</span> <span class="n">compute_rotation_offset</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">aperiodic_params</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">f_rotation</span><span class="p">)</span>
+        <span class="n">aperiodic_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_offset</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">aperiodic_params</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
 
     <span class="k">else</span><span class="p">:</span>
 
-        <span class="n">powers</span> <span class="o">=</span> <span class="n">gen_power_vals</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">check_flat</span><span class="p">(</span><span class="n">periodic_params</span><span class="p">),</span> <span class="n">nlv</span><span class="p">)</span>
+        <span class="n">powers</span> <span class="o">=</span> <span class="n">gen_power_vals</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="o">*</span><span class="n">aperiodic_params</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span>
+                                <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="o">*</span><span class="n">periodic_params</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">nlv</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">return_params</span><span class="p">:</span>
         <span class="n">sim_params</span> <span class="o">=</span> <span class="n">collect_sim_params</span><span class="p">(</span><span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span> <span class="n">nlv</span><span class="p">)</span>
@@ -237,8 +241,9 @@
         <span class="k">return</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span></div>
 
 
-<div class="viewcode-block" id="sim_group_power_spectra"><a class="viewcode-back" href="../../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra">[docs]</a><span class="k">def</span> <span class="nf">sim_group_power_spectra</span><span class="p">(</span><span class="n">n_spectra</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span> <span class="n">nlvs</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span>
-                            <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">f_rotation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_params</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="sim_group_power_spectra"><a class="viewcode-back" href="../../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra">[docs]</a><span class="k">def</span> <span class="nf">sim_group_power_spectra</span><span class="p">(</span><span class="n">n_spectra</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span>
+                            <span class="n">nlvs</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">f_rotation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="n">return_params</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate multiple power spectra.</span>
 
 <span class="sd">    Parameters</span>
@@ -249,9 +254,13 @@
 <span class="sd">        Frequency range to simulate power spectra across, as [f_low, f_high], inclusive.</span>
 <span class="sd">    aperiodic_params : list of float or generator</span>
 <span class="sd">        Parameters for the aperiodic component of the power spectra.</span>
+<span class="sd">    aperiodic_mode : Mode or str</span>
+<span class="sd">        Which kind of aperiodic component to simulate.</span>
 <span class="sd">    periodic_params : list of float or generator</span>
 <span class="sd">        Parameters for the periodic component of the power spectra.</span>
 <span class="sd">        Length of n_peaks * 3.</span>
+<span class="sd">    periodic_mode : Mode or str</span>
+<span class="sd">        Which kind of periodic component to simulate.</span>
 <span class="sd">    nlvs : float or list of float or generator, optional, default: 0.005</span>
 <span class="sd">        Noise level to add to generated power spectrum.</span>
 <span class="sd">    freq_res : float, optional, default: 0.5</span>
@@ -321,28 +330,31 @@
 <span class="sd">    --------</span>
 <span class="sd">    Generate 2 power spectra using the same parameters:</span>
 
-<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_group_power_spectra(2, [1, 50], [0, 2], [10, 0.5, 1])</span>
+<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_group_power_spectra(2, [1, 50], {&#39;fixed&#39; : [0, 2]},</span>
+<span class="sd">    ...                                         {&#39;gaussian&#39; : [10, 0.5, 1]})</span>
 
 <span class="sd">    Generate 10 power spectra, randomly sampling possible parameters:</span>
 
 <span class="sd">    &gt;&gt;&gt; from specparam.sim.params import param_sampler</span>
 <span class="sd">    &gt;&gt;&gt; ap_opts = param_sampler([[0, 1.0], [0, 1.5], [0, 2]])</span>
 <span class="sd">    &gt;&gt;&gt; pe_opts = param_sampler([[], [10, 0.5, 1], [10, 0.5, 1, 20, 0.25, 1]])</span>
-<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_group_power_spectra(10, [1, 50], ap_opts, pe_opts)</span>
+<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_group_power_spectra(10, [1, 50],</span>
+<span class="sd">    ...                                         {&#39;fixed&#39; : ap_opts}, {&#39;gaussian&#39; : pe_opts})</span>
 
 <span class="sd">    Generate 5 power spectra, rotated around 20 Hz:</span>
 
 <span class="sd">    &gt;&gt;&gt; ap_params = [[None, 1], [None, 1.25], [None, 1.5], [None, 1.75], [None, 2]]</span>
 <span class="sd">    &gt;&gt;&gt; pe_params = [10, 0.5, 1]</span>
-<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_group_power_spectra(5, [1, 50], ap_params, pe_params, f_rotation=20)</span>
+<span class="sd">    &gt;&gt;&gt; freqs, powers = sim_group_power_spectra(5, [1, 50], {&#39;fixed&#39; : ap_params},</span>
+<span class="sd">    ...                                         {&#39;gaussian&#39; : pe_params}, f_rotation=20)</span>
 
 <span class="sd">    Generate power spectra stepping across exponent values, and return parameter values:</span>
 
 <span class="sd">    &gt;&gt;&gt; from specparam.sim.params import Stepper, param_iter</span>
 <span class="sd">    &gt;&gt;&gt; ap_params = param_iter([0, Stepper(1, 2, 0.25)])</span>
 <span class="sd">    &gt;&gt;&gt; pe_params = [10, 0.5, 1]</span>
-<span class="sd">    &gt;&gt;&gt; freqs, powers, sps = sim_group_power_spectra(5, [1, 50], ap_params, pe_params,</span>
-<span class="sd">    ...                                              return_params=True)</span>
+<span class="sd">    &gt;&gt;&gt; freqs, powers, sps = sim_group_power_spectra(5, [1, 50], {&#39;fixed&#39; : ap_params},</span>
+<span class="sd">    ...                                              {&#39;gaussian&#39; : pe_params}, return_params=True)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Initialize things</span>
@@ -351,22 +363,26 @@
     <span class="n">sim_params</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_spectra</span>
 
     <span class="c1"># Check if inputs are generators, if not, make them into repeat generators</span>
-    <span class="n">ap_params</span> <span class="o">=</span> <span class="n">check_iter</span><span class="p">(</span><span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">n_spectra</span><span class="p">)</span>
-    <span class="n">pe_params</span> <span class="o">=</span> <span class="n">check_iter</span><span class="p">(</span><span class="n">periodic_params</span><span class="p">,</span> <span class="n">n_spectra</span><span class="p">)</span>
+    <span class="n">ap_params</span> <span class="o">=</span> <span class="n">check_iter</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">aperiodic_params</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_spectra</span><span class="p">)</span>
+    <span class="n">pe_params</span> <span class="o">=</span> <span class="n">check_iter</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">periodic_params</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_spectra</span><span class="p">)</span>
     <span class="n">nlvs</span> <span class="o">=</span> <span class="n">check_iter</span><span class="p">(</span><span class="n">nlvs</span><span class="p">,</span> <span class="n">n_spectra</span><span class="p">)</span>
     <span class="n">f_rots</span> <span class="o">=</span> <span class="n">check_iter</span><span class="p">(</span><span class="n">f_rotation</span><span class="p">,</span> <span class="n">n_spectra</span><span class="p">)</span>
+
+    <span class="c1"># Get the mode definitions</span>
+    <span class="n">ap_mode</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">aperiodic_params</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">pe_mode</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">periodic_params</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># Simulate power spectra</span>
     <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="n">pe</span><span class="p">,</span> <span class="n">nlv</span><span class="p">,</span> <span class="n">f_rot</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_spectra</span><span class="p">),</span> <span class="n">ap_params</span><span class="p">,</span> <span class="n">pe_params</span><span class="p">,</span> <span class="n">nlvs</span><span class="p">,</span> <span class="n">f_rots</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="n">f_rotation</span><span class="p">:</span>
-            <span class="n">powers</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">gen_rotated_power_vals</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="n">check_flat</span><span class="p">(</span><span class="n">pe</span><span class="p">),</span> <span class="n">nlv</span><span class="p">,</span> <span class="n">f_rot</span><span class="p">)</span>
+            <span class="n">powers</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">gen_rotated_power_vals</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="n">pe</span><span class="p">,</span> <span class="n">nlv</span><span class="p">,</span> <span class="n">f_rot</span><span class="p">)</span>
             <span class="n">aperiodic_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_rotation_offset</span><span class="p">(</span><span class="n">ap</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">f_rot</span><span class="p">),</span> <span class="n">ap</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">powers</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">gen_power_vals</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="n">check_flat</span><span class="p">(</span><span class="n">pe</span><span class="p">),</span> <span class="n">nlv</span><span class="p">)</span>
+            <span class="n">powers</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">gen_power_vals</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">ap_mode</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="n">pe_mode</span><span class="p">,</span> <span class="n">pe</span><span class="p">,</span> <span class="n">nlv</span><span class="p">)</span>
 
-        <span class="n">sim_params</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">collect_sim_params</span><span class="p">(</span><span class="n">ap</span><span class="p">,</span> <span class="n">pe</span><span class="p">,</span> <span class="n">nlv</span><span class="p">)</span>
+        <span class="n">sim_params</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">collect_sim_params</span><span class="p">({</span><span class="n">ap_mode</span> <span class="p">:</span> <span class="n">ap</span><span class="p">},</span> <span class="p">{</span><span class="n">pe_mode</span> <span class="p">:</span> <span class="n">pe</span><span class="p">},</span> <span class="n">nlv</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">return_params</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">,</span> <span class="n">sim_params</span>
@@ -402,9 +418,8 @@
 <span class="sd">    See `sim_group_power_spectra` for details on the parameters.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">outputs</span> <span class="o">=</span> <span class="n">sim_group_power_spectra</span><span class="p">(</span><span class="n">n_windows</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span>
-                                      <span class="n">periodic_params</span><span class="p">,</span> <span class="n">nlvs</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">,</span>
-                                      <span class="n">f_rotation</span><span class="p">,</span> <span class="n">return_params</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">sim_group_power_spectra</span><span class="p">(</span><span class="n">n_windows</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span>
+                                      <span class="n">nlvs</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">f_rotation</span><span class="p">,</span> <span class="n">return_params</span><span class="p">)</span>
 
     <span class="n">outputs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
     <span class="n">outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>

@@ -36,8 +36,8 @@ from specparam.modutils.errors import FitError
 ###################################################################################################
 
 # Simulate some example power spectra to use for the example
-freqs, powers = sim_group_power_spectra(25, [1, 50], [1, 1], [10, 0.25, 3],
-                                        nlvs=0.1, freq_res=0.25)
+freqs, powers = sim_group_power_spectra(25, [1, 50], {'fixed' : [1, 1]},
+                                        {'gaussian' : [10, 0.25, 3]}, nlvs=0.1, freq_res=0.25)
 
 ###################################################################################################
 
@@ -59,15 +59,15 @@ fg.fit(freqs, powers)
 #
 # These attributes are:
 #
-# - ``n_null_`` : the number of model results that are null
-# - ``null_inds_`` : the indices of any null model results
+# - ``n_null`` : the number of model results that are null
+# - ``null_inds`` : the indices of any null model results
 #
 
 ###################################################################################################
 
 # Check for failed model fits
-print('Number of Null models  : \t', fg.n_null_)
-print('Indices of Null models : \t', fg.null_inds_)
+print('Number of Null models  : \t', fg.results.n_null)
+print('Indices of Null models : \t', fg.results.null_inds)
 
 ###################################################################################################
 # Inducing Model Fit Failures
@@ -86,7 +86,7 @@ print('Indices of Null models : \t', fg.null_inds_)
 ###################################################################################################
 
 # Hack the object to induce model failures
-fg._maxfev = 50
+fg.algorithm._cf_settings.maxfev = 50
 
 ###################################################################################################
 
@@ -102,8 +102,8 @@ fg.fit(freqs, powers)
 ###################################################################################################
 
 # Check how many model fit failures we have failed model fits
-print('Number of Null models  : \t', fg.n_null_)
-print('Indices of Null models : \t', fg.null_inds_)
+print('Number of Null models  : \t', fg.results.n_null)
+print('Indices of Null models : \t', fg.results.null_inds)
 
 ###################################################################################################
 # Debug Mode
@@ -130,7 +130,7 @@ print('Indices of Null models : \t', fg.null_inds_)
 ###################################################################################################
 
 # Set SpectralGroupModel into debug mode
-fg.set_debug_mode(True)
+fg.algorithm.set_debug(True)
 
 ###################################################################################################
 

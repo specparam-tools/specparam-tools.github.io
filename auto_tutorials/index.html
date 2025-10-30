@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Tutorial &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>Tutorial &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -115,7 +115,7 @@
 <span id="tutorials"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading">¶</a></h1>
 <p>This section has the official tutorial, which introduces the module and demonstrates how to model power spectra.</p>
 <p>This tutorial is designed to be worked through in order.</p>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="A description of and introduction to the power spectrum model."><img alt="" src="../_images/sphx_glr_plot_01-ModelDescription_thumb.png" />
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="A description of and introduction to the spectral parameterization module."><img alt="" src="../_images/sphx_glr_plot_01-ModelDescription_thumb.png" />
 <p><a class="reference internal" href="plot_01-ModelDescription.html#sphx-glr-auto-tutorials-plot-01-modeldescription-py"><span class="std std-ref">01: Model Description</span></a></p>
   <div class="sphx-glr-thumbnail-title">01: Model Description</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Introduction to the module, beginning with the model object."><img alt="" src="../_images/sphx_glr_plot_02-PSDModel_thumb.png" />
@@ -124,27 +124,33 @@
 </div><div class="sphx-glr-thumbcontainer" tooltip="A step-by-step overview of the algorithm for parameterizing neural power spectra."><img alt="" src="../_images/sphx_glr_plot_03-Algorithm_thumb.png" />
 <p><a class="reference internal" href="plot_03-Algorithm.html#sphx-glr-auto-tutorials-plot-03-algorithm-py"><span class="std std-ref">03: Fitting Algorithm</span></a></p>
   <div class="sphx-glr-thumbnail-title">03: Fitting Algorithm</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Further exploring the SpectralModel object, including algorithm settings and available methods."><img alt="" src="../_images/sphx_glr_plot_04-ModelObject_thumb.png" />
-<p><a class="reference internal" href="plot_04-ModelObject.html#sphx-glr-auto-tutorials-plot-04-modelobject-py"><span class="std std-ref">04: Exploring the model object</span></a></p>
-  <div class="sphx-glr-thumbnail-title">04: Exploring the model object</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Choosing and using different modes for fitting the periodic component."><img alt="" src="../_images/sphx_glr_plot_04-PeriodicFitting_thumb.png" />
+<p><a class="reference internal" href="plot_04-PeriodicFitting.html#sphx-glr-auto-tutorials-plot-04-periodicfitting-py"><span class="std std-ref">04: Periodic Component Fitting</span></a></p>
+  <div class="sphx-glr-thumbnail-title">04: Periodic Component Fitting</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Choosing and using different modes for fitting the aperiodic component."><img alt="" src="../_images/sphx_glr_plot_05-AperiodicFitting_thumb.png" />
 <p><a class="reference internal" href="plot_05-AperiodicFitting.html#sphx-glr-auto-tutorials-plot-05-aperiodicfitting-py"><span class="std std-ref">05: Aperiodic Component Fitting</span></a></p>
   <div class="sphx-glr-thumbnail-title">05: Aperiodic Component Fitting</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Using the group model object to run fit models across multiple power spectra."><img alt="" src="../_images/sphx_glr_plot_06-GroupFits_thumb.png" />
-<p><a class="reference internal" href="plot_06-GroupFits.html#sphx-glr-auto-tutorials-plot-06-groupfits-py"><span class="std std-ref">06: Fitting group of spectra</span></a></p>
-  <div class="sphx-glr-thumbnail-title">06: Fitting group of spectra</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Use extensions of the model object to fit power spectra across time."><img alt="" src="../_images/sphx_glr_plot_07-TimeModels_thumb.png" />
-<p><a class="reference internal" href="plot_07-TimeModels.html#sphx-glr-auto-tutorials-plot-07-timemodels-py"><span class="std std-ref">07: Fitting Models over Time</span></a></p>
-  <div class="sphx-glr-thumbnail-title">07: Fitting Models over Time</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Tips &amp; tricks for choosing algorithm settings, tuning fits, and troubleshooting."><img alt="" src="../_images/sphx_glr_plot_08-TroubleShooting_thumb.png" />
-<p><a class="reference internal" href="plot_08-TroubleShooting.html#sphx-glr-auto-tutorials-plot-08-troubleshooting-py"><span class="std std-ref">08: Tuning &amp; Troubleshooting</span></a></p>
-  <div class="sphx-glr-thumbnail-title">08: Tuning & Troubleshooting</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Analyze results from fitting power spectrum models."><img alt="" src="../_images/sphx_glr_plot_09-FurtherAnalysis_thumb.png" />
-<p><a class="reference internal" href="plot_09-FurtherAnalysis.html#sphx-glr-auto-tutorials-plot-09-furtheranalysis-py"><span class="std std-ref">09: Further Analysis</span></a></p>
-  <div class="sphx-glr-thumbnail-title">09: Further Analysis</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This section covers how to access reporting info and reference use of the module."><img alt="" src="../_images/sphx_glr_plot_10-Reporting_thumb.png" />
-<p><a class="reference internal" href="plot_10-Reporting.html#sphx-glr-auto-tutorials-plot-10-reporting-py"><span class="std std-ref">10: Reporting &amp; Referencing</span></a></p>
-  <div class="sphx-glr-thumbnail-title">10: Reporting & Referencing</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="An overview of metrics &amp; model evaluation to examine model fit quality."><img alt="" src="../_images/sphx_glr_plot_06-Metrics_thumb.png" />
+<p><a class="reference internal" href="plot_06-Metrics.html#sphx-glr-auto-tutorials-plot-06-metrics-py"><span class="std std-ref">06: Metrics &amp; Model Evaluation</span></a></p>
+  <div class="sphx-glr-thumbnail-title">06: Metrics & Model Evaluation</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Further exploring the SpectralModel object, including algorithm settings and available methods."><img alt="" src="../_images/sphx_glr_plot_07-ModelObject_thumb.png" />
+<p><a class="reference internal" href="plot_07-ModelObject.html#sphx-glr-auto-tutorials-plot-07-modelobject-py"><span class="std std-ref">07: Exploring the model object</span></a></p>
+  <div class="sphx-glr-thumbnail-title">07: Exploring the model object</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Using the group model object to run fit models across multiple power spectra."><img alt="" src="../_images/sphx_glr_plot_08-GroupFits_thumb.png" />
+<p><a class="reference internal" href="plot_08-GroupFits.html#sphx-glr-auto-tutorials-plot-08-groupfits-py"><span class="std std-ref">08: Fitting group of spectra</span></a></p>
+  <div class="sphx-glr-thumbnail-title">08: Fitting group of spectra</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Use extensions of the model object to fit power spectra across time."><img alt="" src="../_images/sphx_glr_plot_09-TimeModels_thumb.png" />
+<p><a class="reference internal" href="plot_09-TimeModels.html#sphx-glr-auto-tutorials-plot-09-timemodels-py"><span class="std std-ref">09: Fitting Models over Time</span></a></p>
+  <div class="sphx-glr-thumbnail-title">09: Fitting Models over Time</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Tips &amp; tricks for choosing algorithm settings, tuning fits, and troubleshooting."><img alt="" src="../_images/sphx_glr_plot_10-TroubleShooting_thumb.png" />
+<p><a class="reference internal" href="plot_10-TroubleShooting.html#sphx-glr-auto-tutorials-plot-10-troubleshooting-py"><span class="std std-ref">10: Tuning &amp; Troubleshooting</span></a></p>
+  <div class="sphx-glr-thumbnail-title">10: Tuning & Troubleshooting</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Analyze results from fitting power spectrum models."><img alt="" src="../_images/sphx_glr_plot_11-FurtherAnalysis_thumb.png" />
+<p><a class="reference internal" href="plot_11-FurtherAnalysis.html#sphx-glr-auto-tutorials-plot-11-furtheranalysis-py"><span class="std std-ref">11: Further Analysis</span></a></p>
+  <div class="sphx-glr-thumbnail-title">11: Further Analysis</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This section covers how to access reporting info and reference use of the module."><img alt="" src="../_images/sphx_glr_plot_12-Reporting_thumb.png" />
+<p><a class="reference internal" href="plot_12-Reporting.html#sphx-glr-auto-tutorials-plot-12-reporting-py"><span class="std std-ref">12: Reporting &amp; Referencing</span></a></p>
+  <div class="sphx-glr-thumbnail-title">12: Reporting & Referencing</div>
 </div></div><div class="toctree-wrapper compound">
 </div>
 <div class="sphx-glr-footer sphx-glr-footer-gallery docutils container">

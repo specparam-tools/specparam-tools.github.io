@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.data.periodic &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>specparam.data.periodic &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -115,13 +115,11 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">specparam.core.items</span> <span class="kn">import</span> <span class="n">PEAK_INDS</span>
-
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
 <div class="viewcode-block" id="get_band_peak"><a class="viewcode-back" href="../../../generated/specparam.data.periodic.get_band_peak.html#specparam.data.periodic.get_band_peak">[docs]</a><span class="k">def</span> <span class="nf">get_band_peak</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">select_highest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                  <span class="n">thresh_param</span><span class="o">=</span><span class="s1">&#39;PW&#39;</span><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;peak_params&#39;</span><span class="p">):</span>
+                  <span class="n">thresh_param</span><span class="o">=</span><span class="s1">&#39;PW&#39;</span><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;converted&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract peaks from a band of interest from a model object.</span>
 
 <span class="sd">    Parameters</span>
@@ -138,8 +136,9 @@
 <span class="sd">        A minimum threshold value to apply.</span>
 <span class="sd">    thresh_param : {&#39;PW&#39;, &#39;BW&#39;}</span>
 <span class="sd">        Which parameter to threshold on. &#39;PW&#39; is power and &#39;BW&#39; is bandwidth.</span>
-<span class="sd">    attribute : {&#39;peak_params&#39;, &#39;gaussian_params&#39;}</span>
-<span class="sd">        Which attribute of peak data to extract data from.</span>
+<span class="sd">    attribute : {&#39;fit&#39;, &#39;converted&#39;}</span>
+<span class="sd">        Which version of the peak parameters to extract data from.</span>
+<span class="sd">    TODO</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -157,11 +156,11 @@
 <span class="sd">    &gt;&gt;&gt; betas = get_band_peak(model, [13, 30], select_highest=False)  # doctest:+SKIP</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">get_band_peak_arr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">attribute</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span><span class="p">),</span> <span class="n">band</span><span class="p">,</span>
+    <span class="k">return</span> <span class="n">get_band_peak_arr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">periodic</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">attribute</span><span class="p">),</span> <span class="n">band</span><span class="p">,</span>
                              <span class="n">select_highest</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">thresh_param</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_band_peak_group"><a class="viewcode-back" href="../../../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group">[docs]</a><span class="k">def</span> <span class="nf">get_band_peak_group</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh_param</span><span class="o">=</span><span class="s1">&#39;PW&#39;</span><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;peak_params&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="get_band_peak_group"><a class="viewcode-back" href="../../../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group">[docs]</a><span class="k">def</span> <span class="nf">get_band_peak_group</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh_param</span><span class="o">=</span><span class="s1">&#39;PW&#39;</span><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;converted&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract peaks from a band of interest from a group model object.</span>
 
 <span class="sd">    Parameters</span>
@@ -175,8 +174,9 @@
 <span class="sd">        A minimum threshold value to apply.</span>
 <span class="sd">    thresh_param : {&#39;PW&#39;, &#39;BW&#39;}</span>
 <span class="sd">        Which parameter to threshold on. &#39;PW&#39; is power and &#39;BW&#39; is bandwidth.</span>
-<span class="sd">    attribute : {&#39;peak_params&#39;, &#39;gaussian_params&#39;}</span>
-<span class="sd">        Which attribute of peak data to extract data from.</span>
+<span class="sd">    attribute : {&#39;fit&#39;, &#39;converted&#39;}</span>
+<span class="sd">        Which version of the peak parameters to extract data from.</span>
+<span class="sd">    TODO</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -196,8 +196,8 @@
 <span class="sd">    you can do something like:</span>
 
 <span class="sd">    &gt;&gt;&gt; peaks = np.empty((0, 3))</span>
-<span class="sd">    &gt;&gt;&gt; for res in group:  # doctest:+SKIP</span>
-<span class="sd">    ...     peaks = np.vstack((peaks, get_band_peak(res.peak_params, band, select_highest=False)))</span>
+<span class="sd">    &gt;&gt;&gt; for res in group.results:  # doctest:+SKIP</span>
+<span class="sd">    ...     peaks = np.vstack((peaks, get_band_peak_arr(res.peak_params, band, select_highest=False)))</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -210,11 +210,11 @@
 <span class="sd">    &gt;&gt;&gt; betas = get_band_peak_group(group, [13, 30], threshold=0.1)  # doctest:+SKIP</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">get_band_peak_group_arr</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="n">attribute</span><span class="p">),</span> <span class="n">band</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">),</span>
+    <span class="k">return</span> <span class="n">get_band_peak_group_arr</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="s1">&#39;peak&#39;</span><span class="p">),</span> <span class="n">band</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="p">),</span>
                                    <span class="n">threshold</span><span class="p">,</span> <span class="n">thresh_param</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_band_peak_event"><a class="viewcode-back" href="../../../generated/specparam.data.periodic.get_band_peak_event.html#specparam.data.periodic.get_band_peak_event">[docs]</a><span class="k">def</span> <span class="nf">get_band_peak_event</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh_param</span><span class="o">=</span><span class="s1">&#39;PW&#39;</span><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;peak_params&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="get_band_peak_event"><a class="viewcode-back" href="../../../generated/specparam.data.periodic.get_band_peak_event.html#specparam.data.periodic.get_band_peak_event">[docs]</a><span class="k">def</span> <span class="nf">get_band_peak_event</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh_param</span><span class="o">=</span><span class="s1">&#39;PW&#39;</span><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="s1">&#39;converted&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract peaks from a band of interest from an event model object.</span>
 
 <span class="sd">    Parameters</span>
@@ -231,8 +231,8 @@
 <span class="sd">        A minimum threshold value to apply.</span>
 <span class="sd">    thresh_param : {&#39;PW&#39;, &#39;BW&#39;}</span>
 <span class="sd">        Which parameter to threshold on. &#39;PW&#39; is power and &#39;BW&#39; is bandwidth.</span>
-<span class="sd">    attribute : {&#39;peak_params&#39;, &#39;gaussian_params&#39;}</span>
-<span class="sd">        Which attribute of peak data to extract data from.</span>
+<span class="sd">    attribute : {&#39;fit&#39;, &#39;converted&#39;}</span>
+<span class="sd">        Which version of the peak parameters to extract data from.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -240,8 +240,8 @@
 <span class="sd">        Array of peak data, organized as [n_events, n_time_windows, n_peak_params].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">event</span><span class="o">.</span><span class="n">n_events</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">n_time_windows</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">n_events</span><span class="p">):</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">n_events</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">n_time_windows</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">n_events</span><span class="p">):</span>
         <span class="n">peaks</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">get_band_peak_group</span><span class="p">(</span>\
             <span class="n">event</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">),</span> <span class="n">band</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">thresh_param</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span>
 
@@ -398,10 +398,44 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
 
     <span class="c1"># Otherwise, apply a mask to apply the requested threshold</span>
-    <span class="n">thresh_mask</span> <span class="o">=</span> <span class="n">peak_params</span><span class="p">[:,</span> <span class="n">PEAK_INDS</span><span class="p">[</span><span class="n">param</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+    <span class="c1">#   TEMP: interim hardcode for parameter index while updating for modes</span>
+    <span class="n">thresh_mask</span> <span class="o">=</span> <span class="n">peak_params</span><span class="p">[:,</span> <span class="p">{</span><span class="s1">&#39;PW&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;BW&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">}[</span><span class="n">param</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="n">threshold</span>
     <span class="n">thresholded_peaks</span> <span class="o">=</span> <span class="n">peak_params</span><span class="p">[</span><span class="n">thresh_mask</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">thresholded_peaks</span></div>
+
+
+<div class="viewcode-block" id="sort_peaks"><a class="viewcode-back" href="../../../generated/specparam.data.periodic.sort_peaks.html#specparam.data.periodic.sort_peaks">[docs]</a><span class="k">def</span> <span class="nf">sort_peaks</span><span class="p">(</span><span class="n">peak_params</span><span class="p">,</span> <span class="n">sort_param</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;inc&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sort peak parameters by specified parameter and direction.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    peak_params : 2d array</span>
+<span class="sd">        Peak parameters, with shape of [n_peaks, 3].</span>
+<span class="sd">    sort_param : {&#39;CF&#39;, &#39;PW&#39;, &#39;BW&#39;}</span>
+<span class="sd">        Which parameter to sort the parameters by.</span>
+<span class="sd">    direction : {&#39;inc&#39;, &#39;dec&#39;}</span>
+<span class="sd">        Whether to sort as increasing (lowest -&gt; highest) or decreasing (highest -&gt; lowest).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sorted_peaks : 2d array</span>
+<span class="sd">        Sorted peak parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Return nan array if empty input</span>
+    <span class="k">if</span> <span class="n">peak_params</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
+
+    <span class="c1"># NOTE - TEMP: interim hardcode for parameter index while updating for modes</span>
+    <span class="n">param_ind</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;CF&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;PW&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;BW&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">}[</span><span class="n">sort_param</span><span class="p">]</span>
+
+    <span class="n">peak_params</span> <span class="o">=</span> <span class="n">peak_params</span><span class="p">[</span><span class="n">peak_params</span><span class="p">[:,</span> <span class="n">param_ind</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()]</span>
+
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;dec&#39;</span><span class="p">:</span>
+        <span class="n">peak_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">peak_params</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">peak_params</span></div>
 </pre></div>
 
     </div>

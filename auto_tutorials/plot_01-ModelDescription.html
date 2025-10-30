@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>01: Model Description &#8212; specparam 2.0.0rc3 documentation</title>
+    <title>01: Model Description &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=54d48845"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -57,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc3</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -119,12 +119,12 @@ to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="model-description">
 <span id="sphx-glr-auto-tutorials-plot-01-modeldescription-py"></span><h1>01: Model Description<a class="headerlink" href="#model-description" title="Permalink to this heading">¶</a></h1>
-<p>A description of and introduction to the power spectrum model.</p>
+<p>A description of and introduction to the spectral parameterization module.</p>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>Welcome to the tutorials!</p>
-<p>In this first tutorial, we will introduce an overview and description of power spectrum
-model, as well as visualizing some examples.</p>
+<p>In this first tutorial, we will introduce an overview and description of the
+spectral parameterization module, as well as visualizing some examples.</p>
 <p>Keep in mind as you go, that if you want more information that describes, motivates, and
 justifies our modeling approach, you can also check out the associated
 <a class="reference external" href="https://doi.org/10.1038/s41593-020-00744-x">paper</a>,
@@ -135,9 +135,9 @@ section of the site.</p>
 <h3>Example Power Spectra and Models<a class="headerlink" href="#example-power-spectra-and-models" title="Permalink to this heading">¶</a></h3>
 <p>First, we will import and run some code to simulate some example power spectra, and
 fit some power spectrum models to them, to use as examples.</p>
-<p>For the purpose of this tutorial, you don’t need to know how this code works
-yet, and can skip past reading the code itself.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import required code for visualizing example models</span>
+<p>Note that for the purpose of this tutorial, you don’t need to know exactly how this code works
+yet, as the details of what is happening will be clarified across the rest of the tutorials.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import required code for simulating and visualizing example models</span>
 <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 <span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
 <span class="kn">from</span> <span class="nn">specparam.sim.utils</span> <span class="kn">import</span> <a href="../generated/specparam.sim.utils.set_random_seed.html#specparam.sim.utils.set_random_seed" title="specparam.sim.utils.set_random_seed" class="sphx-glr-backref-module-specparam-sim-utils sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a>
@@ -149,10 +149,10 @@ yet, and can skip past reading the code itself.</p>
 <a href="../generated/specparam.sim.utils.set_random_seed.html#specparam.sim.utils.set_random_seed" title="specparam.sim.utils.set_random_seed" class="sphx-glr-backref-module-specparam-sim-utils sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
 
 <span class="c1"># Simulate example power spectra</span>
-<span class="n">freqs1</span><span class="p">,</span> <span class="n">powers1</span> <span class="o">=</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-                                     <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
-<span class="n">freqs2</span><span class="p">,</span> <span class="n">powers2</span> <span class="o">=</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">],</span>
-                                     <span class="p">[[</span><span class="mi">8</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">freqs1</span><span class="p">,</span> <span class="n">powers1</span> <span class="o">=</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span>
+                                     <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]})</span>
+<span class="n">freqs2</span><span class="p">,</span> <span class="n">powers2</span> <span class="o">=</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;knee&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">]},</span>
+                                     <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="p">[[</span><span class="mi">8</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]})</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize power spectrum model objects and fit the power spectra</span>
@@ -268,21 +268,6 @@ where as horizontal labels reflect parameters measured in y-axis units, so power
 </ul>
 <p>Wherever we detect a peak, these are the parameters that we will fit to the peak,
 to describe this component of the data.</p>
-<section id="mathematical-description-of-the-periodic-component">
-<h3>Mathematical Description of the Periodic Component<a class="headerlink" href="#mathematical-description-of-the-periodic-component" title="Permalink to this heading">¶</a></h3>
-<p>To fit this periodic activity - the regions of power over above the aperiodic component,
-or ‘peaks’ - the model uses Gaussians. As we’ve seen, there can be multiple peaks in the model.</p>
-<p>Each Gaussian, <span class="math notranslate nohighlight">\(n\)</span>, referred to as <span class="math notranslate nohighlight">\(G(F)_n\)</span>, is of the form:</p>
-<div class="math notranslate nohighlight">
-\[G(F)_n = a * exp (\frac{- (F - c)^2}{2 * w^2})\]</div>
-<p>This describes each peak in terms of parameters <cite>a</cite>, <cite>c</cite> and <cite>w</cite>, where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(a\)</span> is the height of the peak, over and above the aperiodic component</p></li>
-<li><p><span class="math notranslate nohighlight">\(c\)</span> is the center frequency of the peak</p></li>
-<li><p><span class="math notranslate nohighlight">\(w\)</span> is the width of the peak</p></li>
-<li><p><span class="math notranslate nohighlight">\(F\)</span> is the array of frequency values</p></li>
-</ul>
-</section>
 </section>
 <section id="aperiodic-component">
 <h2>Aperiodic Component<a class="headerlink" href="#aperiodic-component" title="Permalink to this heading">¶</a></h2>
@@ -303,34 +288,6 @@ activity (peaks).</p>
 <li><p>the <cite>exponent</cite>, which describes the ‘curve’, or overall ‘line’ of the aperiodic component</p></li>
 </ul>
 <p>Note that diagonal labels indicate unit-less measures (in neither units of frequency or power).</p>
-<section id="mathematical-description-of-the-aperiodic-component">
-<h3>Mathematical Description of the Aperiodic Component<a class="headerlink" href="#mathematical-description-of-the-aperiodic-component" title="Permalink to this heading">¶</a></h3>
-<p>To fit the aperiodic component, we will use the function <span class="math notranslate nohighlight">\(L\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[L(F) = b - \log(k + F^\chi)\]</div>
-<p>Note that this function is fit on the semi-log power spectrum, meaning linear frequencies
-and <span class="math notranslate nohighlight">\(log_{10}\)</span> power values.</p>
-<p>In this formulation, the parameters <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(k\)</span>, and <span class="math notranslate nohighlight">\(\chi\)</span>
-define the aperiodic component, as:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(b\)</span> is the broadband ‘offset’</p></li>
-<li><p><span class="math notranslate nohighlight">\(k\)</span> is the ‘knee’</p></li>
-<li><p><span class="math notranslate nohighlight">\(\chi\)</span> is the ‘exponent’ of the aperiodic fit</p></li>
-<li><p><span class="math notranslate nohighlight">\(F\)</span> is the array of frequency values</p></li>
-</ul>
-<p>Note that fitting the knee parameter is optional. If used, the knee parameter defines a
-‘bend’ in the aperiodic <cite>1/f</cite> like component of the data. If not used, the ‘knee’
-parameter is set to zero.</p>
-<p>This function form is technically described as a Lorentzian function. We use the option
-of adding a knee parameter, since even though neural data is often discussed in terms
-of having <cite>1/f</cite> activity, there is often not a single <cite>1/f</cite> characteristic, especially
-across broader frequency ranges. Therefore, using this function form allows for modeling
-bends in the power spectrum of the aperiodic component, if and when they occur.</p>
-<p>Note that if we were to want the equivalent function in linear power, using <span class="math notranslate nohighlight">\(AP\)</span>
-to indicate the aperiodic component in linear spacing, it would be:</p>
-<div class="math notranslate nohighlight">
-\[AP(F) = 10^b * \frac{1}{(k + F^\chi)}\]</div>
-</section>
 <section id="a-note-on-logging">
 <h3>A Note on Logging<a class="headerlink" href="#a-note-on-logging" title="Permalink to this heading">¶</a></h3>
 <p>So far, we have been plotting in semi-log, meaning the x-axis (frequency) is in linear
@@ -347,26 +304,6 @@ spacing. This is a hallmark of <cite>1/f</cite> activity.</p>
 </pre></div>
 </div>
 <img src="../_images/sphx_glr_plot_01-ModelDescription_005.png" srcset="../_images/sphx_glr_plot_01-ModelDescription_005.png" alt="plot 01 ModelDescription" class = "sphx-glr-single-img"/></section>
-<section id="relating-exponents-to-power-spectrum-slope">
-<h3>Relating Exponents to Power Spectrum Slope<a class="headerlink" href="#relating-exponents-to-power-spectrum-slope" title="Permalink to this heading">¶</a></h3>
-<p>Another way to measure 1/f properties in neural power spectra is to measure the slope
-of the spectrum in log-log spacing, fitting a linear equation as:</p>
-<div class="math notranslate nohighlight">
-\[L(log(F)) = aF + b\]</div>
-<p>Where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(a\)</span> is the power spectrum slope</p></li>
-<li><p><span class="math notranslate nohighlight">\(b\)</span> is the offset</p></li>
-<li><p><span class="math notranslate nohighlight">\(F\)</span> is the array of frequency values</p></li>
-</ul>
-<p>In this formulation, the data is considered in log-log space, meaning the frequency values
-are also in log space. Since 1/f is a straight line in log-log spacing, this approach captures
-1/f activity.</p>
-<p>This is equivalent to the power spectrum model in this module, when fitting with no knee,
-with a direct relationship between the slope (<span class="math notranslate nohighlight">\(a\)</span>) and the exponent (<span class="math notranslate nohighlight">\(\chi\)</span>):</p>
-<div class="math notranslate nohighlight">
-\[\chi = -a\]</div>
-</section>
 <section id="fitting-knees">
 <h3>Fitting Knees<a class="headerlink" href="#fitting-knees" title="Permalink to this heading">¶</a></h3>
 <p>In the original model we fit and explored, there was no aperiodic ‘knee’. Depending on
@@ -388,11 +325,15 @@ references the knee as the dot on the plot at the bend point.</p>
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p>So far, we have explored how neural power spectra, <span class="math notranslate nohighlight">\(NPS\)</span>, across a set of frequencies
 <span class="math notranslate nohighlight">\(F\)</span> can be modeled as a combination of an aperiodic component, <span class="math notranslate nohighlight">\(L\)</span>, and the
-periodic component, which is comprised of <cite>N</cite> peaks, where each <span class="math notranslate nohighlight">\(G_n\)</span> is a Gaussian.</p>
-<p>To summarize, the full model is:</p>
+periodic component (P), which is comprised of a group of <cite>N</cite> peaks.</p>
+<p>To summarize, the full model, in abstract terms, is:</p>
 <div class="math notranslate nohighlight">
-\[NPS(F) = L(F) + G(F)_n\]</div>
-<p>where:</p>
+\[NPS(F) = L(F) + P(F)_n\]</div>
+<p>In further tutorials we will dig into the details of choosing specific fit functions
+to instantiate this model. For now, using the defaults as above, we have
+been fitting a model that uses fits the the aperiodic component as a Lorentzian,
+and the periodic component as Gaussians.</p>
+<p>Using these fit functions, the model has this form:</p>
 <div class="math notranslate nohighlight">
 \[L(F) = b - \log(k + F^\chi) \quad \quad G(F)_n = a * exp (\frac{- (F - c)^2}{2 * w^2})\]</div>
 <p>This approach allows us to measure periodic and aperiodic activity from neural
@@ -406,7 +347,7 @@ the <cite>offset</cite>, <cite>knee</cite> and <cite>exponent</cite>, respective
 <p>For more technical details on the model formulation and fitting process, check out the
 <a class="reference external" href="https://doi.org/10.1038/s41593-020-00744-x">paper</a>.</p>
 <p>In the next tutorial, we will start to use this model.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.786 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.554 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-01-modeldescription-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/8bfec2e3f0f74ee4d9194f322c31b51e/plot_01-ModelDescription.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_01-ModelDescription.ipynb</span></code></a></p>
