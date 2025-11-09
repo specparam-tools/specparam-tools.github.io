@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>specparam.results.results &#8212; specparam 2.0.0rc4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../api.html">API</a></li>
+                <li><a href="../../../faq.html">FAQ</a></li>
+                <li><a href="../../../glossary.html">Glossary</a></li>
+                <li><a href="../../../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="../../../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../visualizers.html">Visualizers</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for specparam.results.results</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Define results objects.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">repeat</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">specparam.bands.bands</span> <span class="kn">import</span> <span class="n">check_bands</span>
+<span class="kn">from</span> <span class="nn">specparam.modes.modes</span> <span class="kn">import</span> <span class="n">Modes</span>
+<span class="kn">from</span> <span class="nn">specparam.results.params</span> <span class="kn">import</span> <span class="n">ModelParameters</span>
+<span class="kn">from</span> <span class="nn">specparam.results.components</span> <span class="kn">import</span> <span class="n">ModelComponents</span>
+<span class="kn">from</span> <span class="nn">specparam.metrics.metrics</span> <span class="kn">import</span> <span class="n">Metrics</span>
+<span class="kn">from</span> <span class="nn">specparam.metrics.definitions</span> <span class="kn">import</span> <span class="n">METRICS</span>
+<span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_inds</span><span class="p">,</span> <span class="n">check_array_dim</span>
+<span class="kn">from</span> <span class="nn">specparam.modutils.errors</span> <span class="kn">import</span> <span class="n">NoModelError</span>
+<span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="p">(</span><span class="n">copy_doc_func_to_method</span><span class="p">,</span> <span class="n">docs_get_section</span><span class="p">,</span>
+                                     <span class="n">replace_docstring_sections</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">specparam.data.stores</span> <span class="kn">import</span> <span class="n">FitResults</span>
+<span class="kn">from</span> <span class="nn">specparam.data.conversions</span> <span class="kn">import</span> <span class="n">group_to_dict</span><span class="p">,</span> <span class="n">event_group_to_dict</span>
+<span class="kn">from</span> <span class="nn">specparam.data.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">get_model_params</span><span class="p">,</span> <span class="n">get_group_params</span><span class="p">,</span> <span class="n">get_group_metrics</span><span class="p">,</span>
+                                  <span class="n">get_results_by_ind</span><span class="p">,</span> <span class="n">get_results_by_row</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">specparam.sim.gen</span> <span class="kn">import</span> <span class="n">gen_model</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+
+<span class="c1"># Define set of results fields &amp; default metrics to use</span>
+<span class="n">DEFAULT_METRICS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;error_mae&#39;</span><span class="p">,</span> <span class="s1">&#39;gof_rsquared&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Results"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results">[docs]</a><span class="k">class</span> <span class="nc">Results</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Object for managing results - base / 1D version.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    modes : Modes</span>
+<span class="sd">        Modes object with fit mode definitions.</span>
+<span class="sd">    metrics : Metrics</span>
+<span class="sd">        Metrics object with metric definitions.</span>
+<span class="sd">    bands : Bands or dict or int or None</span>
+<span class="sd">        Bands object with band definitions, or definition that can be turned into a Bands object.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    modes : Modes</span>
+<span class="sd">        Modes object with fit mode definitions.</span>
+<span class="sd">    bands : Bands</span>
+<span class="sd">        Bands object with band definitions.</span>
+<span class="sd">    model : ModelComponents</span>
+<span class="sd">        Manages the model fit and components.</span>
+<span class="sd">    params : ModelParameters</span>
+<span class="sd">        Manages the model fit parameters.</span>
+<span class="sd">    metrics : Metrics</span>
+<span class="sd">        Metrics object with metric definitions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># pylint: disable=attribute-defined-outside-init, arguments-differ</span>
+
+<div class="viewcode-block" id="Results.__init__"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Results object.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="o">=</span> <span class="n">modes</span> <span class="k">if</span> <span class="n">modes</span> <span class="k">else</span> <span class="n">Modes</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_bands</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_metrics</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">ModelComponents</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">ModelParameters</span><span class="p">(</span><span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">)</span>
+
+        <span class="c1"># Initialize results attributes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_results</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator for if the object contains a model fit.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This checks the aperiodic params, which are necessarily defined if a model has been fit.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">has_params</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;How many peaks were fit in the model.&quot;&quot;&quot;</span>
+
+        <span class="n">n_peaks</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span><span class="p">:</span>
+            <span class="n">n_peaks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">periodic</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">n_peaks</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The total number of parameters fit in the model.&quot;&quot;&quot;</span>
+
+        <span class="n">n_params</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span><span class="p">:</span>
+            <span class="n">n_peak_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span><span class="o">.</span><span class="n">n_params</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_peaks</span>
+            <span class="n">n_params</span> <span class="o">=</span> <span class="n">n_peak_params</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">n_params</span>
+
+        <span class="k">return</span> <span class="n">n_params</span>
+
+
+<div class="viewcode-block" id="Results.add_bands"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.add_bands">[docs]</a>    <span class="k">def</span> <span class="nf">add_bands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bands</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add bands definition to object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bands : Bands or dict or int or None</span>
+<span class="sd">            How to organize peaks into bands.</span>
+<span class="sd">            If Bands, defines band ranges, if int, specifies a number of bands to consider.</span>
+<span class="sd">            If dict, should be a set of band definitions to be converted into a Bands object.</span>
+<span class="sd">            If None, sets bands as an empty Bands object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bands</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">check_bands</span><span class="p">(</span><span class="n">bands</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Results.add_metrics"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.add_metrics">[docs]</a>    <span class="k">def</span> <span class="nf">add_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add metrics definition to object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        metrics : Metrics or list of Metric or list or str</span>
+<span class="sd">            Metrics definition(s) to add to object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">Metrics</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="n">Metrics</span><span class="p">(</span>\
+                <span class="p">[</span><span class="n">METRICS</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">metric</span> <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="n">Metrics</span><span class="p">([</span><span class="n">METRICS</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">DEFAULT_METRICS</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="Results.add_results"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.add_results">[docs]</a>    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add results data into object from a FitResults object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        results : FitResults</span>
+<span class="sd">            A data object containing the results from fitting a power spectrum model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># TODO: use check_array_dim for peak arrays? Or is / should this be done in `add_params`</span>
+
+        <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">components</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="s1">&#39;converted&#39;</span><span class="p">]:</span>
+                <span class="n">attr_comp</span> <span class="o">=</span> <span class="s1">&#39;peak&#39;</span> <span class="k">if</span> <span class="n">component</span> <span class="o">==</span> <span class="s1">&#39;periodic&#39;</span> <span class="k">else</span> <span class="n">component</span>
+                <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">component</span><span class="p">)</span><span class="o">.</span><span class="n">add_params</span><span class="p">(</span>\
+                    <span class="n">version</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">attr_comp</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">version</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">add_results</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Results.get_results"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_results">[docs]</a>    <span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return model fit parameters and goodness of fit metrics.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        FitResults</span>
+<span class="sd">            Object containing the model fit results from the current object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">FitResults</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">asdict</span><span class="p">(),</span> <span class="n">metrics</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">results</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Results.get_params"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return model fit parameters for specified feature(s).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        component : {&#39;aperiodic&#39;, &#39;periodic&#39;}</span>
+<span class="sd">            Name of the component to extract parameters for.</span>
+<span class="sd">        field : str or int, optional</span>
+<span class="sd">            Column name / index to extract from selected data, if requested.</span>
+<span class="sd">            If str, should align with a parameter label for the component fit mode.</span>
+<span class="sd">        version : {&#39;fit&#39;, &#39;converted&#39;}</span>
+<span class="sd">            Which version of the parameters to extract.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        out : float or 1d array</span>
+<span class="sd">            Requested data.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NoModelError</span>
+<span class="sd">            If there are no model fit parameters available to return.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        If there are no fit peaks (no periodic parameters), this method will return NaN.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">component</span> <span class="o">=</span> <span class="s1">&#39;periodic&#39;</span> <span class="k">if</span> <span class="n">component</span> <span class="o">==</span> <span class="s1">&#39;peak&#39;</span> <span class="k">else</span> <span class="n">component</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoModelError</span><span class="p">(</span><span class="s2">&quot;No model fit results are available, can not proceed.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">component</span><span class="p">)</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Results.get_metrics"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_metrics">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">Metrics</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_reset_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, results attributes to empty.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        clear_results : bool, optional, default: False</span>
+<span class="sd">            Whether to clear model results attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">clear_results</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">_regenerate_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Regenerate model fit from parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        freqs : 1d array</span>
+<span class="sd">            Frequency values for the power_spectrum, in linear scale.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">modeled_spectrum</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_peak_fit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_ap_fit</span> <span class="o">=</span> \
+            <span class="n">gen_model</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="s1">&#39;fit&#39;</span><span class="p">),</span>
+                      <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">periodic</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="s1">&#39;fit&#39;</span><span class="p">),</span>
+                      <span class="n">return_components</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
+                             <span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Attributes&#39;</span><span class="p">)])</span>
+<span class="k">class</span> <span class="nc">Results2D</span><span class="p">(</span><span class="n">Results</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Object for managing results - 2D version.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    % copied in from Results</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    % copied in from Results</span>
+<span class="sd">    group_results : list of FitResults</span>
+<span class="sd">        Results of the model fit for each power spectrum.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Results2D object.&quot;&quot;&quot;</span>
+
+        <span class="n">Results</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="n">bands</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_group_results</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Define the length of the object as the number of model fit results available.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow for iterating across the object by stepping across model fit results.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">result</span>
+
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow for indexing into the object to select model fit results.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+
+    <span class="k">def</span> <span class="nf">_reset_group_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, results to be empty.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        length : int, optional, default: 0</span>
+<span class="sd">            Length of list of empty lists to initialize. If 0, creates a single empty list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">length</span>
+
+
+    <span class="k">def</span> <span class="nf">_get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an alias to SpectralModel.get_results for the group object, for internal use.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator for if the object contains model fits.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">)</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;How many peaks were fit for each model.&quot;&quot;&quot;</span>
+
+        <span class="n">n_peaks</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span><span class="p">:</span>
+            <span class="n">n_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">res</span><span class="o">.</span><span class="n">peak_fit</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">n_peaks</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_null</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;How many model fits are null.&quot;&quot;&quot;</span>
+
+        <span class="n">n_null</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span><span class="p">:</span>
+            <span class="n">n_null</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">aperiodic_fit</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+
+        <span class="k">return</span> <span class="n">n_null</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">null_inds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The indices for model fits that are null.&quot;&quot;&quot;</span>
+
+        <span class="n">null_inds</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span><span class="p">:</span>
+            <span class="n">null_inds</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind</span> <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">)</span> \
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">aperiodic_fit</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+        <span class="k">return</span> <span class="n">null_inds</span>
+
+
+    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add results data into object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        results : list of list of FitResults</span>
+<span class="sd">            List of data objects containing the results from fitting power spectrum models.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span> <span class="o">=</span> <span class="n">results</span>
+
+
+    <span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the results run across a group of power spectra.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span>
+
+
+    <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inds</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop one or more model fit results from the object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inds : int or array_like of int or array_like of bool</span>
+<span class="sd">            Indices to drop model fit results for.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This method sets the model fits as null, and preserves the shape of the model fits.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">null_results</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bands</span><span class="p">)</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">check_inds</span><span class="p">(</span><span class="n">inds</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">null_results</span>
+
+
+    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return model fit parameters for specified feature(s).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        component : {&#39;aperiodic&#39;, &#39;periodic&#39;}</span>
+<span class="sd">            Name of the component to extract parameters for.</span>
+<span class="sd">        field : str or int, optional</span>
+<span class="sd">            Column name / index to extract from selected data, if requested.</span>
+<span class="sd">            If str, should align with a parameter label for the component fit mode.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        out : ndarray</span>
+<span class="sd">            Requested data.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NoModelError</span>
+<span class="sd">            If there are no model fit results available.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the input for the `field` input is not understood.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        When extracting peak parameters, an additional column is appended to the</span>
+<span class="sd">        returned array, indicating the index that the peak came from.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoModelError</span><span class="p">(</span><span class="s2">&quot;No model fit results are available, can not proceed.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">get_group_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
+
+
+    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">Metrics</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="n">get_group_metrics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="p">)</span>
+
+
+<span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
+                             <span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results2D</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Attributes&#39;</span><span class="p">)])</span>
+<span class="k">class</span> <span class="nc">Results2DT</span><span class="p">(</span><span class="n">Results2D</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Object for managing results - 2D transpose version.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    % copied in from Results</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    % copied in from Results2D</span>
+<span class="sd">    time_results : dict</span>
+<span class="sd">        Results of the model fit across each time window.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Results2DT object.&quot;&quot;&quot;</span>
+
+        <span class="n">Results2D</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="n">bands</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_time_results</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow for indexing into the object to select fit results for a specific time window.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">get_results_by_ind</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_results</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_reset_time_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, time results to be empty.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+    <span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the results run across a spectrogram.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span>
+
+
+    <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inds</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop one or more model fit results from the object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inds : int or array_like of int or array_like of bool</span>
+<span class="sd">            Indices to drop model fit results for.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This method sets the model fits as null, and preserves the shape of the model fits.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">inds</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">inds</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+
+    <span class="k">def</span> <span class="nf">convert_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the model results to be organized across time windows.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span> <span class="o">=</span> <span class="n">group_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bands</span><span class="p">)</span>
+
+
+<span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
+                             <span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results2DT</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Attributes&#39;</span><span class="p">)])</span>
+<span class="k">class</span> <span class="nc">Results3D</span><span class="p">(</span><span class="n">Results2DT</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Object for managing results - 3D version.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    % copied in from Results</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    % copied in from Results2DT</span>
+<span class="sd">    event_group_results : list of list of FitResults</span>
+<span class="sd">        Full model results collected across all events and models.</span>
+<span class="sd">    event_time_results : dict</span>
+<span class="sd">        Results of the model fit across each time window, collected across events.</span>
+<span class="sd">        Each value in the dictionary stores a model fit parameter, as [n_events, n_time_windows].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Results3D object.&quot;&quot;&quot;</span>
+
+        <span class="n">Results2DT</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="n">bands</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_event_results</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Redefine the length of the objects as the number of event results.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow for indexing into the object to select fit results for a specific event.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">get_results_by_row</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_time_results</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_reset_event_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, event results to be empty.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event_time_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Redefine has_model marker to reflect the event results.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">)</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;How many peaks were fit for each model, for each event.&quot;&quot;&quot;</span>
+
+        <span class="n">n_peaks</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model</span><span class="p">:</span>
+            <span class="n">n_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">res</span><span class="o">.</span><span class="n">peak_fit</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">gres</span><span class="p">]</span> \
+                <span class="k">for</span> <span class="n">gres</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">n_peaks</span>
+
+
+    <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drop_inds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window_inds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop one or more model fit results from the object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        drop_inds : dict or int or array_like of int or array_like of bool</span>
+<span class="sd">            Indices to drop model fit results for.</span>
+<span class="sd">            If not dict, specifies the event indices, with time windows specified by `window_inds`.</span>
+<span class="sd">            If dict, each key reflects an event index, with corresponding time windows to drop.</span>
+<span class="sd">        window_inds : int or array_like of int or array_like of bool</span>
+<span class="sd">            Indices of time windows to drop model fits for (applied across all events).</span>
+<span class="sd">            Only used if `drop_inds` is not a dictionary.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This method sets the model fits as null, and preserves the shape of the model fits.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">null_results</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bands</span><span class="p">)</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+
+        <span class="n">drop_inds</span> <span class="o">=</span> <span class="n">drop_inds</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">drop_inds</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> \
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">check_inds</span><span class="p">(</span><span class="n">drop_inds</span><span class="p">),</span> <span class="n">repeat</span><span class="p">(</span><span class="n">window_inds</span><span class="p">)))</span>
+
+        <span class="k">for</span> <span class="n">eind</span><span class="p">,</span> <span class="n">winds</span> <span class="ow">in</span> <span class="n">drop_inds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="n">winds</span> <span class="o">=</span> <span class="n">check_inds</span><span class="p">(</span><span class="n">winds</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">wind</span> <span class="ow">in</span> <span class="n">winds</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">[</span><span class="n">eind</span><span class="p">][</span><span class="n">wind</span><span class="p">]</span> <span class="o">=</span> <span class="n">null_results</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_time_results</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">event_time_results</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">eind</span><span class="p">,</span> <span class="n">winds</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+
+    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add results data into object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        results : list of FitResults or list of list of FitResults</span>
+<span class="sd">            List of data objects containing results from fitting power spectrum models.</span>
+<span class="sd">        append : bool, optional, default: False</span>
+<span class="sd">            Whether to append results to event_group_results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">append</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span> <span class="o">=</span> <span class="n">results</span>
+
+
+    <span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the results from across the set of events.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_time_results</span>
+
+
+    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return model fit parameters for specified feature(s).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        component : {&#39;aperiodic&#39;, &#39;periodic&#39;}</span>
+<span class="sd">            Name of the component to extract parameters for.</span>
+<span class="sd">        field : str or int, optional</span>
+<span class="sd">            Column name / index to extract from selected data, if requested.</span>
+<span class="sd">            If str, should align with a parameter label for the component fit mode.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        out : list of ndarray</span>
+<span class="sd">            Requested data.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NoModelError</span>
+<span class="sd">            If there are no model fit results available.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the input for the `field` input is not understood.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        When extracting peak parameters, an additional column is appended to the</span>
+<span class="sd">        returned array, indicating the index that the peak came from.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">get_group_params</span><span class="p">(</span><span class="n">gres</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span> \
+                    <span class="k">for</span> <span class="n">gres</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">]</span>
+
+
+    <span class="k">def</span> <span class="nf">convert_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the event results to be organized across events and time windows.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">event_time_results</span> <span class="o">=</span> <span class="n">event_group_to_dict</span><span class="p">(</span>\
+            <span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bands</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

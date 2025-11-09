@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>07: Exploring the model object &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>07: Exploring the Model Object &#8212; specparam 2.0.0rc4 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -117,7 +117,7 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="exploring-the-model-object">
-<span id="sphx-glr-auto-tutorials-plot-07-modelobject-py"></span><h1>07: Exploring the model object<a class="headerlink" href="#exploring-the-model-object" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-tutorials-plot-07-modelobject-py"></span><h1>07: Exploring the Model Object<a class="headerlink" href="#exploring-the-model-object" title="Permalink to this heading">¶</a></h1>
 <p>Further exploring the SpectralModel object, including algorithm settings and available methods.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the model object</span>
 <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
@@ -284,7 +284,7 @@ Power Values:            [-21.99921865 -21.99669556 -22.02605736 -21.96875308 -2
 <p>There is also an indicator attribute, <code class="docutils literal notranslate"><span class="pre">has_data</span></code> which indicates
 if the current object has data loaded.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if the object has data loaded</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Has data loaded: &#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">has_data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Has data loaded: &#39;</span><span class="p">,</span> <a href="../generated/specparam.data.data.Data.html#specparam.data.data.Data.has_data" title="specparam.data.data.Data.has_data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-property"><span class="n">fm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">has_data</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Has data loaded:  True
@@ -333,7 +333,7 @@ r-squared:       0.9922996526520488
 <p>The <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object also has an indicator attribute, <code class="docutils literal notranslate"><span class="pre">has_model</span></code>
 which indicates if the current object has model results available.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if the object has model results</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Has model results: &#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">has_model</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Has model results: &#39;</span><span class="p">,</span> <a href="../generated/specparam.results.results.Results.html#specparam.results.results.Results.has_model" title="specparam.results.results.Results.has_model" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-property"><span class="n">fm</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">has_model</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Has model results:  True
@@ -442,7 +442,7 @@ or append to, or pass in a JSON file object.</p>
 <p>We have now fully explored the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object, and all it contains.
 Next, we will take a deeper dive into how to choose different modes for fitting
 the aperiodic component of power spectra.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.869 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.838 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-07-modelobject-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/dc557c3d7324b27fd9805affde63e53a/plot_07-ModelObject.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_07-ModelObject.ipynb</span></code></a></p>

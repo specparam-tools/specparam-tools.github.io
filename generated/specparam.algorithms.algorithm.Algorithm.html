@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>specparam.algorithms.algorithm.Algorithm &#8212; specparam 2.0.0rc4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../faq.html">FAQ</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../visualizers.html">Visualizers</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="specparam-algorithms-algorithm-algorithm">
+<h1>specparam.algorithms.algorithm.Algorithm<a class="headerlink" href="#specparam-algorithms-algorithm-algorithm" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.algorithms.algorithm.</span></span><span class="sig-name descname"><span class="pre">Algorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">private_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spectrum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Template object for defining a fit algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of the fitting algorithm.</p>
+</dd>
+<dt><strong>description</strong><span class="classifier">str</span></dt><dd><p>Description of the fitting algorithm.</p>
+</dd>
+<dt><strong>public_settings</strong><span class="classifier">SettingsDefinition or dict</span></dt><dd><p>Name and description of public settings for the fitting algorithm.</p>
+</dd>
+<dt><strong>private_settings</strong><span class="classifier">SettingsDefinition or dict, optional</span></dt><dd><p>Name and description of private settings for the fitting algorithm.</p>
+</dd>
+<dt><strong>data_format</strong><span class="classifier">{‘spectrum’, ‘spectra’, ‘spectrogram’, ‘spectrograms’}</span></dt><dd><p>Set base data format the model can be applied to.</p>
+</dd>
+<dt><strong>modes</strong><span class="classifier">Modes</span></dt><dd><p>Modes object with fit mode definitions.</p>
+</dd>
+<dt><strong>data</strong><span class="classifier">Data</span></dt><dd><p>Data object with spectral data and metadata.</p>
+</dd>
+<dt><strong>results</strong><span class="classifier">Results</span></dt><dd><p>Results object with model fit results and metrics.</p>
+</dd>
+<dt><strong>debug</strong><span class="classifier">bool</span></dt><dd><p>Whether to run in debug state, raising an error if encountered during fitting.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">private_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spectrum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize Algorithm object.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.__init__" title="specparam.algorithms.algorithm.Algorithm.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(name, description, public_settings)</p></td>
+<td><p>Initialize Algorithm object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.add_settings" title="specparam.algorithms.algorithm.Algorithm.add_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_settings</span></code></a>(settings)</p></td>
+<td><p>Add settings into object from a ModelSettings object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.get_debug" title="specparam.algorithms.algorithm.Algorithm.get_debug"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_debug</span></code></a>()</p></td>
+<td><p>Return object debug status.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.get_settings" title="specparam.algorithms.algorithm.Algorithm.get_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_settings</span></code></a>()</p></td>
+<td><p>Return user defined settings of the current object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.set_debug" title="specparam.algorithms.algorithm.Algorithm.set_debug"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_debug</span></code></a>(debug)</p></td>
+<td><p>Set debug state, which controls if an error is raised if model fitting is unsuccessful.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.add_settings">
+<span class="sig-name descname"><span class="pre">add_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.add_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.add_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add settings into object from a ModelSettings object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>settings</strong><span class="classifier">ModelSettings</span></dt><dd><p>A data object containing model settings.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.get_debug">
+<span class="sig-name descname"><span class="pre">get_debug</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.get_debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.get_debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return object debug status.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.get_settings">
+<span class="sig-name descname"><span class="pre">get_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.get_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.get_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return user defined settings of the current object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ModelSettings</dt><dd><p>Object containing the settings from the current object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.set_debug">
+<span class="sig-name descname"><span class="pre">set_debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">debug</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.set_debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.set_debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set debug state, which controls if an error is raised if model fitting is unsuccessful.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>debug</strong><span class="classifier">bool</span></dt><dd><p>Whether to run in debug state.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

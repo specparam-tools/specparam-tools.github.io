@@ -114,51 +114,78 @@
   <section id="frequently-asked-questions">
 <h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this heading">¶</a></h1>
 <p>The following is a collection of frequently asked questions and answers about spectral parameterization.</p>
-<p>These answers focus on the ideas and concepts relating to parameterizing neural power spectra.</p>
-<p>For code related questions, check out the API listing, tutorials, and examples.</p>
+<p>The questions and answers here focus on the key ideas and concept relating to the approach.
+For code related questions and examples, check out the API listing and tutorials.</p>
 <section id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#what-is-spectral-parameterization" id="id7">What is spectral parameterization?</a></p></li>
-<li><p><a class="reference internal" href="#what-is-meant-by-aperiodic-activity" id="id8">What is meant by ‘aperiodic’ activity?</a></p></li>
-<li><p><a class="reference internal" href="#what-is-meant-by-periodic-activity" id="id9">What is meant by ‘periodic’ activity?</a></p></li>
-<li><p><a class="reference internal" href="#why-should-i-parameterize-power-spectra" id="id10">Why should I parameterize power spectra?</a></p></li>
-<li><p><a class="reference internal" href="#why-is-it-important-to-measure-aperiodic-activity" id="id11">Why is it important to measure aperiodic activity?</a></p></li>
-<li><p><a class="reference internal" href="#why-call-it-aperiodic-why-not-call-it-1-f-or-noise-etc" id="id12">Why call it ‘aperiodic’? Why not call it ‘1/f’ or ‘noise’, etc?</a></p></li>
-<li><p><a class="reference internal" href="#why-are-spectral-peak-used-as-evidence-of-periodic-activity" id="id13">Why are spectral peak used as evidence of periodic activity?</a></p></li>
-<li><p><a class="reference internal" href="#what-if-there-is-no-peak-is-there-no-periodic-activity" id="id14">What if there is no peak? Is there no periodic activity?</a></p></li>
-<li><p><a class="reference internal" href="#how-should-peaks-be-interpreted-are-they-equivalent-to-oscillations" id="id15">How should peaks be interpreted? Are they equivalent to oscillations?</a></p></li>
-<li><p><a class="reference internal" href="#why-is-parameterizing-neural-power-spectra-different-from-other-methods" id="id16">Why is parameterizing neural power spectra different from other methods?</a></p></li>
-<li><p><a class="reference internal" href="#what-data-modalities-can-be-used-for-parameterizing-neural-power-spectra" id="id17">What data modalities can be used for parameterizing neural power spectra?</a></p></li>
-<li><p><a class="reference internal" href="#are-there-settings-for-the-fitting-algorithm" id="id18">Are there settings for the fitting algorithm?</a></p></li>
-<li><p><a class="reference internal" href="#how-should-algorithm-settings-be-chosen" id="id19">How should algorithm settings be chosen?</a></p></li>
-<li><p><a class="reference internal" href="#what-frequency-range-should-the-model-be-fit-on" id="id20">What frequency range should the model be fit on?</a></p></li>
-<li><p><a class="reference internal" href="#if-i-am-interested-in-a-particular-oscillation-band-should-i-fit-a-small-range" id="id21">If I am interested in a particular oscillation band, should I fit a small range?</a></p></li>
-<li><p><a class="reference internal" href="#what-does-the-aperiodic-component-of-the-signal-reflect" id="id22">What does the ‘aperiodic’ component of the signal reflect?</a></p></li>
-<li><p><a class="reference internal" href="#does-it-matter-how-power-spectra-are-computed" id="id23">Does it matter how power spectra are computed?</a></p></li>
-<li><p><a class="reference internal" href="#can-spectral-parameterization-be-applied-to-task-data" id="id24">Can spectral parameterization be applied to task data?</a></p></li>
-<li><p><a class="reference internal" href="#is-there-a-time-resolved-version" id="id25">Is there a time resolved version?</a></p></li>
-<li><p><a class="reference internal" href="#what-is-the-fooof-name" id="id26">What is the ‘FOOOF’ name?</a></p></li>
-<li><p><a class="reference internal" href="#how-do-i-cite-this-method" id="id27">How do I cite this method?</a></p></li>
+<li><p><a class="reference internal" href="#what-is-spectral-parameterization" id="id8">What is spectral parameterization?</a></p></li>
+<li><p><a class="reference internal" href="#how-does-spectral-parameterization-work" id="id9">How does spectral parameterization work?</a></p></li>
+<li><p><a class="reference internal" href="#what-was-spectral-parameterization-originally-designed-for" id="id10">What was spectral parameterization originally designed for?</a></p></li>
+<li><p><a class="reference internal" href="#what-data-can-this-be-applied-to-can-it-be-used-on-non-neural-data" id="id11">What data can this be applied to? Can it be used on non-neural data?</a></p></li>
+<li><p><a class="reference internal" href="#what-is-needed-to-parameterize-a-power-spectrum" id="id12">What is needed to parameterize a power spectrum?</a></p></li>
+<li><p><a class="reference internal" href="#what-is-meant-by-aperiodic-activity" id="id13">What is meant by ‘aperiodic’ activity?</a></p></li>
+<li><p><a class="reference internal" href="#what-is-meant-by-periodic-activity" id="id14">What is meant by ‘periodic’ activity?</a></p></li>
+<li><p><a class="reference internal" href="#what-are-the-assumptions-of-spectral-parameterization" id="id15">What are the assumptions of spectral parameterization?</a></p></li>
+<li><p><a class="reference internal" href="#why-should-i-parameterize-neural-power-spectra" id="id16">Why should I parameterize neural power spectra?</a></p></li>
+<li><p><a class="reference internal" href="#why-is-it-important-to-measure-aperiodic-neural-activity" id="id17">Why is it important to measure aperiodic neural activity?</a></p></li>
+<li><p><a class="reference internal" href="#why-call-it-aperiodic-why-not-call-it-1-f-or-noise-etc" id="id18">Why call it ‘aperiodic’? Why not call it ‘1/f’ or ‘noise’, etc?</a></p></li>
+<li><p><a class="reference internal" href="#why-are-spectral-peak-used-as-evidence-of-periodic-activity" id="id19">Why are spectral peak used as evidence of periodic activity?</a></p></li>
+<li><p><a class="reference internal" href="#what-if-there-is-no-peak-is-there-no-periodic-activity" id="id20">What if there is no peak? Is there no periodic activity?</a></p></li>
+<li><p><a class="reference internal" href="#how-should-peaks-be-interpreted-are-they-equivalent-to-oscillations" id="id21">How should peaks be interpreted? Are they equivalent to oscillations?</a></p></li>
+<li><p><a class="reference internal" href="#why-is-parameterizing-neural-power-spectra-different-from-other-methods" id="id22">Why is parameterizing neural power spectra different from other methods?</a></p></li>
+<li><p><a class="reference internal" href="#what-neuroscience-modalities-can-be-analyzed-with-spectral-parameterization" id="id23">What neuroscience modalities can be analyzed with spectral parameterization?</a></p></li>
+<li><p><a class="reference internal" href="#are-there-settings-for-the-fitting-algorithm" id="id24">Are there settings for the fitting algorithm?</a></p></li>
+<li><p><a class="reference internal" href="#how-should-algorithm-settings-be-chosen" id="id25">How should algorithm settings be chosen?</a></p></li>
+<li><p><a class="reference internal" href="#what-frequency-range-should-the-model-be-fit-on" id="id26">What frequency range should the model be fit on?</a></p></li>
+<li><p><a class="reference internal" href="#if-i-am-interested-in-a-particular-oscillation-band-should-i-fit-a-small-range" id="id27">If I am interested in a particular oscillation band, should I fit a small range?</a></p></li>
+<li><p><a class="reference internal" href="#what-does-the-aperiodic-component-of-the-signal-reflect" id="id28">What does the ‘aperiodic’ component of the signal reflect?</a></p></li>
+<li><p><a class="reference internal" href="#does-it-matter-how-power-spectra-are-computed" id="id29">Does it matter how power spectra are computed?</a></p></li>
+<li><p><a class="reference internal" href="#can-spectral-parameterization-be-applied-to-task-data" id="id30">Can spectral parameterization be applied to task data?</a></p></li>
+<li><p><a class="reference internal" href="#is-there-a-time-resolved-version" id="id31">Is there a time resolved version?</a></p></li>
+<li><p><a class="reference internal" href="#what-is-the-fooof-name" id="id32">What is the ‘FOOOF’ name?</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-cite-this-method" id="id33">How do I cite this method?</a></p></li>
 </ul>
 </nav>
 <section id="what-is-spectral-parameterization">
 <h3>What is spectral parameterization?<a class="headerlink" href="#what-is-spectral-parameterization" title="Permalink to this heading">¶</a></h3>
-<p>Spectral parameterization means fitting a model to describe power spectra.
-A particular algorithm and implementation for doing this is available in <cite>specparam</cite>,
-an open-source Python module for parameterizing neural power spectra.</p>
-<p>Spectral parameterization uses a model-driven approach that assumes that neurophysiological time
-series are comprised of two separable components, reflecting periodic (or oscillatory) and
-aperiodic activity. This approach relies on the assumption that these two components are indeed separable
-components of the underlying data, though it is agnostic to their physiological origin and
-putative functional roles.</p>
-<p>Spectral parameterization operates on frequency representations of neurophysiological times
-series (power spectra). At it’s core, the module contains an algorithm to measure these two
-components - the periodic and aperiodic components - in power spectra. The final model
-of the neural power spectrum consists of quantifications of each of the two components, as well as
-a combined model fit of the whole power spectrum.</p>
-<p>The full mathematical description of the model is described in the tutorials.</p>
+<p>Spectral parameterization means fitting a model to describe a power spectrum.
+The <cite>specparam</cite> module implements a framework for fitting models to power spectra,
+available in an open-source Python module.</p>
+</section>
+<section id="how-does-spectral-parameterization-work">
+<h3>How does spectral parameterization work?<a class="headerlink" href="#how-does-spectral-parameterization-work" title="Permalink to this heading">¶</a></h3>
+<p>Spectral parameterization operates on frequency representations (power spectra) of digital
+signals (time series). Broadly speaking, the module contains model definitions for how to
+characterize each component (periodic and aperiodic) and algorithms to fit these definitions
+to power spectra. The resulting model of the power spectrum consists of quantifications of
+each of the two components, as well as a combined model fit of the whole power spectrum.
+For more information on the approach, including descriptions of the model definitions
+and algorithms, see the Tutorials.</p>
+</section>
+<section id="what-was-spectral-parameterization-originally-designed-for">
+<h3>What was spectral parameterization originally designed for?<a class="headerlink" href="#what-was-spectral-parameterization-originally-designed-for" title="Permalink to this heading">¶</a></h3>
+<p>The original use case of spectral parameterization was for analyzing
+neuro-electrophysiological data. Due to this, across the documentation,
+the vast majority of the discussion of the use of spectral parameterization
+refers to the use case of neuro-electrophysiological data.</p>
+</section>
+<section id="what-data-can-this-be-applied-to-can-it-be-used-on-non-neural-data">
+<h3>What data can this be applied to? Can it be used on non-neural data?<a class="headerlink" href="#what-data-can-this-be-applied-to-can-it-be-used-on-non-neural-data" title="Permalink to this heading">¶</a></h3>
+<p>Spectral parameterization can, in theory, be applied to any power spectra,
+including non-neural power spectra. Following developments and generalizations of the module,
+starting with the specparam 2.0 release version, the module should now be more easily
+customizable and applicable to other data types. In practice, any application of spectral
+parameterization needs to evaluate if the model fitting procedures are well posed
+for the specific use case (see Tutorials for more details).</p>
+</section>
+<section id="what-is-needed-to-parameterize-a-power-spectrum">
+<h3>What is needed to parameterize a power spectrum?<a class="headerlink" href="#what-is-needed-to-parameterize-a-power-spectrum" title="Permalink to this heading">¶</a></h3>
+<p>In order for spectral parameterization to work for a given application, the chosen
+model definition has to be appropriate for the data under study, and the chosen fitting
+algorithm has to be appropriate for fitting this model to the data. See discussions throughout
+the tutorials on choosing model forms and fit algorithms.</p>
 </section>
 <section id="what-is-meant-by-aperiodic-activity">
 <h3>What is meant by ‘aperiodic’ activity?<a class="headerlink" href="#what-is-meant-by-aperiodic-activity" title="Permalink to this heading">¶</a></h3>
@@ -179,12 +206,24 @@ at a characteristic frequency. This kind of activity is typically referred to as
 and detectable by the fitting algorithm if they exhibit as band-limited power over and above
 the aperiodic component in the power spectrum. This ‘peak’ of power over the aperiodic is taken as
 evidence of frequency specific power, distinct from the aperiodic component.</p>
-<p>Note that this periodic activity need not be continuous, as oscillatory activity often
-exhibits as ‘bursts’ in the time series, nor sinusoidal, as rhythmic neural activity is
-often non-sinusoidal.</p>
+<p>Note that, in the time domain, this periodic activity need not strictly be continuous nor
+completely sinusoidal, as variability in oscillatory activity is still typically reflected
+as peaks of power in the spectral domain.</p>
+<p>For example, in neural data, oscillatory activity often exhibits as ‘bursts’ in the time series,
+which are often at least somewhat non-sinusoidal, which can still be seen as peaks in the power
+spectrum (though see notes on interpreting peaks of power).</p>
 </section>
-<section id="why-should-i-parameterize-power-spectra">
-<h3>Why should I parameterize power spectra?<a class="headerlink" href="#why-should-i-parameterize-power-spectra" title="Permalink to this heading">¶</a></h3>
+<section id="what-are-the-assumptions-of-spectral-parameterization">
+<h3>What are the assumptions of spectral parameterization?<a class="headerlink" href="#what-are-the-assumptions-of-spectral-parameterization" title="Permalink to this heading">¶</a></h3>
+<p>Spectral parameterization uses a model-driven approach that assumes that the data under study
+are comprised of two separately measure-able components, reflecting periodic (or oscillatory)
+and aperiodic activity. This approach therefore relies on the assumption that these two components
+are indeed separable components of the power spectrum as observed by the model. The model is
+broadly agnostic to the relationship(s) between the components, their origin(s) in the generative
+process that created the data, and their putative functional roles.</p>
+</section>
+<section id="why-should-i-parameterize-neural-power-spectra">
+<h3>Why should I parameterize neural power spectra?<a class="headerlink" href="#why-should-i-parameterize-neural-power-spectra" title="Permalink to this heading">¶</a></h3>
 <p>Though research often focuses on periodic (rhythmic or oscillatory) components, neurophysiological
 recordings of electrophysiological neural activity contain not only periodic, but also aperiodic
 activity. Since both components of the signal are dynamic, and overlapping, it is important to
@@ -206,8 +245,8 @@ the data are present, and changing, and in what ways.</p>
 motivate parameterizing neural power spectra, see the
 <a class="reference external" href="https://fooof-tools.github.io/fooof/auto_motivations/index.html">motivations page</a></p>
 </section>
-<section id="why-is-it-important-to-measure-aperiodic-activity">
-<h3>Why is it important to measure aperiodic activity?<a class="headerlink" href="#why-is-it-important-to-measure-aperiodic-activity" title="Permalink to this heading">¶</a></h3>
+<section id="why-is-it-important-to-measure-aperiodic-neural-activity">
+<h3>Why is it important to measure aperiodic neural activity?<a class="headerlink" href="#why-is-it-important-to-measure-aperiodic-neural-activity" title="Permalink to this heading">¶</a></h3>
 <p>Aperiodic activity has long known to be present in neural data, but has been less of a
 research focus (as compared to periodic activity). Recent work has demonstrated
 that aperiodic activity is dynamic, and systematically varies both within [<a class="reference external" href="https://doi.org/10.1152/jn.00943.2014">1</a>] and between
@@ -305,19 +344,21 @@ is a Python tool for analyzing neural oscillations and their waveform shape prop
 </section>
 <section id="why-is-parameterizing-neural-power-spectra-different-from-other-methods">
 <h3>Why is parameterizing neural power spectra different from other methods?<a class="headerlink" href="#why-is-parameterizing-neural-power-spectra-different-from-other-methods" title="Permalink to this heading">¶</a></h3>
-<p>There are many existing methods for analyzing periodic activity, and also other methods for
-analyzing aperiodic activity. Most existing methods are designed to measure one or the other
-signal component. Few methods attempt to explicitly separate and quantify both the periodic
-and aperiodic components of the signal. This combined approach is a key factor that we
-consider to be important for getting the measurements to work well. By jointly measuring
-both components, the method is more capable of quantifying which aspects of the data
-are changing and in what ways.</p>
-<p>More in depth analyses of the properties of the fitting algorithm, and systematic comparisons
-with other methods (through simulations) are are also ongoing, to clarify when and how
-this approach compares to different methods.</p>
+<p>Within neuroscience, there are many existing methods for analyzing periodic activity,
+and also other methods for analyzing aperiodic activity. Historically, fewer methods have
+been developed that attempt to explicitly separate and quantify both the periodic and
+aperiodic components of the signal. As such, at the time of the original development of specparam,
+most existing methods were designed to measure one pre-specified signal component
+(periodic or aperiodic). Using the combined approach of spectral parameterization (considering
+and measuring both components together) is therefore a key factor that is different from
+many other approaches. The goal is that by jointly measuring both components, the method should be
+more capable of quantifying which aspects of the data are changing and in what ways.</p>
+<p>Since the original development of the method, there has been significant development of other
+methods (partially summarized here: [<a class="reference external" href="https://doi.org/10.1007/978-3-031-20910-9_22">7</a>]) and work comparing between different methods.
+Check the current literature for more discussion of these topics.</p>
 </section>
-<section id="what-data-modalities-can-be-used-for-parameterizing-neural-power-spectra">
-<h3>What data modalities can be used for parameterizing neural power spectra?<a class="headerlink" href="#what-data-modalities-can-be-used-for-parameterizing-neural-power-spectra" title="Permalink to this heading">¶</a></h3>
+<section id="what-neuroscience-modalities-can-be-analyzed-with-spectral-parameterization">
+<h3>What neuroscience modalities can be analyzed with spectral parameterization?<a class="headerlink" href="#what-neuroscience-modalities-can-be-analyzed-with-spectral-parameterization" title="Permalink to this heading">¶</a></h3>
 <p>The power spectrum model can theoretically be applied to power spectra derived from any
 electrophysiological or magnetophysiological signal of neural origin. In practice, this
 covers ‘field’ data, meaning intracranial local field potential (LFP) data,
@@ -446,13 +487,16 @@ one or the other might be more appropriate.</p>
 </section>
 <section id="is-there-a-time-resolved-version">
 <h3>Is there a time resolved version?<a class="headerlink" href="#is-there-a-time-resolved-version" title="Permalink to this heading">¶</a></h3>
-<p>Since it operates on frequency representations (power spectra) the power spectrum model is not,
-by construction, a time resolved method.</p>
-<p>However, similar to other frequency estimation approaches that are used in a time-resolved manner,
-it can, in theory, be applied in a sliding window fashion. This approach could be used to estimate
-spectral features across time, somewhat analogous to a spectrogram.</p>
-<p>This functionality is not currently available or described in the current module, but is a focus
-off current work. We hope to add information, guidelines, and tooling to do this once this soon.</p>
+<p>Yes, as of the specparam 2.0 version, the module includes functionality to fit models across
+time (across spectrograms).</p>
+<p>Note that as it operates in the frequency domain, in order to be able to analyze data over time,
+the model is applied to individual windows over data, whereby each window reflects a time-segment
+of data. By fitting models across a series of windows, spectral parameterization results
+can be examined across time (across windows). In doing so, it is therefore important to
+consider the spectral estimation, in terms of key details such as window size, method of
+estimation, window overlap, etc, in order to make sure the models are well fit and to
+appropriately interpret the results.</p>
+<p>See more information on this functionality in the tutorials.</p>
 </section>
 <section id="what-is-the-fooof-name">
 <h3>What is the ‘FOOOF’ name?<a class="headerlink" href="#what-is-the-fooof-name" title="Permalink to this heading">¶</a></h3>
@@ -461,6 +505,12 @@ off current work. We hope to add information, guidelines, and tooling to do this
 we have moved away from using these terms in the module and algorithm, now preferring terms such
 as ‘periodic’ and ‘aperiodic’ activity, the module has been renamed to the more general name
 of ‘spectral parameterization’.</p>
+<p>In addition, the generalizability of the approach has changed with the different versions of the
+code. The <cite>fooof</cite> versions of the module can be though of as implementing a particular model
+definition and specific algorithm for parameterizing neural power spectra. By comparison, the
+<cite>specparam</cite>  versions of the module are designed to enable flexible model definition and application
+to power spectra across different contexts (while still also including the original
+specific functionality from fooof).</p>
 </section>
 <section id="how-do-i-cite-this-method">
 <h3>How do I cite this method?<a class="headerlink" href="#how-do-i-cite-this-method" title="Permalink to this heading">¶</a></h3>
@@ -491,6 +541,10 @@ of Brain Rhythms. DOI: 10.1016/j.neuron.2013.10.002</p></li>
 </ul>
 <ul class="simple">
 <li><p>[<a class="reference external" href="https://doi.org/10.1016/j.tics.2014.04.003">6</a>] He (2014). Scale-free Brain Activity: Past, Present and Future. DOI: 10.1016/j.tics.2014.04.003</p></li>
+</ul>
+<ul class="simple">
+<li><p>[<a class="reference external" href="https://doi.org/10.1007/978-3-031-20910-9_22">7</a>] Donoghue &amp; Watrous (2023). How Can We Differentiate Narrow-Band Oscillations from Aperiodic Activity?
+DOI: 10.1007/978-3-031-20910-9_22</p></li>
 </ul>
 </section>
 </section>

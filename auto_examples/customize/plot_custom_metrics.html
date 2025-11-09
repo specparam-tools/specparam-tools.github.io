@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Custom Metrics &#8212; specparam 2.0.0rc4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../api.html">API</a></li>
+                <li><a href="../../faq.html">FAQ</a></li>
+                <li><a href="../../glossary.html">Glossary</a></li>
+                <li><a href="../../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="../../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../index.html">Examples</a></li>
+                <li><a href="../../visualizers.html">Visualizers</a></li>
+                <li><a href="../../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-customize-plot-custom-metrics-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="custom-metrics">
+<span id="sphx-glr-auto-examples-customize-plot-custom-metrics-py"></span><h1>Custom Metrics<a class="headerlink" href="#custom-metrics" title="Permalink to this heading">¶</a></h1>
+<p>This example covers defining and using custom metrics.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import spectral model object</span>
+<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+
+<span class="c1"># Import Metric object for defining custom metrics</span>
+<span class="kn">from</span> <span class="nn">specparam.metrics.metric</span> <span class="kn">import</span> <a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class"><span class="n">Metric</span></a>
+
+<span class="c1"># Import function to simulate power spectra</span>
+<span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
+</pre></div>
+</div>
+<section id="defining-custom-metrics">
+<h2>Defining Custom Metrics<a class="headerlink" href="#defining-custom-metrics" title="Permalink to this heading">¶</a></h2>
+<p>As covered in the tutorials, the specparam module has a set of predefined metrics, wherein
+<cite>metrics</cite> refer to measures that are computed post model fitting to evaluate properties
+of the model fit, typically as it relates to the original data.</p>
+<p>In this tutorial, we will explore how you can also define your own custom metrics.</p>
+<p>To do so, we will start by simulating an example power spectrum to use for this example.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define simulation parameters</span>
+<span class="n">ap_params</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">gauss_params</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">nlv</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># Simulate an example power spectrum</span>
+<span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="n">ap_params</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="n">gauss_params</span><span class="p">},</span>
+                                   <span class="n">nlv</span><span class="p">,</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="defining-custom-measure-function">
+<h3>Defining Custom Measure Function<a class="headerlink" href="#defining-custom-measure-function" title="Permalink to this heading">¶</a></h3>
+<p>To define a custom measure, we first need to define a function that computes our metric.</p>
+<p>By convention, a custom measure functions must have at least two input arguments, with the
+first two arguments being the original data (power spectrum) and the model (modeled spectrum).</p>
+<p>Within the function, the measure of interest should be defined, such that it returns
+the result of the metric, which should be a float.</p>
+<p>For our first example, we will define a simple error metric that computes the total
+error of the model (sum of the absolute deviations).</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import any functionality needed for the metric</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Define a function that computes a custom metric</span>
+<span class="k">def</span> <span class="nf">compute_total_error</span><span class="p">(</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">modeled_spectrum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the total (summed) error between the data and the model.&quot;&quot;&quot;</span>
+
+    <span class="n">total_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">power_spectrum</span> <span class="o">-</span> <span class="n">modeled_spectrum</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">total_err</span>
+</pre></div>
+</div>
+</section>
+<section id="the-metric-class">
+<h3>The <cite>Metric</cite> Class<a class="headerlink" href="#the-metric-class" title="Permalink to this heading">¶</a></h3>
+<p>In order to use the custom metric, more information is needed. To collect this additional
+information the <code class="xref py py-class docutils literal notranslate"><span class="pre">metric</span></code> object is used to define a metric.</p>
+<p>The Metric object requires the following information:</p>
+<ul class="simple">
+<li><p><cite>category</cite>: a description of what kind of metric it is</p></li>
+<li><p><cite>measure</cite>: a label for the specific measure that is defined</p></li>
+<li><p><cite>description</cite>: a description of the custom metric</p></li>
+<li><p><cite>func</cite>: the callable that compute the metric</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define Metric for the total error</span>
+<a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">total_error_metric</span></a> <span class="o">=</span> <a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class"><span class="n">Metric</span></a><span class="p">(</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;error&#39;</span><span class="p">,</span>
+    <span class="n">measure</span><span class="o">=</span><span class="s1">&#39;total_error&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Total absolute error.&#39;</span><span class="p">,</span>
+    <span class="n">func</span><span class="o">=</span><span class="n">compute_total_error</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a spectral model, passing in our custom metric definition</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">min_peak_height</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">total_error_metric</span></a><span class="p">])</span>
+
+<span class="c1"># Fit the model and print a report</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_custom_metrics_001.png" srcset="../../_images/sphx_glr_plot_custom_metrics_001.png" alt="plot custom metrics" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                       POWER SPECTRUM MODEL
+
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 3-50 Hz frequency range with 0.25 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                         50.0746, 2.0476
+
+                         Peak Parameters (&#39;gaussian&#39; mode) 3 peaks found
+                                CF:  10.13, PW:   0.49, BW:   3.59
+                                CF:  20.06, PW:   0.28, BW:   7.99
+                                CF:  23.26, PW:   0.28, BW:   0.94
+
+                                    Model fit quality metrics:
+                                   error (total) is 7.2905
+
+==================================================================================================
+</pre></div>
+</div>
+<p>Note that in the above report, the metrics section now includes the result of our custom metric!</p>
+</section>
+<section id="defining-metrics-with-dictionaries">
+<h3>Defining Metrics with Dictionaries<a class="headerlink" href="#defining-metrics-with-dictionaries" title="Permalink to this heading">¶</a></h3>
+<p>In the above, we directly used the <cite>Metric</cite> object to define our custom metric.</p>
+<p>If you prefer, you can also collect the relevant information needed to define a metric into
+a dictionary, and pass this into the model object instead.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the information for a custom metric, in a dictionary</span>
+<span class="n">custom_metric_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;category&#39;</span> <span class="p">:</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;measure&#39;</span> <span class="p">:</span> <span class="s1">&#39;total_error&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;description&#39;</span> <span class="p">:</span> <span class="s1">&#39;Total absolute error.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;func&#39;</span> <span class="p">:</span> <span class="n">compute_total_error</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object, passing in the custom metric, defined as a dictionary</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">min_peak_height</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">custom_metric_dict</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>When using custom metrics, you can also access the results using the
+<a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_metrics" title="specparam.SpectralModel.get_metrics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_metrics()</span></code></a> by using the measure name,
+the same as when accessing default / built in metrics.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the model to the data</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.fit" title="specparam.SpectralModel.fit" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">fit</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
+
+<span class="c1"># Access the custom metric result with get_metrics</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_metrics" title="specparam.SpectralModel.get_metrics" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">get_metrics</span></a><span class="p">(</span><span class="s1">&#39;total_error&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>7.290462632211259
+</pre></div>
+</div>
+<p>Above, we initialized our model object by specifying to use only our new custom metric.</p>
+<p>Note that you can also initialize the model object with a list of multiple metrics,
+including a mixture of pre-defined and/or custom defined metrics.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a spectral model, passing in multiple metrics (both internal and custom)</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">min_peak_height</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">total_error_metric</span></a><span class="p">,</span> <span class="s1">&#39;gof_rsquared&#39;</span><span class="p">])</span>
+
+<span class="c1"># Fit the model and print a report</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_custom_metrics_002.png" srcset="../../_images/sphx_glr_plot_custom_metrics_002.png" alt="plot custom metrics" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                       POWER SPECTRUM MODEL
+
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 3-50 Hz frequency range with 0.25 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                         50.0746, 2.0476
+
+                         Peak Parameters (&#39;gaussian&#39; mode) 3 peaks found
+                                CF:  10.13, PW:   0.49, BW:   3.59
+                                CF:  20.06, PW:   0.28, BW:   7.99
+                                CF:  23.26, PW:   0.28, BW:   0.94
+
+                                    Model fit quality metrics:
+                                   error (total) is 7.2905
+                                  gof (rsquared) is 0.9951
+
+==================================================================================================
+</pre></div>
+</div>
+<p>In the above report, we now see multiple metrics have been applied to the model, including
+our new / custom metric as well as the built-in metrics which we specified.</p>
+</section>
+</section>
+<section id="custom-metrics-with-additional-arguments">
+<h2>Custom Metrics with Additional Arguments<a class="headerlink" href="#custom-metrics-with-additional-arguments" title="Permalink to this heading">¶</a></h2>
+<p>In some cases, you may want to define a metric that requires additional information than just
+the data and model to compute the measure of interest (e.g., the custom metric function has
+more than two arguments).</p>
+<p>For an example of this, we will define an example custom metric that computes the error
+of a specific frequency range, therefore requiring information about the frequency definition
+of the data.</p>
+<p>We start, as above, by defining a function that computes our metric, starting with the same
+two arguments (data and model) and then adding additional arguments as needed.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">specparam.utils.spectral</span> <span class="kn">import</span> <span class="n">trim_spectrum</span>
+
+<span class="k">def</span> <span class="nf">compute_lowfreq_error</span><span class="p">(</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">modeled_spectrum</span><span class="p">,</span> <span class="n">freqs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the mean absolute error in the low frequency range.&quot;&quot;&quot;</span>
+
+    <span class="n">low_freq_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">power_spectrum_low</span> <span class="o">=</span> <span class="n">trim_spectrum</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">low_freq_range</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">modeled_spectrum_low</span> <span class="o">=</span> <span class="n">trim_spectrum</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">modeled_spectrum</span><span class="p">,</span> <span class="n">low_freq_range</span><span class="p">)</span>
+
+    <span class="n">low_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">power_spectrum_low</span> <span class="o">-</span> <span class="n">modeled_spectrum_low</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">low_err</span>
+</pre></div>
+</div>
+<p>In the above error function, we need  access to the frequency definition, as well as the
+data and model. Now we need to make sure that when this function is called to compute
+the metric, this additional information is made available to the function.</p>
+<p>To provide access to additional attributes, we need to use the optional <cite>kwargs</cite> argument
+when defining our Metric to define how to access the additional information.</p>
+<p>To use kwargs, define a dictionary where each key is the string name of the additional input
+to the measure function, and each value is a lambda function that accepts as input the model
+data &amp; results objects, and then uses these to access the information that is needed.</p>
+<p>For our low frequency error measure, this looks like:</p>
+<p><cite>kwargs={‘freqs’ : lambda data, results: data.freqs}</cite></p>
+<p>Internally, if <cite>kwargs</cite> is defined, the lambda function is called for each entry,
+passing in the Model.data and Model.results objects, which then accesses the specified
+attributes based on the implementation of the lambda function.</p>
+<p>Note that this means all additional inputs to the function need to be information that
+can be accessed and/or computed based on what is available in the data and results
+objects that are part of the model object</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define Metric for the low frequency error, defining `kwargs`</span>
+<a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">lowfreq_error</span></a> <span class="o">=</span> <a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class"><span class="n">Metric</span></a><span class="p">(</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;error&#39;</span><span class="p">,</span>
+    <span class="n">measure</span><span class="o">=</span><span class="s1">&#39;low_freq_mae&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Mean absolute error of the low frequency range.&#39;</span><span class="p">,</span>
+    <span class="n">func</span><span class="o">=</span><span class="n">compute_lowfreq_error</span><span class="p">,</span>
+    <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;freqs&#39;</span> <span class="p">:</span> <span class="k">lambda</span> <span class="n">data</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Now our custom metric is defined, and we can use it with a model object the same as before!</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a spectral model, passing in custom metric with additional arguments</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">lowfreq_error</span></a><span class="p">])</span>
+
+<span class="c1"># Fit the model and print a report</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_custom_metrics_003.png" srcset="../../_images/sphx_glr_plot_custom_metrics_003.png" alt="plot custom metrics" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                       POWER SPECTRUM MODEL
+
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 3-50 Hz frequency range with 0.25 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                         50.0796, 2.0527
+
+                         Peak Parameters (&#39;gaussian&#39; mode) 11 peaks found
+                                CF:  10.23, PW:   0.49, BW:   3.69
+                                CF:  13.93, PW:   0.21, BW:   0.71
+                                CF:  15.03, PW:   0.14, BW:   0.50
+                                CF:  16.81, PW:   0.23, BW:   1.98
+                                CF:  20.05, PW:   0.32, BW:   2.74
+                                CF:  22.96, PW:   0.28, BW:   1.49
+                                CF:  23.92, PW:   0.22, BW:   0.50
+                                CF:  24.99, PW:   0.22, BW:   0.53
+                                CF:  25.69, PW:   0.13, BW:   0.50
+                                CF:  27.35, PW:   0.09, BW:   1.48
+                                CF:  41.48, PW:   0.11, BW:   0.63
+
+                                    Model fit quality metrics:
+                                     error (low) is 0.0486
+
+==================================================================================================
+</pre></div>
+</div>
+<p>In the above, our new custom metric was now computed for our model fit!</p>
+</section>
+<section id="a-final-example">
+<h2>A Final Example<a class="headerlink" href="#a-final-example" title="Permalink to this heading">¶</a></h2>
+<p>For one last example, lets make a more complex metric, which requires multiple additional
+pieces of information that need to be accessed from the model object.</p>
+<p>In this example, we will define and use a custom metric that defines an error metric
+that is proportional to the model degrees of freedom.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to compute our custom error metric</span>
+<span class="k">def</span> <span class="nf">custom_measure</span><span class="p">(</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">modeled_spectrum</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">n_params</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute a custom error metric of error proportional to model degrees of freedom.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Compute degrees of freedom (# data points - # parameters)</span>
+    <span class="n">df_error</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span> <span class="o">-</span> <span class="n">n_params</span>
+
+    <span class="c1"># Compute the total error of the model fit</span>
+    <span class="n">err_total</span> <span class="o">=</span> <span class="n">compute_total_error</span><span class="p">(</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">modeled_spectrum</span><span class="p">)</span>
+
+    <span class="c1"># Compute the error proportional to model degrees of freedom</span>
+    <span class="n">err_per_df</span> <span class="o">=</span> <span class="n">err_total</span> <span class="o">/</span> <span class="n">df_error</span>
+
+    <span class="k">return</span> <span class="n">err_per_df</span>
+</pre></div>
+</div>
+<p>Now that we have defined the function, we define a Metric object, as before.</p>
+<p>Note that in defining the ‘category’ for our custom metric, we need not use the existing
+categories from the built in metrics, and can instead define our own custom category.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define Metric for the low frequency error</span>
+<a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">custom_measure</span></a> <span class="o">=</span> <a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class"><span class="n">Metric</span></a><span class="p">(</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;custom&#39;</span><span class="p">,</span>
+    <span class="n">measure</span><span class="o">=</span><span class="s1">&#39;err-by-df&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Error proportionate to the degrees of freedom of the model.&#39;</span><span class="p">,</span>
+    <span class="n">func</span><span class="o">=</span><a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">custom_measure</span></a><span class="p">,</span>
+    <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;freqs&#39;</span> <span class="p">:</span> <span class="k">lambda</span> <span class="n">data</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span>
+            <span class="s1">&#39;n_params&#39;</span> <span class="p">:</span> <span class="k">lambda</span> <span class="n">data</span><span class="p">,</span> <span class="n">results</span> <span class="p">:</span> <span class="n">results</span><span class="o">.</span><span class="n">n_params</span><span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a spectral model, passing in our new custom measure</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><a href="../../generated/specparam.metrics.metric.Metric.html#specparam.metrics.metric.Metric" title="specparam.metrics.metric.Metric" class="sphx-glr-backref-module-specparam-metrics-metric sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">custom_measure</span></a><span class="p">])</span>
+
+<span class="c1"># Fit the model and print a report</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_custom_metrics_004.png" srcset="../../_images/sphx_glr_plot_custom_metrics_004.png" alt="plot custom metrics" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                       POWER SPECTRUM MODEL
+
+                       The model was fit with the &#39;spectral fit&#39; algorithm
+               Model was fit to the 3-50 Hz frequency range with 0.25 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                         50.0796, 2.0527
+
+                         Peak Parameters (&#39;gaussian&#39; mode) 11 peaks found
+                                CF:  10.23, PW:   0.49, BW:   3.69
+                                CF:  13.93, PW:   0.21, BW:   0.71
+                                CF:  15.03, PW:   0.14, BW:   0.50
+                                CF:  16.81, PW:   0.23, BW:   1.98
+                                CF:  20.05, PW:   0.32, BW:   2.74
+                                CF:  22.96, PW:   0.28, BW:   1.49
+                                CF:  23.92, PW:   0.22, BW:   0.50
+                                CF:  24.99, PW:   0.22, BW:   0.53
+                                CF:  25.69, PW:   0.13, BW:   0.50
+                                CF:  27.35, PW:   0.09, BW:   1.48
+                                CF:  41.48, PW:   0.11, BW:   0.63
+
+                                    Model fit quality metrics:
+                              custom (err-by-df) is 0.0416
+
+==================================================================================================
+</pre></div>
+</div>
+<p>We can again use <cite>get_metrics</cite> to access the metric results - note that in this case
+we need to match the category name that we used in defining our metric.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access the custom metric result</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_metrics" title="specparam.SpectralModel.get_metrics" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">get_metrics</span></a><span class="p">(</span><span class="s1">&#39;custom_err-by-df&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0.041615218500768644
+</pre></div>
+</div>
+<p>That covers how to define custom metrics!</p>
+<section id="adding-new-metrics-to-the-module">
+<h3>Adding New Metrics to the Module<a class="headerlink" href="#adding-new-metrics-to-the-module" title="Permalink to this heading">¶</a></h3>
+<p>As a final note, if you look into the set of ‘built-in’ metrics that are available within
+the module, you will see that these are defined in the exact way as done here - the only
+difference is that they are defined within the module and therefore can be accessed via
+their name, as a shortcut, rather than the user having to pass in their own full definitions.</p>
+<p>This also means that if you have a custom metric that you think would be of interest to
+other specparam users, once the Metric object is defined it is quite easy to add this
+to the module as a new default option. If you would be interested in suggesting a metric
+be added to the module, feel free to open an issue and/or pull request.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.787 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-customize-plot-custom-metrics-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/7be3a26d265cafb7c935c1c45ebd97a9/plot_custom_metrics.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_custom_metrics.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/8f9a315c2de0157c0de89eb20d34e6bf/plot_custom_metrics.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_custom_metrics.py</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

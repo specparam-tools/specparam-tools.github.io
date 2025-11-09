@@ -124,7 +124,7 @@ to download the full example code.</p>
 <span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 
 <span class="c1"># Import function to check available list of modes</span>
-<span class="kn">from</span> <span class="nn">specparam.modes.definitions</span> <span class="kn">import</span> <span class="n">check_modes</span>
+<span class="kn">from</span> <span class="nn">specparam.modes.definitions</span> <span class="kn">import</span> <a href="../generated/specparam.modes.definitions.check_modes.html#specparam.modes.definitions.check_modes" title="specparam.modes.definitions.check_modes" class="sphx-glr-backref-module-specparam-modes-definitions sphx-glr-backref-type-py-function"><span class="n">check_modes</span></a>
 
 <span class="c1"># Import a utility to download and load example data</span>
 <span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">load_example_data</span>
@@ -147,9 +147,9 @@ of power over above the aperiodic component - the model fits ‘peaks’.</p>
 how to describe these peaks. Specifying this fit function is what is meant by
 choosing the periodic mode.</p>
 <p>To see the available periodic fit modes, we can use the
-<code class="xref py py-func docutils literal notranslate"><span class="pre">check_modes()</span></code> function.</p>
+<a class="reference internal" href="../generated/specparam.modes.definitions.check_modes.html#specparam.modes.definitions.check_modes" title="specparam.modes.definitions.check_modes"><code class="xref py py-func docutils literal notranslate"><span class="pre">check_modes()</span></code></a> function.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the list of periodic modes</span>
-<span class="n">check_modes</span><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">)</span>
+<a href="../generated/specparam.modes.definitions.check_modes.html#specparam.modes.definitions.check_modes" title="specparam.modes.definitions.check_modes" class="sphx-glr-backref-module-specparam-modes-definitions sphx-glr-backref-type-py-function"><span class="n">check_modes</span></a><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Available periodic modes:
@@ -220,7 +220,7 @@ how the model is actually fit.</p>
 <li><p><span class="math notranslate nohighlight">\(F\)</span> is the array of frequency values</p></li>
 </ul>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the fit gaussian parameters</span>
-<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
+<a href="../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_params" title="specparam.results.results.Results.get_params" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-method"><span class="n">fm1</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 9.36712112,  0.99082164,  0.78945133],
@@ -242,7 +242,7 @@ parameters are actually a bit different than the peak parameters reported in the
 <p>The reason we may want to apply to conversions to the parameters is that the fit versions,
 while defining the model, may not reflect what we actually want to analyze as outputs.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the fit gaussian parameters</span>
-<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;converted&#39;</span><span class="p">)</span>
+<a href="../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_params" title="specparam.results.results.Results.get_params" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-method"><span class="n">fm1</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;converted&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 9.36712112,  1.03782895,  1.57890266],
@@ -355,7 +355,7 @@ as ‘power’, as the units of the input data are expected to be units of power
 </pre></div>
 </div>
 <p>That covers periodic mode selection!</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.639 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.784 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-periodicfitting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/1c54019721ce2e9f618bafd1a0500483/plot_04-PeriodicFitting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_04-PeriodicFitting.ipynb</span></code></a></p>
