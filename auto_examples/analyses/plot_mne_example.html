@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Topographical Analyses with MNE &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>Topographical Analyses with MNE &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -243,7 +243,7 @@ method, that takes in MNE data objects and calculates and returns power spectra.
 <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.plot" title="specparam.SpectralGroupModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_mne_example_001.png" srcset="../../_images/sphx_glr_plot_mne_example_001.png" alt="Aperiodic Fit, Fit Quality, Peaks - Center Frequencies" class = "sphx-glr-single-img"/></section>
+<img src="../../_images/sphx_glr_plot_mne_example_001.png" srcset="../../_images/sphx_glr_plot_mne_example_001.png" alt="Aperiodic Parameters, Metrics, Peak Parameters - Center Frequencies" class = "sphx-glr-single-img"/></section>
 <section id="plotting-topographies">
 <h2>Plotting Topographies<a class="headerlink" href="#plotting-topographies" title="Permalink to this heading">¶</a></h2>
 <p>Now that we have our power spectrum models calculated across all channels,
@@ -277,7 +277,7 @@ definitions, and some analysis utilities to extracts peaks from bands of interes
 <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">plot_topomap</span><span class="p">(</span><span class="n">alpha_pw</span><span class="p">,</span> <span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span> <span class="n">contours</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_mne_example_002.png" srcset="../../_images/sphx_glr_plot_mne_example_002.png" alt="plot mne example" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(&lt;matplotlib.image.AxesImage object at 0x7fde1e813c40&gt;, None)
+<img src="../../_images/sphx_glr_plot_mne_example_002.png" srcset="../../_images/sphx_glr_plot_mne_example_002.png" alt="plot mne example" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(&lt;matplotlib.image.AxesImage object at 0x7f89178264f0&gt;, None)
 </pre></div>
 </div>
 <p>And there we have it, our first topography of parameterized spectra, showing alpha power!</p>
@@ -331,7 +331,7 @@ and plot them.</p>
 <span class="n">mne</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">plot_topomap</span><span class="p">(</span><span class="n">exps</span><span class="p">,</span> <span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span> <span class="n">contours</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_mne_example_005.png" srcset="../../_images/sphx_glr_plot_mne_example_005.png" alt="plot mne example" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(&lt;matplotlib.image.AxesImage object at 0x7fde17a88dc0&gt;, None)
+<img src="../../_images/sphx_glr_plot_mne_example_005.png" srcset="../../_images/sphx_glr_plot_mne_example_005.png" alt="plot mne example" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(&lt;matplotlib.image.AxesImage object at 0x7f8910a9c670&gt;, None)
 </pre></div>
 </div>
 <p>In the topography above, we can see that there is a fair amount of variation
@@ -354,7 +354,7 @@ spectra, in this case extracting those with the highest and lower exponent value
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p>In this example, we have seen how to apply power spectrum models to data that is
 managed and processed with MNE.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.273 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.800 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-analyses-plot-mne-example-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/22eca51ea62d18a21f9995a7bdfe8c49/plot_mne_example.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_mne_example.ipynb</span></code></a></p>

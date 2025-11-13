@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Custom Modes &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>Custom Modes &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -241,11 +241,26 @@ aperiodic modes (returns a 1d array of parameters per model fit) and 2d for peak
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Our custom fit mode if now defined!</p>
-<p>The use this fit mode, we initialize a model object, passing the fit mode in as the specified
-component mode.</p>
+<p>Our custom fit mode is now defined!</p>
+<p>The use this fit mode, we can initialize a model object and pass in the custom fit mode
+to use for fitting.</p>
+<p>Note that in this example, we will use <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> for our example,
+but you can also take the same approach to define custom fit modes with other model objects.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize model object, passing in custom aperiodic mode definition</span>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">aperiodic_mode</span><span class="o">=</span><a href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">expo_only_mode</span></a><span class="p">)</span>
+
+<span class="c1"># Check the defined modes of the object</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                            FIT MODES
+
+                                     Periodic Mode : gaussian
+                                Aperiodic Mode : custom_expo_only
+
+==================================================================================================
 </pre></div>
 </div>
 <p>Now we can use the model object to fit some data.</p>
@@ -257,20 +272,20 @@ component mode.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-40 Hz frequency range with 0.25 Hz resolution
 
                           Aperiodic Parameters (&#39;custom_expo_only&#39; mode)
                                               (expo)
-                                             -0.9964
+                                             -0.9970
 
                          Peak Parameters (&#39;gaussian&#39; mode) 2 peaks found
-                                CF:  10.00, PW:   0.49, BW:   3.92
-                                CF:  19.99, PW:   0.29, BW:   3.82
+                                CF:   9.99, PW:   0.49, BW:   3.94
+                                CF:  19.99, PW:   0.29, BW:   3.87
 
-                                    Model fit quality metrics:
-                                     error (mae) is 0.0049
-                                  gof (rsquared) is 0.9998
+                                          Model metrics:
+                                     error (mae) is 0.0043
+                                  gof (rsquared) is 0.9999
 
 ==================================================================================================
 </pre></div>
@@ -283,7 +298,7 @@ is also the name you use to access the parameter results in <cite>get_params</ci
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_params" title="specparam.SpectralModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">,</span> <span class="s1">&#39;expo&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>-0.996376421774451
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>-0.9969963089346562
 </pre></div>
 </div>
 </section>
@@ -328,7 +343,8 @@ and loops across these, summing the resultant peaks).</p>
 </div>
 <p>Next up, as before, we need to define a parameter definition. Here, we will use the same labels
 as the standard (Gaussian) peak mode, redefined for the rectangle case.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="../../generated/specparam.modes.params.ParamDefinition.html#specparam.modes.params.ParamDefinition" title="specparam.modes.params.ParamDefinition" class="sphx-glr-backref-module-specparam-modes-params sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rectangular_params</span></a> <span class="o">=</span> <a href="../../generated/specparam.modes.params.ParamDefinition.html#specparam.modes.params.ParamDefinition" title="specparam.modes.params.ParamDefinition" class="sphx-glr-backref-module-specparam-modes-params sphx-glr-backref-type-py-class"><span class="n">ParamDefinition</span></a><span class="p">(</span><span class="n">OrderedDict</span><span class="p">({</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the parameter definition for a new periodic fit mode</span>
+<a href="../../generated/specparam.modes.params.ParamDefinition.html#specparam.modes.params.ParamDefinition" title="specparam.modes.params.ParamDefinition" class="sphx-glr-backref-module-specparam-modes-params sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rectangular_params</span></a> <span class="o">=</span> <a href="../../generated/specparam.modes.params.ParamDefinition.html#specparam.modes.params.ParamDefinition" title="specparam.modes.params.ParamDefinition" class="sphx-glr-backref-module-specparam-modes-params sphx-glr-backref-type-py-class"><span class="n">ParamDefinition</span></a><span class="p">(</span><span class="n">OrderedDict</span><span class="p">({</span>
     <span class="s1">&#39;cf&#39;</span> <span class="p">:</span> <span class="s1">&#39;Center frequency of the rectangle.&#39;</span><span class="p">,</span>
     <span class="s1">&#39;pw&#39;</span> <span class="p">:</span> <span class="s1">&#39;Power of the rectangle, over and above the aperiodic component.&#39;</span><span class="p">,</span>
     <span class="s1">&#39;bw&#39;</span> <span class="p">:</span> <span class="s1">&#39;Width of the rectangle.&#39;</span>
@@ -354,6 +370,19 @@ as the standard (Gaussian) peak mode, redefined for the rectangle case.</p>
 some data!</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize model object, passing in custom periodic mode definition</span>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">periodic_mode</span><span class="o">=</span><a href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rectangular_mode</span></a><span class="p">,</span> <span class="n">max_n_peaks</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Check the defined modes of the object</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                            FIT MODES
+
+                                   Periodic Mode : rectangular
+                                      Aperiodic Mode : fixed
+
+==================================================================================================
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit model and report results</span>
@@ -364,20 +393,20 @@ some data!</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-40 Hz frequency range with 0.25 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
                                         (offset, exponent)
-                                          0.0663, 1.0258
+                                          0.0685, 1.0290
 
                         Peak Parameters (&#39;rectangular&#39; mode) 2 peaks found
                                 CF:  10.00, PW:   0.40, BW:   4.25
-                                CF:  20.00, PW:   0.25, BW:   3.82
+                                CF:  20.00, PW:   0.24, BW:   4.25
 
-                                    Model fit quality metrics:
-                                     error (mae) is 0.0456
-                                  gof (rsquared) is 0.9766
+                                          Model metrics:
+                                     error (mae) is 0.0439
+                                  gof (rsquared) is 0.9782
 
 ==================================================================================================
 </pre></div>
@@ -403,7 +432,21 @@ together.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize model object, passing in custom aperiodic &amp; periodic mode definitions</span>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">aperiodic_mode</span><span class="o">=</span><a href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">expo_only_mode</span></a><span class="p">,</span> <span class="n">periodic_mode</span><span class="o">=</span><a href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rectangular_mode</span></a><span class="p">,</span> <span class="n">max_n_peaks</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># Fit model and report results</span>
+<span class="c1"># Check the defined modes of the object</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                            FIT MODES
+
+                                   Periodic Mode : rectangular
+                                Aperiodic Mode : custom_expo_only
+
+==================================================================================================
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit model and report results</span>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -411,20 +454,20 @@ together.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-40 Hz frequency range with 0.25 Hz resolution
 
                           Aperiodic Parameters (&#39;custom_expo_only&#39; mode)
                                               (expo)
-                                             -0.9762
+                                             -0.9782
 
                         Peak Parameters (&#39;rectangular&#39; mode) 2 peaks found
                                 CF:  10.00, PW:   0.41, BW:   4.25
-                                CF:  20.00, PW:   0.25, BW:   3.82
+                                CF:  20.00, PW:   0.24, BW:   4.25
 
-                                    Model fit quality metrics:
-                                     error (mae) is 0.0467
-                                  gof (rsquared) is 0.9751
+                                          Model metrics:
+                                     error (mae) is 0.0451
+                                  gof (rsquared) is 0.9766
 
 ==================================================================================================
 </pre></div>
@@ -439,7 +482,7 @@ their name, as a shortcut, rather than the user having to pass in their own full
 other specparam users, once the Mode object is defined it is quite easy to add this
 to the module as a new default option. If you would be interested in suggesting a mode
 be added to the module, feel free to open an issue and/or pull request.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.670 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.974 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-customize-plot-custom-modes-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/ada48954f0660a2783955723422b531d/plot_custom_modes.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_custom_modes.ipynb</span></code></a></p>

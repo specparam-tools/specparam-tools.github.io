@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Dealing with Line Noise &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>Dealing with Line Noise &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -177,18 +177,18 @@ such that the ‘peak’ of the line noise is removed.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-75 Hz frequency range with 0.50 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
                                         (offset, exponent)
-                                          1.0294, 1.0169
+                                          1.0299, 1.0176
 
                          Peak Parameters (&#39;gaussian&#39; mode) 1 peaks found
-                                CF:  10.02, PW:   0.73, BW:   3.81
+                                CF:  10.03, PW:   0.73, BW:   3.82
 
-                                    Model fit quality metrics:
-                                     error (mae) is 0.0063
+                                          Model metrics:
+                                     error (mae) is 0.0061
                                   gof (rsquared) is 0.9996
 
 ==================================================================================================
@@ -225,18 +225,18 @@ frequency ranges, there may be multiple peaks that need to be interpolated.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
               Model was fit to the 1-150 Hz frequency range with 0.50 Hz resolution
 
                                 Aperiodic Parameters (&#39;knee&#39; mode)
                                      (offset, knee, exponent)
-                                     0.9606, 449.7264, 1.4825
+                                     0.9423, 429.5016, 1.4734
 
                          Peak Parameters (&#39;gaussian&#39; mode) 1 peaks found
-                                CF:  10.03, PW:   0.49, BW:   3.84
+                                CF:  10.02, PW:   0.49, BW:   3.85
 
-                                    Model fit quality metrics:
-                                     error (mae) is 0.0043
+                                          Model metrics:
+                                     error (mae) is 0.0040
                                   gof (rsquared) is 0.9995
 
 ==================================================================================================
@@ -266,18 +266,18 @@ better fit the rest of the data.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-75 Hz frequency range with 0.50 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
                                         (offset, exponent)
-                                          1.0282, 1.0165
+                                          1.0283, 1.0167
 
                          Peak Parameters (&#39;gaussian&#39; mode) 2 peaks found
-                                CF:  10.01, PW:   0.73, BW:   3.82
-                                CF:  60.00, PW:   0.99, BW:   1.01
+                                CF:  10.02, PW:   0.73, BW:   3.83
+                                CF:  60.01, PW:   1.00, BW:   1.00
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0061
                                   gof (rsquared) is 0.9996
 
@@ -286,21 +286,21 @@ better fit the rest of the data.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
               Model was fit to the 1-150 Hz frequency range with 0.50 Hz resolution
 
                                 Aperiodic Parameters (&#39;knee&#39; mode)
                                      (offset, knee, exponent)
-                                     0.9692, 459.9045, 1.4863
+                                     0.9503, 438.6013, 1.4773
 
                          Peak Parameters (&#39;gaussian&#39; mode) 3 peaks found
-                                CF:  10.02, PW:   0.49, BW:   3.85
-                                CF:  59.99, PW:   0.75, BW:   1.00
-                                CF: 120.00, PW:   0.50, BW:   1.01
+                                CF:  10.01, PW:   0.49, BW:   3.87
+                                CF:  60.00, PW:   0.75, BW:   1.00
+                                CF: 120.00, PW:   0.50, BW:   0.99
 
-                                    Model fit quality metrics:
-                                     error (mae) is 0.0043
-                                  gof (rsquared) is 0.9995
+                                          Model metrics:
+                                     error (mae) is 0.0040
+                                  gof (rsquared) is 0.9996
 
 ==================================================================================================
 </pre></div>
@@ -369,19 +369,19 @@ leaving a “dip” in the power spectrum. This dip causes issues with subsequen
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-75 Hz frequency range with 1.00 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
                                         (offset, exponent)
-                                         -1.3216, 1.9146
+                                         -1.3885, 1.8840
 
                          Peak Parameters (&#39;gaussian&#39; mode) 1 peaks found
-                                CF:  10.09, PW:   2.99, BW:   1.99
+                                CF:  10.10, PW:   3.03, BW:   1.99
 
-                                    Model fit quality metrics:
-                                     error (mae) is 0.3104
-                                  gof (rsquared) is 0.7107
+                                          Model metrics:
+                                     error (mae) is 0.3151
+                                  gof (rsquared) is 0.7029
 
 ==================================================================================================
 </pre></div>
@@ -390,7 +390,7 @@ leaving a “dip” in the power spectrum. This dip causes issues with subsequen
 gets ‘pulled’ down, leading to an inaccurate fit of the aperiodic component. This is
 why fitting frequency regions that included frequency regions that have been filtered
 out is not recommended.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.906 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.881 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-processing-plot-line-noise-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/3f6c1c3c444799e38b8295c41ccb69c4/plot_line_noise.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_line_noise.ipynb</span></code></a></p>

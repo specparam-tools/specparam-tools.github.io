@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.plts.group &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>specparam.plts.group &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -166,7 +166,7 @@
 
     <span class="c1"># Goodness of fit plot</span>
     <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-    <span class="n">plot_group_goodness</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="o">**</span><span class="n">scatter_kwargs</span><span class="p">,</span> <span class="n">custom_styler</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">plot_group_metrics</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="o">**</span><span class="n">scatter_kwargs</span><span class="p">,</span> <span class="n">custom_styler</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
     <span class="c1"># Center frequencies plot</span>
     <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
@@ -192,17 +192,17 @@
     <span class="k">if</span> <span class="n">group</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;knee&#39;</span><span class="p">:</span>
         <span class="n">plot_scatter_2</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">,</span> <span class="s1">&#39;exponent&#39;</span><span class="p">),</span> <span class="s1">&#39;Exponent&#39;</span><span class="p">,</span>
                        <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">,</span> <span class="s1">&#39;knee&#39;</span><span class="p">),</span> <span class="s1">&#39;Knee&#39;</span><span class="p">,</span>
-                       <span class="s1">&#39;Aperiodic Fit&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+                       <span class="s1">&#39;Aperiodic Parameters&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">plot_scatter_1</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">,</span> <span class="s1">&#39;exponent&#39;</span><span class="p">),</span> <span class="s1">&#39;Exponent&#39;</span><span class="p">,</span>
-                       <span class="s1">&#39;Aperiodic Fit&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+                       <span class="s1">&#39;Aperiodic Parameters&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
 
 <span class="nd">@savefig</span>
 <span class="nd">@style_plot</span>
 <span class="nd">@check_dependency</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">plot_group_goodness</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot goodness of fit results, in a scatter plot.</span>
+<span class="k">def</span> <span class="nf">plot_group_metrics</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot metrics results, in a scatter plot.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -214,17 +214,26 @@
 <span class="sd">        Additional plot related keyword arguments, with styling options managed by ``style_plot``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># Get indices of metrics to plot</span>
-    <span class="n">err_ind</span> <span class="o">=</span> <span class="n">find_first_ind</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">)</span>
-    <span class="n">err_label</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">err_ind</span><span class="p">]</span>
-    <span class="n">gof_ind</span> <span class="o">=</span> <span class="n">find_first_ind</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="s1">&#39;gof&#39;</span><span class="p">)</span>
-    <span class="n">gof_label</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">gof_ind</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[])</span>
 
-    <span class="n">plot_scatter_2</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">(</span><span class="n">err_label</span><span class="p">),</span>
-                   <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">flabels</span><span class="p">[</span><span class="n">err_ind</span><span class="p">],</span>
-                   <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">(</span><span class="n">gof_label</span><span class="p">),</span>
-                   <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">flabels</span><span class="p">[</span><span class="n">gof_ind</span><span class="p">],</span>
-                   <span class="s1">&#39;Fit Quality&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">plot_scatter_1</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                       <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">flabels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                       <span class="s1">&#39;Metrics&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">ind1</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ind2</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">categories</span><span class="p">:</span>
+            <span class="n">ind1</span> <span class="o">=</span> <span class="n">find_first_ind</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;gof&#39;</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">categories</span><span class="p">:</span>
+            <span class="n">ind2</span> <span class="o">=</span> <span class="n">find_first_ind</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="s1">&#39;gof&#39;</span><span class="p">)</span>
+        <span class="n">plot_scatter_2</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">ind1</span><span class="p">]),</span>
+                       <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">flabels</span><span class="p">[</span><span class="n">ind1</span><span class="p">],</span>
+                       <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">ind2</span><span class="p">]),</span>
+                       <span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">flabels</span><span class="p">[</span><span class="n">ind2</span><span class="p">],</span>
+                       <span class="s1">&#39;Metrics&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
 
 <span class="nd">@savefig</span>
@@ -243,8 +252,8 @@
 <span class="sd">        Additional plot related keyword arguments, with styling options managed by ``style_plot``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">plot_hist</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="s1">&#39;peak&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Center Frequency&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;Peaks - Center Frequencies&#39;</span><span class="p">,</span> <span class="n">x_lims</span><span class="o">=</span><span class="n">group</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freq_range</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">plot_hist</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="s1">&#39;peak&#39;</span><span class="p">,</span> <span class="s1">&#39;cf&#39;</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Center Frequency&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;Peak Parameters - Center Frequencies&#39;</span><span class="p">,</span> <span class="n">x_lims</span><span class="o">=</span><span class="n">group</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freq_range</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 </pre></div>
 
     </div>

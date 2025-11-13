@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>05: Aperiodic Component Fitting &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>05: Aperiodic Component Fitting &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -57,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -155,7 +155,21 @@ using the following definition:</p>
 \[L(F) = b - \log(F^\chi)\]</div>
 <p>Note that this is the default aperiodic fit mode,
 and the one we have been using in the previous examples.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">aperiodic_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object specifying a specific aperiodic fit mode</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">aperiodic_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">)</span>
+
+<span class="c1"># Check the defined fit modes of the model object</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                            FIT MODES
+
+                                     Periodic Mode : gaussian
+                                      Aperiodic Mode : fixed
+
+==================================================================================================
 </pre></div>
 </div>
 <section id="relating-exponents-to-power-spectrum-slope">
@@ -195,6 +209,19 @@ all frequencies, but rather a ‘bend’ in the aperiodic component. For these c
 should be done using an extra parameter to capture this, using the ‘knee’ mode.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a new spectral model with the knee aperiodic mode</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm2</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">aperiodic_mode</span><span class="o">=</span><span class="s1">&#39;knee&#39;</span><span class="p">)</span>
+
+<span class="c1"># Check the defined fit modes of the model object</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm2</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                            FIT MODES
+
+                                     Periodic Mode : gaussian
+                                      Aperiodic Mode : knee
+
+==================================================================================================
 </pre></div>
 </div>
 <section id="mathematical-description-of-the-aperiodic-component">
@@ -233,6 +260,19 @@ using some local field potential data.</p>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object, setting the aperiodic mode to use a &#39;knee&#39; fit</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">peak_width_limits</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="n">aperiodic_mode</span><span class="o">=</span><span class="s1">&#39;knee&#39;</span><span class="p">)</span>
+
+<span class="c1"># Check the defined fit modes of the model object</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                            FIT MODES
+
+                                     Periodic Mode : gaussian
+                                      Aperiodic Mode : knee
+
+==================================================================================================
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit a power spectrum model</span>
@@ -244,7 +284,7 @@ using some local field potential data.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 2-70 Hz frequency range with 1.00 Hz resolution
 
                                 Aperiodic Parameters (&#39;knee&#39; mode)
@@ -255,7 +295,7 @@ using some local field potential data.</p>
                                 CF:   7.98, PW:   0.81, BW:   2.03
                                 CF:  16.32, PW:   0.23, BW:   2.30
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0405
                                   gof (rsquared) is 0.9925
 
@@ -294,7 +334,7 @@ the aperiodic component - fitting in ‘fixed’ mode when we should use ‘knee
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 2-70 Hz frequency range with 1.00 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -306,7 +346,7 @@ the aperiodic component - fitting in ‘fixed’ mode when we should use ‘knee
                                 CF:  17.02, PW:   0.37, BW:   8.00
                                 CF:  31.02, PW:   0.27, BW:   8.00
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0607
                                   gof (rsquared) is 0.9847
 
@@ -339,7 +379,7 @@ below the knee.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 2-70 Hz frequency range with 1.00 Hz resolution
 
                               Aperiodic Parameters (&#39;doublexp&#39; mode)
@@ -350,7 +390,7 @@ below the knee.</p>
                                 CF:   7.98, PW:   0.85, BW:   2.13
                                 CF:  16.27, PW:   0.25, BW:   2.41
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0234
                                   gof (rsquared) is 0.9970
 
@@ -404,7 +444,7 @@ aperiodic component process is relatively clear.</p></li>
 <p>We have now explored the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object, and different fitting
 approaches for the aperiodic component. Next up, we will be introducing how
 to scale the fitting to apply across multiple power spectra.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.623 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.904 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-05-aperiodicfitting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/f2e346deeb11403be8ed2a2138a98ecc/plot_05-AperiodicFitting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_05-AperiodicFitting.ipynb</span></code></a></p>

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>10: Tuning &amp; Troubleshooting &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>10: Tuning &amp; Troubleshooting &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -219,7 +219,7 @@ function to simulate individual power spectra, following the power spectrum mode
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.50 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -235,7 +235,7 @@ function to simulate individual power spectra, following the power spectrum mode
                                 CF:  39.44, PW:   0.24, BW:   0.60
                                 CF:  49.46, PW:   0.21, BW:   0.50
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0710
                                   gof (rsquared) is 0.9893
 
@@ -256,7 +256,7 @@ high, given the amount of noise we in the simulated power spectrum.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.50 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -268,7 +268,7 @@ high, given the amount of noise we in the simulated power spectrum.</p>
                                 CF:  20.03, PW:   0.82, BW:   3.88
                                 CF:  31.85, PW:   0.57, BW:   2.22
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0823
                                   gof (rsquared) is 0.9860
 
@@ -341,7 +341,7 @@ allowing you to define an absolute threshold for extracting peaks.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.50 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -353,7 +353,7 @@ allowing you to define an absolute threshold for extracting peaks.</p>
                                 CF:  19.95, PW:   0.31, BW:   2.78
                                 CF:  32.04, PW:   0.23, BW:   1.97
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0182
                                   gof (rsquared) is 0.9992
 
@@ -411,12 +411,12 @@ possible parameters.</p>
 <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.report" title="specparam.SpectralGroupModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectra</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_10-TroubleShooting_004.png" srcset="../_images/sphx_glr_plot_10-TroubleShooting_004.png" alt="Aperiodic Fit, Fit Quality, Peaks - Center Frequencies" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting model across 10 power spectra.
+<img src="../_images/sphx_glr_plot_10-TroubleShooting_004.png" srcset="../_images/sphx_glr_plot_10-TroubleShooting_004.png" alt="Aperiodic Parameters, Metrics, Peak Parameters - Center Frequencies" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting model across 10 power spectra.
 ==================================================================================================
 
                             GROUP SPECTRAL MODEL RESULTS (10 spectra)
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-50 Hz frequency range with 0.50 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -425,7 +425,7 @@ possible parameters.</p>
 
                       Peak Parameters (&#39;gaussian&#39; mode) 49 total peaks found
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                           error (mae) -  Min:  0.006, Max:  0.012, Mean: 0.009
                        gof (rsquared) -  Min:  1.000, Max:  1.000, Mean: 1.000
 
@@ -456,7 +456,7 @@ and select these fits from the <a class="reference internal" href="../generated/
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-50 Hz frequency range with 0.50 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -471,7 +471,7 @@ and select these fits from the <a class="reference internal" href="../generated/
                                 CF:  23.27, PW:   0.18, BW:   3.88
                                 CF:  27.05, PW:   0.05, BW:   1.73
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0122
                                   gof (rsquared) is 0.9996
 
@@ -567,7 +567,7 @@ bad fits / bugs back to us, as demonstrated below.</p>
 <p>We have now stepped through the full work-flow of fitting power spectrum models, using
 model objects, picking settings, and troubleshooting model fits. In the next
 and final tutorial, we will introduce how to start analyzing model results.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.500 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.956 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-10-troubleshooting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/b932ccf6b4f0d2d5d9fd9cc4412c53a7/plot_10-TroubleShooting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_10-TroubleShooting.ipynb</span></code></a></p>

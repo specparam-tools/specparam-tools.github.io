@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>08: Fitting Groups of Spectra &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>08: Fitting Groups of Spectra &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -189,7 +189,7 @@ accessed in the same way as the <a class="reference internal" href="../generated
 
                             GROUP SPECTRAL MODEL RESULTS (25 spectra)
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-30 Hz frequency range with 0.49 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -198,7 +198,7 @@ accessed in the same way as the <a class="reference internal" href="../generated
 
                       Peak Parameters (&#39;gaussian&#39; mode) 85 total peaks found
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                           error (mae) -  Min:  0.025, Max:  0.121, Mean: 0.042
                        gof (rsquared) -  Min:  0.902, Max:  0.990, Mean: 0.970
 
@@ -209,7 +209,7 @@ accessed in the same way as the <a class="reference internal" href="../generated
 <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.plot" title="specparam.SpectralGroupModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_08-GroupFits_001.png" srcset="../_images/sphx_glr_plot_08-GroupFits_001.png" alt="Aperiodic Fit, Fit Quality, Peaks - Center Frequencies" class = "sphx-glr-single-img"/><p>Just as with the SpectralModel object, you can call the convenience method
+<img src="../_images/sphx_glr_plot_08-GroupFits_001.png" srcset="../_images/sphx_glr_plot_08-GroupFits_001.png" alt="Aperiodic Parameters, Metrics, Peak Parameters - Center Frequencies" class = "sphx-glr-single-img"/><p>Just as with the SpectralModel object, you can call the convenience method
 <a class="reference internal" href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.report" title="specparam.SpectralGroupModel.report"><code class="xref py py-meth docutils literal notranslate"><span class="pre">specparam.SpectralGroupModel.report()</span></code></a> to run the fitting, and then print
 the results and plots.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can also save out PDF reports of the group fits, same as for an individual model</span>
@@ -379,7 +379,7 @@ a single power spectrum.</p>
 
                             GROUP SPECTRAL MODEL RESULTS (25 spectra)
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-30 Hz frequency range with 0.49 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -388,7 +388,7 @@ a single power spectrum.</p>
 
                       Peak Parameters (&#39;gaussian&#39; mode) 85 total peaks found
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                           error (mae) -  Min:  0.025, Max:  0.121, Mean: 0.042
                        gof (rsquared) -  Min:  0.902, Max:  0.990, Mean: 0.970
 
@@ -432,9 +432,10 @@ fitting progress.</p>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Running specparam:   0%|          | 0/25 [00:00&lt;?, ?it/s]
-Running specparam:  36%|███▌      | 9/25 [00:00&lt;00:00, 88.75it/s]
-Running specparam:  72%|███████▏  | 18/25 [00:00&lt;00:00, 81.03it/s]
-Running specparam: 100%|██████████| 25/25 [00:00&lt;00:00, 84.54it/s]
+Running specparam:  32%|███▏      | 8/25 [00:00&lt;00:00, 78.79it/s]
+Running specparam:  64%|██████▍   | 16/25 [00:00&lt;00:00, 67.78it/s]
+Running specparam:  92%|█████████▏| 23/25 [00:00&lt;00:00, 65.49it/s]
+Running specparam: 100%|██████████| 25/25 [00:00&lt;00:00, 67.59it/s]
 </pre></div>
 </div>
 </section>
@@ -461,7 +462,7 @@ To do so, you can use the <a class="reference internal" href="../generated/specp
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.49 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -476,7 +477,7 @@ To do so, you can use the <a class="reference internal" href="../generated/specp
                                 CF:  18.50, PW:   0.71, BW:   1.90
                                 CF:  19.97, PW:   0.38, BW:   5.52
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0304
                                   gof (rsquared) is 0.9940
 
@@ -490,7 +491,7 @@ To do so, you can use the <a class="reference internal" href="../generated/specp
 <p>Now we have explored fitting power spectrum models and running these fits across multiple
 power spectra. Next we will explore how to fit power spectra across time windows, and
 across different events.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.102 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 7.756 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-08-groupfits-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/068583efad81297580b1ef22ab03df1a/plot_08-GroupFits.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_08-GroupFits.ipynb</span></code></a></p>

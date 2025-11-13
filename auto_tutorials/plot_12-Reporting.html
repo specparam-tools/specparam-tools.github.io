@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>12: Reporting &amp; Referencing &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>12: Reporting &amp; Referencing &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -144,7 +144,7 @@ including checking what is installed in the Python environment you are using.</p
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Current specparam version:&#39;</span><span class="p">,</span> <span class="n">specparam_version</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Current specparam version: 2.0.0rc4
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Current specparam version: 2.0.0rc5
 </pre></div>
 </div>
 </section>
@@ -171,26 +171,28 @@ you use them with objects that match the settings and data used in the analysis 
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                      specparam - REPORTING
+                                            REPORTING
 
                Reports using spectral parameterization should include (at minimum):
 
                                  - the code version that was used
                                   - the fit modes that were used
-                             - the algorithm settings that were used
+                            - the algorithm &amp; settings that were used
                                 - the frequency range that was fit
 
 ==================================================================================================
 ==================================================================================================
 
-                                       specparam - VERSION
+                                           CODE VERSION
 
-                                             2.0.0rc4
+                                             2.0.0rc5
 
 ==================================================================================================
 ==================================================================================================
 
-                                       specparam - SETTINGS
+                                     ALGORITHM: spectral_fit
+
+                                        ALGORITHM SETTINGS
 
                                  peak_width_limits : (0.5, 12.0)
                                         max_n_peaks : inf
@@ -200,7 +202,7 @@ you use them with objects that match the settings and data used in the analysis 
 ==================================================================================================
 ==================================================================================================
 
-                                      specparam - FIT RANGE
+                                            FIT RANGE
 
                                The model was fit from XX to XX Hz.
 
@@ -216,7 +218,7 @@ some of which might look familiar.</p>
 <a href="../generated/specparam.reports.methods.methods_report_text.html#specparam.reports.methods.methods_report_text" title="specparam.reports.methods.methods_report_text" class="sphx-glr-backref-module-specparam-reports-methods sphx-glr-backref-type-py-function"><span class="n">methods_report_text</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">model</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc4) was used to parameterize neural power spectra. The model was fit with fixed aperiodic mode and gaussian periodic mode. Settings for the algorithm were set as: peak width limits : (0.5, 12.0); max number of peaks : inf; minimum peak height : 0.0; peak threshold : 2.0; .Power spectra were parameterized across the frequency range XX to XX Hz.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc5) was used to parameterize neural power spectra. The model was fit with fixed aperiodic mode and gaussian periodic mode. Settings for the algorithm were set as: peak_width_limits : (0.5, 12.0), max_n_peaks : inf, min_peak_height : 0.0, peak_threshold : 2.0. Power spectra were parameterized across the frequency range XX to XX Hz.
 </pre></div>
 </div>
 <section id="additional-examples">
@@ -239,26 +241,28 @@ available in the example object (for example, it had no data).</p>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                      specparam - REPORTING
+                                            REPORTING
 
                Reports using spectral parameterization should include (at minimum):
 
                                  - the code version that was used
                                   - the fit modes that were used
-                             - the algorithm settings that were used
+                            - the algorithm &amp; settings that were used
                                 - the frequency range that was fit
 
 ==================================================================================================
 ==================================================================================================
 
-                                       specparam - VERSION
+                                           CODE VERSION
 
-                                             2.0.0rc4
+                                             2.0.0rc5
 
 ==================================================================================================
 ==================================================================================================
 
-                                       specparam - SETTINGS
+                                     ALGORITHM: spectral_fit
+
+                                        ALGORITHM SETTINGS
 
                                     peak_width_limits : [1, 6]
                                         max_n_peaks : inf
@@ -268,7 +272,7 @@ available in the example object (for example, it had no data).</p>
 ==================================================================================================
 ==================================================================================================
 
-                                      specparam - FIT RANGE
+                                            FIT RANGE
 
                               The model was fit from 1.0 to 50.0 Hz.
 
@@ -279,7 +283,7 @@ available in the example object (for example, it had no data).</p>
 <a href="../generated/specparam.reports.methods.methods_report_text.html#specparam.reports.methods.methods_report_text" title="specparam.reports.methods.methods_report_text" class="sphx-glr-backref-module-specparam-reports-methods sphx-glr-backref-type-py-function"><span class="n">methods_report_text</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc4) was used to parameterize neural power spectra. The model was fit with knee aperiodic mode and gaussian periodic mode. Settings for the algorithm were set as: peak width limits : [1, 6]; max number of peaks : inf; minimum peak height : 0.1; peak threshold : 2.0; .Power spectra were parameterized across the frequency range 1.0 to 50.0 Hz.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc5) was used to parameterize neural power spectra. The model was fit with knee aperiodic mode and gaussian periodic mode. Settings for the algorithm were set as: peak_width_limits : [1, 6], max_n_peaks : inf, min_peak_height : 0.1, peak_threshold : 2.0. Power spectra were parameterized across the frequency range 1.0 to 50.0 Hz.
 </pre></div>
 </div>
 <p>The report text is meant as a template / example that could be added to a methods section.</p>
@@ -314,26 +318,28 @@ Fitting model across 10 power spectra.
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                      specparam - REPORTING
+                                            REPORTING
 
                Reports using spectral parameterization should include (at minimum):
 
                                  - the code version that was used
                                   - the fit modes that were used
-                             - the algorithm settings that were used
+                            - the algorithm &amp; settings that were used
                                 - the frequency range that was fit
 
 ==================================================================================================
 ==================================================================================================
 
-                                       specparam - VERSION
+                                           CODE VERSION
 
-                                             2.0.0rc4
+                                             2.0.0rc5
 
 ==================================================================================================
 ==================================================================================================
 
-                                       specparam - SETTINGS
+                                     ALGORITHM: spectral_fit
+
+                                        ALGORITHM SETTINGS
 
                                  peak_width_limits : (0.5, 12.0)
                                          max_n_peaks : 4
@@ -343,7 +349,7 @@ Fitting model across 10 power spectra.
 ==================================================================================================
 ==================================================================================================
 
-                                      specparam - FIT RANGE
+                                            FIT RANGE
 
                               The model was fit from 1.0 to 75.0 Hz.
 
@@ -354,7 +360,7 @@ Fitting model across 10 power spectra.
 <a href="../generated/specparam.reports.methods.methods_report_text.html#specparam.reports.methods.methods_report_text" title="specparam.reports.methods.methods_report_text" class="sphx-glr-backref-module-specparam-reports-methods sphx-glr-backref-type-py-function"><span class="n">methods_report_text</span></a><span class="p">(</span><a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc4) was used to parameterize neural power spectra. The model was fit with fixed aperiodic mode and gaussian periodic mode. Settings for the algorithm were set as: peak width limits : (0.5, 12.0); max number of peaks : 4; minimum peak height : 0.0; peak threshold : 1.75; .Power spectra were parameterized across the frequency range 1.0 to 75.0 Hz.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The periodic &amp; aperiodic spectral parameterization algorithm (version 2.0.0rc5) was used to parameterize neural power spectra. The model was fit with fixed aperiodic mode and gaussian periodic mode. Settings for the algorithm were set as: peak_width_limits : (0.5, 12.0), max_n_peaks : 4, min_peak_height : 0.0, peak_threshold : 1.75. Power spectra were parameterized across the frequency range 1.0 to 75.0 Hz.
 </pre></div>
 </div>
 </section>
@@ -364,7 +370,7 @@ Fitting model across 10 power spectra.
 <p>This is the end of the main tutorial materials!</p>
 <p>If you are having any troubles, please submit an issue on Github
 <a class="reference external" href="https://github.com/fooof-tools/fooof">here</a>.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.186 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.226 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-12-reporting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/7c051b24df54356c4fef19f4a686c738/plot_12-Reporting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_12-Reporting.ipynb</span></code></a></p>

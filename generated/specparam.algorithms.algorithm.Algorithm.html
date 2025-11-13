@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>specparam.algorithms.algorithm.Algorithm &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>specparam.algorithms.algorithm.Algorithm &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -162,7 +162,10 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.get_settings" title="specparam.algorithms.algorithm.Algorithm.get_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_settings</span></code></a>()</p></td>
 <td><p>Return user defined settings of the current object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.set_debug" title="specparam.algorithms.algorithm.Algorithm.set_debug"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_debug</span></code></a>(debug)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.print" title="specparam.algorithms.algorithm.Algorithm.print"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print</span></code></a>([description, concise])</p></td>
+<td><p>Print out the algorithm name and fit settings.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.set_debug" title="specparam.algorithms.algorithm.Algorithm.set_debug"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_debug</span></code></a>(debug)</p></td>
 <td><p>Set debug state, which controls if an error is raised if model fitting is unsuccessful.</p></td>
 </tr>
 </tbody>
@@ -202,6 +205,22 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.print">
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out the algorithm name and fit settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>description</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out a description with current settings.</p>
+</dd>
+<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print the report in a concise mode, or not.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.set_debug">
 <span class="sig-name descname"><span class="pre">set_debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">debug</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.set_debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.set_debug" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set debug state, which controls if an error is raised if model fitting is unsuccessful.</p>
@@ -217,6 +236,12 @@
 
 </dd></dl>
 
+<section id="examples-using-specparam-algorithms-algorithm-algorithm">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.algorithms.algorithm.Algorithm</span></code><a class="headerlink" href="#examples-using-specparam-algorithms-algorithm-algorithm" title="Permalink to this heading">¶</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example covers defining and using custom fit algorithms."><img alt="" src="../_images/sphx_glr_plot_custom_algorithms_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/customize/plot_custom_algorithms.html#sphx-glr-auto-examples-customize-plot-custom-algorithms-py"><span class="std std-ref">Custom Algorithms</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Custom Algorithms</div>
+</div></div></section>
 </section>
 
 

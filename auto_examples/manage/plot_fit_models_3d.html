@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Fitting Power Spectrum Models Across 3D Arrays &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>Fitting Power Spectrum Models Across 3D Arrays &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -253,7 +253,7 @@ which collectively store all the model fit results.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">fgs</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;specparam.models.group.SpectralGroupModel object at 0x7fde332e34c0&gt;, &lt;specparam.models.group.SpectralGroupModel object at 0x7fde332da490&gt;, &lt;specparam.models.group.SpectralGroupModel object at 0x7fde332e3bb0&gt;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;specparam.models.group.SpectralGroupModel object at 0x7f892bf48f70&gt;, &lt;specparam.models.group.SpectralGroupModel object at 0x7f892bef5af0&gt;, &lt;specparam.models.group.SpectralGroupModel object at 0x7f892bf48880&gt;]
 </pre></div>
 </div>
 <p>Note that the length of the returned list of objects should be equivalent to
@@ -287,9 +287,9 @@ difference in aperiodic exponent between different conditions.</p>
         <span class="n">ind</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">,</span> <span class="s1">&#39;exponent&#39;</span><span class="p">))))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Aperiodic exponent for condition 0 is 1.3505
-Aperiodic exponent for condition 1 is 1.5013
-Aperiodic exponent for condition 2 is 1.6018
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Aperiodic exponent for condition 0 is 1.6514
+Aperiodic exponent for condition 1 is 1.3505
+Aperiodic exponent for condition 2 is 1.4009
 </pre></div>
 </div>
 </section>
@@ -326,27 +326,27 @@ and these object utility functions is available in other examples.</p>
 <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.plot" title="specparam.SpectralGroupModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">all_fg</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_fit_models_3d_001.png" srcset="../../_images/sphx_glr_plot_fit_models_3d_001.png" alt="Aperiodic Fit, Fit Quality, Peaks - Center Frequencies" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+<img src="../../_images/sphx_glr_plot_fit_models_3d_001.png" srcset="../../_images/sphx_glr_plot_fit_models_3d_001.png" alt="Aperiodic Parameters, Metrics, Peak Parameters - Center Frequencies" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
                             GROUP SPECTRAL MODEL RESULTS (30 spectra)
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-40 Hz frequency range with 0.25 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
                          offset   - Min:  -0.00, Max:   0.01, Mean:  0.00
-                         exponent - Min:   1.00, Max:   2.01, Mean:  1.48
+                         exponent - Min:   1.00, Max:   2.00, Mean:  1.47
 
-                      Peak Parameters (&#39;gaussian&#39; mode) 31 total peaks found
+                      Peak Parameters (&#39;gaussian&#39; mode) 46 total peaks found
 
-                                    Model fit quality metrics:
-                          error (mae) -  Min:  0.003, Max:  0.005, Mean: 0.004
+                                          Model metrics:
+                          error (mae) -  Min:  0.004, Max:  0.005, Mean: 0.004
                        gof (rsquared) -  Min:  1.000, Max:  1.000, Mean: 1.000
 
 ==================================================================================================
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.365 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.478 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-manage-plot-fit-models-3d-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/46e69bf49fb2e5486bf8d62dc2c4e50d/plot_fit_models_3d.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_fit_models_3d.ipynb</span></code></a></p>

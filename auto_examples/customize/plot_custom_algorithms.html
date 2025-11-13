@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Custom Algorithms &#8212; specparam 2.0.0rc5 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=d5056f9c"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../api.html">API</a></li>
+                <li><a href="../../faq.html">FAQ</a></li>
+                <li><a href="../../glossary.html">Glossary</a></li>
+                <li><a href="../../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="../../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../index.html">Examples</a></li>
+                <li><a href="../../visualizers.html">Visualizers</a></li>
+                <li><a href="../../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-customize-plot-custom-algorithms-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="custom-algorithms">
+<span id="sphx-glr-auto-examples-customize-plot-custom-algorithms-py"></span><h1>Custom Algorithms<a class="headerlink" href="#custom-algorithms" title="Permalink to this heading">¶</a></h1>
+<p>This example covers defining and using custom fit algorithms.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+
+<span class="c1"># Import function to simulate a power spectrum</span>
+<span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
+
+<span class="c1"># Import elements to define custom fit algorithms</span>
+<span class="kn">from</span> <span class="nn">specparam.algorithms.settings</span> <span class="kn">import</span> <span class="n">SettingsDefinition</span>
+<span class="kn">from</span> <span class="nn">specparam.algorithms.algorithm</span> <span class="kn">import</span> <a href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm" title="specparam.algorithms.algorithm.Algorithm" class="sphx-glr-backref-module-specparam-algorithms-algorithm sphx-glr-backref-type-py-class"><span class="n">Algorithm</span></a>
+</pre></div>
+</div>
+<section id="defining-custom-fit-algorithms">
+<h2>Defining Custom Fit Algorithms<a class="headerlink" href="#defining-custom-fit-algorithms" title="Permalink to this heading">¶</a></h2>
+<p>The specparam module includes a standard fitting algorithm that is used to for fitting the
+selected fit modes to the data. However, you do not have to use this particular algorithm,
+you can tweak how it works, and/or define your own custom algorithm and plug this in to
+the model object.</p>
+<p>In this tutorial, we will explore how you can also define your own custom fit algorithms.</p>
+<p>To do so, we will start by simulating an example power spectrum to use for this example.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define simulation parameters</span>
+<span class="n">ap_params</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">gauss_params</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">nlv</span> <span class="o">=</span> <span class="mf">0.025</span>
+
+<span class="c1"># Simulate an example power spectrum</span>
+<span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">(</span>\
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="n">ap_params</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="n">gauss_params</span><span class="p">},</span> <span class="n">nlv</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-custom-algorithm-object">
+<h2>Example: Custom Algorithm Object<a class="headerlink" href="#example-custom-algorithm-object" title="Permalink to this heading">¶</a></h2>
+<p>In our first example, we will introduce how to create a custom fit algorithm.</p>
+<p>For simplicity, we will start with a ‘dummy’ algorithm - one that functions code wise, but
+doesn’t actually implement a detailed fitting algorithm, so that we can start with the
+organization of the code, and build up from there.</p>
+<section id="algorithm-settings">
+<h3>Algorithm Settings<a class="headerlink" href="#algorithm-settings" title="Permalink to this heading">¶</a></h3>
+<p>A fitting algorithm typically has some settings that you want to define and describe so that
+the user can check their description and provide values for the settings.</p>
+<p>For fitting algorithms, these setting descriptions are managed by the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">SettingsDefinition</span></code> object.</p>
+<p>For our dummy algorithm, we will initialize a settings definition object, with a
+placeholder label and description.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a settings definition for our dummy algorithm</span>
+<span class="n">DUMMY_ALGO_SETTINGS</span> <span class="o">=</span> <span class="n">SettingsDefinition</span><span class="p">({</span><span class="s1">&#39;fit_setting&#39;</span> <span class="p">:</span> <span class="s1">&#39;Setting description&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="algorithm-object">
+<h3>Algorithm Object<a class="headerlink" href="#algorithm-object" title="Permalink to this heading">¶</a></h3>
+<p>Now we can define our custom fitting algorithm. To do so, we will create a custom object
+that inherits from the specparam <a class="reference internal" href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm" title="specparam.algorithms.algorithm.Algorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Algorithm</span></code></a> object.</p>
+<p>Implementing a custom fit object requires following several standards for specparam
+to be able to use it:</p>
+<ul class="simple">
+<li><p>the class should inherit from the specparam Algorithm object</p></li>
+<li><p>the object needs to accept <cite>modes</cite>, <cite>data</cite>, <cite>results</cite>, and <cite>debug</cite> input arguments</p></li>
+<li><p>at initialization, the object should initialize the Algorithm object (‘super()’),
+including providing a name and description, passing in the algorithm settings
+object (from above), and passing in the ‘modes’, ‘data’, ‘results’, and ‘debug’ inputs</p></li>
+<li><p>the object needs to define a <cite>_fit</cite> function that serves as the main fit function</p></li>
+</ul>
+<p>In the following code, we initialize a custom object following the above to create a fit
+algorithm object. Note that as a dummy algorithm, the ‘fit’ aspect doesn’t actually
+implement a step-by-step fitting procedure, but simply instantiates a pre-specified
+model (to mimic the outputs of a fit algorithm).</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">class</span> <span class="nc">DummyAlgorithm</span><span class="p">(</span><a href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm" title="specparam.algorithms.algorithm.Algorithm" class="sphx-glr-backref-module-specparam-algorithms-algorithm sphx-glr-backref-type-py-class"><span class="n">Algorithm</span></a><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dummy object to mimic a fit algorithm.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize DummyAlgorithm instance.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Initialize base algorithm object with algorithm metadata</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dummy_fit_algo&#39;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Dummy fit algorithm.&#39;</span><span class="p">,</span>
+            <span class="n">public_settings</span><span class="o">=</span><span class="n">DUMMY_ALGO_SETTINGS</span><span class="p">,</span>
+            <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Define the full fitting algorithm.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">add_params</span><span class="p">(</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">periodic</span><span class="o">.</span><span class="n">add_params</span><span class="p">(</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">_regenerate_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="expected-outcomes-of-algorithm-fitting">
+<h3>Expected outcomes of algorithm fitting<a class="headerlink" href="#expected-outcomes-of-algorithm-fitting" title="Permalink to this heading">¶</a></h3>
+<p>In order for a custom fitting algorithm to work properly when embedded within a model object,
+there are some expectations for what the fitting process should do.</p>
+<p>The following elements are expected to computed through the fitting procedure:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Parameter results should be added for each parameter</dt><dd><ul>
+<li><p><cite>model.results.params.{component}.add_params(…)</cite></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The model should be computed and added to the object</dt><dd><ul>
+<li><p><cite>model.results.model.modeled_spectrum</cite> should be populated, as well as model
+components (<cite>model.results.model._ap_fit</cite> &amp; <cite>model.results.model._peak_fit</cite>)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>If the above  you do the above, the model object can be used as normal, and you can do
+(fit / print_results / plot / report / as well as save and load results).</p>
+<p>There are also some additional procedures / outputs that a custom fit process may do:</p>
+<ul class="simple">
+<li><p>Update fit parameters to also have converted versions</p></li>
+</ul>
+<p>Now that our custom fit algorithm is defined, we can use it by passing it into a model object.</p>
+<p>Note that in this example, we will use <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> for our example, but
+you can also take the same approach to define custom fit algorithms with other model objects.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object, passing in our custom dummy algorithm</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">algorithm</span><span class="o">=</span><a href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm" title="specparam.algorithms.algorithm.Algorithm" class="sphx-glr-backref-module-specparam-algorithms-algorithm sphx-glr-backref-type-py-class"><span class="n">DummyAlgorithm</span></a><span class="p">)</span>
+
+<span class="c1"># Check the defined fit algorithm</span>
+<a href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.print" title="specparam.algorithms.algorithm.Algorithm.print" class="sphx-glr-backref-module-specparam-algorithms-algorithm sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">print</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                    ALGORITHM: dummy_fit_algo
+
+                                        ALGORITHM SETTINGS
+
+                                        fit_setting : None
+
+==================================================================================================
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit and report model, using our custom algorithm</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_custom_algorithms_001.png" srcset="../../_images/sphx_glr_plot_custom_algorithms_001.png" alt="plot custom algorithms" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                       POWER SPECTRUM MODEL
+
+                      The model was fit with the &#39;dummy_fit_algo&#39; algorithm
+               Model was fit to the 3-50 Hz frequency range with 0.50 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                          0.0000, 1.0000
+
+                         Peak Parameters (&#39;gaussian&#39; mode) 1 peaks found
+                                CF:  10.00, PW:   0.50, BW:   2.00
+
+                                          Model metrics:
+                                     error (mae) is 0.0214
+                                  gof (rsquared) is 0.9953
+
+==================================================================================================
+</pre></div>
+</div>
+<p>In this case, with our dummy algorithm, we cheated a bit - the model was pre-specified to
+initialize a model that happened to match the simulated data, and no real fitting took place.</p>
+<p>The point of this example is to show the outline of how a custom fit algorithm can be developed,
+since the <cite>_fit</cite> method can implement any arbitrarily defined procedure to fit a model,</p>
+</section>
+</section>
+<section id="example-with-custom-fitting">
+<h2>Example with Custom Fitting<a class="headerlink" href="#example-with-custom-fitting" title="Permalink to this heading">¶</a></h2>
+<p>Having sketched out the basic outline with the dummy algorithm above, lets now define a custom
+fit algorithm that actually does some fitting.</p>
+<p>For simplicity, this algorithm will be a simple fit that starts with an aperiodic fit, and
+then fits a single peak to the flattened (aperiodic removed) spectrum. To do so, it will
+take in an algorithm setting that defines a guess center-frequency for this peak.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the algorithm settings for our custom fit</span>
+<span class="n">CUSTOM_ALGO_SETTINGS</span> <span class="o">=</span> <span class="n">SettingsDefinition</span><span class="p">(</span>\
+    <span class="p">{</span><span class="s1">&#39;guess_cf&#39;</span> <span class="p">:</span> <span class="s1">&#39;Initial guess center frequency for peak.&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Now we need to define our fit approach! To do so, we will mimic the approach we used above
+to define a custom algorithm object, this time making the <cite>_fit</cite> method implement an actual
+fitting procedure. Note that while the <cite>_fit</cite> function should be the main method that runs
+the fitting process, it can also call additional methods. In this implementation, we define
+additional fit methods to fit each component.</p>
+<p>To fit the data components, we will use the <cite>curve_fit</cite> function from scipy.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+
+<span class="k">class</span> <span class="nc">CustomAlgorithm</span><span class="p">(</span><a href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm" title="specparam.algorithms.algorithm.Algorithm" class="sphx-glr-backref-module-specparam-algorithms-algorithm sphx-glr-backref-type-py-class"><span class="n">Algorithm</span></a><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom fitting algorithm.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guess_cf</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize DummyAlgorithm instance.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Initialize base algorithm object with algorithm metadata</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;custom_fit_algo&#39;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Example custom algorithm.&#39;</span><span class="p">,</span>
+            <span class="n">public_settings</span><span class="o">=</span><span class="n">CUSTOM_ALGO_SETTINGS</span><span class="p">,</span>
+            <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span>
+
+        <span class="c1">## Public settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">guess_cf</span> <span class="o">=</span> <span class="n">guess_cf</span>
+
+    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Define the full fitting algorithm.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Fit each individual component</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fit_aperiodic</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fit_peak</span><span class="p">()</span>
+
+        <span class="c1"># Create full model from the individual components</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">modeled_spectrum</span> <span class="o">=</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_peak_fit</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_ap_fit</span>
+
+    <span class="k">def</span> <span class="nf">_fit_aperiodic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit aperiodic - direct fit to full spectrum.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Fit aperiodic component directly to data &amp; collect parameter results</span>
+        <span class="n">ap_params</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span>\
+            <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">,</span>
+            <span class="n">p0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">n_params</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">add_params</span><span class="p">(</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="n">ap_params</span><span class="p">)</span>
+
+        <span class="c1"># Construct &amp; collect aperiodic component</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_ap_fit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="o">*</span><span class="n">ap_params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_fit_peak</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit peak - single peak, with initial guess CF, to flattened spectrum.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Fit peak</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_spectrum_flat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">power_spectrum</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_ap_fit</span>
+        <span class="n">pe_params</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span>\
+            <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_spectrum_flat</span><span class="p">,</span>
+            <span class="n">p0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">guess_cf</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span><span class="o">.</span><span class="n">n_params</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">periodic</span><span class="o">.</span><span class="n">add_params</span><span class="p">(</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">pe_params</span><span class="p">))</span>
+
+        <span class="c1"># Construct periodic component</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_peak_fit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="o">*</span><span class="n">pe_params</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object, passing in a custom fit algorithm and settings for this algorithm</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">algorithm</span><span class="o">=</span><a href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm" title="specparam.algorithms.algorithm.Algorithm" class="sphx-glr-backref-module-specparam-algorithms-algorithm sphx-glr-backref-type-py-class"><span class="n">CustomAlgorithm</span></a><span class="p">,</span> <span class="n">guess_cf</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Check the defined fit algorithm</span>
+<a href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.print" title="specparam.algorithms.algorithm.Algorithm.print" class="sphx-glr-backref-module-specparam-algorithms-algorithm sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">print</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                    ALGORITHM: custom_fit_algo
+
+                                        ALGORITHM SETTINGS
+
+                                          guess_cf : 10
+
+==================================================================================================
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit model with custom algorithm and report results</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_custom_algorithms_002.png" srcset="../../_images/sphx_glr_plot_custom_algorithms_002.png" alt="plot custom algorithms" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                       POWER SPECTRUM MODEL
+
+                      The model was fit with the &#39;custom_fit_algo&#39; algorithm
+               Model was fit to the 3-50 Hz frequency range with 0.50 Hz resolution
+
+                               Aperiodic Parameters (&#39;fixed&#39; mode)
+                                        (offset, exponent)
+                                          0.3250, 1.2015
+
+                         Peak Parameters (&#39;gaussian&#39; mode) 1 peaks found
+                                CF:  10.13, PW:   0.39, BW:   1.45
+
+                                          Model metrics:
+                                     error (mae) is 0.0447
+                                  gof (rsquared) is 0.9838
+
+==================================================================================================
+</pre></div>
+</div>
+<p>In the above we fit a model with our custom fit algorithm, and can see the results.</p>
+</section>
+<section id="notes-on-defining-custom-algorithms">
+<h2>Notes on Defining Custom Algorithms<a class="headerlink" href="#notes-on-defining-custom-algorithms" title="Permalink to this heading">¶</a></h2>
+<p>In these examples, we have made quite simple algorithms. This may be a desired use case -
+creating bespoke fit approaches for specific kinds of data.</p>
+<p>In cases where generalizability is more desired, the fit algorithm is likely going to need to
+be significantly more detailed to address</p>
+<p>To see, for example, the details of the original / default fit algorithm, check the
+definition of the <cite>spectral_fit</cite> algorithm in the codebase, which is also defined in the same
+way as here.</p>
+<p>Additional notes to consider when creating custom algorithms:</p>
+<ul class="simple">
+<li><p>In the above, we didn’t consider different fit modes, and used the defaults. Depending on
+your use case, the fit algorithm may or not want to make assumptions about the fit modes.
+To make it generalize, the algorithm needs to be written in a way that is flexible for
+applying different fit functions that may have different numbers of parameters</p></li>
+<li><p>As well as the public settings we defined here, you may want to additional specify
+a set of private settings (additional settings that are defined for the algorithm, which
+are not expected to be changed in most use cases, but which can be accessed)</p></li>
+</ul>
+<section id="algorithms-that-use-curve-fit">
+<h3>Algorithms that use curve_fit<a class="headerlink" href="#algorithms-that-use-curve-fit" title="Permalink to this heading">¶</a></h3>
+<p>A common approach for fitting functions to data is to use the scipy <cite>curve_fit</cite>
+function to estimate parameters to fit a specified function to some data, as we did in
+an above example.</p>
+<p>When doing so, you may also want to manage and allow inputs for settings that to the
+curve_fit function to manage the fitting process. As a shortcut for this case, you can use the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">AlgorithmCF</span></code> object which pre-initializes a set
+of curve_fit settings.</p>
+<p>In addition, when using <cite>curve_fit</cite> you are likely going to want to</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.606 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-customize-plot-custom-algorithms-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/4daa586c8a6766004d99a6c4e39dd629/plot_custom_algorithms.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_custom_algorithms.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/1b867537a8c65e609dea83b93635b439/plot_custom_algorithms.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_custom_algorithms.py</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

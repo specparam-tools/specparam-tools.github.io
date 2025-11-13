@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>specparam.SpectralTimeModel &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>specparam.SpectralTimeModel &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -132,9 +132,13 @@ This threshold is defined in absolute units of the power spectrum (log power).</
 <dt><strong>peak_threshold</strong><span class="classifier">float, optional, default: 2.0</span></dt><dd><p>Relative threshold for detecting peaks.
 Threshold is defined in relative units of the power spectrum (standard deviation).</p>
 </dd>
-<dt><strong>aperiodic_mode</strong><span class="classifier">{‘fixed’, ‘knee’}</span></dt><dd><p>Which approach to take for fitting the aperiodic component.</p>
+<dt><strong>aperiodic_mode</strong><span class="classifier">{‘fixed’, ‘knee’} or Mode</span></dt><dd><p>Which approach to take for fitting the aperiodic component.</p>
 </dd>
-<dt><strong>periodic_mode</strong><span class="classifier">{‘gaussian’, ‘skewed_gaussian’, ‘cauchy’}</span></dt><dd><p>Which approach to take for fitting the periodic component.</p>
+<dt><strong>periodic_mode</strong><span class="classifier">{‘gaussian’, ‘skewed_gaussian’, ‘cauchy’} or Mode</span></dt><dd><p>Which approach to take for fitting the periodic component.</p>
+</dd>
+<dt><strong>algorithm</strong><span class="classifier">{‘spectral_fit’} or Algorithm</span></dt><dd><p>The fitting algorithm to use.</p>
+</dd>
+<dt><strong>algorithm_settings</strong><span class="classifier">dict</span></dt><dd><p>Setting for the algorithm.</p>
 </dd>
 <dt><strong>metrics</strong><span class="classifier">Metrics or list of Metric or list or str</span></dt><dd><p>Metrics definition(s) to use to evaluate the model.</p>
 </dd>
@@ -145,7 +149,8 @@ If in debug, any errors encountered during fitting will raise an error.</p>
 </dd>
 <dt><strong>verbose</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Verbosity mode. If True, prints out warnings and general status updates.</p>
 </dd>
-<dt><strong>**model_kwargs</strong></dt><dd><p>Additional model fitting related keyword arguments.</p>
+<dt><strong>**model_kwargs</strong></dt><dd><p>Additional model fitting related keyword arguments.
+These are passed into the algorithm object.</p>
 </dd>
 </dl>
 </dd>
@@ -227,31 +232,28 @@ the full model results.</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.plot" title="specparam.SpectralTimeModel.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([plot_type, save_fig, file_name, file_path])</p></td>
 <td><p>Plot a figure with subplots visualizing the parameters from a SpectralTimeModel object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.print_modes" title="specparam.SpectralTimeModel.print_modes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_modes</span></code></a>([description, concise])</p></td>
-<td><p>Print out the current fit modes.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.print_report_issue" title="specparam.SpectralTimeModel.print_report_issue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_report_issue</span></code></a>([concise])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.print_report_issue" title="specparam.SpectralTimeModel.print_report_issue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_report_issue</span></code></a>([concise])</p></td>
 <td><p>Prints instructions on how to report bugs and/or problematic fits.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.print_results" title="specparam.SpectralTimeModel.print_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_results</span></code></a>([print_type, concise])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.print_results" title="specparam.SpectralTimeModel.print_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_results</span></code></a>([print_type, concise])</p></td>
 <td><p>Print out SpectralTimeModel results.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.print_settings" title="specparam.SpectralTimeModel.print_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_settings</span></code></a>([description, concise])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.print_settings" title="specparam.SpectralTimeModel.print_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_settings</span></code></a>([description, concise])</p></td>
 <td><p>Print out the current settings.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.report" title="specparam.SpectralTimeModel.report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">report</span></code></a>([freqs, spectrogram, freq_range, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.report" title="specparam.SpectralTimeModel.report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">report</span></code></a>([freqs, spectrogram, freq_range, ...])</p></td>
 <td><p>Fit a spectrogram and display a report, with a plot and printed results.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.save" title="specparam.SpectralTimeModel.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(file_name[, file_path, append, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.save" title="specparam.SpectralTimeModel.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(file_name[, file_path, append, ...])</p></td>
 <td><p>Save out results and/or settings from time object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.save_model_report" title="specparam.SpectralTimeModel.save_model_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_model_report</span></code></a>(index, file_name[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.save_model_report" title="specparam.SpectralTimeModel.save_model_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_model_report</span></code></a>(index, file_name[, ...])</p></td>
 <td><p>&quot;Save out an individual model report for a specified model fit.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.save_report" title="specparam.SpectralTimeModel.save_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_report</span></code></a>(file_name[, file_path, add_settings])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.save_report" title="specparam.SpectralTimeModel.save_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_report</span></code></a>(file_name[, file_path, add_settings])</p></td>
 <td><p>Generate and save out a PDF report for models of a spectrogram.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.to_df" title="specparam.SpectralTimeModel.to_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_df</span></code></a>([bands])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeModel.to_df" title="specparam.SpectralTimeModel.to_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_df</span></code></a>([bands])</p></td>
 <td><p>Convert and extract the model results as a pandas object.</p></td>
 </tr>
 </tbody>
@@ -519,22 +521,6 @@ returned array, indicating the index that the peak came from.</p>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>NoModelError</dt><dd><p>If the model object does not have model fit data available to plot.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="specparam.SpectralTimeModel.print_modes">
-<span class="sig-name descname"><span class="pre">print_modes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeModel.print_modes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print out the current fit modes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>description</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out a description with current fit modes.</p>
-</dd>
-<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print the report in a concise mode, or not.</p>
 </dd>
 </dl>
 </dd>

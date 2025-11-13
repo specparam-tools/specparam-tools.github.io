@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>specparam.SpectralModel &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>specparam.SpectralModel &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -115,7 +115,7 @@
 <h1>specparam.SpectralModel<a class="headerlink" href="#specparam-spectralmodel" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="specparam.SpectralModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.</span></span><span class="sig-name descname"><span class="pre">SpectralModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peak_width_limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.5,</span> <span class="pre">12.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_n_peaks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_peak_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aperiodic_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fixed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/model.html#SpectralModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.</span></span><span class="sig-name descname"><span class="pre">SpectralModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aperiodic_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fixed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spectral_fit'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/model.html#SpectralModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Model a power spectrum as a combination of aperiodic and periodic components.</p>
 <p>WARNING: frequency and power values inputs must be in linear space. Passing in logged
 frequencies and/or power spectra is not detected, and will silently produce incorrect results.</p>
@@ -132,9 +132,13 @@ This threshold is defined in absolute units of the power spectrum (log power).</
 <dt><strong>peak_threshold</strong><span class="classifier">float, optional, default: 2.0</span></dt><dd><p>Relative threshold for detecting peaks.
 Threshold is defined in relative units of the power spectrum (standard deviation).</p>
 </dd>
-<dt><strong>aperiodic_mode</strong><span class="classifier">{‘fixed’, ‘knee’}</span></dt><dd><p>Which approach to take for fitting the aperiodic component.</p>
+<dt><strong>aperiodic_mode</strong><span class="classifier">{‘fixed’, ‘knee’} or Mode</span></dt><dd><p>Which approach to take for fitting the aperiodic component.</p>
 </dd>
-<dt><strong>periodic_mode</strong><span class="classifier">{‘gaussian’, ‘skewed_gaussian’, ‘cauchy’}</span></dt><dd><p>Which approach to take for fitting the periodic component.</p>
+<dt><strong>periodic_mode</strong><span class="classifier">{‘gaussian’, ‘skewed_gaussian’, ‘cauchy’} or Mode</span></dt><dd><p>Which approach to take for fitting the periodic component.</p>
+</dd>
+<dt><strong>algorithm</strong><span class="classifier">{‘spectral_fit’} or Algorithm</span></dt><dd><p>The fitting algorithm to use.</p>
+</dd>
+<dt><strong>algorithm_settings</strong><span class="classifier">dict</span></dt><dd><p>Setting for the algorithm.</p>
 </dd>
 <dt><strong>metrics</strong><span class="classifier">Metrics or list of Metric or list or str</span></dt><dd><p>Metrics definition(s) to use to evaluate the model.</p>
 </dd>
@@ -145,7 +149,8 @@ If in debug, any errors encountered during fitting will raise an error.</p>
 </dd>
 <dt><strong>verbose</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Verbosity mode. If True, prints out warnings and general status updates.</p>
 </dd>
-<dt><strong>**model_kwargs</strong></dt><dd><p>Additional model fitting related keyword arguments.</p>
+<dt><strong>**model_kwargs</strong></dt><dd><p>Additional model fitting related keyword arguments.
+These are passed into the algorithm object.</p>
 </dd>
 </dl>
 </dd>
@@ -175,14 +180,14 @@ as this will give better model fits.</p></li>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralModel.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peak_width_limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.5,</span> <span class="pre">12.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_n_peaks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_peak_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aperiodic_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fixed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/model.html#SpectralModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralModel.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aperiodic_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fixed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spectral_fit'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/model.html#SpectralModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralModel.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize model object.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralModel.__init__" title="specparam.SpectralModel.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([peak_width_limits, max_n_peaks, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralModel.__init__" title="specparam.SpectralModel.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([aperiodic_mode, periodic_mode, ...])</p></td>
 <td><p>Initialize model object.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralModel.add_data" title="specparam.SpectralModel.add_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_data</span></code></a>(freqs, power_spectrum[, ...])</p></td>
@@ -212,28 +217,25 @@ as this will give better model fits.</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([plot_peaks, plot_aperiodic, freqs, ...])</p></td>
 <td><p>Plot the power spectrum and model fit results from a model object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralModel.print_modes" title="specparam.SpectralModel.print_modes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_modes</span></code></a>([description, concise])</p></td>
-<td><p>Print out the current fit modes.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralModel.print_report_issue" title="specparam.SpectralModel.print_report_issue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_report_issue</span></code></a>([concise])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralModel.print_report_issue" title="specparam.SpectralModel.print_report_issue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_report_issue</span></code></a>([concise])</p></td>
 <td><p>Prints instructions on how to report bugs and/or problematic fits.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralModel.print_results" title="specparam.SpectralModel.print_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_results</span></code></a>([concise])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralModel.print_results" title="specparam.SpectralModel.print_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_results</span></code></a>([concise])</p></td>
 <td><p>Print out model fitting results.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralModel.print_settings" title="specparam.SpectralModel.print_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_settings</span></code></a>([description, concise])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralModel.print_settings" title="specparam.SpectralModel.print_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_settings</span></code></a>([description, concise])</p></td>
 <td><p>Print out the current settings.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralModel.report" title="specparam.SpectralModel.report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">report</span></code></a>([freqs, power_spectrum, freq_range, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralModel.report" title="specparam.SpectralModel.report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">report</span></code></a>([freqs, power_spectrum, freq_range, ...])</p></td>
 <td><p>Run model fit, and display a report, which includes a plot, and printed results.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralModel.save" title="specparam.SpectralModel.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(file_name[, file_path, append, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralModel.save" title="specparam.SpectralModel.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(file_name[, file_path, append, ...])</p></td>
 <td><p>Save out data, results and/or settings from a model object into a JSON file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralModel.save_report" title="specparam.SpectralModel.save_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_report</span></code></a>(file_name[, file_path, add_settings])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralModel.save_report" title="specparam.SpectralModel.save_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_report</span></code></a>(file_name[, file_path, add_settings])</p></td>
 <td><p>Generate and save out a PDF report for a power spectrum model fit.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralModel.to_df" title="specparam.SpectralModel.to_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_df</span></code></a>([bands])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralModel.to_df" title="specparam.SpectralModel.to_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_df</span></code></a>([bands])</p></td>
 <td><p>Convert and extract the model results as a pandas object.</p></td>
 </tr>
 </tbody>
@@ -458,22 +460,6 @@ If provided, this overrides the values in the model object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="specparam.SpectralModel.print_modes">
-<span class="sig-name descname"><span class="pre">print_modes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralModel.print_modes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print out the current fit modes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>description</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out a description with current fit modes.</p>
-</dd>
-<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print the report in a concise mode, or not.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralModel.print_report_issue">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">print_report_issue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralModel.print_report_issue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints instructions on how to report bugs and/or problematic fits.</p>
@@ -661,6 +647,9 @@ If not provided, uses the bands definition available in the object.</p>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Plotting power spectrum models, directly from specparam objects."><img alt="" src="../_images/sphx_glr_plot_models_thumb.png" />
 <p><a class="reference internal" href="../auto_examples/plots/plot_models.html#sphx-glr-auto-examples-plots-plot-models-py"><span class="std std-ref">Plot Power Spectrum Models</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot Power Spectrum Models</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example covers defining and using custom fit algorithms."><img alt="" src="../_images/sphx_glr_plot_custom_algorithms_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/customize/plot_custom_algorithms.html#sphx-glr-auto-examples-customize-plot-custom-algorithms-py"><span class="std std-ref">Custom Algorithms</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Custom Algorithms</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This example covers defining and using custom metrics."><img alt="" src="../_images/sphx_glr_plot_custom_metrics_thumb.png" />
 <p><a class="reference internal" href="../auto_examples/customize/plot_custom_metrics.html#sphx-glr-auto-examples-customize-plot-custom-metrics-py"><span class="std std-ref">Custom Metrics</span></a></p>
   <div class="sphx-glr-thumbnail-title">Custom Metrics</div>

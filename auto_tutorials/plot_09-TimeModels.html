@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>09: Fitting Models over Time &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>09: Fitting Models over Time &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -201,7 +201,7 @@ Fitting model across 100 power spectra.
 
                           TIME SPECTRAL MODEL RESULTS (100 time windows)
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-25 Hz frequency range with 0.50 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -211,7 +211,7 @@ Fitting model across 100 power spectra.
                   Peak Parameters (&#39;gaussian&#39; mode) - mean values across windows
                     alpha - CF:  10.06, PW:   0.98, BW:   3.27, Presence: 100.0%
 
-                        Model fit quality metrics (values across windows):
+                              Model metrics (values across windows):
                           error (mae) -  Min:  0.026, Max:  0.103, Mean: 0.069
                        gof (rsquared) -  Min:  0.897, Max:  0.992, Mean: 0.967
 
@@ -279,7 +279,7 @@ Fitting model across 100 power spectra.
 
                   EVENT SPECTRAL MODEL RESULTS (3 events with 100 time windows)
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-25 Hz frequency range with 0.50 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -289,7 +289,7 @@ Fitting model across 100 power spectra.
                   Peak Parameters (&#39;gaussian&#39; mode) - mean values across windows
                       alpha - CF: 10.04, PW:  0.98, BW:  3.22, Presence: 100.0%
 
-                        Model fit quality metrics (values across events):
+                              Model metrics (values across events):
                           error (mae) -  Min:  0.070, Max:  0.070, Mean: 0.070
                        gof (rsquared) -  Min:  0.965, Max:  0.966, Mean: 0.966
 
@@ -310,7 +310,7 @@ visualized data in the other periodic parameter plots.</p>
 <p>Now we have explored fitting power spectrum models and running these fits across time
 windows, including across multiple events. Next we dig deeper into how to choose and tune
 the algorithm settings, and how to troubleshoot if any of the fitting seems to go wrong.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.191 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 8.215 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-09-timemodels-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4aa637693ecc0de698f8d053f9e0efec/plot_09-TimeModels.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_09-TimeModels.ipynb</span></code></a></p>

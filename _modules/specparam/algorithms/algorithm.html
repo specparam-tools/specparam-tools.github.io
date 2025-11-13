@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.algorithms.algorithm &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>specparam.algorithms.algorithm &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -118,6 +118,7 @@
 <span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_input_options</span>
 <span class="kn">from</span> <span class="nn">specparam.algorithms.settings</span> <span class="kn">import</span> <span class="n">SettingsDefinition</span><span class="p">,</span> <span class="n">SettingsValues</span>
 <span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="n">docs_get_section</span><span class="p">,</span> <span class="n">replace_docstring_sections</span>
+<span class="kn">from</span> <span class="nn">specparam.reports.strings</span> <span class="kn">import</span> <span class="n">gen_settings_str</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
@@ -179,7 +180,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_debug</span><span class="p">(</span><span class="n">debug</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_fit_prechecks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_fit_prechecks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Pre-checks to run before the fit function - if are some, overload this function.&quot;&quot;&quot;</span>
 
 
@@ -229,6 +230,20 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_debug</span> <span class="o">=</span> <span class="n">debug</span></div>
+
+
+<div class="viewcode-block" id="Algorithm.print"><a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.print">[docs]</a>    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Print out the algorithm name and fit settings.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        description : bool, optional, default: False</span>
+<span class="sd">            Whether to print out a description with current settings.</span>
+<span class="sd">        concise : bool, optional, default: False</span>
+<span class="sd">            Whether to print the report in a concise mode, or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">gen_settings_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">concise</span><span class="p">))</span></div>
 
 
     <span class="k">def</span> <span class="nf">_reset_subobjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -308,10 +323,16 @@
 <span class="sd">             [high_bound_param1, high_bound_param2])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">n_params</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span><span class="o">.</span><span class="n">n_params</span>
+        <span class="c1"># If modes defined, get number of params - otherwise set stores as empty</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_params</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span><span class="o">.</span><span class="n">n_params</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n_params</span> <span class="o">=</span> <span class="mi">0</span>
+
         <span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_params</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_params</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">bounds</span>
+
 
     <span class="k">def</span> <span class="nf">_initialize_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a guess definition.</span>

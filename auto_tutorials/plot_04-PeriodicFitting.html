@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>04: Periodic Component Fitting &#8212; specparam 2.0.0rc4 documentation</title>
+    <title>04: Periodic Component Fitting &#8212; specparam 2.0.0rc5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b1cabfd8"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5056f9c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -57,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -154,7 +154,7 @@ choosing the periodic mode.</p>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Available periodic modes:
     gaussian      Gaussian peak fit function.
-    skewnorm      Skewed Gaussian peak fit function.
+    skewed_gaussian    Skewed Gaussian peak fit function.
     cauchy        Cauchy peak fit function.
 </pre></div>
 </div>
@@ -169,7 +169,21 @@ choosing the periodic mode.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object, explicitly specifying periodic fit to &#39;gaussian&#39;</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">periodic_mode</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">)</span>
 
-<span class="c1"># Fit the model</span>
+<span class="c1"># Check the defined fit modes of the model object</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                            FIT MODES
+
+                                     Periodic Mode : gaussian
+                                      Aperiodic Mode : fixed
+
+==================================================================================================
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the model and report results</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm1</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -182,7 +196,7 @@ choosing the periodic mode.</p>
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.49 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -195,7 +209,7 @@ choosing the periodic mode.</p>
                                 CF:  18.26, PW:   0.33, BW:   2.89
                                 CF:  49.12, PW:   0.09, BW:   2.08
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0366
                                   gof (rsquared) is 0.9831
 
@@ -281,7 +295,21 @@ as ‘power’, as the units of the input data are expected to be units of power
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object, explicitly specifying periodic fit to &#39;gaussian&#39;</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm2</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">periodic_mode</span><span class="o">=</span><span class="s1">&#39;skewed_gaussian&#39;</span><span class="p">)</span>
 
-<span class="c1"># Fit the model</span>
+<span class="c1"># Check the defined fit modes of the model object</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm2</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                            FIT MODES
+
+                                 Periodic Mode : skewed_gaussian
+                                      Aperiodic Mode : fixed
+
+==================================================================================================
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the model and report results</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm2</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -294,20 +322,20 @@ as ‘power’, as the units of the input data are expected to be units of power
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.49 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
                                         (offset, exponent)
                                          -21.5643, 0.7580
 
-                         Peak Parameters (&#39;skewnorm&#39; mode) 4 peaks found
+                      Peak Parameters (&#39;skewed_gaussian&#39; mode) 4 peaks found
                          CF:   9.37, PW:   1.04, BW:   1.58, SKEW:  -0.00
                          CF:  11.31, PW:   0.23, BW:   2.65, SKEW:  -0.04
                          CF:  18.26, PW:   0.33, BW:   2.88, SKEW:   0.00
                          CF:  49.07, PW:   0.09, BW:   2.08, SKEW:   0.06
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0366
                                   gof (rsquared) is 0.9831
 
@@ -323,7 +351,21 @@ as ‘power’, as the units of the input data are expected to be units of power
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object, explicitly specifying periodic fit to &#39;gaussian&#39;</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm3</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">periodic_mode</span><span class="o">=</span><span class="s1">&#39;cauchy&#39;</span><span class="p">)</span>
 
-<span class="c1"># Fit the model</span>
+<span class="c1"># Check the defined fit modes of the model object</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm3</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                            FIT MODES
+
+                                      Periodic Mode : cauchy
+                                      Aperiodic Mode : fixed
+
+==================================================================================================
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the model and report results</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.report" title="specparam.SpectralModel.report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm3</span><span class="o">.</span><span class="n">report</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -336,7 +378,7 @@ as ‘power’, as the units of the input data are expected to be units of power
 
                                        POWER SPECTRUM MODEL
 
-                       The model was fit with the &#39;spectral fit&#39; algorithm
+                       The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.49 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
@@ -347,7 +389,7 @@ as ‘power’, as the units of the input data are expected to be units of power
                                 CF:   9.47, PW:   1.07, BW:   1.62
                                 CF:  18.30, PW:   0.37, BW:   2.48
 
-                                    Model fit quality metrics:
+                                          Model metrics:
                                      error (mae) is 0.0431
                                   gof (rsquared) is 0.9772
 
@@ -355,7 +397,7 @@ as ‘power’, as the units of the input data are expected to be units of power
 </pre></div>
 </div>
 <p>That covers periodic mode selection!</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.784 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.033 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-periodicfitting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/1c54019721ce2e9f618bafd1a0500483/plot_04-PeriodicFitting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_04-PeriodicFitting.ipynb</span></code></a></p>
