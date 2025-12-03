@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Model Sub-Objects &#8212; specparam 2.0.0rc6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=78551f50"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../api.html">API</a></li>
+                <li><a href="../../faq.html">FAQ</a></li>
+                <li><a href="../../glossary.html">Glossary</a></li>
+                <li><a href="../../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="../../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../index.html">Examples</a></li>
+                <li><a href="../../visualizers.html">Visualizers</a></li>
+                <li><a href="../../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-customize-plot-sub-objects-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="model-sub-objects">
+<span id="sphx-glr-auto-examples-customize-plot-sub-objects-py"></span><h1>Model Sub-Objects<a class="headerlink" href="#model-sub-objects" title="Permalink to this heading">¶</a></h1>
+<p>Introducing the objects used within the model object.</p>
+<p>In order to flexible fit model definitions to data, the Model object needs to manage
+multiple pieces of information, including relating to the data, the fit modes,
+the fit algorithm, and the model results. To do so, the model object contains multiple
+sub-objects, which each manage one of these elements.</p>
+<p>The model object also have several convenience methods attached directly the object
+(e.g., <cite>fit</cite>, <cite>report</cite>, <cite>plot</cite>, <cite>get_params</cite>, etc) so that for most basic usage you
+don’t need to know the exact organization of the information within the model object.
+However, for more advanced analyses, and/or to start customizing model fitting, you need
+to know a bit about this structure. This example overviews the organization of the Model
+object, introducing each of the sub-objects.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a helper function to explore object APIs</span>
+<span class="k">def</span> <span class="nf">print_public_api</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Print out the public methods &amp; attributes of an object.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">el</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="k">if</span> <span class="n">el</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;_&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+<section id="data-object">
+<h2>Data Object<a class="headerlink" href="#data-object" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data" title="specparam.data.data.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data</span></code></a> object manages data.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the data object</span>
+<span class="kn">from</span> <span class="nn">specparam.data.data</span> <span class="kn">import</span> <a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data" title="specparam.data.data.Data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-class"><span class="n">Data</span></a>
+
+<span class="c1"># Import simulation function to make some example data</span>
+<span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a Data object</span>
+<a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data" title="specparam.data.data.Data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span></a> <span class="o">=</span> <a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data" title="specparam.data.data.Data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-class"><span class="n">Data</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the options available on the data object</span>
+<span class="n">print_public_api</span><span class="p">(</span><a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data" title="specparam.data.data.Data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>add_data
+add_meta_data
+checks
+format
+freq_range
+freq_res
+freqs
+get_checks
+get_meta_data
+has_data
+n_freqs
+plot
+power_spectrum
+print
+set_checks
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate an example power spectrum</span>
+<span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">35</span><span class="p">],</span>
+    <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span> <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]},</span> <span class="n">nlv</span><span class="o">=</span><span class="mf">0.025</span><span class="p">)</span>
+
+<span class="c1"># Add data to data object</span>
+<a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data.add_data" title="specparam.data.data.Data.add_data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-method"><span class="n">data</span><span class="o">.</span><span class="n">add_data</span></a><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check some meta data from the data object</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Frequency resolution:</span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data" title="specparam.data.data.Data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span></a><span class="o">.</span><span class="n">freq_res</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Frequency range:</span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data" title="specparam.data.data.Data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span></a><span class="o">.</span><span class="n">freq_range</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Frequency resolution:            0.5
+Frequency range:                 [3.0, 35.0]
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot example data</span>
+<a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data.plot" title="specparam.data.data.Data.plot" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-method"><span class="n">data</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_sub_objects_001.png" srcset="../../_images/sphx_glr_plot_sub_objects_001.png" alt="plot sub objects" class = "sphx-glr-single-img"/><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check printed data summary</span>
+<a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data.print" title="specparam.data.data.Data.print" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-method"><span class="n">data</span><span class="o">.</span><span class="n">print</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                            The data object contains 1 power spectrum
+                             with a frequency range of [3.0, 35.0] Hz
+                              and a frequency resolution of 0.5 Hz.
+
+==================================================================================================
+</pre></div>
+</div>
+</section>
+<section id="modes-object">
+<h2>Modes Object<a class="headerlink" href="#modes-object" title="Permalink to this heading">¶</a></h2>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Modes</span></code> object manages fit modes.</p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Modes</span></code> object itself contains individual mode definitions,
+which are implemented in <a class="reference internal" href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mode</span></code></a> objects. Defining custom fit
+modes with the <a class="reference internal" href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mode</span></code></a> object is covered in the custom modes example.
+Here we will import pre-defined mode definitions and explore the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Modes</span></code> object.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Mode &amp; Modes objects, plus collections of pre-defined modes</span>
+<span class="kn">from</span> <span class="nn">specparam.modes.modes</span> <span class="kn">import</span> <span class="n">Modes</span>
+<span class="kn">from</span> <span class="nn">specparam.modes.definitions</span> <span class="kn">import</span> <span class="n">PE_MODES</span><span class="p">,</span> <span class="n">AP_MODES</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out the available pre-defined modes</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">PE_MODES</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">AP_MODES</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;gaussian&#39;: MODE: periodic-gaussian, &#39;skewed_gaussian&#39;: MODE: periodic-skewed_gaussian, &#39;cauchy&#39;: MODE: periodic-cauchy}
+{&#39;fixed&#39;: MODE: aperiodic-fixed, &#39;knee&#39;: MODE: aperiodic-knee, &#39;doublexp&#39;: MODE: aperiodic-doublexp}
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a Modes object, passing in initialize Mode objects</span>
+<span class="n">modes</span> <span class="o">=</span> <span class="n">Modes</span><span class="p">(</span><span class="n">AP_MODES</span><span class="p">[</span><span class="s1">&#39;fixed&#39;</span><span class="p">],</span> <span class="n">PE_MODES</span><span class="p">[</span><span class="s1">&#39;gaussian&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the options available on the modes object</span>
+<span class="n">print_public_api</span><span class="p">(</span><span class="n">modes</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic
+check_params
+components
+get_modes
+get_params
+periodic
+print
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print description of the modes</span>
+<span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                            FIT MODES
+
+                                     Periodic Mode : gaussian
+                     The approach taken for fitting the aperiodic component.
+                                      Aperiodic Mode : fixed
+                     The approach taken for fitting the aperiodic component.
+
+==================================================================================================
+</pre></div>
+</div>
+</section>
+<section id="algorithm-object">
+<h2>Algorithm Object<a class="headerlink" href="#algorithm-object" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm" title="specparam.algorithms.algorithm.Algorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Algorithm</span></code></a> object manages fit algorithms.</p>
+<p>Defining custom fit algorithms with the <a class="reference internal" href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm" title="specparam.algorithms.algorithm.Algorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Algorithm</span></code></a>
+object is covered in the custom algorithms example. Here we will import pre-defined fit
+algorithms and explore the
+<a class="reference internal" href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm" title="specparam.algorithms.algorithm.Algorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Algorithm</span></code></a> object.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Algorithm object, plus collection of pre-defined algorithms</span>
+<span class="kn">from</span> <span class="nn">specparam.algorithms.algorithm</span> <span class="kn">import</span> <span class="n">Algorithm</span>
+<span class="kn">from</span> <span class="nn">specparam.algorithms.definitions</span> <span class="kn">import</span> <span class="n">ALGORITHMS</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select and initialize an algorithm</span>
+<span class="n">algorithm</span> <span class="o">=</span> <span class="n">ALGORITHMS</span><span class="p">[</span><span class="s1">&#39;spectral_fit&#39;</span><span class="p">]()</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the options available on the algorithm object</span>
+<span class="n">print_public_api</span><span class="p">(</span><span class="n">algorithm</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>add_settings
+data
+data_format
+description
+get_debug
+get_settings
+modes
+name
+print
+private_settings
+public_settings
+results
+set_debug
+settings
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the description of the algorithm</span>
+<span class="n">algorithm</span><span class="o">.</span><span class="n">description</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;Original parameterizing neural power spectra algorithm.&#39;
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out information about the algorithm</span>
+<a href="../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.print" title="specparam.algorithms.algorithm.Algorithm.print" class="sphx-glr-backref-module-specparam-algorithms-algorithm sphx-glr-backref-type-py-method"><span class="n">algorithm</span><span class="o">.</span><span class="n">print</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                     ALGORITHM: spectral_fit
+
+                                        ALGORITHM SETTINGS
+
+                                 peak_width_limits : (0.5, 12.0)
+                                        max_n_peaks : inf
+                                      min_peak_height : 0.0
+                                       peak_threshold : 2.0
+
+==================================================================================================
+</pre></div>
+</div>
+</section>
+<section id="results-object">
+<h2>Results Object<a class="headerlink" href="#results-object" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results" title="specparam.results.results.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a> object manages fit results.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Results object</span>
+<span class="kn">from</span> <span class="nn">specparam.results.results</span> <span class="kn">import</span> <a href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results" title="specparam.results.results.Results" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-class"><span class="n">Results</span></a>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a results object</span>
+<a href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results" title="specparam.results.results.Results" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a> <span class="o">=</span> <a href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results" title="specparam.results.results.Results" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-class"><span class="n">Results</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the options available on the results object</span>
+<span class="n">print_public_api</span><span class="p">(</span><a href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results" title="specparam.results.results.Results" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>add_bands
+add_metrics
+add_results
+bands
+get_metrics
+get_params
+get_results
+has_model
+metrics
+model
+modes
+n_params
+n_peaks
+params
+</pre></div>
+</div>
+<section id="results-sub-objects">
+<h3>Results Sub-Objects<a class="headerlink" href="#results-sub-objects" title="Permalink to this heading">¶</a></h3>
+<p>As you may notice above, the <a class="reference internal" href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results" title="specparam.results.results.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a> object itself
+has several sub-objects to manage results information and related information.</p>
+<p>This includes the <cite>Bands</cite> object, which manages frequency band definitions, and the
+<cite>Metrics</cite> object, which manages post-fitting evaluation metrics.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the Bands object which is attached to the Results object</span>
+<span class="nb">print</span><span class="p">(</span><a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span><span class="o">.</span><span class="n">bands</span></a><span class="p">)</span>
+
+<span class="c1"># Check the Metrics object which is attached to the Results object</span>
+<span class="nb">print</span><span class="p">(</span><a href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results" title="specparam.results.results.Results" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="o">.</span><span class="n">metrics</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;specparam.metrics.metrics.Metrics object at 0x7f8ffa8351f0&gt;
+</pre></div>
+</div>
+</section>
+<section id="modelparameters">
+<h3>ModelParameters<a class="headerlink" href="#modelparameters" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelParameters</span></code> object manages model fit parameters.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the ModelParameters object</span>
+<span class="kn">from</span> <span class="nn">specparam.results.params</span> <span class="kn">import</span> <span class="n">ModelParameters</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize model parameters object</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">ModelParameters</span><span class="p">()</span>
+
+<span class="c1"># Check the API of the object</span>
+<span class="n">print_public_api</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic
+asdict
+periodic
+reset
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check what object stores by exporting as a dictionary</span>
+<span class="n">params</span><span class="o">.</span><span class="n">asdict</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;aperiodic_fit&#39;: nan, &#39;aperiodic_converted&#39;: nan, &#39;peak_fit&#39;: nan, &#39;peak_converted&#39;: nan}
+</pre></div>
+</div>
+</section>
+<section id="modelcomponents">
+<h3>ModelComponents<a class="headerlink" href="#modelcomponents" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelComponents</span></code> object manages model components.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the ModelComponents object</span>
+<span class="kn">from</span> <span class="nn">specparam.results.components</span> <span class="kn">import</span> <span class="n">ModelComponents</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize model components object</span>
+<span class="n">components</span> <span class="o">=</span> <span class="n">ModelComponents</span><span class="p">()</span>
+
+<span class="c1"># Check the API of the object</span>
+<span class="n">print_public_api</span><span class="p">(</span><span class="n">components</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>get_component
+modeled_spectrum
+reset
+</pre></div>
+</div>
+</section>
+</section>
+<section id="base-model-object">
+<h2>Base Model Object<a class="headerlink" href="#base-model-object" title="Permalink to this heading">¶</a></h2>
+<p>In the above, we have introduced the sub-objects that provide for the functionality of
+model fitting, including managing the data, fit modes, fit algorithm, and results.</p>
+<p>Before the user-facing model objects, there is one final piece: the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code> object. This base level model object is
+inherited by all the model objects, providing a shared common definition of some
+base functionality.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the base model object</span>
+<span class="kn">from</span> <span class="nn">specparam.models.base</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a base model, passing in empty mode definitions</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">BaseModel</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Check the API of the object</span>
+<span class="n">print_public_api</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>add_modes
+copy
+get_data
+modes
+print_report_issue
+print_settings
+verbose
+</pre></div>
+</div>
+<p>In the above, we can see that the <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code> object
+implements a few elements that are common across all derived model objects, including
+includes the modes definition and a couple methods.</p>
+</section>
+<section id="model-objects">
+<h2>Model Objects<a class="headerlink" href="#model-objects" title="Permalink to this heading">¶</a></h2>
+<p>Finally, we get to the user-facing model objects!</p>
+<p>Here, we will start with the <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.models.model.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object,
+initializing it as typically done as a user, and then explore the sub-objects.</p>
+<p>To see more detail on how the Model object initializes and gets built based on all
+the sub-objects, see the implementation, including the <cite>__init__</cite>.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import a spectral model object</span>
+<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">()</span>
+
+<span class="c1"># Check the API of the object</span>
+<span class="n">print_public_api</span><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>add_data
+add_modes
+algorithm
+copy
+data
+fit
+get_data
+get_metrics
+get_params
+load
+modes
+plot
+print_report_issue
+print_results
+print_settings
+report
+results
+save
+save_report
+to_df
+verbose
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the sub-objects</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data" title="specparam.data.data.Data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span><span class="o">.</span><span class="n">data</span></a><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">modes</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">algorithm</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><a href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results" title="specparam.results.results.Results" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span><span class="o">.</span><span class="n">results</span></a><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;specparam.data.data.Data&#39;&gt;
+&lt;class &#39;specparam.modes.modes.Modes&#39;&gt;
+&lt;class &#39;specparam.algorithms.spectral_fit.SpectralFitAlgorithm&#39;&gt;
+&lt;class &#39;specparam.results.results.Results&#39;&gt;
+</pre></div>
+</div>
+<p>Looking into these sub-objects, you see that they are all the same as we introduced by
+initializing all these sub-objects one-by-one above, the only different being that they are
+now all connected together in the model object!</p>
+<section id="derived-model-objects">
+<h3>Derived model objects<a class="headerlink" href="#derived-model-objects" title="Permalink to this heading">¶</a></h3>
+<p>Above, we used the <cite>SpectralModel</cite> object as an example object to introduce the
+structure of the model object &amp; sub-objects.</p>
+<p>The same approach is used for derived model objects (e.g. <cite>SpectralGroupModel</cite>) is used,
+the only difference being that as the shape and size of the data and results change, different
+versions of the data and results sub-objects are used (e.g. <cite>Data2D</cite> and <cite>Results2D</cite>).</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import a spectral model object</span>
+<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">,</span> <a href="../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel" title="specparam.SpectralTimeModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralTimeModel</span></a><span class="p">,</span> <a href="../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel" title="specparam.SpectralTimeEventModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralTimeEventModel</span></a>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a group model object</span>
+<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">()</span>
+
+<span class="c1"># Check the sub-objects</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="o">.</span><a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data" title="specparam.data.data.Data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span></a><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="o">.</span><a href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results" title="specparam.results.results.Results" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;specparam.data.data.Data2D&#39;&gt;
+&lt;class &#39;specparam.results.results.Results2D&#39;&gt;
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a time model object</span>
+<a href="../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel" title="specparam.SpectralTimeModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ft</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel" title="specparam.SpectralTimeModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralTimeModel</span></a><span class="p">()</span>
+
+<span class="c1"># Check the sub-objects</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><a href="../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel" title="specparam.SpectralTimeModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ft</span></a><span class="o">.</span><a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data" title="specparam.data.data.Data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span></a><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><a href="../../generated/specparam.SpectralTimeModel.html#specparam.SpectralTimeModel" title="specparam.SpectralTimeModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ft</span></a><span class="o">.</span><a href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results" title="specparam.results.results.Results" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;specparam.data.data.Data2DT&#39;&gt;
+&lt;class &#39;specparam.results.results.Results2DT&#39;&gt;
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an event model object</span>
+<a href="../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel" title="specparam.SpectralTimeEventModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fe</span></a> <span class="o">=</span> <a href="../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel" title="specparam.SpectralTimeEventModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralTimeEventModel</span></a><span class="p">()</span>
+
+<span class="c1"># Check the sub-objects</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><a href="../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel" title="specparam.SpectralTimeEventModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fe</span></a><span class="o">.</span><a href="../../generated/specparam.data.data.Data.html#specparam.data.data.Data" title="specparam.data.data.Data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span></a><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><a href="../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel" title="specparam.SpectralTimeEventModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fe</span></a><span class="o">.</span><a href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results" title="specparam.results.results.Results" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;specparam.data.data.Data3D&#39;&gt;
+&lt;class &#39;specparam.results.results.Results3D&#39;&gt;
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.159 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-customize-plot-sub-objects-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/db5e1b5d0669938777f3385ecc0d652a/plot_sub_objects.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_sub_objects.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/c27d7aff76221a6eafd5d7c366bb6cbb/plot_sub_objects.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_sub_objects.py</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2025, VoytekLab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

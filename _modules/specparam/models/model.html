@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.models.model &#8212; specparam 2.0.0rc5 documentation</title>
+    <title>specparam.models.model &#8212; specparam 2.0.0rc6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=d5056f9c"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=78551f50"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -125,7 +125,10 @@
 <span class="kn">from</span> <span class="nn">specparam.data.conversions</span> <span class="kn">import</span> <span class="n">model_to_dataframe</span>
 <span class="kn">from</span> <span class="nn">specparam.results.results</span> <span class="kn">import</span> <span class="n">Results</span>
 
-<span class="kn">from</span> <span class="nn">specparam.algorithms.spectral_fit</span> <span class="kn">import</span> <span class="n">SpectralFitAlgorithm</span><span class="p">,</span> <span class="n">SPECTRAL_FIT_SETTINGS_DEF</span>
+<span class="kn">from</span> <span class="nn">specparam.convert.convert</span> <span class="kn">import</span> <span class="n">convert_aperiodic_params</span><span class="p">,</span> <span class="n">convert_periodic_params</span>
+<span class="kn">from</span> <span class="nn">specparam.convert.definitions</span> <span class="kn">import</span> <span class="n">update_converters</span><span class="p">,</span> <span class="n">DEFAULT_CONVERTERS</span>
+
+<span class="kn">from</span> <span class="nn">specparam.algorithms.spectral_fit</span> <span class="kn">import</span> <span class="n">SPECTRAL_FIT_SETTINGS_DEF</span>
 <span class="kn">from</span> <span class="nn">specparam.algorithms.definitions</span> <span class="kn">import</span> <span class="n">ALGORITHMS</span><span class="p">,</span> <span class="n">check_algorithm_definition</span>
 
 <span class="kn">from</span> <span class="nn">specparam.reports.save</span> <span class="kn">import</span> <span class="n">save_model_report</span>
@@ -133,6 +136,7 @@
 <span class="kn">from</span> <span class="nn">specparam.modutils.errors</span> <span class="kn">import</span> <span class="n">NoDataError</span><span class="p">,</span> <span class="n">FitError</span>
 <span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="p">(</span><span class="n">copy_doc_func_to_method</span><span class="p">,</span> <span class="n">replace_docstring_sections</span><span class="p">,</span>
                                      <span class="n">docs_get_section</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_all_none</span>
 <span class="kn">from</span> <span class="nn">specparam.io.files</span> <span class="kn">import</span> <span class="n">load_json</span>
 <span class="kn">from</span> <span class="nn">specparam.io.models</span> <span class="kn">import</span> <span class="n">save_model</span>
 <span class="kn">from</span> <span class="nn">specparam.plts.model</span> <span class="kn">import</span> <span class="n">plot_model</span>
@@ -160,6 +164,8 @@
 <span class="sd">        Setting for the algorithm.</span>
 <span class="sd">    metrics : Metrics or list of Metric or list or str</span>
 <span class="sd">        Metrics definition(s) to use to evaluate the model.</span>
+<span class="sd">    converters : dict</span>
+<span class="sd">        Definition for parameter conversions to apply post fitting.</span>
 <span class="sd">    bands : Bands or dict or int or None, optional</span>
 <span class="sd">        Bands object with band definitions, or definition that can be turned into a Bands object.</span>
 <span class="sd">    debug : bool, optional, default: False</span>
@@ -194,10 +200,13 @@
 
 <div class="viewcode-block" id="SpectralModel.__init__"><a class="viewcode-back" href="../../../generated/specparam.SpectralModel.html#specparam.SpectralModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aperiodic_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">periodic_mode</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span>
                  <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;spectral_fit&#39;</span><span class="p">,</span> <span class="n">algorithm_settings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">model_kwargs</span><span class="p">):</span>
+                 <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">model_kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize model object.&quot;&quot;&quot;</span>
 
-        <span class="n">BaseModel</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aperiodic_mode</span><span class="p">,</span> <span class="n">periodic_mode</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+        <span class="n">converters</span> <span class="o">=</span> <span class="n">DEFAULT_CONVERTERS</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">converters</span> <span class="k">else</span> \
+            <span class="n">update_converters</span><span class="p">(</span><span class="n">DEFAULT_CONVERTERS</span><span class="p">,</span> <span class="n">converters</span><span class="p">)</span>
+        <span class="n">BaseModel</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aperiodic_mode</span><span class="p">,</span> <span class="n">periodic_mode</span><span class="p">,</span> <span class="n">converters</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">()</span>
 
@@ -284,6 +293,9 @@
 
             <span class="c1"># Call the fit function from the algorithm object</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">_fit</span><span class="p">()</span>
+
+            <span class="c1"># Do any parameter conversions</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_convert_params</span><span class="p">()</span>
 
             <span class="c1"># Compute post-fit metrics</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">compute_metrics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
@@ -444,6 +456,17 @@
             <span class="n">bands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">bands</span>
 
         <span class="k">return</span> <span class="n">model_to_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_results</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="n">bands</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_convert_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert fit parameters.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">check_all_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_converters</span><span class="p">[</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">aperiodic</span><span class="o">.</span><span class="n">add_params</span><span class="p">(</span>\
+                <span class="s1">&#39;converted&#39;</span><span class="p">,</span> <span class="n">convert_aperiodic_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_converters</span><span class="p">[</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">check_all_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_converters</span><span class="p">[</span><span class="s1">&#39;periodic&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">periodic</span><span class="o">.</span><span class="n">add_params</span><span class="p">(</span>\
+                <span class="s1">&#39;converted&#39;</span><span class="p">,</span> <span class="n">convert_periodic_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_converters</span><span class="p">[</span><span class="s1">&#39;periodic&#39;</span><span class="p">]))</span>
 
 
     <span class="k">def</span> <span class="nf">_reset_data_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>

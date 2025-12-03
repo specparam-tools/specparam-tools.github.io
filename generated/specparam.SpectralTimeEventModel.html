@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>specparam.SpectralTimeEventModel &#8212; specparam 2.0.0rc5 documentation</title>
+    <title>specparam.SpectralTimeEventModel &#8212; specparam 2.0.0rc6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5056f9c"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -141,6 +141,8 @@ Threshold is defined in relative units of the power spectrum (standard deviation
 <dt><strong>algorithm_settings</strong><span class="classifier">dict</span></dt><dd><p>Setting for the algorithm.</p>
 </dd>
 <dt><strong>metrics</strong><span class="classifier">Metrics or list of Metric or list or str</span></dt><dd><p>Metrics definition(s) to use to evaluate the model.</p>
+</dd>
+<dt><strong>converters</strong><span class="classifier">dict</span></dt><dd><p>Definition for parameter conversions to apply post fitting.</p>
 </dd>
 <dt><strong>bands</strong><span class="classifier">Bands or dict or int or None, optional</span></dt><dd><p>Bands object with band definitions, or definition that can be turned into a Bands object.</p>
 </dd>
@@ -707,7 +709,10 @@ If provided, re-extracts peak features; if not, converts from <cite>event_group_
 
 <section id="examples-using-specparam-spectraltimeeventmodel">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.SpectralTimeEventModel</span></code><a class="headerlink" href="#examples-using-specparam-spectraltimeeventmodel" title="Permalink to this heading">¶</a></h2>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Use extensions of the model object to fit power spectra across time."><img alt="" src="../_images/sphx_glr_plot_09-TimeModels_thumb.png" />
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Introducing the objects used within the model object."><img alt="" src="../_images/sphx_glr_plot_sub_objects_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html#sphx-glr-auto-examples-customize-plot-sub-objects-py"><span class="std std-ref">Model Sub-Objects</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Model Sub-Objects</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Use extensions of the model object to fit power spectra across time."><img alt="" src="../_images/sphx_glr_plot_09-TimeModels_thumb.png" />
 <p><a class="reference internal" href="../auto_tutorials/plot_09-TimeModels.html#sphx-glr-auto-tutorials-plot-09-timemodels-py"><span class="std std-ref">09: Fitting Models over Time</span></a></p>
   <div class="sphx-glr-thumbnail-title">09: Fitting Models over Time</div>
 </div></div></section>

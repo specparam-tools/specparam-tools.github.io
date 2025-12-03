@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.results.results &#8212; specparam 2.0.0rc5 documentation</title>
+    <title>specparam.results.results &#8212; specparam 2.0.0rc6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=d5056f9c"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=78551f50"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc5</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -123,14 +123,13 @@
 <span class="kn">from</span> <span class="nn">specparam.results.params</span> <span class="kn">import</span> <span class="n">ModelParameters</span>
 <span class="kn">from</span> <span class="nn">specparam.results.components</span> <span class="kn">import</span> <span class="n">ModelComponents</span>
 <span class="kn">from</span> <span class="nn">specparam.metrics.metrics</span> <span class="kn">import</span> <span class="n">Metrics</span>
-<span class="kn">from</span> <span class="nn">specparam.metrics.definitions</span> <span class="kn">import</span> <span class="n">METRICS</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_inds</span><span class="p">,</span> <span class="n">check_array_dim</span>
+<span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_inds</span>
 <span class="kn">from</span> <span class="nn">specparam.modutils.errors</span> <span class="kn">import</span> <span class="n">NoModelError</span>
 <span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="p">(</span><span class="n">copy_doc_func_to_method</span><span class="p">,</span> <span class="n">docs_get_section</span><span class="p">,</span>
                                      <span class="n">replace_docstring_sections</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">specparam.data.stores</span> <span class="kn">import</span> <span class="n">FitResults</span>
 <span class="kn">from</span> <span class="nn">specparam.data.conversions</span> <span class="kn">import</span> <span class="n">group_to_dict</span><span class="p">,</span> <span class="n">event_group_to_dict</span>
-<span class="kn">from</span> <span class="nn">specparam.data.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">get_model_params</span><span class="p">,</span> <span class="n">get_group_params</span><span class="p">,</span> <span class="n">get_group_metrics</span><span class="p">,</span>
+<span class="kn">from</span> <span class="nn">specparam.data.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">get_group_params</span><span class="p">,</span> <span class="n">get_group_metrics</span><span class="p">,</span>
                                   <span class="n">get_results_by_ind</span><span class="p">,</span> <span class="n">get_results_by_row</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">specparam.sim.gen</span> <span class="kn">import</span> <span class="n">gen_model</span>
 
