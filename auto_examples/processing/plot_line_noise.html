@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Dealing with Line Noise &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <title>Dealing with Line Noise &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,30 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Dealing with Line Noise</a><ul>
+<li><a class="reference internal" href="#line-noise-peaks">Line Noise Peaks</a><ul>
+<li><a class="reference internal" href="#interpolating-line-noise-peaks">Interpolating Line Noise Peaks</a></li>
+<li><a class="reference internal" href="#multiple-interpolation-regions">Multiple Interpolation Regions</a></li>
+<li><a class="reference internal" href="#fitting-line-noise-as-peaks">Fitting Line Noise as Peaks</a></li>
+<li><a class="reference internal" href="#the-problem-with-bandstop-filtering">The Problem with Bandstop Filtering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,29 +141,29 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="dealing-with-line-noise">
-<span id="sphx-glr-auto-examples-processing-plot-line-noise-py"></span><h1>Dealing with Line Noise<a class="headerlink" href="#dealing-with-line-noise" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-examples-processing-plot-line-noise-py"></span><h1>Dealing with Line Noise<a class="headerlink" href="#dealing-with-line-noise" title="Link to this heading">¶</a></h1>
 <p>This example covers strategies for dealing with line noise.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the spectral parameterization object and utilities</span>
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
-<span class="kn">from</span> <span class="nn">specparam.plts</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
-<span class="kn">from</span> <span class="nn">specparam.utils.spectral</span> <span class="kn">import</span> <span class="n">trim_spectrum</span><span class="p">,</span> <span class="n">interpolate_spectrum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.spectral</span><span class="w"> </span><span class="kn">import</span> <span class="n">trim_spectrum</span><span class="p">,</span> <span class="n">interpolate_spectrum</span>
 
 <span class="c1"># Import simulation functions to create some example data</span>
-<span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
 
 <span class="c1"># Import NeuroDSP functions for simulating &amp; processing time series</span>
-<span class="kn">from</span> <span class="nn">neurodsp.sim</span> <span class="kn">import</span> <span class="n">sim_combined</span>
-<span class="kn">from</span> <span class="nn">neurodsp.filt</span> <span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.filt.filter_signal.html#neurodsp.filt.filter_signal" title="neurodsp.filt.filter_signal" class="sphx-glr-backref-module-neurodsp-filt sphx-glr-backref-type-py-function"><span class="n">filter_signal</span></a>
-<span class="kn">from</span> <span class="nn">neurodsp.spectral</span> <span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.spectral.compute_spectrum.html#neurodsp.spectral.compute_spectrum" title="neurodsp.spectral.compute_spectrum" class="sphx-glr-backref-module-neurodsp-spectral sphx-glr-backref-type-py-function"><span class="n">compute_spectrum</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">neurodsp.sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_combined</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">neurodsp.filt</span><span class="w"> </span><span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.filt.filter_signal.html#neurodsp.filt.filter_signal" title="neurodsp.filt.filter_signal" class="sphx-glr-backref-module-neurodsp-filt sphx-glr-backref-type-py-function"><span class="n">filter_signal</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">neurodsp.spectral</span><span class="w"> </span><span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.spectral.compute_spectrum.html#neurodsp.spectral.compute_spectrum" title="neurodsp.spectral.compute_spectrum" class="sphx-glr-backref-module-neurodsp-spectral sphx-glr-backref-type-py-function"><span class="n">compute_spectrum</span></a>
 </pre></div>
 </div>
 <section id="line-noise-peaks">
-<h2>Line Noise Peaks<a class="headerlink" href="#line-noise-peaks" title="Permalink to this heading">¶</a></h2>
+<h2>Line Noise Peaks<a class="headerlink" href="#line-noise-peaks" title="Link to this heading">¶</a></h2>
 <p>Neural recordings typically have power line artifacts, at either 50 or 60 Hz, depending on
 where the data were collected, which can impact spectral parameterization.</p>
 <p>In this example, we explore some options for dealing with line noise artifacts.</p>
 <section id="interpolating-line-noise-peaks">
-<h3>Interpolating Line Noise Peaks<a class="headerlink" href="#interpolating-line-noise-peaks" title="Permalink to this heading">¶</a></h3>
+<h3>Interpolating Line Noise Peaks<a class="headerlink" href="#interpolating-line-noise-peaks" title="Link to this heading">¶</a></h3>
 <p>One approach is to interpolate away line noise peaks, in the frequency domain. This
 approach simply gets rid of the peaks, interpolating the data to maintain the 1/f
 character of the data, allowing for subsequent fitting.</p>
@@ -175,20 +199,20 @@ such that the ‘peak’ of the line noise is removed.</p>
 </div>
 <img src="../../_images/sphx_glr_plot_line_noise_003.png" srcset="../../_images/sphx_glr_plot_line_noise_003.png" alt="plot line noise" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-75 Hz frequency range with 0.50 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
                                         (offset, exponent)
-                                          1.0302, 1.0174
+                                          1.0362, 1.0211
 
                          Peak Parameters (&#39;gaussian&#39; mode) 1 peaks found
-                                CF:  10.03, PW:   0.73, BW:   3.79
+                                CF:  10.02, PW:   0.73, BW:   3.80
 
                                           Model metrics:
-                                     error (mae) is 0.0064
+                                     error (mae) is 0.0062
                                   gof (rsquared) is 0.9996
 
 ==================================================================================================
@@ -196,7 +220,7 @@ such that the ‘peak’ of the line noise is removed.</p>
 </div>
 </section>
 <section id="multiple-interpolation-regions">
-<h3>Multiple Interpolation Regions<a class="headerlink" href="#multiple-interpolation-regions" title="Permalink to this heading">¶</a></h3>
+<h3>Multiple Interpolation Regions<a class="headerlink" href="#multiple-interpolation-regions" title="Link to this heading">¶</a></h3>
 <p>Line noise artifacts often also display harmonics, such that when analyzing broader
 frequency ranges, there may be multiple peaks that need to be interpolated.</p>
 <p>This can be done by passing in multiple interpolation regions to
@@ -223,28 +247,28 @@ frequency ranges, there may be multiple peaks that need to be interpolated.</p>
 </div>
 <img src="../../_images/sphx_glr_plot_line_noise_005.png" srcset="../../_images/sphx_glr_plot_line_noise_005.png" alt="plot line noise" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
               Model was fit to the 1-150 Hz frequency range with 0.50 Hz resolution
 
                                 Aperiodic Parameters (&#39;knee&#39; mode)
                                      (offset, knee, exponent)
-                                     0.9534, 441.5540, 1.4793
+                                     0.9411, 427.1384, 1.4732
 
                          Peak Parameters (&#39;gaussian&#39; mode) 1 peaks found
-                                CF:  10.03, PW:   0.49, BW:   3.85
+                                CF:  10.02, PW:   0.49, BW:   3.87
 
                                           Model metrics:
-                                     error (mae) is 0.0044
-                                  gof (rsquared) is 0.9995
+                                     error (mae) is 0.0046
+                                  gof (rsquared) is 0.9994
 
 ==================================================================================================
 </pre></div>
 </div>
 </section>
 <section id="fitting-line-noise-as-peaks">
-<h3>Fitting Line Noise as Peaks<a class="headerlink" href="#fitting-line-noise-as-peaks" title="Permalink to this heading">¶</a></h3>
+<h3>Fitting Line Noise as Peaks<a class="headerlink" href="#fitting-line-noise-as-peaks" title="Link to this heading">¶</a></h3>
 <p>In some cases, you may also be able to simply allow the parameterization to peaks to the
 line noise and harmonics. By simply fitting the line noise as peaks, the model can deal
 with the peaks in order to accurately fit the aperiodic component.</p>
@@ -264,50 +288,50 @@ better fit the rest of the data.</p>
 </ul>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-75 Hz frequency range with 0.50 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
                                         (offset, exponent)
-                                          1.0292, 1.0172
+                                          1.0348, 1.0206
 
                          Peak Parameters (&#39;gaussian&#39; mode) 2 peaks found
-                                CF:  10.03, PW:   0.73, BW:   3.81
+                                CF:  10.02, PW:   0.73, BW:   3.81
                                 CF:  60.00, PW:   1.01, BW:   1.00
 
                                           Model metrics:
-                                     error (mae) is 0.0062
-                                  gof (rsquared) is 0.9996
+                                     error (mae) is 0.0060
+                                  gof (rsquared) is 0.9997
 
 ==================================================================================================
 ==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
               Model was fit to the 1-150 Hz frequency range with 0.50 Hz resolution
 
                                 Aperiodic Parameters (&#39;knee&#39; mode)
                                      (offset, knee, exponent)
-                                     0.9597, 448.8966, 1.4821
+                                     0.9428, 429.5296, 1.4741
 
                          Peak Parameters (&#39;gaussian&#39; mode) 3 peaks found
-                                CF:  10.03, PW:   0.50, BW:   3.86
-                                CF:  59.99, PW:   0.75, BW:   1.01
-                                CF: 120.00, PW:   0.51, BW:   1.00
+                                CF:  10.01, PW:   0.49, BW:   3.89
+                                CF:  60.00, PW:   0.75, BW:   1.01
+                                CF: 120.00, PW:   0.51, BW:   0.98
 
                                           Model metrics:
-                                     error (mae) is 0.0045
-                                  gof (rsquared) is 0.9995
+                                     error (mae) is 0.0046
+                                  gof (rsquared) is 0.9994
 
 ==================================================================================================
 </pre></div>
 </div>
 </section>
 <section id="the-problem-with-bandstop-filtering">
-<h3>The Problem with Bandstop Filtering<a class="headerlink" href="#the-problem-with-bandstop-filtering" title="Permalink to this heading">¶</a></h3>
+<h3>The Problem with Bandstop Filtering<a class="headerlink" href="#the-problem-with-bandstop-filtering" title="Link to this heading">¶</a></h3>
 <p>A common approach for getting rid of line noise activity is to use bandstop filtering to
 remove activity at the line noise frequencies. Such a filter effectively set the power
 of these frequencies to be approximately zero.</p>
@@ -362,26 +386,26 @@ leaving a “dip” in the power spectrum. This dip causes issues with subsequen
 </div>
 <img src="../../_images/sphx_glr_plot_line_noise_009.png" srcset="../../_images/sphx_glr_plot_line_noise_009.png" alt="plot line noise" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 1.00
         Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
-        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        Too low a limit may lead to over-fitting noise as small bandwidth peaks.
         We recommend a lower bound of approximately 2x the frequency resolution.
 
 ==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-75 Hz frequency range with 1.00 Hz resolution
 
                                Aperiodic Parameters (&#39;fixed&#39; mode)
                                         (offset, exponent)
-                                         -1.0976, 1.9171
+                                         -1.3648, 1.8963
 
                          Peak Parameters (&#39;gaussian&#39; mode) 1 peaks found
-                                CF:  10.10, PW:   2.78, BW:   2.00
+                                CF:  10.10, PW:   2.95, BW:   1.93
 
                                           Model metrics:
-                                     error (mae) is 0.3376
-                                  gof (rsquared) is 0.6674
+                                     error (mae) is 0.3004
+                                  gof (rsquared) is 0.7129
 
 ==================================================================================================
 </pre></div>
@@ -390,13 +414,16 @@ leaving a “dip” in the power spectrum. This dip causes issues with subsequen
 gets ‘pulled’ down, leading to an inaccurate fit of the aperiodic component. This is
 why fitting frequency regions that included frequency regions that have been filtered
 out is not recommended.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.771 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.609 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-processing-plot-line-noise-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/3f6c1c3c444799e38b8295c41ccb69c4/plot_line_noise.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_line_noise.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/529310c262bb0f4dcf97fa131605dbae/plot_line_noise.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_line_noise.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/bde70f5192f85ea81e18c0153a27cb3b/plot_line_noise.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_line_noise.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -416,8 +443,8 @@ out is not recommended.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

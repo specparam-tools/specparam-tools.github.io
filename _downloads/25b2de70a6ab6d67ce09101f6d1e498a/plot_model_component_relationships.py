@@ -16,13 +16,15 @@ from specparam.plts import plot_spectra
 
 from specparam.utils.array import unlog
 from specparam.utils.select import nearest_ind
-from specparam.utils.download import load_example_data
+
+# Import utility to load example data
+from specparam.demo import load_example_data
 
 # Import function to directly compute peak heights
-from specparam.convert.params import compute_peak_height
+from specparam.params.periodic import compute_peak_height
 
 # Import the default parameter conversions
-from specparam.modes.convert import DEFAULT_CONVERTERS
+from specparam.params.definitions import DEFAULT_CONVERTERS
 
 # sphinx_gallery_start_ignore
 from specparam.plts.utils import check_ax

@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Plot Model Components &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <title>Plot Model Components &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,39 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Plot Model Components</a><ul>
+<li><a class="reference internal" href="#experiment-set-up-simulate-data">Experiment Set Up &amp; Simulate Data</a><ul>
+<li><a class="reference internal" href="#fit-power-spectrum-models">Fit Power Spectrum Models</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plotting-parameters-components">Plotting Parameters &amp; Components</a></li>
+<li><a class="reference internal" href="#periodic-components">Periodic Components</a><ul>
+<li><a class="reference internal" href="#plotting-peak-parameters">Plotting Peak Parameters</a></li>
+<li><a class="reference internal" href="#plotting-peak-fits">Plotting Peak Fits</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#aperiodic-components">Aperiodic Components</a><ul>
+<li><a class="reference internal" href="#plotting-aperiodic-parameters">Plotting Aperiodic Parameters</a></li>
+<li><a class="reference internal" href="#plotting-aperiodic-fits">Plotting Aperiodic Fits</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusions">Conclusions</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,26 +150,26 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="plot-model-components">
-<span id="sphx-glr-auto-examples-plots-plot-model-components-py"></span><h1>Plot Model Components<a class="headerlink" href="#plot-model-components" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-examples-plots-plot-model-components-py"></span><h1>Plot Model Components<a class="headerlink" href="#plot-model-components" title="Link to this heading">¶</a></h1>
 <p>Plotting power spectrum model parameters and components.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the SpectralGroupModel object</span>
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a>
 
 <span class="c1"># Import utilities to manage frequency band definitions</span>
-<span class="kn">from</span> <span class="nn">specparam.bands</span> <span class="kn">import</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
-<span class="kn">from</span> <span class="nn">specparam.data.periodic</span> <span class="kn">import</span> <a href="../../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.bands</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.data.periodic</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a>
 
 <span class="c1"># Import simulation utilities for making example data</span>
-<span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a>
-<span class="kn">from</span> <span class="nn">specparam.sim.params</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.params.param_jitter.html#specparam.sim.params.param_jitter" title="specparam.sim.params.param_jitter" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-function"><span class="n">param_jitter</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.params</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.sim.params.param_jitter.html#specparam.sim.params.param_jitter" title="specparam.sim.params.param_jitter" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-function"><span class="n">param_jitter</span></a>
 
 <span class="c1"># Import plotting function for model parameters and components</span>
-<span class="kn">from</span> <span class="nn">specparam.plts.periodic</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.periodic.plot_peak_params.html#specparam.plts.periodic.plot_peak_params" title="specparam.plts.periodic.plot_peak_params" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_params</span></a><span class="p">,</span> <a href="../../generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_fits</span></a>
-<span class="kn">from</span> <span class="nn">specparam.plts.aperiodic</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_params.html#specparam.plts.aperiodic.plot_aperiodic_params" title="specparam.plts.aperiodic.plot_aperiodic_params" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_params</span></a><span class="p">,</span> <a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_fits</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.periodic</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.plts.periodic.plot_peak_params.html#specparam.plts.periodic.plot_peak_params" title="specparam.plts.periodic.plot_peak_params" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_params</span></a><span class="p">,</span> <a href="../../generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_fits</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.aperiodic</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_params.html#specparam.plts.aperiodic.plot_aperiodic_params" title="specparam.plts.aperiodic.plot_aperiodic_params" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_params</span></a><span class="p">,</span> <a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_fits</span></a>
 </pre></div>
 </div>
 <section id="experiment-set-up-simulate-data">
-<h2>Experiment Set Up &amp; Simulate Data<a class="headerlink" href="#experiment-set-up-simulate-data" title="Permalink to this heading">¶</a></h2>
+<h2>Experiment Set Up &amp; Simulate Data<a class="headerlink" href="#experiment-set-up-simulate-data" title="Link to this heading">¶</a></h2>
 <p>In this example, we will explore the plotting functions available to visualize
 model parameters and components from fitting power spectrum models.</p>
 <p>To do so, we will consider a hypothetical experiment in which we are compare power
@@ -171,7 +204,7 @@ power spectrum per subject, which we can compare and visualize.</p>
 </pre></div>
 </div>
 <section id="fit-power-spectrum-models">
-<h3>Fit Power Spectrum Models<a class="headerlink" href="#fit-power-spectrum-models" title="Permalink to this heading">¶</a></h3>
+<h3>Fit Power Spectrum Models<a class="headerlink" href="#fit-power-spectrum-models" title="Link to this heading">¶</a></h3>
 <p>Now that we have our simulated data, we can fit our power spectrum models,
 using SpectralGroupModel.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a SpectralGroupModel object for each group</span>
@@ -187,7 +220,7 @@ using SpectralGroupModel.</p>
 </section>
 </section>
 <section id="plotting-parameters-components">
-<h2>Plotting Parameters &amp; Components<a class="headerlink" href="#plotting-parameters-components" title="Permalink to this heading">¶</a></h2>
+<h2>Plotting Parameters &amp; Components<a class="headerlink" href="#plotting-parameters-components" title="Link to this heading">¶</a></h2>
 <p>In the following, we will explore two visualization options:</p>
 <ul class="simple">
 <li><p>plotting parameter values</p></li>
@@ -202,7 +235,7 @@ visualize and compare between groups.</p>
 functions to add plot labels, and to set the colors used for each group.</p>
 </section>
 <section id="periodic-components">
-<h2>Periodic Components<a class="headerlink" href="#periodic-components" title="Permalink to this heading">¶</a></h2>
+<h2>Periodic Components<a class="headerlink" href="#periodic-components" title="Link to this heading">¶</a></h2>
 <p>First, let’s have a look at the periodic components.</p>
 <p>To do so, we will use the <a class="reference internal" href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bands</span></code></a> object to store our frequency
 band definitions, which we can then use to sub-select peaks within bands of interest.</p>
@@ -219,7 +252,7 @@ band definitions, which we can then use to sub-select peaks within bands of inte
 </pre></div>
 </div>
 <section id="plotting-peak-parameters">
-<h3>Plotting Peak Parameters<a class="headerlink" href="#plotting-peak-parameters" title="Permalink to this heading">¶</a></h3>
+<h3>Plotting Peak Parameters<a class="headerlink" href="#plotting-peak-parameters" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="../../generated/specparam.plts.periodic.plot_peak_params.html#specparam.plts.periodic.plot_peak_params" title="specparam.plts.periodic.plot_peak_params"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_peak_params()</span></code></a> function takes in peak parameters,
 and visualizes them, as:</p>
 <ul class="simple">
@@ -238,21 +271,21 @@ and visualizes them, as:</p>
 </div>
 <img src="../../_images/sphx_glr_plot_model_components_002.png" srcset="../../_images/sphx_glr_plot_model_components_002.png" alt="plot model components" class = "sphx-glr-single-img"/></section>
 <section id="plotting-peak-fits">
-<h3>Plotting Peak Fits<a class="headerlink" href="#plotting-peak-fits" title="Permalink to this heading">¶</a></h3>
+<h3>Plotting Peak Fits<a class="headerlink" href="#plotting-peak-fits" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="../../generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_peak_fits()</span></code></a> function takes in peak parameters,
 and reconstructs peak fits.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the peak fits of the alpha fits for Group 1</span>
-<a href="../../generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_fits</span></a><span class="p">(</span><span class="n">g1_alphas</span><span class="p">,</span> <a href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg1</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span></a><span class="p">)</span>
+<a href="../../generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_fits</span></a><span class="p">(</span><span class="n">g1_alphas</span><span class="p">,</span> <a href="../../generated/specparam.modes.Mode.html#specparam.modes.Mode" title="specparam.modes.Mode" class="sphx-glr-backref-module-specparam-modes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg1</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_model_components_003.png" srcset="../../_images/sphx_glr_plot_model_components_003.png" alt="plot model components" class = "sphx-glr-single-img"/><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the peak fits of alpha peaks between groups</span>
-<a href="../../generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_fits</span></a><span class="p">([</span><span class="n">g1_alphas</span><span class="p">,</span> <span class="n">g2_alphas</span><span class="p">],</span> <a href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg1</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span></a><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
+<a href="../../generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_fits</span></a><span class="p">([</span><span class="n">g1_alphas</span><span class="p">,</span> <span class="n">g2_alphas</span><span class="p">],</span> <a href="../../generated/specparam.modes.Mode.html#specparam.modes.Mode" title="specparam.modes.Mode" class="sphx-glr-backref-module-specparam-modes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg1</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span></a><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_model_components_004.png" srcset="../../_images/sphx_glr_plot_model_components_004.png" alt="plot model components" class = "sphx-glr-single-img"/></section>
 </section>
 <section id="aperiodic-components">
-<h2>Aperiodic Components<a class="headerlink" href="#aperiodic-components" title="Permalink to this heading">¶</a></h2>
+<h2>Aperiodic Components<a class="headerlink" href="#aperiodic-components" title="Link to this heading">¶</a></h2>
 <p>Next, let’s have a look at the aperiodic components.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the aperiodic parameters for each group</span>
 <span class="n">aps1</span> <span class="o">=</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_params" title="specparam.SpectralGroupModel.get_params" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg1</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">)</span>
@@ -260,7 +293,7 @@ and reconstructs peak fits.</p>
 </pre></div>
 </div>
 <section id="plotting-aperiodic-parameters">
-<h3>Plotting Aperiodic Parameters<a class="headerlink" href="#plotting-aperiodic-parameters" title="Permalink to this heading">¶</a></h3>
+<h3>Plotting Aperiodic Parameters<a class="headerlink" href="#plotting-aperiodic-parameters" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="../../generated/specparam.plts.aperiodic.plot_aperiodic_params.html#specparam.plts.aperiodic.plot_aperiodic_params" title="specparam.plts.aperiodic.plot_aperiodic_params"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_aperiodic_params()</span></code></a> function takes in
 aperiodic parameters, and visualizes them, as:</p>
 <ul class="simple">
@@ -277,12 +310,12 @@ aperiodic parameters, and visualizes them, as:</p>
 </div>
 <img src="../../_images/sphx_glr_plot_model_components_006.png" srcset="../../_images/sphx_glr_plot_model_components_006.png" alt="plot model components" class = "sphx-glr-single-img"/></section>
 <section id="plotting-aperiodic-fits">
-<h3>Plotting Aperiodic Fits<a class="headerlink" href="#plotting-aperiodic-fits" title="Permalink to this heading">¶</a></h3>
+<h3>Plotting Aperiodic Fits<a class="headerlink" href="#plotting-aperiodic-fits" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_aperiodic_fits()</span></code></a> function takes in
 aperiodic parameters, and reconstructs aperiodic fits.</p>
 <p>Here again we can plot visualizations of the peak parameters, and the reconstructed fits.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the aperiodic fits for Group 1</span>
-<a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_fits</span></a><span class="p">(</span><span class="n">aps1</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <a href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg1</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span></a><span class="p">,</span> <span class="n">control_offset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_fits</span></a><span class="p">(</span><span class="n">aps1</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <a href="../../generated/specparam.modes.Mode.html#specparam.modes.Mode" title="specparam.modes.Mode" class="sphx-glr-backref-module-specparam-modes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg1</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span></a><span class="p">,</span> <span class="n">control_offset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_model_components_007.png" srcset="../../_images/sphx_glr_plot_model_components_007.png" alt="plot model components" class = "sphx-glr-single-img"/><p>The <a class="reference internal" href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_aperiodic_fits()</span></code></a> also has some additional options
@@ -296,7 +329,7 @@ that can help to tune the visualization, including:</p>
 <li><p><cite>log_freqs</cite> : whether to log the frequency values, on the x-axis</p></li>
 </ul>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the aperiodic fits for both groups</span>
-<a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_fits</span></a><span class="p">([</span><span class="n">aps1</span><span class="p">,</span> <span class="n">aps2</span><span class="p">],</span> <span class="n">freq_range</span><span class="p">,</span> <a href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg1</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span></a><span class="p">,</span>
+<a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_fits</span></a><span class="p">([</span><span class="n">aps1</span><span class="p">,</span> <span class="n">aps2</span><span class="p">],</span> <span class="n">freq_range</span><span class="p">,</span> <a href="../../generated/specparam.modes.Mode.html#specparam.modes.Mode" title="specparam.modes.Mode" class="sphx-glr-backref-module-specparam-modes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg1</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span></a><span class="p">,</span>
                     <span class="n">control_offset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_freqs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                     <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
 </pre></div>
@@ -304,7 +337,7 @@ that can help to tune the visualization, including:</p>
 <img src="../../_images/sphx_glr_plot_model_components_008.png" srcset="../../_images/sphx_glr_plot_model_components_008.png" alt="plot model components" class = "sphx-glr-single-img"/></section>
 </section>
 <section id="conclusions">
-<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this heading">¶</a></h2>
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Link to this heading">¶</a></h2>
 <p>In this example, we explored plotting model parameters and components within and between
 groups of parameterized neural power spectra.</p>
 <p>If you check the simulation parameters used for the two groups, you can see that
@@ -313,13 +346,16 @@ Qualitatively, we can see those differences in the plots above, and this (in rea
 would suggest there may be interesting differences between these groups. Follow up
 analyses in such a case could investigate whether there are statistically significant
 differences between these groups.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.463 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.627 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plots-plot-model-components-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/150024fcd7d38e98042735387d6f4e6d/plot_model_components.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_model_components.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/47009921621730270815c103aed0f359/plot_model_components.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_model_components.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/dcfed431c202d7ef64e1bb1c75bc1862/plot_model_components.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_model_components.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -338,8 +374,8 @@ differences between these groups.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

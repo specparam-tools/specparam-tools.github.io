@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Developmental Data Demo &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <title>Developmental Data Demo &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,33 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Developmental Data Demo</a><ul>
+<li><a class="reference internal" href="#spectral-parameterization-for-studying-neurodevelopment">Spectral Parameterization for studying neurodevelopment</a><ul>
+<li><a class="reference internal" href="#access-example-data">Access Example Data</a></li>
+<li><a class="reference internal" href="#fitting-an-individual-power-spectrum">Fitting an Individual Power Spectrum</a></li>
+<li><a class="reference internal" href="#checking-model-fit-quality">Checking model fit quality</a></li>
+<li><a class="reference internal" href="#fitting-a-group-of-power-spectra">Fitting a Group of Power Spectra</a></li>
+<li><a class="reference internal" href="#tuning-the-specparam-algorithm">Tuning the specparam algorithm</a></li>
+<li><a class="reference internal" href="#frequency-by-frequency-errors">Frequency-by-frequency errors</a></li>
+<li><a class="reference internal" href="#conclusions">Conclusions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,10 +144,10 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="developmental-data-demo">
-<span id="sphx-glr-auto-examples-analyses-plot-dev-demo-py"></span><h1>Developmental Data Demo<a class="headerlink" href="#developmental-data-demo" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-examples-analyses-plot-dev-demo-py"></span><h1>Developmental Data Demo<a class="headerlink" href="#developmental-data-demo" title="Link to this heading">¶</a></h1>
 <p>An example analysis applied to developmental data, demonstrating best practices.</p>
 <section id="spectral-parameterization-for-studying-neurodevelopment">
-<h2>Spectral Parameterization for studying neurodevelopment<a class="headerlink" href="#spectral-parameterization-for-studying-neurodevelopment" title="Permalink to this heading">¶</a></h2>
+<h2>Spectral Parameterization for studying neurodevelopment<a class="headerlink" href="#spectral-parameterization-for-studying-neurodevelopment" title="Link to this heading">¶</a></h2>
 <p>This example is adapted from the
 <a class="reference external" href="https://github.com/fooof-tools/DevelopmentalDemo/">Developmental Data Demo</a>.</p>
 <p>If you wish to reference this example or use guidelines from it, please cite the associated
@@ -129,36 +156,36 @@ Brendan Ostlund, Thomas Donoghue, Berenice Anaya, Kelley E Gunther, Sarah L Kara
 Bradley Voytek, and Koraly E Pérez-Edgar.</p>
 <p>Paper link: <a class="reference external" href="https://doi.org/10.1016/j.dcn.2022.101073">https://doi.org/10.1016/j.dcn.2022.101073</a></p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import some useful standard library modules</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="c1"># Import some general scientific python libraries</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Import the parameterization model objects</span>
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a>
 
 <span class="c1"># Import useful parameterization related utilities and plot functions</span>
-<span class="kn">from</span> <span class="nn">specparam.bands</span> <span class="kn">import</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
-<span class="kn">from</span> <span class="nn">specparam.data.periodic</span> <span class="kn">import</span> <a href="../../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a>
-<span class="kn">from</span> <span class="nn">specparam.utils.spectral</span> <span class="kn">import</span> <span class="n">trim_spectrum</span><span class="p">,</span> <span class="n">subsample_spectra</span>
-<span class="kn">from</span> <span class="nn">specparam.sim.gen</span> <span class="kn">import</span> <span class="n">gen_aperiodic</span>
-<span class="kn">from</span> <span class="nn">specparam.data</span> <span class="kn">import</span> <a href="../../generated/specparam.data.ModelSettings.html#specparam.data.ModelSettings" title="specparam.data.ModelSettings" class="sphx-glr-backref-module-specparam-data sphx-glr-backref-type-py-class"><span class="n">ModelSettings</span></a>
-<span class="kn">from</span> <span class="nn">specparam.plts.templates</span> <span class="kn">import</span> <span class="n">plot_hist</span>
-<span class="kn">from</span> <span class="nn">specparam.plts.spectra</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
-<span class="kn">from</span> <span class="nn">specparam.plts.periodic</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.periodic.plot_peak_params.html#specparam.plts.periodic.plot_peak_params" title="specparam.plts.periodic.plot_peak_params" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_params</span></a><span class="p">,</span> <a href="../../generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_fits</span></a>
-<span class="kn">from</span> <span class="nn">specparam.plts.aperiodic</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_params.html#specparam.plts.aperiodic.plot_aperiodic_params" title="specparam.plts.aperiodic.plot_aperiodic_params" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_params</span></a><span class="p">,</span> <a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_fits</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.bands</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.data.periodic</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.data.periodic.get_band_peak_group.html#specparam.data.periodic.get_band_peak_group" title="specparam.data.periodic.get_band_peak_group" class="sphx-glr-backref-module-specparam-data-periodic sphx-glr-backref-type-py-function"><span class="n">get_band_peak_group</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.spectral</span><span class="w"> </span><span class="kn">import</span> <span class="n">trim_spectrum</span><span class="p">,</span> <span class="n">subsample_spectra</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.gen</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_aperiodic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.data</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.data.ModelSettings.html#specparam.data.ModelSettings" title="specparam.data.ModelSettings" class="sphx-glr-backref-module-specparam-data sphx-glr-backref-type-py-class"><span class="n">ModelSettings</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.templates</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_hist</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.spectra</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.periodic</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.plts.periodic.plot_peak_params.html#specparam.plts.periodic.plot_peak_params" title="specparam.plts.periodic.plot_peak_params" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_params</span></a><span class="p">,</span> <a href="../../generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_fits</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.aperiodic</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_params.html#specparam.plts.aperiodic.plot_aperiodic_params" title="specparam.plts.aperiodic.plot_aperiodic_params" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_params</span></a><span class="p">,</span> <a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_fits</span></a>
 
 <span class="c1"># Import functions to examine frequency-by-frequency error of model fits</span>
-<span class="kn">from</span> <span class="nn">specparam.measures.pointwise</span> <span class="kn">import</span> <a href="../../generated/specparam.measures.pointwise.compute_pointwise_error.html#specparam.measures.pointwise.compute_pointwise_error" title="specparam.measures.pointwise.compute_pointwise_error" class="sphx-glr-backref-module-specparam-measures-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error</span></a><span class="p">,</span> <a href="../../generated/specparam.measures.pointwise.compute_pointwise_error_group.html#specparam.measures.pointwise.compute_pointwise_error_group" title="specparam.measures.pointwise.compute_pointwise_error_group" class="sphx-glr-backref-module-specparam-measures-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error_group</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.metrics.pointwise</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.metrics.pointwise.compute_pointwise_error.html#specparam.metrics.pointwise.compute_pointwise_error" title="specparam.metrics.pointwise.compute_pointwise_error" class="sphx-glr-backref-module-specparam-metrics-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error</span></a><span class="p">,</span> <a href="../../generated/specparam.metrics.pointwise.compute_pointwise_error_group.html#specparam.metrics.pointwise.compute_pointwise_error_group" title="specparam.metrics.pointwise.compute_pointwise_error_group" class="sphx-glr-backref-module-specparam-metrics-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error_group</span></a>
 
 <span class="c1"># Import helper utility to access data</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">fetch_example_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.demo.download</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_example_data</span>
 </pre></div>
 </div>
 <section id="access-example-data">
-<h3>Access Example Data<a class="headerlink" href="#access-example-data" title="Permalink to this heading">¶</a></h3>
+<h3>Access Example Data<a class="headerlink" href="#access-example-data" title="Link to this heading">¶</a></h3>
 <p>First, we will download the example data for this example.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the URL where the data is available</span>
 <span class="n">data_url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/fooof-tools/DevelopmentalDemo/main/Data/&#39;</span>
@@ -173,7 +200,7 @@ Bradley Voytek, and Koraly E Pérez-Edgar.</p>
 </div>
 </section>
 <section id="fitting-an-individual-power-spectrum">
-<h3>Fitting an Individual Power Spectrum<a class="headerlink" href="#fitting-an-individual-power-spectrum" title="Permalink to this heading">¶</a></h3>
+<h3>Fitting an Individual Power Spectrum<a class="headerlink" href="#fitting-an-individual-power-spectrum" title="Link to this heading">¶</a></h3>
 <p>For the first part of this example, we will start by loading and fitting an individual PSD.</p>
 <p>To do so, we start by loading some CSV files, including:</p>
 <ul class="simple">
@@ -205,7 +232,7 @@ Bradley Voytek, and Koraly E Pérez-Edgar.</p>
 </div>
 <img src="../../_images/sphx_glr_plot_dev_demo_001.png" srcset="../../_images/sphx_glr_plot_dev_demo_001.png" alt="plot dev demo" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-40 Hz frequency range with 0.50 Hz resolution
@@ -236,11 +263,11 @@ by running <cite>fm.save_report(‘INDV_demo’, file_path=output_path)</cite>.<
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Aperiodic parameters:
- [2.1628853 1.9837758]
+ [2.16288529 1.98377579]
 
 Peak parameters:
  [[10.23976304  1.39284749  2.38121129]
- [19.56659443  0.37192528  2.19390941]]
+ [19.56659443  0.37192528  2.1939094 ]]
 
 Number of fit peaks:
  2
@@ -253,8 +280,8 @@ Number of fit peaks:
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Goodness of fit:
-Error -  0.05826852819518288
-R^2   -  0.9891333266599426
+Error -  0.058268528149524
+R^2   -  0.9891333266715574
 </pre></div>
 </div>
 <p>Another way to access model fit parameters is to use the <cite>get_params</cite> method,
@@ -292,7 +319,7 @@ which can be used to access model fit attributes.</p>
 
 <span class="c1"># Do an initial aperiodic fit - a robust fit, that excludes outliers</span>
 <span class="n">init_ap_fit</span> <span class="o">=</span> <span class="n">gen_aperiodic</span><span class="p">(</span>\
-    <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span></a><span class="p">,</span>
+    <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../../generated/specparam.modes.Mode.html#specparam.modes.Mode" title="specparam.modes.Mode" class="sphx-glr-backref-module-specparam-modes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span></a><span class="p">,</span>
     <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">_robust_ap_fit</span><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">))</span>
 
 <span class="c1"># Recompute the flattened spectrum using the initial aperiodic fit</span>
@@ -320,7 +347,7 @@ guidance on this topic).</p>
 <p>The above dataframe can be saved out to a csv using the <cite>to_csv</cite> method.</p>
 </section>
 <section id="checking-model-fit-quality">
-<h3>Checking model fit quality<a class="headerlink" href="#checking-model-fit-quality" title="Permalink to this heading">¶</a></h3>
+<h3>Checking model fit quality<a class="headerlink" href="#checking-model-fit-quality" title="Link to this heading">¶</a></h3>
 <p>It can be useful to plot frequency-by-frequency error of the model fit,
 to identify where in frequency space the spectrum is (or is not) being fit well.
 When fitting individual spectrum, this can be accomplished using the
@@ -330,11 +357,11 @@ the mean absolute error for the model (MAE). There are points in the spectrum wh
 the model fit is somewhat poor, particularly &lt; 4 Hz, around 6-9 Hz, and around 14 Hz.
 Further considerations may be necessary for this model fit.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot frequency-by-frequency error</span>
-<a href="../../generated/specparam.measures.pointwise.compute_pointwise_error.html#specparam.measures.pointwise.compute_pointwise_error" title="specparam.measures.pointwise.compute_pointwise_error" class="sphx-glr-backref-module-specparam-measures-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">plot_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a href="../../generated/specparam.metrics.pointwise.compute_pointwise_error.html#specparam.metrics.pointwise.compute_pointwise_error" title="specparam.metrics.pointwise.compute_pointwise_error" class="sphx-glr-backref-module-specparam-metrics-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">plot_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_dev_demo_003.png" srcset="../../_images/sphx_glr_plot_dev_demo_003.png" alt="plot dev demo" class = "sphx-glr-single-img"/><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the frequency-by-frequency errors</span>
-<span class="n">errs_fm</span> <span class="o">=</span> <a href="../../generated/specparam.measures.pointwise.compute_pointwise_error.html#specparam.measures.pointwise.compute_pointwise_error" title="specparam.measures.pointwise.compute_pointwise_error" class="sphx-glr-backref-module-specparam-measures-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">plot_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">errs_fm</span> <span class="o">=</span> <a href="../../generated/specparam.metrics.pointwise.compute_pointwise_error.html#specparam.metrics.pointwise.compute_pointwise_error" title="specparam.metrics.pointwise.compute_pointwise_error" class="sphx-glr-backref-module-specparam-metrics-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">plot_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that the average of this error is the same as the global error stored</span>
@@ -348,7 +375,7 @@ Total model fit error:           0.058
 </div>
 </section>
 <section id="fitting-a-group-of-power-spectra">
-<h3>Fitting a Group of Power Spectra<a class="headerlink" href="#fitting-a-group-of-power-spectra" title="Permalink to this heading">¶</a></h3>
+<h3>Fitting a Group of Power Spectra<a class="headerlink" href="#fitting-a-group-of-power-spectra" title="Link to this heading">¶</a></h3>
 <p>In the next example, we will fit a group of power spectra.</p>
 <p>First we need to load the data, including:</p>
 <ul class="simple">
@@ -383,7 +410,7 @@ Total model fit error:           0.058
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out the group results and plots of fit parameters</span>
-<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.print_results" title="specparam.SpectralGroupModel.print_results" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">print_results</span></a><span class="p">()</span>
+<a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.print" title="specparam.SpectralGroupModel.print" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">print</span></a><span class="p">()</span>
 <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.plot" title="specparam.SpectralGroupModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fg</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
@@ -460,13 +487,13 @@ function to organize fit peaks into canonical band ranges.</p>
 <p>In the following, we plot reconstructed alpha peaks and aperiodic components.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot reconstructions of model components</span>
 <span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<a href="../../generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_fits</span></a><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <a href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span></a><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_fits</span></a><span class="p">(</span><span class="n">aps</span><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freq_range</span><span class="p">,</span> <a href="../../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span></a><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<a href="../../generated/specparam.plts.periodic.plot_peak_fits.html#specparam.plts.periodic.plot_peak_fits" title="specparam.plts.periodic.plot_peak_fits" class="sphx-glr-backref-module-specparam-plts-periodic sphx-glr-backref-type-py-function"><span class="n">plot_peak_fits</span></a><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <a href="../../generated/specparam.modes.Mode.html#specparam.modes.Mode" title="specparam.modes.Mode" class="sphx-glr-backref-module-specparam-modes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">periodic</span></a><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a href="../../generated/specparam.plts.aperiodic.plot_aperiodic_fits.html#specparam.plts.aperiodic.plot_aperiodic_fits" title="specparam.plts.aperiodic.plot_aperiodic_fits" class="sphx-glr-backref-module-specparam-plts-aperiodic sphx-glr-backref-type-py-function"><span class="n">plot_aperiodic_fits</span></a><span class="p">(</span><span class="n">aps</span><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freq_range</span><span class="p">,</span> <a href="../../generated/specparam.modes.Mode.html#specparam.modes.Mode" title="specparam.modes.Mode" class="sphx-glr-backref-module-specparam-modes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span></a><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_dev_demo_007.png" srcset="../../_images/sphx_glr_plot_dev_demo_007.png" alt="plot dev demo" class = "sphx-glr-single-img"/></section>
 <section id="tuning-the-specparam-algorithm">
-<h3>Tuning the specparam algorithm<a class="headerlink" href="#tuning-the-specparam-algorithm" title="Permalink to this heading">¶</a></h3>
+<h3>Tuning the specparam algorithm<a class="headerlink" href="#tuning-the-specparam-algorithm" title="Link to this heading">¶</a></h3>
 <p>There are no strict guidelines about optimal parameters that will be appropriate across data
 sets and recording modalities. We suggest applying a data-driven approach to tune model fitting
 for optimal performance, while taking into account your expectations about periodic and aperiodic
@@ -595,13 +622,13 @@ the model objects below correspond to the model fit at the top of this script.</
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check results and visualize the extracted model</span>
-<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_results" title="specparam.SpectralModel.print_results" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">print_results</span></a><span class="p">()</span>
+<a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.print" title="specparam.SpectralModel.print" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">print</span></a><span class="p">()</span>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_dev_demo_009.png" srcset="../../_images/sphx_glr_plot_dev_demo_009.png" alt="plot dev demo" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-40 Hz frequency range with 0.50 Hz resolution
@@ -666,7 +693,7 @@ using the <cite>save</cite> method, for example:</p>
 </div>
 </section>
 <section id="frequency-by-frequency-errors">
-<h3>Frequency-by-frequency errors<a class="headerlink" href="#frequency-by-frequency-errors" title="Permalink to this heading">¶</a></h3>
+<h3>Frequency-by-frequency errors<a class="headerlink" href="#frequency-by-frequency-errors" title="Link to this heading">¶</a></h3>
 <p>It can be useful to plot frequency-by-frequency error of the model fit,
 to identify  where in frequency space the spectrum is (or is not) being fit well.
 When fitting individual spectrum, this can be accomplished using the
@@ -680,11 +707,11 @@ The code below lets you identify the highest mean error and largest standard dev
 in error for the group fit. In this case, that occurs at 3 Hz,
 suggesting potential issues with fit at the lower end of the examined frequency range.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot frequency-by-frequency error</span>
-<a href="../../generated/specparam.measures.pointwise.compute_pointwise_error_group.html#specparam.measures.pointwise.compute_pointwise_error_group" title="specparam.measures.pointwise.compute_pointwise_error_group" class="sphx-glr-backref-module-specparam-measures-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error_group</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <span class="n">plot_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a href="../../generated/specparam.metrics.pointwise.compute_pointwise_error_group.html#specparam.metrics.pointwise.compute_pointwise_error_group" title="specparam.metrics.pointwise.compute_pointwise_error_group" class="sphx-glr-backref-module-specparam-metrics-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error_group</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <span class="n">plot_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_dev_demo_014.png" srcset="../../_images/sphx_glr_plot_dev_demo_014.png" alt="plot dev demo" class = "sphx-glr-single-img"/><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the errors - this returns a 2D matrix of errors for all fits</span>
-<span class="n">errs_fg</span> <span class="o">=</span> <a href="../../generated/specparam.measures.pointwise.compute_pointwise_error_group.html#specparam.measures.pointwise.compute_pointwise_error_group" title="specparam.measures.pointwise.compute_pointwise_error_group" class="sphx-glr-backref-module-specparam-measures-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error_group</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <span class="n">plot_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">errs_fg</span> <span class="o">=</span> <a href="../../generated/specparam.metrics.pointwise.compute_pointwise_error_group.html#specparam.metrics.pointwise.compute_pointwise_error_group" title="specparam.metrics.pointwise.compute_pointwise_error_group" class="sphx-glr-backref-module-specparam-metrics-pointwise sphx-glr-backref-type-py-function"><span class="n">compute_pointwise_error_group</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="p">,</span> <span class="n">plot_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Check which frequency has the highest error</span>
 <span class="n">f_max_err</span> <span class="o">=</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fg</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">errs_fg</span><span class="p">,</span> <span class="mi">0</span><span class="p">))]</span>
@@ -709,19 +736,22 @@ The error threshold will vary depending on sample characteristics and data quali
 </div>
 </section>
 <section id="conclusions">
-<h3>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this heading">¶</a></h3>
+<h3>Conclusions<a class="headerlink" href="#conclusions" title="Link to this heading">¶</a></h3>
 <p>For more on this topic, see the
 <a class="reference external" href="https://github.com/fooof-tools/DevelopmentalDemo/">DevelopmentalDemo repository</a>
 and/or the
 <a class="reference external" href="https://doi.org/10.1016/j.dcn.2022.101073">associated paper</a>
 for further information.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.406 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.927 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-analyses-plot-dev-demo-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/5c77a4224b4479ec9ae12748b0e58e67/plot_dev_demo.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_dev_demo.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/757ad6996ad8864ea6e92f8318944309/plot_dev_demo.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_dev_demo.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/4fa81230fab3516815ee214b7e78d65e/plot_dev_demo.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_dev_demo.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -741,8 +771,8 @@ for further information.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Frequently Asked Questions &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <title>Frequently Asked Questions &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=78551f50"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,15 +110,61 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Frequently Asked Questions</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a><ul>
+<li><a class="reference internal" href="#what-is-spectral-parameterization">What is spectral parameterization?</a></li>
+<li><a class="reference internal" href="#how-does-spectral-parameterization-work">How does spectral parameterization work?</a></li>
+<li><a class="reference internal" href="#what-was-spectral-parameterization-originally-designed-for">What was spectral parameterization originally designed for?</a></li>
+<li><a class="reference internal" href="#what-data-can-this-be-applied-to-can-it-be-used-on-non-neural-data">What data can this be applied to? Can it be used on non-neural data?</a></li>
+<li><a class="reference internal" href="#what-is-needed-to-parameterize-a-power-spectrum">What is needed to parameterize a power spectrum?</a></li>
+<li><a class="reference internal" href="#what-is-meant-by-aperiodic-activity">What is meant by ‘aperiodic’ activity?</a></li>
+<li><a class="reference internal" href="#what-is-meant-by-periodic-activity">What is meant by ‘periodic’ activity?</a></li>
+<li><a class="reference internal" href="#what-are-the-assumptions-of-spectral-parameterization">What are the assumptions of spectral parameterization?</a></li>
+<li><a class="reference internal" href="#why-should-i-parameterize-neural-power-spectra">Why should I parameterize neural power spectra?</a></li>
+<li><a class="reference internal" href="#why-is-it-important-to-measure-aperiodic-neural-activity">Why is it important to measure aperiodic neural activity?</a></li>
+<li><a class="reference internal" href="#why-call-it-aperiodic-why-not-call-it-1-f-or-noise-etc">Why call it ‘aperiodic’? Why not call it ‘1/f’ or ‘noise’, etc?</a></li>
+<li><a class="reference internal" href="#why-are-spectral-peak-used-as-evidence-of-periodic-activity">Why are spectral peak used as evidence of periodic activity?</a></li>
+<li><a class="reference internal" href="#what-if-there-is-no-peak-is-there-no-periodic-activity">What if there is no peak? Is there no periodic activity?</a></li>
+<li><a class="reference internal" href="#how-should-peaks-be-interpreted-are-they-equivalent-to-oscillations">How should peaks be interpreted? Are they equivalent to oscillations?</a></li>
+<li><a class="reference internal" href="#why-is-parameterizing-neural-power-spectra-different-from-other-methods">Why is parameterizing neural power spectra different from other methods?</a></li>
+<li><a class="reference internal" href="#what-neuroscience-modalities-can-be-analyzed-with-spectral-parameterization">What neuroscience modalities can be analyzed with spectral parameterization?</a></li>
+<li><a class="reference internal" href="#are-there-settings-for-the-fitting-algorithm">Are there settings for the fitting algorithm?</a></li>
+<li><a class="reference internal" href="#how-should-algorithm-settings-be-chosen">How should algorithm settings be chosen?</a></li>
+<li><a class="reference internal" href="#what-frequency-range-should-the-model-be-fit-on">What frequency range should the model be fit on?</a></li>
+<li><a class="reference internal" href="#if-i-am-interested-in-a-particular-oscillation-band-should-i-fit-a-small-range">If I am interested in a particular oscillation band, should I fit a small range?</a></li>
+<li><a class="reference internal" href="#what-does-the-aperiodic-component-of-the-signal-reflect">What does the ‘aperiodic’ component of the signal reflect?</a></li>
+<li><a class="reference internal" href="#does-it-matter-how-power-spectra-are-computed">Does it matter how power spectra are computed?</a></li>
+<li><a class="reference internal" href="#can-spectral-parameterization-be-applied-to-task-data">Can spectral parameterization be applied to task data?</a></li>
+<li><a class="reference internal" href="#is-there-a-time-resolved-version">Is there a time resolved version?</a></li>
+<li><a class="reference internal" href="#what-is-the-fooof-name">What is the ‘FOOOF’ name?</a></li>
+<li><a class="reference internal" href="#how-do-i-cite-this-method">How do I cite this method?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="frequently-asked-questions">
-<h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this heading">¶</a></h1>
+<h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Link to this heading">¶</a></h1>
 <p>The following is a collection of frequently asked questions and answers about spectral parameterization.</p>
 <p>The questions and answers here focus on the key ideas and concept relating to the approach.
 For code related questions and examples, check out the API listing and tutorials.</p>
 <section id="table-of-contents">
-<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">¶</a></h2>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#what-is-spectral-parameterization" id="id8">What is spectral parameterization?</a></p></li>
@@ -149,13 +196,13 @@ For code related questions and examples, check out the API listing and tutorials
 </ul>
 </nav>
 <section id="what-is-spectral-parameterization">
-<h3>What is spectral parameterization?<a class="headerlink" href="#what-is-spectral-parameterization" title="Permalink to this heading">¶</a></h3>
+<h3>What is spectral parameterization?<a class="headerlink" href="#what-is-spectral-parameterization" title="Link to this heading">¶</a></h3>
 <p>Spectral parameterization means fitting a model to describe a power spectrum.
 The <cite>specparam</cite> module implements a framework for fitting models to power spectra,
 available in an open-source Python module.</p>
 </section>
 <section id="how-does-spectral-parameterization-work">
-<h3>How does spectral parameterization work?<a class="headerlink" href="#how-does-spectral-parameterization-work" title="Permalink to this heading">¶</a></h3>
+<h3>How does spectral parameterization work?<a class="headerlink" href="#how-does-spectral-parameterization-work" title="Link to this heading">¶</a></h3>
 <p>Spectral parameterization operates on frequency representations (power spectra) of digital
 signals (time series). Broadly speaking, the module contains model definitions for how to
 characterize each component (periodic and aperiodic) and algorithms to fit these definitions
@@ -165,14 +212,14 @@ For more information on the approach, including descriptions of the model defini
 and algorithms, see the Tutorials.</p>
 </section>
 <section id="what-was-spectral-parameterization-originally-designed-for">
-<h3>What was spectral parameterization originally designed for?<a class="headerlink" href="#what-was-spectral-parameterization-originally-designed-for" title="Permalink to this heading">¶</a></h3>
+<h3>What was spectral parameterization originally designed for?<a class="headerlink" href="#what-was-spectral-parameterization-originally-designed-for" title="Link to this heading">¶</a></h3>
 <p>The original use case of spectral parameterization was for analyzing
 neuro-electrophysiological data. Due to this, across the documentation,
 the vast majority of the discussion of the use of spectral parameterization
 refers to the use case of neuro-electrophysiological data.</p>
 </section>
 <section id="what-data-can-this-be-applied-to-can-it-be-used-on-non-neural-data">
-<h3>What data can this be applied to? Can it be used on non-neural data?<a class="headerlink" href="#what-data-can-this-be-applied-to-can-it-be-used-on-non-neural-data" title="Permalink to this heading">¶</a></h3>
+<h3>What data can this be applied to? Can it be used on non-neural data?<a class="headerlink" href="#what-data-can-this-be-applied-to-can-it-be-used-on-non-neural-data" title="Link to this heading">¶</a></h3>
 <p>Spectral parameterization can, in theory, be applied to any power spectra,
 including non-neural power spectra. Following developments and generalizations of the module,
 starting with the specparam 2.0 release version, the module should now be more easily
@@ -181,14 +228,14 @@ parameterization needs to evaluate if the model fitting procedures are well pose
 for the specific use case (see Tutorials for more details).</p>
 </section>
 <section id="what-is-needed-to-parameterize-a-power-spectrum">
-<h3>What is needed to parameterize a power spectrum?<a class="headerlink" href="#what-is-needed-to-parameterize-a-power-spectrum" title="Permalink to this heading">¶</a></h3>
+<h3>What is needed to parameterize a power spectrum?<a class="headerlink" href="#what-is-needed-to-parameterize-a-power-spectrum" title="Link to this heading">¶</a></h3>
 <p>In order for spectral parameterization to work for a given application, the chosen
 model definition has to be appropriate for the data under study, and the chosen fitting
 algorithm has to be appropriate for fitting this model to the data. See discussions throughout
 the tutorials on choosing model forms and fit algorithms.</p>
 </section>
 <section id="what-is-meant-by-aperiodic-activity">
-<h3>What is meant by ‘aperiodic’ activity?<a class="headerlink" href="#what-is-meant-by-aperiodic-activity" title="Permalink to this heading">¶</a></h3>
+<h3>What is meant by ‘aperiodic’ activity?<a class="headerlink" href="#what-is-meant-by-aperiodic-activity" title="Link to this heading">¶</a></h3>
 <p>By ‘aperiodic’ activity we mean non-periodic (or arrhythmic) activity, meaning activity that
 has no characteristic frequency. For example, white noise, would be considered to be an
 aperiodic signal.</p>
@@ -198,7 +245,7 @@ component, in a neural power spectrum, there is power at all frequencies, though
 not imply there is rhythmic power.</p>
 </section>
 <section id="what-is-meant-by-periodic-activity">
-<h3>What is meant by ‘periodic’ activity?<a class="headerlink" href="#what-is-meant-by-periodic-activity" title="Permalink to this heading">¶</a></h3>
+<h3>What is meant by ‘periodic’ activity?<a class="headerlink" href="#what-is-meant-by-periodic-activity" title="Link to this heading">¶</a></h3>
 <p>By ‘periodic’ activity we mean features of the signal that are rhythmic, with activity
 at a characteristic frequency. This kind of activity is typically referred to as
 ‘oscillatory’ or reflecting neural oscillations.</p>
@@ -214,7 +261,7 @@ which are often at least somewhat non-sinusoidal, which can still be seen as pea
 spectrum (though see notes on interpreting peaks of power).</p>
 </section>
 <section id="what-are-the-assumptions-of-spectral-parameterization">
-<h3>What are the assumptions of spectral parameterization?<a class="headerlink" href="#what-are-the-assumptions-of-spectral-parameterization" title="Permalink to this heading">¶</a></h3>
+<h3>What are the assumptions of spectral parameterization?<a class="headerlink" href="#what-are-the-assumptions-of-spectral-parameterization" title="Link to this heading">¶</a></h3>
 <p>Spectral parameterization uses a model-driven approach that assumes that the data under study
 are comprised of two separately measure-able components, reflecting periodic (or oscillatory)
 and aperiodic activity. This approach therefore relies on the assumption that these two components
@@ -223,7 +270,7 @@ broadly agnostic to the relationship(s) between the components, their origin(s) 
 process that created the data, and their putative functional roles.</p>
 </section>
 <section id="why-should-i-parameterize-neural-power-spectra">
-<h3>Why should I parameterize neural power spectra?<a class="headerlink" href="#why-should-i-parameterize-neural-power-spectra" title="Permalink to this heading">¶</a></h3>
+<h3>Why should I parameterize neural power spectra?<a class="headerlink" href="#why-should-i-parameterize-neural-power-spectra" title="Link to this heading">¶</a></h3>
 <p>Though research often focuses on periodic (rhythmic or oscillatory) components, neurophysiological
 recordings of electrophysiological neural activity contain not only periodic, but also aperiodic
 activity. Since both components of the signal are dynamic, and overlapping, it is important to
@@ -246,7 +293,7 @@ motivate parameterizing neural power spectra, see the
 <a class="reference external" href="https://fooof-tools.github.io/fooof/auto_motivations/index.html">motivations page</a></p>
 </section>
 <section id="why-is-it-important-to-measure-aperiodic-neural-activity">
-<h3>Why is it important to measure aperiodic neural activity?<a class="headerlink" href="#why-is-it-important-to-measure-aperiodic-neural-activity" title="Permalink to this heading">¶</a></h3>
+<h3>Why is it important to measure aperiodic neural activity?<a class="headerlink" href="#why-is-it-important-to-measure-aperiodic-neural-activity" title="Link to this heading">¶</a></h3>
 <p>Aperiodic activity has long known to be present in neural data, but has been less of a
 research focus (as compared to periodic activity). Recent work has demonstrated
 that aperiodic activity is dynamic, and systematically varies both within [<a class="reference external" href="https://doi.org/10.1152/jn.00943.2014">1</a>] and between
@@ -263,7 +310,7 @@ is dynamic, correlates with other features of interest, and is of theoretical in
 </ul>
 </section>
 <section id="why-call-it-aperiodic-why-not-call-it-1-f-or-noise-etc">
-<h3>Why call it ‘aperiodic’? Why not call it ‘1/f’ or ‘noise’, etc?<a class="headerlink" href="#why-call-it-aperiodic-why-not-call-it-1-f-or-noise-etc" title="Permalink to this heading">¶</a></h3>
+<h3>Why call it ‘aperiodic’? Why not call it ‘1/f’ or ‘noise’, etc?<a class="headerlink" href="#why-call-it-aperiodic-why-not-call-it-1-f-or-noise-etc" title="Link to this heading">¶</a></h3>
 <p>What we now call the ‘aperiodic’ component of the signal has variously been called, by us and
 others: ‘1/f’ activity, ‘scale free’ activity, ‘background’ activity, ‘1/f noise’, or
 ‘background noise’, amongst other names.</p>
@@ -294,7 +341,7 @@ implying particular theoretical interpretations, and/or what aspects of the sign
 are of interest for any particular investigation.</p>
 </section>
 <section id="why-are-spectral-peak-used-as-evidence-of-periodic-activity">
-<h3>Why are spectral peak used as evidence of periodic activity?<a class="headerlink" href="#why-are-spectral-peak-used-as-evidence-of-periodic-activity" title="Permalink to this heading">¶</a></h3>
+<h3>Why are spectral peak used as evidence of periodic activity?<a class="headerlink" href="#why-are-spectral-peak-used-as-evidence-of-periodic-activity" title="Link to this heading">¶</a></h3>
 <p>Since neural activity contains aperiodic activity, there will always be power within
 any given frequency range. If this aperiodic activity changes, the measured power within
 a predefined frequency range can also change. All this can occur without any truly periodic
@@ -307,7 +354,7 @@ to measure whether periodic activity, specifically, is changing, these ‘peaks�
 frequency spectrum can be used.</p>
 </section>
 <section id="what-if-there-is-no-peak-is-there-no-periodic-activity">
-<h3>What if there is no peak? Is there no periodic activity?<a class="headerlink" href="#what-if-there-is-no-peak-is-there-no-periodic-activity" title="Permalink to this heading">¶</a></h3>
+<h3>What if there is no peak? Is there no periodic activity?<a class="headerlink" href="#what-if-there-is-no-peak-is-there-no-periodic-activity" title="Link to this heading">¶</a></h3>
 <p>If, for a given frequency band, no peak is detected in the power spectrum, this is
 consistent with there being no periodic activity at that frequency. Without a detected peak,
 we argue that there is not evidence of periodic activity, at that frequency, over and
@@ -319,7 +366,7 @@ be very low power periodic activity, and/or periodic activity that is variable t
 (bursty) such as to not display a prominent peak across the analyzed time period.</p>
 </section>
 <section id="how-should-peaks-be-interpreted-are-they-equivalent-to-oscillations">
-<h3>How should peaks be interpreted? Are they equivalent to oscillations?<a class="headerlink" href="#how-should-peaks-be-interpreted-are-they-equivalent-to-oscillations" title="Permalink to this heading">¶</a></h3>
+<h3>How should peaks be interpreted? Are they equivalent to oscillations?<a class="headerlink" href="#how-should-peaks-be-interpreted-are-they-equivalent-to-oscillations" title="Link to this heading">¶</a></h3>
 <p>Peaks, defined as regions of power over and above the aperiodic component, are considered
 to be putative periodic activity. However, there is not necessarily a one-to-one mapping
 between power spectrum peaks, and oscillations in the data.</p>
@@ -343,7 +390,7 @@ this does not necessarily imply there are any 20 Hz rhythmic components in the s
 is a Python tool for analyzing neural oscillations and their waveform shape properties [<a class="reference external" href="https://doi.org/10.1152/jn.00273.2019">5</a>].</p>
 </section>
 <section id="why-is-parameterizing-neural-power-spectra-different-from-other-methods">
-<h3>Why is parameterizing neural power spectra different from other methods?<a class="headerlink" href="#why-is-parameterizing-neural-power-spectra-different-from-other-methods" title="Permalink to this heading">¶</a></h3>
+<h3>Why is parameterizing neural power spectra different from other methods?<a class="headerlink" href="#why-is-parameterizing-neural-power-spectra-different-from-other-methods" title="Link to this heading">¶</a></h3>
 <p>Within neuroscience, there are many existing methods for analyzing periodic activity,
 and also other methods for analyzing aperiodic activity. Historically, fewer methods have
 been developed that attempt to explicitly separate and quantify both the periodic and
@@ -358,7 +405,7 @@ methods (partially summarized here: [<a class="reference external" href="https:/
 Check the current literature for more discussion of these topics.</p>
 </section>
 <section id="what-neuroscience-modalities-can-be-analyzed-with-spectral-parameterization">
-<h3>What neuroscience modalities can be analyzed with spectral parameterization?<a class="headerlink" href="#what-neuroscience-modalities-can-be-analyzed-with-spectral-parameterization" title="Permalink to this heading">¶</a></h3>
+<h3>What neuroscience modalities can be analyzed with spectral parameterization?<a class="headerlink" href="#what-neuroscience-modalities-can-be-analyzed-with-spectral-parameterization" title="Link to this heading">¶</a></h3>
 <p>The power spectrum model can theoretically be applied to power spectra derived from any
 electrophysiological or magnetophysiological signal of neural origin. In practice, this
 covers ‘field’ data, meaning intracranial local field potential (LFP) data,
@@ -374,7 +421,7 @@ different algorithm settings.</p>
 settings and tuning them to different datasets are all available in the Tutorials.</p>
 </section>
 <section id="are-there-settings-for-the-fitting-algorithm">
-<h3>Are there settings for the fitting algorithm?<a class="headerlink" href="#are-there-settings-for-the-fitting-algorithm" title="Permalink to this heading">¶</a></h3>
+<h3>Are there settings for the fitting algorithm?<a class="headerlink" href="#are-there-settings-for-the-fitting-algorithm" title="Link to this heading">¶</a></h3>
 <p>Yes, there are some settings for the algorithm. The algorithm is initialized with default
 values that are often good enough to get started with fitting, but these settings will often
 need some tuning to optimize fitting on individual datasets.</p>
@@ -382,7 +429,7 @@ need some tuning to optimize fitting on individual datasets.</p>
 is covered in the tutorials.</p>
 </section>
 <section id="how-should-algorithm-settings-be-chosen">
-<h3>How should algorithm settings be chosen?<a class="headerlink" href="#how-should-algorithm-settings-be-chosen" title="Permalink to this heading">¶</a></h3>
+<h3>How should algorithm settings be chosen?<a class="headerlink" href="#how-should-algorithm-settings-be-chosen" title="Link to this heading">¶</a></h3>
 <p>For any given dataset, there is often some tuning of the algorithm settings needed to get
 models to fit well. For any given dataset, settings should therefore be checked, and tuned
 if necessary. Model fits tend not to be overly sensitive to small changes in the settings.</p>
@@ -396,7 +443,7 @@ algorithm settings across the whole dataset.</p>
 <p>Details of what the algorithm settings are, and how to set them are available in the Tutorials.</p>
 </section>
 <section id="what-frequency-range-should-the-model-be-fit-on">
-<h3>What frequency range should the model be fit on?<a class="headerlink" href="#what-frequency-range-should-the-model-be-fit-on" title="Permalink to this heading">¶</a></h3>
+<h3>What frequency range should the model be fit on?<a class="headerlink" href="#what-frequency-range-should-the-model-be-fit-on" title="Link to this heading">¶</a></h3>
 <p>The frequency range used to fit a power spectrum model depends on the data and the questions
 of interest. As a general guideline, one typically wants to use relatively broad ranges.
 This best allows for fitting the aperiodic activity, which in turn allows for better
@@ -411,7 +458,7 @@ mode, as whether or not a ‘knee’ should be fit depends in part on the freque
 is being examined. For more information on choosing the aperiodic mode, see the Tutorials.</p>
 </section>
 <section id="if-i-am-interested-in-a-particular-oscillation-band-should-i-fit-a-small-range">
-<h3>If I am interested in a particular oscillation band, should I fit a small range?<a class="headerlink" href="#if-i-am-interested-in-a-particular-oscillation-band-should-i-fit-a-small-range" title="Permalink to this heading">¶</a></h3>
+<h3>If I am interested in a particular oscillation band, should I fit a small range?<a class="headerlink" href="#if-i-am-interested-in-a-particular-oscillation-band-should-i-fit-a-small-range" title="Link to this heading">¶</a></h3>
 <p>Generally, no - it is better to always try and fit a broad frequency range, rather than to
 fit a small range, even if one is interested in a specific oscillation band.</p>
 <p>This is because if a small frequency range is used, it becomes much more difficult to
@@ -425,7 +472,7 @@ alpha oscillations post-hoc. There are utilities in <cite>analysis</cite> module
 extracting peaks from particular bands, and examples of this on the examples page.</p>
 </section>
 <section id="what-does-the-aperiodic-component-of-the-signal-reflect">
-<h3>What does the ‘aperiodic’ component of the signal reflect?<a class="headerlink" href="#what-does-the-aperiodic-component-of-the-signal-reflect" title="Permalink to this heading">¶</a></h3>
+<h3>What does the ‘aperiodic’ component of the signal reflect?<a class="headerlink" href="#what-does-the-aperiodic-component-of-the-signal-reflect" title="Link to this heading">¶</a></h3>
 <p>Basically, we don’t know. Exactly what the ‘aperiodic’ component of the signal is,
 in terms of where it comes from, and what reflects is an open research question.</p>
 <p>Descriptively, we know that aperiodic activity is always there, and is a prominent
@@ -441,7 +488,7 @@ currents. In this model, changes in aperiodic properties of the data relate to c
 in EI balance [<a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2017.06.078">3</a>].</p>
 </section>
 <section id="does-it-matter-how-power-spectra-are-computed">
-<h3>Does it matter how power spectra are computed?<a class="headerlink" href="#does-it-matter-how-power-spectra-are-computed" title="Permalink to this heading">¶</a></h3>
+<h3>Does it matter how power spectra are computed?<a class="headerlink" href="#does-it-matter-how-power-spectra-are-computed" title="Link to this heading">¶</a></h3>
 <p>For the most part, it does not matter exactly how power spectra to be parameterized
 are computed. The algorithm is agnostic to precise details of calculating power
 spectra, and so different estimation methods should all be fine.</p>
@@ -452,7 +499,7 @@ of detected peaks. However, as a trade off, averaging over a greater number of s
 may help to end up with ‘smoother’ spectra, which may help with getting better fits.</p>
 </section>
 <section id="can-spectral-parameterization-be-applied-to-task-data">
-<h3>Can spectral parameterization be applied to task data?<a class="headerlink" href="#can-spectral-parameterization-be-applied-to-task-data" title="Permalink to this heading">¶</a></h3>
+<h3>Can spectral parameterization be applied to task data?<a class="headerlink" href="#can-spectral-parameterization-be-applied-to-task-data" title="Link to this heading">¶</a></h3>
 <p>Yes, power spectra can be fit in task based analyses.</p>
 <p>However, one thing to keep in mind is the resolution of the data. The shorter the
 time segments of data used, and/or the fewer data segments averaged over, the ‘messier’
@@ -486,7 +533,7 @@ in practice there may be some differences. Depending on the data and analysis go
 one or the other might be more appropriate.</p>
 </section>
 <section id="is-there-a-time-resolved-version">
-<h3>Is there a time resolved version?<a class="headerlink" href="#is-there-a-time-resolved-version" title="Permalink to this heading">¶</a></h3>
+<h3>Is there a time resolved version?<a class="headerlink" href="#is-there-a-time-resolved-version" title="Link to this heading">¶</a></h3>
 <p>Yes, as of the specparam 2.0 version, the module includes functionality to fit models across
 time (across spectrograms).</p>
 <p>Note that as it operates in the frequency domain, in order to be able to analyze data over time,
@@ -499,7 +546,7 @@ appropriately interpret the results.</p>
 <p>See more information on this functionality in the tutorials.</p>
 </section>
 <section id="what-is-the-fooof-name">
-<h3>What is the ‘FOOOF’ name?<a class="headerlink" href="#what-is-the-fooof-name" title="Permalink to this heading">¶</a></h3>
+<h3>What is the ‘FOOOF’ name?<a class="headerlink" href="#what-is-the-fooof-name" title="Link to this heading">¶</a></h3>
 <p>The original name of the module was ‘FOOOF’, which stood for “fitting oscillations &amp; one-over f”.</p>
 <p>This was a working title for the project that stuck as the name of the code and the tool. Since
 we have moved away from using these terms in the module and algorithm, now preferring terms such
@@ -513,13 +560,13 @@ to power spectra across different contexts (while still also including the origi
 specific functionality from fooof).</p>
 </section>
 <section id="how-do-i-cite-this-method">
-<h3>How do I cite this method?<a class="headerlink" href="#how-do-i-cite-this-method" title="Permalink to this heading">¶</a></h3>
+<h3>How do I cite this method?<a class="headerlink" href="#how-do-i-cite-this-method" title="Link to this heading">¶</a></h3>
 <p>See the <a class="reference external" href="https://fooof-tools.github.io/fooof/reference.html">reference</a> page
 for notes on how to report on using the algorithm and how to cite it.</p>
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>[<a class="reference external" href="https://doi.org/10.1152/jn.00943.2014">1</a>] Podvalny et al (2017). A Unifying Principle Underlying the Extracellular Field Potential
 Spectral Responses in the Human Cortex. DOI: 10.1152/jn.00943.2014</p></li>
@@ -561,8 +608,8 @@ DOI: 10.1007/978-3-031-20910-9_22</p></li>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

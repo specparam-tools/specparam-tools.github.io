@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.data.data &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.data.data &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -55,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -108,26 +109,38 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <h1>Source code for specparam.data.data</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Define data objects.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">specparam.sim.gen</span> <span class="kn">import</span> <span class="n">gen_freqs</span>
-<span class="kn">from</span> <span class="nn">specparam.data</span> <span class="kn">import</span> <span class="n">SpectrumMetaData</span><span class="p">,</span> <span class="n">ModelChecks</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.spectral</span> <span class="kn">import</span> <span class="n">trim_spectrum</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_input_options</span>
-<span class="kn">from</span> <span class="nn">specparam.reports.strings</span> <span class="kn">import</span> <span class="n">gen_data_str</span>
-<span class="kn">from</span> <span class="nn">specparam.modutils.errors</span> <span class="kn">import</span> <span class="n">DataError</span><span class="p">,</span> <span class="n">InconsistentDataError</span>
-<span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="n">docs_get_section</span><span class="p">,</span> <span class="n">replace_docstring_sections</span>
-<span class="kn">from</span> <span class="nn">specparam.plts.settings</span> <span class="kn">import</span> <span class="n">PLT_COLORS</span>
-<span class="kn">from</span> <span class="nn">specparam.plts.spectra</span> <span class="kn">import</span> <span class="n">plot_spectra</span><span class="p">,</span> <span class="n">plot_spectrogram</span>
-<span class="kn">from</span> <span class="nn">specparam.plts.utils</span> <span class="kn">import</span> <span class="n">check_plot_kwargs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.gen</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_freqs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpectrumMetaData</span><span class="p">,</span> <span class="n">ModelChecks</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.array</span><span class="w"> </span><span class="kn">import</span> <span class="n">unlog</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.spectral</span><span class="w"> </span><span class="kn">import</span> <span class="n">trim_spectrum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.checks</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_input_options</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.reports.strings</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_data_str</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.modutils.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataError</span><span class="p">,</span> <span class="n">NoDataError</span><span class="p">,</span> <span class="n">InconsistentDataError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.modutils.docs</span><span class="w"> </span><span class="kn">import</span> <span class="n">docs_get_section</span><span class="p">,</span> <span class="n">replace_docstring_sections</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">PLT_COLORS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.spectra</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_spectra</span><span class="p">,</span> <span class="n">plot_spectrogram</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_plot_kwargs</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
@@ -138,7 +151,9 @@
 <span class="n">FORMATS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;power&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="Data"><a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data">[docs]</a><span class="k">class</span> <span class="nc">Data</span><span class="p">():</span>
+<div class="viewcode-block" id="Data">
+<a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Data</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Object for managing data for spectral parameterization - for 1D data.</span>
 
 <span class="sd">    Parameters</span>
@@ -149,6 +164,8 @@
 <span class="sd">        Whether to check the spectral data. If so, raises an error for any NaN / Inf values.</span>
 <span class="sd">    format : {&#39;power&#39;}</span>
 <span class="sd">        The representation format of the data.</span>
+<span class="sd">    model : SpectralModel, optional</span>
+<span class="sd">        The model object this object is linked to, to provide access to other attributes.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -168,7 +185,9 @@
 <span class="sd">    All power values are stored internally in log10 scale.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Data.__init__"><a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">check_freqs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;power&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.__init__">
+<a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">check_freqs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;power&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Data object.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset_data</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
@@ -181,18 +200,20 @@
         <span class="p">}</span>
 
         <span class="n">check_input_options</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span> <span class="n">FORMATS</span><span class="p">,</span> <span class="s1">&#39;format&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="nb">format</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="nb">format</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">model</span></div>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator for if the object contains data.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">))</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_freqs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_freqs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator for the number of frequency values.&quot;&quot;&quot;</span>
 
         <span class="n">n_freqs</span> <span class="o">=</span> <span class="kc">None</span>
@@ -202,7 +223,9 @@
         <span class="k">return</span> <span class="n">n_freqs</span>
 
 
-<div class="viewcode-block" id="Data.add_data"><a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.add_data">[docs]</a>    <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Data.add_data">
+<a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.add_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add data (frequencies, and power spectrum values) to the current object.</span>
 
 <span class="sd">        Parameters</span>
@@ -228,7 +251,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_data</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Data.add_meta_data"><a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.add_meta_data">[docs]</a>    <span class="k">def</span> <span class="nf">add_meta_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_data</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Data.add_meta_data">
+<a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.add_meta_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_meta_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_data</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add data information into object from a SpectrumMetaData object.</span>
 
 <span class="sd">        Parameters</span>
@@ -243,7 +269,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_regenerate_freqs</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="Data.get_checks"><a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.get_checks">[docs]</a>    <span class="k">def</span> <span class="nf">get_checks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Data.get_checks">
+<a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.get_checks">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_checks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return check statuses of the current object.</span>
 
 <span class="sd">        Returns</span>
@@ -255,7 +284,10 @@
         <span class="k">return</span> <span class="n">ModelChecks</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;check_&#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">checks</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span></div>
 
 
-<div class="viewcode-block" id="Data.get_meta_data"><a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.get_meta_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_meta_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Data.get_meta_data">
+<a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.get_meta_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_meta_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return data information from the current object.</span>
 
 <span class="sd">        Returns</span>
@@ -267,7 +299,61 @@
         <span class="k">return</span> <span class="n">SpectrumMetaData</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">key</span> <span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta_fields</span><span class="p">})</span></div>
 
 
-<div class="viewcode-block" id="Data.plot"><a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plt_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">plt_kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Data.get_data">
+<a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.get_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a data component.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        component : {&#39;full&#39;, &#39;aperiodic&#39;, &#39;peak&#39;}</span>
+<span class="sd">            Which data component to return.</span>
+<span class="sd">                &#39;full&#39; - full power spectrum</span>
+<span class="sd">                &#39;aperiodic&#39; - isolated aperiodic data component</span>
+<span class="sd">                &#39;peak&#39; - isolated peak data component</span>
+<span class="sd">        space : {&#39;log&#39;, &#39;linear&#39;}</span>
+<span class="sd">            Which space to return the data component in.</span>
+<span class="sd">                &#39;log&#39; - returns in log10 space.</span>
+<span class="sd">                &#39;linear&#39; - returns in linear space.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        output : 1d array</span>
+<span class="sd">            Specified data component, in specified spacing.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        The &#39;space&#39; parameter doesn&#39;t just define the spacing of the data component</span>
+<span class="sd">        values, but rather defines the space of the additive data definition such that</span>
+<span class="sd">        `power_spectrum = aperiodic_component + peak_component`.</span>
+<span class="sd">        With space set as &#39;log&#39;, this combination holds in log space.</span>
+<span class="sd">        With space set as &#39;linear&#39;, this combination holds in linear space.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoDataError</span><span class="p">(</span><span class="s2">&quot;No data available to fit, can not proceed.&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">space</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">],</span> <span class="s2">&quot;Input for &#39;space&#39; invalid.&quot;</span>
+
+        <span class="k">if</span> <span class="n">component</span> <span class="o">==</span> <span class="s1">&#39;full&#39;</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">power_spectrum</span> <span class="k">if</span> <span class="n">space</span> <span class="o">==</span> <span class="s1">&#39;log&#39;</span> \
+                <span class="k">else</span> <span class="n">unlog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">component</span> <span class="o">==</span> <span class="s1">&#39;aperiodic&#39;</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_spectrum_peak_rm</span> <span class="k">if</span> <span class="n">space</span> <span class="o">==</span> <span class="s1">&#39;log&#39;</span> <span class="k">else</span> \
+                <span class="n">unlog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">)</span> <span class="o">/</span> <span class="n">unlog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_peak_fit</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">component</span> <span class="o">==</span> <span class="s1">&#39;peak&#39;</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_spectrum_flat</span> <span class="k">if</span> <span class="n">space</span> <span class="o">==</span> <span class="s1">&#39;log&#39;</span> <span class="k">else</span> \
+                <span class="n">unlog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">)</span> <span class="o">-</span> <span class="n">unlog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_ap_fit</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Input for component invalid.&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">output</span></div>
+
+
+
+<div class="viewcode-block" id="Data.plot">
+<a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.plot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plt_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">plt_kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot the power spectrum.&quot;&quot;&quot;</span>
 
         <span class="n">data_kwargs</span> <span class="o">=</span> <span class="n">check_plot_kwargs</span><span class="p">(</span>\
@@ -276,19 +362,25 @@
                      <span class="n">log_powers</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">data_kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Data.print"><a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.print">[docs]</a>    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Data.print">
+<a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.print">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Print out a data summary.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        concise : bool, optional, default: False</span>
-<span class="sd">            Whether to print the report in a concise mode, or not.</span>
+<span class="sd">            Whether to print a concise version of the report.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="n">gen_data_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concise</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Data.set_checks"><a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.set_checks">[docs]</a>    <span class="k">def</span> <span class="nf">set_checks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">check_freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Data.set_checks">
+<a class="viewcode-back" href="../../../generated/specparam.data.data.Data.html#specparam.data.data.Data.set_checks">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_checks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">check_freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set check statuses, which control if an error is raised based on check on the inputs.</span>
 
 <span class="sd">        Parameters</span>
@@ -305,7 +397,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">checks</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_data</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_reset_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reset_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, data attributes to empty.</span>
 
 <span class="sd">        Parameters</span>
@@ -325,13 +418,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">power_spectrum</span> <span class="o">=</span> <span class="kc">None</span>
 
 
-    <span class="k">def</span> <span class="nf">_regenerate_freqs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_regenerate_freqs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Regenerate the frequency vector, given the object metadata.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">freqs</span> <span class="o">=</span> <span class="n">gen_freqs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">freq_range</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq_res</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">_prepare_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">spectra_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_prepare_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">spectra_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepare input data for adding to current object.</span>
 
 <span class="sd">        Parameters</span>
@@ -432,9 +525,10 @@
         <span class="k">return</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">freq_res</span></div>
 
 
+
 <span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">Data</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
                              <span class="n">docs_get_section</span><span class="p">(</span><span class="n">Data</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Attributes&#39;</span><span class="p">)])</span>
-<span class="k">class</span> <span class="nc">Data2D</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Data2D</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base object for managing data for spectral parameterization - for 2D data.</span>
 
 <span class="sd">    Parameters</span>
@@ -452,23 +546,23 @@
 <span class="sd">    All power values are stored internally in log10 scale.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Data2D object.&quot;&quot;&quot;</span>
 
-        <span class="n">Data</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">Data</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span> <span class="o">=</span> <span class="kc">None</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator for if the object contains data.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="p">))</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_spectra</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_spectra</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator for the number of power spectra.&quot;&quot;&quot;</span>
 
         <span class="n">n_spectra</span> <span class="o">=</span> <span class="kc">None</span>
@@ -478,7 +572,7 @@
         <span class="k">return</span> <span class="n">n_spectra</span>
 
 
-    <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectra</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectra</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add data (frequencies and power spectrum values) to the current object.</span>
 
 <span class="sd">        Parameters</span>
@@ -500,7 +594,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_data</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectra</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plt_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">plt_kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plt_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">plt_kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot the power spectrum.&quot;&quot;&quot;</span>
 
         <span class="n">data_kwargs</span> <span class="o">=</span> <span class="n">check_plot_kwargs</span><span class="p">(</span>\
@@ -509,7 +603,7 @@
                      <span class="n">log_powers</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">data_kwargs</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">_reset_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectra</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reset_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectra</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, data attributes to empty.</span>
 
 <span class="sd">        Parameters</span>
@@ -527,11 +621,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span> <span class="o">=</span> <span class="kc">None</span>
 
 
-<span class="k">def</span> <span class="nf">transpose_arg1</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">transpose_arg1</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator function to transpose the 1th argument input to a function.&quot;&quot;&quot;</span>
 
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">decorated</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorated</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
@@ -546,7 +640,7 @@
 
 <span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">Data</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
                              <span class="n">docs_get_section</span><span class="p">(</span><span class="n">Data2D</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Attributes&#39;</span><span class="p">)])</span>
-<span class="k">class</span> <span class="nc">Data2DT</span><span class="p">(</span><span class="n">Data2D</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Data2DT</span><span class="p">(</span><span class="n">Data2D</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base object for managing data for spectral parameterization - for 2D transposed data.</span>
 
 <span class="sd">    Parameters</span>
@@ -564,28 +658,28 @@
 <span class="sd">    All power values are stored internally in log10 scale.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Data2DT object.&quot;&quot;&quot;</span>
 
-        <span class="n">Data2D</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">Data2D</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">spectrogram</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">spectrogram</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Data attribute view on the power spectra, transposed to spectrogram orientation.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">power_spectra</span><span class="o">.</span><span class="n">T</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_time_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_time_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;How many time windows are included in the model object.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectrogram</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span> <span class="k">else</span> <span class="mi">0</span>
 
 
     <span class="nd">@transpose_arg1</span>
-    <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spectrogram</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spectrogram</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add data (frequencies and spectrogram values) to the current object.</span>
 
 <span class="sd">        Parameters</span>
@@ -608,7 +702,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrogram</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">plt_kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">plt_kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot the spectrogram.&quot;&quot;&quot;</span>
 
         <span class="n">plot_spectrogram</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
@@ -616,7 +710,7 @@
 
 <span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">Data</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
                              <span class="n">docs_get_section</span><span class="p">(</span><span class="n">Data2DT</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Attributes&#39;</span><span class="p">)])</span>
-<span class="k">class</span> <span class="nc">Data3D</span><span class="p">(</span><span class="n">Data2DT</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Data3D</span><span class="p">(</span><span class="n">Data2DT</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base object for managing data for spectral parameterization - for 3D data.</span>
 
 <span class="sd">    Parameters</span>
@@ -634,37 +728,37 @@
 <span class="sd">    All power values are stored internally in log10 scale.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Data3D object.&quot;&quot;&quot;</span>
 
-        <span class="n">Data2DT</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">Data2DT</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">spectrograms</span> <span class="o">=</span> <span class="kc">None</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Redefine has_data marker to reflect the spectrograms attribute.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spectrograms</span><span class="p">))</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_time_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_time_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;How many time windows are included in the model object.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectrograms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_data</span> <span class="k">else</span> <span class="mi">0</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;How many events are included in the model object.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spectrograms</span><span class="p">)</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_spectra</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_spectra</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Redefine n_spectra marker to reflect the total number of spectra.&quot;&quot;&quot;</span>
 
         <span class="n">n_spectra</span> <span class="o">=</span> <span class="kc">None</span>
@@ -674,7 +768,7 @@
         <span class="k">return</span> <span class="n">n_spectra</span>
 
 
-    <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spectrograms</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spectrograms</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add data (frequencies and spectrograms) to the current object.</span>
 
 <span class="sd">        Parameters</span>
@@ -704,13 +798,13 @@
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrograms</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_ind</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_ind</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot a selected spectrogram.&quot;&quot;&quot;</span>
 
         <span class="n">plot_spectrogram</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectrograms</span><span class="p">[</span><span class="n">event_ind</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">_reset_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reset_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                     <span class="n">clear_spectra</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrograms</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, data attributes to empty.</span>
 
@@ -742,8 +836,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

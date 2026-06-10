@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>specparam.modes.Mode &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172157729-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172157729-1');
+</script>
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          specparam</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../faq.html">FAQ</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../auto_motivations/index.html">Motivations</a></li>
+                <li><a href="../auto_tutorials/index.html">Tutorials</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../visualizers.html">Visualizers</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/fooof-tools/fooof">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">specparam.modes.Mode</a><ul>
+<li><a class="reference internal" href="#specparam.modes.Mode"><code class="docutils literal notranslate"><span class="pre">Mode</span></code></a><ul>
+<li><a class="reference internal" href="#specparam.modes.Mode.__init__"><code class="docutils literal notranslate"><span class="pre">Mode.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.modes.Mode.generate"><code class="docutils literal notranslate"><span class="pre">Mode.generate()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.modes.Mode.n_params"><code class="docutils literal notranslate"><span class="pre">Mode.n_params</span></code></a></li>
+<li><a class="reference internal" href="#specparam.modes.Mode.print"><code class="docutils literal notranslate"><span class="pre">Mode.print()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples-using-specparam-modes-mode">Examples using <code class="docutils literal notranslate"><span class="pre">specparam.modes.Mode</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+  <section id="specparam-modes-mode">
+<h1>specparam.modes.Mode<a class="headerlink" href="#specparam-modes-mode" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="specparam.modes.Mode">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.modes.</span></span><span class="sig-name descname"><span class="pre">Mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">powers_space</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/modes/mode.html#Mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.modes.Mode" title="Link to this definition">¶</a></dt>
+<dd><p>Defines a fit mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of the mode.</p>
+</dd>
+<dt><strong>component</strong><span class="classifier">{‘aperiodic’, ‘periodic’},</span></dt><dd><p>Which component the mode relates to.</p>
+</dd>
+<dt><strong>description</strong><span class="classifier">str</span></dt><dd><p>Description of the mode.</p>
+</dd>
+<dt><strong>formula</strong><span class="classifier">str</span></dt><dd><p>Formula of the fit mode.</p>
+</dd>
+<dt><strong>func</strong><span class="classifier">callable</span></dt><dd><p>Function that defines the fit function for the mode.</p>
+</dd>
+<dt><strong>jacobian</strong><span class="classifier">callable, optional</span></dt><dd><p>Function for computing Jacobian matrix corresponding to <cite>func</cite>.</p>
+</dd>
+<dt><strong>params</strong><span class="classifier">dict or ParamDefinition</span></dt><dd><p>Parameter definition.</p>
+</dd>
+<dt><strong>ndim</strong><span class="classifier">{1, 2}</span></dt><dd><p>Dimensionality of the parameters.
+This reflects whether they require a 1d or 2d array to store.</p>
+</dd>
+<dt><strong>freq_space</strong><span class="classifier">{‘linear’, ‘log10’}</span></dt><dd><p>Required spacing of the frequency values for this mode.</p>
+</dd>
+<dt><strong>powers_space</strong><span class="classifier">{‘linear’, ‘log10’}</span></dt><dd><p>Required spacing of the power values for this mode.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="specparam.modes.Mode.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">powers_space</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/modes/mode.html#Mode.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.modes.Mode.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize a mode.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.modes.Mode.__init__" title="specparam.modes.Mode.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(name, component, description, ...)</p></td>
+<td><p>Initialize a mode.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.modes.Mode.generate" title="specparam.modes.Mode.generate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate</span></code></a>(freqs, *params)</p></td>
+<td><p>Generate component values from component function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.modes.Mode.print" title="specparam.modes.Mode.print"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print</span></code></a>([info, description, concise])</p></td>
+<td><p>Print out current mode.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.modes.Mode.n_params" title="specparam.modes.Mode.n_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_params</span></code></a></p></td>
+<td><p>Define property attribute to access the number of parameters.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="specparam.modes.Mode.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/modes/mode.html#Mode.generate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.modes.Mode.generate" title="Link to this definition">¶</a></dt>
+<dd><p>Generate component values from component function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>freqs</strong><span class="classifier">1d array</span></dt><dd><p>Frequency values to generate component for.</p>
+</dd>
+<dt><strong>*params</strong></dt><dd><p>Parameters for the fit mode to generate with.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>1d array</dt><dd><p>Generated component values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="specparam.modes.Mode.n_params">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_params</span></span><a class="headerlink" href="#specparam.modes.Mode.n_params" title="Link to this definition">¶</a></dt>
+<dd><p>Define property attribute to access the number of parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="specparam.modes.Mode.print">
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/modes/mode.html#Mode.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.modes.Mode.print" title="Link to this definition">¶</a></dt>
+<dd><p>Print out current mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>info</strong><span class="classifier">{‘all’, ‘mode’, ‘params’}</span></dt><dd><dl class="simple">
+<dt>Which information to print:</dt><dd><p>‘all’: print all information on the mode
+‘mode’: print information on the mode
+‘params’: print information on the parameters of the mode</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>description</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out a description with current mode.</p>
+</dd>
+<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print a concise version of the report.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples-using-specparam-modes-mode">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.modes.Mode</span></code><a class="headerlink" href="#examples-using-specparam-modes-mode" title="Link to this heading">¶</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Plotting power spectrum model parameters and components."><img alt="" src="../_images/sphx_glr_plot_model_components_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/plots/plot_model_components.html"><span class="doc">Plot Model Components</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Plot Model Components</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example covers defining and using custom fit modes."><img alt="" src="../_images/sphx_glr_plot_custom_modes_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/customize/plot_custom_modes.html"><span class="doc">Custom Modes</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Custom Modes</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Introducing the objects used within the model object."><img alt="" src="../_images/sphx_glr_plot_sub_objects_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html"><span class="doc">Model Sub-Objects</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Model Sub-Objects</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="An example analysis applied to developmental data, demonstrating best practices."><img alt="" src="../_images/sphx_glr_plot_dev_demo_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/analyses/plot_dev_demo.html"><span class="doc">Developmental Data Demo</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Developmental Data Demo</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="A step-by-step overview of the algorithm for parameterizing neural power spectra."><img alt="" src="../_images/sphx_glr_plot_03-Algorithm_thumb.png" />
+<p><a class="reference internal" href="../auto_tutorials/plot_03-Algorithm.html"><span class="doc">03: Fitting Algorithm</span></a></p>
+  <div class="sphx-glr-thumbnail-title">03: Fitting Algorithm</div>
+</div></div></section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

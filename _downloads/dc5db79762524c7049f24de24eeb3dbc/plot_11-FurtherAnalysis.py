@@ -38,13 +38,13 @@ from specparam.bands import Bands
 # Import simulation code and utilities
 from specparam.sim import sim_group_power_spectra
 from specparam.sim.params import param_sampler
-from specparam.sim.utils import set_random_seed
+from specparam.utils.random import set_random_seed
 
 # Import some functions to interact with peak fitting results
 from specparam.data.periodic import get_band_peak, get_band_peak_group
 
 # Import a utility to download and load example data
-from specparam.utils.download import load_example_data
+from specparam.demo import load_example_data
 
 ###################################################################################################
 # Load and Fit Example Data

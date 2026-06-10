@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Spectral Parameterization &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <title>Spectral Parameterization &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=78551f50"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="#">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,18 +110,60 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Spectral Parameterization</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a><ul>
+<li><a class="reference internal" href="#specparam-upcoming-version">specparam (upcoming version)</a></li>
+<li><a class="reference internal" href="#fooof-stable-version">fooof (stable version)</a></li>
+<li><a class="reference internal" href="#which-version-should-i-use">Which version should I use?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li><a class="reference internal" href="#id1">specparam (upcoming version)</a></li>
+<li><a class="reference internal" href="#id2">fooof (stable version)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#specparam-test-version">specparam (test version)</a></li>
+<li><a class="reference internal" href="#id3">fooof (stable version)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-language-support">Other Language Support</a><ul>
+<li><a class="reference internal" href="#matlab">Matlab</a></li>
+<li><a class="reference internal" href="#other-languages">Other Languages</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">Reference</a></li>
+<li><a class="reference internal" href="#contribute">Contribute</a></li>
+<li><a class="reference internal" href="#quickstart">Quickstart</a></li>
+<li><a class="reference internal" href="#funding">Funding</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="spectral-parameterization">
-<h1>Spectral Parameterization<a class="headerlink" href="#spectral-parameterization" title="Permalink to this heading">¶</a></h1>
+<h1>Spectral Parameterization<a class="headerlink" href="#spectral-parameterization" title="Link to this heading">¶</a></h1>
 <p><a class="reference external" href="https://www.repostatus.org/#active"><img alt="project status" src="https://www.repostatus.org/badges/latest/active.svg" /></a> <a class="reference external" href="https://pypi.org/project/fooof/"><img alt="version" src="https://img.shields.io/pypi/v/fooof.svg" /></a> <a class="reference external" href="https://github.com/fooof-tools/fooof/actions/workflows/build.yml"><img alt="build status" src="https://github.com/fooof-tools/fooof/actions/workflows/build.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/fooof-tools/fooof"><img alt="coverage" src="https://codecov.io/gh/fooof-tools/fooof/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://opensource.org/license/apache-2-0"><img alt="license" src="https://img.shields.io/pypi/l/fooof.svg" /></a> <a class="reference external" href="https://pypi.org/project/fooof/"><img alt="python versions" src="https://img.shields.io/pypi/pyversions/fooof.svg" /></a> <a class="reference external" href="https://doi.org/10.1038/s41593-020-00744-x"><img alt="publication" src="https://img.shields.io/badge/paper-nn10.1038-informational.svg" /></a></p>
 <p>Spectral parameterization (<cite>specparam</cite>, formerly <cite>fooof</cite>) is a fast, efficient, and physiologically-informed tool to parameterize neural power spectra.</p>
 <p>WARNING: this Github repository has been updated to a major update / breaking change from previous releases, which were under the <cite>fooof</cite> name, and now contains major breaking update for the new <cite>specparam</cite> version of the code. The new version is not fully released, though a test version is available (see installation instructions below).</p>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>The power spectrum model conceives of a model of the power spectrum as a combination of two distinct functional processes:</p>
 <ul class="simple">
-<li><p>An aperiodic component, reflecting 1/f like characteristics, with</p></li>
+<li><p>An aperiodic component, with power across all frequencies (e.g. 1/f-like characteristics), with</p></li>
 <li><p>A variable number of periodic components (putative oscillations), as peaks rising above the aperiodic component</p></li>
 </ul>
 <p>This model driven approach can be used to measure periodic and aperiodic properties of electrophysiological data,
@@ -131,29 +174,29 @@ specific bands of interest and controlling for the aperiodic component.
 The model also returns a measure of this aperiodic components of the signal, allowing for measuring and
 comparison of 1/f-like components of the signal within and between subjects.</p>
 <section id="specparam-upcoming-version">
-<h3>specparam (upcoming version)<a class="headerlink" href="#specparam-upcoming-version" title="Permalink to this heading">¶</a></h3>
+<h3>specparam (upcoming version)<a class="headerlink" href="#specparam-upcoming-version" title="Link to this heading">¶</a></h3>
 <p>We are currently in the process of a major update to this tool, that includes a name changes (fooof -&gt; specparam), and full rewrite of the code. This means that the new version will be incompatible with prior versions (in terms of the code having different names, and previous code no longer running as written), though note that the exact same procedures will be available (spectra can be fit in a way expected to give the same results), as well many new features.</p>
 <p>The new version is called <cite>specparam</cite> (spectral parameterization). There is a release candidate available for testing (see installation instructions).</p>
 </section>
 <section id="fooof-stable-version">
-<h3>fooof (stable version)<a class="headerlink" href="#fooof-stable-version" title="Permalink to this heading">¶</a></h3>
+<h3>fooof (stable version)<a class="headerlink" href="#fooof-stable-version" title="Link to this heading">¶</a></h3>
 <p>The fooof naming scheme, with most recent stable version 1.1 is the current main release, and is fully functional and stable, including everything that was introduced under the fooof name.</p>
 </section>
 <section id="which-version-should-i-use">
-<h3>Which version should I use?<a class="headerlink" href="#which-version-should-i-use" title="Permalink to this heading">¶</a></h3>
+<h3>Which version should I use?<a class="headerlink" href="#which-version-should-i-use" title="Link to this heading">¶</a></h3>
 <p>The previous release version, fooof, is fully functional, and projects that are already using it might as well stick with that, unless any of the new functionality in specparam is particularly important. For projects that are just starting, the new specparam version may be of interest if some of the new features are of interest (e.g. time-resolved estimations), though note that as release candidates, the release are not guaranteed to be stable (future updates may make breaking changes). Note that for the same model and settings, fooof and specparam should be exactly equivalent, so in terms of outputs there should be no difference in choosing one or the other.</p>
 </section>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h2>
 <p>The <cite>specparam</cite> package includes a full set of code documentation.</p>
 <section id="id1">
-<h3>specparam (upcoming version)<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<h3>specparam (upcoming version)<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <p>To see the documentation for the candidate 2.0 release, see
 <a class="reference external" href="https://specparam-tools.github.io/">here</a>.</p>
 </section>
 <section id="id2">
-<h3>fooof (stable version)<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<h3>fooof (stable version)<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <p>Documentation is available on the
 <a class="reference external" href="https://fooof-tools.github.io/">documentation site</a>.</p>
 <p>This documentation includes:</p>
@@ -176,7 +219,7 @@ with information for how to reference and report on using the module</p></li>
 </section>
 </section>
 <section id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading">¶</a></h2>
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">¶</a></h2>
 <p><cite>specparam</cite> is written in Python, and requires Python &gt;= 3.7 to run.</p>
 <p>It has the following required dependencies:</p>
 <ul class="simple">
@@ -192,10 +235,10 @@ with information for how to reference and report on using the module</p></li>
 </ul>
 </section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <p>specparam / fooof can be installed using pip.</p>
 <section id="specparam-test-version">
-<h3>specparam (test version)<a class="headerlink" href="#specparam-test-version" title="Permalink to this heading">¶</a></h3>
+<h3>specparam (test version)<a class="headerlink" href="#specparam-test-version" title="Link to this heading">¶</a></h3>
 <p>To install the current release candidate version for the new 2.0 version, you can do:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>specparam
 </pre></div>
@@ -206,7 +249,7 @@ This means it may not yet have all features that the ultimate 2.0 version will i
 guaranteed to stay the same (there may be further breaking changes in the ultimate 2.0 release).</p>
 </section>
 <section id="id3">
-<h3>fooof (stable version)<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<h3>fooof (stable version)<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <p>The current major release is the 1.X.X series, which is a breaking change from the prior 0.X.X series.</p>
 <p>Check the <a class="reference external" href="https://fooof-tools.github.io/fooof/changelog.html">changelog</a> for notes on updating to the new version.</p>
 <p><strong>Stable Version</strong></p>
@@ -235,7 +278,7 @@ guaranteed to stay the same (there may be further breaking changes in the ultima
 </section>
 </section>
 <section id="other-language-support">
-<h2>Other Language Support<a class="headerlink" href="#other-language-support" title="Permalink to this heading">¶</a></h2>
+<h2>Other Language Support<a class="headerlink" href="#other-language-support" title="Link to this heading">¶</a></h2>
 <p>The original implementation of <cite>specparam</cite>, available in this repository, is implemented in Python.</p>
 <p>If you wish to run specparam from another language, there are a couple potential options:</p>
 <ul class="simple">
@@ -244,7 +287,7 @@ guaranteed to stay the same (there may be further breaking changes in the ultima
 </ul>
 <p>Below are listed some examples of wrappers and/or re-implementations in other languages (non-exhaustive).</p>
 <section id="matlab">
-<h3>Matlab<a class="headerlink" href="#matlab" title="Permalink to this heading">¶</a></h3>
+<h3>Matlab<a class="headerlink" href="#matlab" title="Link to this heading">¶</a></h3>
 <p>In Matlab, there is a reimplementation available in common toolboxes:
 - The <a class="reference external" href="https://neuroimage.usc.edu/brainstorm/Introduction">Brainstorm</a> toolbox has a reimplementation of specparam (see the <a class="reference external" href="https://neuroimage.usc.edu/brainstorm/Tutorials/Fooof">Brainstorm fooof tutorial</a>)
 - The <a class="reference external" href="https://www.fieldtriptoolbox.org/">Fieldtrip</a> toolbox also uses the same reimplementation (see the <a class="reference external" href="https://www.fieldtriptoolbox.org/example/fooof/">Fieldtrip fooof tutorial</a>)</p>
@@ -253,7 +296,7 @@ guaranteed to stay the same (there may be further breaking changes in the ultima
 <a class="reference external" href="https://github.com/fooof-tools/mat_py_mat">mat_py_mat</a> repository.</p>
 </section>
 <section id="other-languages">
-<h3>Other Languages<a class="headerlink" href="#other-languages" title="Permalink to this heading">¶</a></h3>
+<h3>Other Languages<a class="headerlink" href="#other-languages" title="Link to this heading">¶</a></h3>
 <p>Other languages with wrappers include:</p>
 <ul class="simple">
 <li><p>Julia, for which there is a <a class="reference external" href="https://juliahub.com/ui/Packages/PyFOOOF/Ng8hN/0.1.0">fooof wrapper</a></p></li>
@@ -262,7 +305,7 @@ guaranteed to stay the same (there may be further breaking changes in the ultima
 </section>
 </section>
 <section id="id4">
-<h2>Reference<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<h2>Reference<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <p>If you use this code in your project, please cite:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Donoghue</span> <span class="n">T</span><span class="p">,</span> <span class="n">Haller</span> <span class="n">M</span><span class="p">,</span> <span class="n">Peterson</span> <span class="n">EJ</span><span class="p">,</span> <span class="n">Varma</span> <span class="n">P</span><span class="p">,</span> <span class="n">Sebastian</span> <span class="n">P</span><span class="p">,</span> <span class="n">Gao</span> <span class="n">R</span><span class="p">,</span> <span class="n">Noto</span> <span class="n">T</span><span class="p">,</span> <span class="n">Lara</span> <span class="n">AH</span><span class="p">,</span> <span class="n">Wallis</span> <span class="n">JD</span><span class="p">,</span>
 <span class="n">Knight</span> <span class="n">RT</span><span class="p">,</span> <span class="n">Shestyuk</span> <span class="n">A</span><span class="p">,</span> <span class="o">&amp;</span> <span class="n">Voytek</span> <span class="n">B</span> <span class="p">(</span><span class="mi">2020</span><span class="p">)</span><span class="o">.</span> <span class="n">Parameterizing</span> <span class="n">neural</span> <span class="n">power</span> <span class="n">spectra</span> <span class="n">into</span> <span class="n">periodic</span>
@@ -277,7 +320,7 @@ guaranteed to stay the same (there may be further breaking changes in the ultima
 <a class="reference external" href="https://github.com/fooof-tools/Paper">paper repository</a>.</p>
 </section>
 <section id="contribute">
-<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this heading">¶</a></h2>
+<h2>Contribute<a class="headerlink" href="#contribute" title="Link to this heading">¶</a></h2>
 <p>This project welcomes and encourages contributions from the community!</p>
 <p>To file bug reports and/or ask questions about this project, please use the
 <a class="reference external" href="https://github.com/fooof-tools/fooof/issues">Github issue tracker</a>.</p>
@@ -292,14 +335,14 @@ and follow the
 <a class="reference external" href="https://github.com/fooof-tools/fooof/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
 </section>
 <section id="quickstart">
-<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this heading">¶</a></h2>
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading">¶</a></h2>
 <p>This module is object oriented, and uses a similar approach as used in scikit-learn.</p>
 <p>The algorithm works on frequency representations, that is power spectra in linear space.</p>
 <p><strong>Fitting a Single Power Spectrum</strong></p>
 <p>With a power spectrum loaded (with ‘freqs’ storing frequency values, and ‘spectrum’ storing
 the power spectrum, both as 1D arrays in linear space) parameterization can be done as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the model object</span>
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <span class="n">SpectralModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpectralModel</span>
 
 <span class="c1"># Initialize model object</span>
 <span class="n">fm</span> <span class="o">=</span> <span class="n">SpectralModel</span><span class="p">()</span>
@@ -357,10 +400,11 @@ plotting models and parameters, and simulating power spectra, all of which is de
 <a class="reference external" href="https://fooof-tools.github.io/fooof/">documentation</a>.</p>
 </section>
 <section id="funding">
-<h2>Funding<a class="headerlink" href="#funding" title="Permalink to this heading">¶</a></h2>
+<h2>Funding<a class="headerlink" href="#funding" title="Link to this heading">¶</a></h2>
 <p>Supported by NIH award R01 GM134363 from the
 <a class="reference external" href="https://www.nigms.nih.gov/">NIGMS</a>.</p>
-<a class="reference internal image-reference" href="https://www.nih.gov/sites/all/themes/nih/images/nih-logo-color.png"><img alt="https://www.nih.gov/sites/all/themes/nih/images/nih-logo-color.png" src="https://www.nih.gov/sites/all/themes/nih/images/nih-logo-color.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="https://www.nih.gov/sites/all/themes/nih/images/nih-logo-color.png"><img alt="https://www.nih.gov/sites/all/themes/nih/images/nih-logo-color.png" src="https://www.nih.gov/sites/all/themes/nih/images/nih-logo-color.png" style="width: 400px;" />
+</a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -379,8 +423,8 @@ plotting models and parameters, and simulating power spectra, all of which is de
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.sim.transform &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.sim.transform &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -55,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -108,19 +109,32 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <h1>Source code for specparam.sim.transform</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Functions and utilities for transforming power spectra.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">specparam.sim.params</span> <span class="kn">import</span> <span class="n">update_sim_ap_params</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.params</span><span class="w"> </span><span class="kn">import</span> <span class="n">update_sim_ap_params</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="rotate_spectrum"><a class="viewcode-back" href="../../../generated/specparam.sim.transform.rotate_spectrum.html#specparam.sim.transform.rotate_spectrum">[docs]</a><span class="k">def</span> <span class="nf">rotate_spectrum</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">delta_exponent</span><span class="p">,</span> <span class="n">f_rotation</span><span class="p">):</span>
+<div class="viewcode-block" id="rotate_spectrum">
+<a class="viewcode-back" href="../../../generated/specparam.sim.transform.rotate_spectrum.html#specparam.sim.transform.rotate_spectrum">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rotate_spectrum</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">delta_exponent</span><span class="p">,</span> <span class="n">f_rotation</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Rotate a power spectrum about a frequency point, changing the aperiodic exponent.</span>
 
 <span class="sd">    Parameters</span>
@@ -191,7 +205,10 @@
     <span class="k">return</span> <span class="n">rotated_spectrum</span></div>
 
 
-<div class="viewcode-block" id="translate_spectrum"><a class="viewcode-back" href="../../../generated/specparam.sim.transform.translate_spectrum.html#specparam.sim.transform.translate_spectrum">[docs]</a><span class="k">def</span> <span class="nf">translate_spectrum</span><span class="p">(</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">delta_offset</span><span class="p">):</span>
+
+<div class="viewcode-block" id="translate_spectrum">
+<a class="viewcode-back" href="../../../generated/specparam.sim.transform.translate_spectrum.html#specparam.sim.transform.translate_spectrum">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">translate_spectrum</span><span class="p">(</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">delta_offset</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Translate a spectrum, changing the offset value.</span>
 
 <span class="sd">    Parameters</span>
@@ -224,7 +241,10 @@
     <span class="k">return</span> <span class="n">translated_spectrum</span></div>
 
 
-<div class="viewcode-block" id="rotate_sim_spectrum"><a class="viewcode-back" href="../../../generated/specparam.sim.transform.rotate_sim_spectrum.html#specparam.sim.transform.rotate_sim_spectrum">[docs]</a><span class="k">def</span> <span class="nf">rotate_sim_spectrum</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">delta_exponent</span><span class="p">,</span> <span class="n">f_rotation</span><span class="p">,</span> <span class="n">sim_params</span><span class="p">):</span>
+
+<div class="viewcode-block" id="rotate_sim_spectrum">
+<a class="viewcode-back" href="../../../generated/specparam.sim.transform.rotate_sim_spectrum.html#specparam.sim.transform.rotate_sim_spectrum">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rotate_sim_spectrum</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">power_spectrum</span><span class="p">,</span> <span class="n">delta_exponent</span><span class="p">,</span> <span class="n">f_rotation</span><span class="p">,</span> <span class="n">sim_params</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Rotate a simulated power spectrum, updating a SimParams object.</span>
 
 <span class="sd">    Parameters</span>
@@ -276,7 +296,10 @@
     <span class="k">return</span> <span class="n">rotated_spectrum</span><span class="p">,</span> <span class="n">new_sim_params</span></div>
 
 
-<div class="viewcode-block" id="translate_sim_spectrum"><a class="viewcode-back" href="../../../generated/specparam.sim.transform.translate_sim_spectrum.html#specparam.sim.transform.translate_sim_spectrum">[docs]</a><span class="k">def</span> <span class="nf">translate_sim_spectrum</span><span class="p">(</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">delta_offset</span><span class="p">,</span> <span class="n">sim_params</span><span class="p">):</span>
+
+<div class="viewcode-block" id="translate_sim_spectrum">
+<a class="viewcode-back" href="../../../generated/specparam.sim.transform.translate_sim_spectrum.html#specparam.sim.transform.translate_sim_spectrum">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">translate_sim_spectrum</span><span class="p">(</span><span class="n">power_spectrum</span><span class="p">,</span> <span class="n">delta_offset</span><span class="p">,</span> <span class="n">sim_params</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Translate a simulated spectrum, updating a SimParams object.</span>
 
 <span class="sd">    Parameters</span>
@@ -315,7 +338,10 @@
     <span class="k">return</span> <span class="n">translated_spectrum</span><span class="p">,</span> <span class="n">new_sim_params</span></div>
 
 
-<div class="viewcode-block" id="compute_rotation_offset"><a class="viewcode-back" href="../../../generated/specparam.sim.transform.compute_rotation_offset.html#specparam.sim.transform.compute_rotation_offset">[docs]</a><span class="k">def</span> <span class="nf">compute_rotation_offset</span><span class="p">(</span><span class="n">delta_exponent</span><span class="p">,</span> <span class="n">f_rotation</span><span class="p">):</span>
+
+<div class="viewcode-block" id="compute_rotation_offset">
+<a class="viewcode-back" href="../../../generated/specparam.sim.transform.compute_rotation_offset.html#specparam.sim.transform.compute_rotation_offset">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_rotation_offset</span><span class="p">(</span><span class="n">delta_exponent</span><span class="p">,</span> <span class="n">f_rotation</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the change in offset from a given rotation.</span>
 
 <span class="sd">    Parameters</span>
@@ -340,7 +366,10 @@
     <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">f_rotation</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="n">delta_exponent</span></div>
 
 
-<div class="viewcode-block" id="compute_rotation_frequency"><a class="viewcode-back" href="../../../generated/specparam.sim.transform.compute_rotation_frequency.html#specparam.sim.transform.compute_rotation_frequency">[docs]</a><span class="k">def</span> <span class="nf">compute_rotation_frequency</span><span class="p">(</span><span class="n">delta_exponent_b</span><span class="p">,</span> <span class="n">f_rotation_b</span><span class="p">,</span> <span class="n">delta_exponent_c</span><span class="p">,</span> <span class="n">f_rotation_c</span><span class="p">):</span>
+
+<div class="viewcode-block" id="compute_rotation_frequency">
+<a class="viewcode-back" href="../../../generated/specparam.sim.transform.compute_rotation_frequency.html#specparam.sim.transform.compute_rotation_frequency">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_rotation_frequency</span><span class="p">(</span><span class="n">delta_exponent_b</span><span class="p">,</span> <span class="n">f_rotation_b</span><span class="p">,</span> <span class="n">delta_exponent_c</span><span class="p">,</span> <span class="n">f_rotation_c</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the rotation frequency between two rotated power spectra.</span>
 
 <span class="sd">    Parameters</span>
@@ -388,6 +417,7 @@
 
     <span class="k">return</span> <span class="p">(((</span><span class="n">f_rotation_c</span><span class="o">**</span><span class="n">delta_exponent_c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">f_rotation_b</span><span class="o">**</span><span class="n">delta_exponent_b</span><span class="p">)))</span> <span class="o">**</span> \
         <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">delta_exponent_c</span><span class="o">-</span><span class="n">delta_exponent_b</span><span class="p">))</span></div>
+
 </pre></div>
 
     </div>
@@ -401,8 +431,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

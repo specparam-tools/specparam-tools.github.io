@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>03: Fitting Algorithm &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>03: Fitting Algorithm &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,35 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">03: Fitting Algorithm</a><ul>
+<li><a class="reference internal" href="#algorithmic-description">Algorithmic Description</a><ul>
+<li><a class="reference internal" href="#step-1-initial-aperiodic-fit">Step 1: Initial Aperiodic Fit</a></li>
+<li><a class="reference internal" href="#step-2-flatten-the-spectrum">Step 2: Flatten the Spectrum</a></li>
+<li><a class="reference internal" href="#step-3-detect-peaks">Step 3: Detect Peaks</a></li>
+<li><a class="reference internal" href="#step-4-create-full-peak-fit">Step 4: Create Full Peak Fit</a></li>
+<li><a class="reference internal" href="#step-5-create-a-peak-removed-spectrum">Step 5: Create a Peak-Removed Spectrum</a></li>
+<li><a class="reference internal" href="#step-6-re-fit-the-aperiodic-component">Step 6: Re-fit the Aperiodic Component</a></li>
+<li><a class="reference internal" href="#step-7-combine-the-full-model-fit">Step 7: Combine the Full Model Fit</a></li>
+<li><a class="reference internal" href="#addendum-data-model-component-attributes">Addendum: Data &amp; Model Component Attributes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,10 +146,10 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="fitting-algorithm">
-<span id="sphx-glr-auto-tutorials-plot-03-algorithm-py"></span><h1>03: Fitting Algorithm<a class="headerlink" href="#fitting-algorithm" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-tutorials-plot-03-algorithm-py"></span><h1>03: Fitting Algorithm<a class="headerlink" href="#fitting-algorithm" title="Link to this heading">¶</a></h1>
 <p>A step-by-step overview of the algorithm for parameterizing neural power spectra.</p>
 <section id="algorithmic-description">
-<h2>Algorithmic Description<a class="headerlink" href="#algorithmic-description" title="Permalink to this heading">¶</a></h2>
+<h2>Algorithmic Description<a class="headerlink" href="#algorithmic-description" title="Link to this heading">¶</a></h2>
 <p>In this tutorial we will step through how the power spectrum model is fit.</p>
 <p>Note that this notebook is for demonstrative purposes, and does not represent
 recommended usage of how to fit power spectrum models.</p>
@@ -158,20 +187,20 @@ and goodness of fit metrics are calculated.</p></li>
 </li>
 </ul>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># General imports</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Import the model object</span>
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 
 <span class="c1"># Import some internal functions</span>
 <span class="c1">#   These are used here to demonstrate the algorithm</span>
 <span class="c1">#   You do not need to import these functions for standard usage of the module</span>
-<span class="kn">from</span> <span class="nn">specparam.sim.gen</span> <span class="kn">import</span> <span class="n">gen_aperiodic</span>
-<span class="kn">from</span> <span class="nn">specparam.plts.spectra</span> <span class="kn">import</span> <a href="../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
-<span class="kn">from</span> <span class="nn">specparam.plts.annotate</span> <span class="kn">import</span> <a href="../generated/specparam.plts.annotate.plot_annotated_peak_search.html#specparam.plts.annotate.plot_annotated_peak_search" title="specparam.plts.annotate.plot_annotated_peak_search" class="sphx-glr-backref-module-specparam-plts-annotate sphx-glr-backref-type-py-function"><span class="n">plot_annotated_peak_search</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.gen</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_aperiodic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.spectra</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.annotate</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.plts.annotate.plot_annotated_peak_search.html#specparam.plts.annotate.plot_annotated_peak_search" title="specparam.plts.annotate.plot_annotated_peak_search" class="sphx-glr-backref-module-specparam-plts-annotate sphx-glr-backref-type-py-function"><span class="n">plot_annotated_peak_search</span></a>
 
 <span class="c1"># Import a utility to download and load example data</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">load_example_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_example_data</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set whether to plot in log-log space</span>
@@ -193,10 +222,10 @@ and goodness of fit metrics are calculated.</p></li>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                     ALGORITHM: spectral_fit
+                                            ALGORITHM
+                                           spectral_fit
 
                                         ALGORITHM SETTINGS
-
                                     peak_width_limits : [1, 8]
                                          max_n_peaks : 6
                                       min_peak_height : 0.15
@@ -224,13 +253,13 @@ and visualize each step the algorithm took to come to that final fit.</p>
 </pre></div>
 </div>
 <section id="step-1-initial-aperiodic-fit">
-<h3>Step 1: Initial Aperiodic Fit<a class="headerlink" href="#step-1-initial-aperiodic-fit" title="Permalink to this heading">¶</a></h3>
+<h3>Step 1: Initial Aperiodic Fit<a class="headerlink" href="#step-1-initial-aperiodic-fit" title="Link to this heading">¶</a></h3>
 <p>We start by taking an initial aperiodic fit. This goal of this fit is to get an initial
 fit that is good enough to get started with the fitting process.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do an initial aperiodic fit - a robust fit, that excludes outliers</span>
 <span class="c1">#   This recreates an initial fit that isn&#39;t ultimately stored in the model object</span>
 <span class="n">init_ap_fit</span> <span class="o">=</span> <span class="n">gen_aperiodic</span><span class="p">(</span>\
-    <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../generated/specparam.modes.mode.Mode.html#specparam.modes.mode.Mode" title="specparam.modes.mode.Mode" class="sphx-glr-backref-module-specparam-modes-mode sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span></a><span class="p">,</span>
+    <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../generated/specparam.modes.Mode.html#specparam.modes.Mode" title="specparam.modes.Mode" class="sphx-glr-backref-module-specparam-modes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">aperiodic</span></a><span class="p">,</span>
     <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">_robust_ap_fit</span><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">))</span>
 
 <span class="c1"># Plot the initial aperiodic fit</span>
@@ -243,7 +272,7 @@ fit that is good enough to get started with the fitting process.</p>
 </div>
 <img src="../_images/sphx_glr_plot_03-Algorithm_002.png" srcset="../_images/sphx_glr_plot_03-Algorithm_002.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
 <section id="step-2-flatten-the-spectrum">
-<h3>Step 2: Flatten the Spectrum<a class="headerlink" href="#step-2-flatten-the-spectrum" title="Permalink to this heading">¶</a></h3>
+<h3>Step 2: Flatten the Spectrum<a class="headerlink" href="#step-2-flatten-the-spectrum" title="Link to this heading">¶</a></h3>
 <p>The initial fit is then used to create a flattened spectrum.</p>
 <p>The initial aperiodic fit is subtracted out from the original data, leaving a flattened
 version of the data which no longer contains the aperiodic component.</p>
@@ -257,7 +286,7 @@ version of the data which no longer contains the aperiodic component.</p>
 </div>
 <img src="../_images/sphx_glr_plot_03-Algorithm_003.png" srcset="../_images/sphx_glr_plot_03-Algorithm_003.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
 <section id="step-3-detect-peaks">
-<h3>Step 3: Detect Peaks<a class="headerlink" href="#step-3-detect-peaks" title="Permalink to this heading">¶</a></h3>
+<h3>Step 3: Detect Peaks<a class="headerlink" href="#step-3-detect-peaks" title="Link to this heading">¶</a></h3>
 <p>The flattened spectrum is then used to detect peaks. We can better isolate
 peaks in the data, as the aperiodic activity has been removed.</p>
 <p>The fitting algorithm uses an iterative procedure to find peaks in the flattened spectrum.</p>
@@ -285,7 +314,7 @@ unless <cite>max_n_peaks</cite> has been reached</p></li>
 </ul>
 </section>
 <section id="step-4-create-full-peak-fit">
-<h3>Step 4: Create Full Peak Fit<a class="headerlink" href="#step-4-create-full-peak-fit" title="Permalink to this heading">¶</a></h3>
+<h3>Step 4: Create Full Peak Fit<a class="headerlink" href="#step-4-create-full-peak-fit" title="Link to this heading">¶</a></h3>
 <p>Once the iterative procedure has halted and the peaks have been identified in the
 flattened spectrum, the set of identified ‘guess’ peaks, are then re-fit, all together.
 This creates the full peak fit of the data.</p>
@@ -296,26 +325,26 @@ This creates the full peak fit of the data.</p>
 </div>
 <img src="../_images/sphx_glr_plot_03-Algorithm_007.png" srcset="../_images/sphx_glr_plot_03-Algorithm_007.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
 <section id="step-5-create-a-peak-removed-spectrum">
-<h3>Step 5: Create a Peak-Removed Spectrum<a class="headerlink" href="#step-5-create-a-peak-removed-spectrum" title="Permalink to this heading">¶</a></h3>
+<h3>Step 5: Create a Peak-Removed Spectrum<a class="headerlink" href="#step-5-create-a-peak-removed-spectrum" title="Link to this heading">¶</a></h3>
 <p>Now that the peak component of the fit is completed and available, this fit is then
 used in order to try and isolate a better aperiodic fit.</p>
 <p>To do so, the peak fit is removed from the original power spectrum,
 leaving an ‘aperiodic-only’ spectrum for re-fitting.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the peak removed power spectrum, created by removing peak fit from original spectrum</span>
-<a href="../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_data" title="specparam.SpectralModel.get_data" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">get_data</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">),</span> <span class="n">plt_log</span><span class="p">,</span>
+<a href="../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../generated/specparam.data.data.Data.html#specparam.data.data.Data.get_data" title="specparam.data.data.Data.get_data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get_data</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">),</span> <span class="n">plt_log</span><span class="p">,</span>
              <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Peak Removed Spectrum&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img src="../_images/sphx_glr_plot_03-Algorithm_008.png" srcset="../_images/sphx_glr_plot_03-Algorithm_008.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
 <section id="step-6-re-fit-the-aperiodic-component">
-<h3>Step 6: Re-fit the Aperiodic Component<a class="headerlink" href="#step-6-re-fit-the-aperiodic-component" title="Permalink to this heading">¶</a></h3>
+<h3>Step 6: Re-fit the Aperiodic Component<a class="headerlink" href="#step-6-re-fit-the-aperiodic-component" title="Link to this heading">¶</a></h3>
 <p>The initial aperiodic component fit we made was a robust fit approach that was
 used to get the fitting process started.</p>
 <p>With the peak-removed spectrum, we can now re-fit the aperiodic component, to
 re-estimate a better fit, without the peaks getting in the way.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the final aperiodic fit, calculated on the peak removed power spectrum</span>
 <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-<a href="../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_data" title="specparam.SpectralModel.get_data" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">get_data</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">),</span> <span class="n">plt_log</span><span class="p">,</span>
+<a href="../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../generated/specparam.data.data.Data.html#specparam.data.data.Data.get_data" title="specparam.data.data.Data.get_data" class="sphx-glr-backref-module-specparam-data-data sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get_data</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">),</span> <span class="n">plt_log</span><span class="p">,</span>
              <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Peak Removed Spectrum&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <a href="../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a><span class="p">(</span><a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">),</span> <span class="n">plt_log</span><span class="p">,</span>
              <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Final Aperiodic Fit&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
@@ -323,7 +352,7 @@ re-estimate a better fit, without the peaks getting in the way.</p>
 </div>
 <img src="../_images/sphx_glr_plot_03-Algorithm_009.png" srcset="../_images/sphx_glr_plot_03-Algorithm_009.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
 <section id="step-7-combine-the-full-model-fit">
-<h3>Step 7: Combine the Full Model Fit<a class="headerlink" href="#step-7-combine-the-full-model-fit" title="Permalink to this heading">¶</a></h3>
+<h3>Step 7: Combine the Full Model Fit<a class="headerlink" href="#step-7-combine-the-full-model-fit" title="Link to this heading">¶</a></h3>
 <p>Now that we have the final aperiodic fit, we can combine the aperiodic components
 to create the full model fit.</p>
 <p>With this full model fit, we can also calculate the goodness of fit metrics,
@@ -339,12 +368,12 @@ full model fit to the original data.</p>
 updating gaussian parameters to be peak parameters,</p>
 <p>These results are part of what are stored, and printed, as the model results.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out the model results</span>
-<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_results" title="specparam.SpectralModel.print_results" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">print_results</span></a><span class="p">()</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print" title="specparam.SpectralModel.print" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">print</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-40 Hz frequency range with 0.49 Hz resolution
@@ -372,7 +401,7 @@ updating gaussian parameters to be peak parameters,</p>
 </div>
 <img src="../_images/sphx_glr_plot_03-Algorithm_011.png" srcset="../_images/sphx_glr_plot_03-Algorithm_011.png" alt="plot 03 Algorithm" class = "sphx-glr-single-img"/></section>
 <section id="addendum-data-model-component-attributes">
-<h3>Addendum: Data &amp; Model Component Attributes<a class="headerlink" href="#addendum-data-model-component-attributes" title="Permalink to this heading">¶</a></h3>
+<h3>Addendum: Data &amp; Model Component Attributes<a class="headerlink" href="#addendum-data-model-component-attributes" title="Link to this heading">¶</a></h3>
 <p>As you may have noticed through this tutorial, the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object
 keeps track of some versions of the original data as well as individual model components fits,
 as well as the final model fit, the ultimate outcome of the fitting procedure.</p>
@@ -397,13 +426,13 @@ useful for some analyses, and so are briefly described here.</p>
 </ul>
 <p>Stored data attributes:</p>
 <ul class="simple">
-<li><p>Flattened Spectrum: (<code class="docutils literal notranslate"><span class="pre">SpectralModel.get_data('aperiodic')</span></code>)</p>
+<li><p>Flattened Spectrum: (<code class="docutils literal notranslate"><span class="pre">SpectralModel.data.get_data('peak')</span></code>)</p>
 <ul>
 <li><p>The original data, with the aperiodic component removed</p></li>
 <li><p>This is computed as the power_spectrum minus the model aperiodic fit</p></li>
 </ul>
 </li>
-<li><p>Peak Removed Spectrum: (<code class="docutils literal notranslate"><span class="pre">SpectralModel.get_data('aperiodic')</span></code>)</p>
+<li><p>Peak Removed Spectrum: (<code class="docutils literal notranslate"><span class="pre">SpectralModel.data.get_data('aperiodic')</span></code>)</p>
 <ul>
 <li><p>The original data, with the periodic component (peaks) removed</p></li>
 <li><p>This is computed as the power_spectrum minus the model peak fit</p></li>
@@ -413,18 +442,21 @@ useful for some analyses, and so are briefly described here.</p>
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h2>
 <p>In this tutorial we have stepped through the parameterization algorithm for fitting
 power spectrum models.</p>
 <p>Next, we will continue to explore the model object by properly introducing and more
 fully describing the settings for the algorithm.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.976 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.545 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-03-algorithm-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/094cb612d738221b30ce84624b7577e6/plot_03-Algorithm.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_03-Algorithm.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/260475ff63348c48319b26a7f3e1ddef/plot_03-Algorithm.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_03-Algorithm.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/616e0c72b0bbe2a7fd757fb3c5655db3/plot_03-Algorithm.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_03-Algorithm.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -443,8 +475,8 @@ fully describing the settings for the algorithm.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

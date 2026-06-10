@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Manipulating Objects &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <title>Manipulating Objects &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,34 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Manipulating Objects</a><ul>
+<li><a class="reference internal" href="#combining-model-objects">Combining Model Objects</a><ul>
+<li><a class="reference internal" href="#note-on-manipulating-model-objects">Note on Manipulating Model Objects</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sub-select-from-spectralgroupmodel">Sub-Select from SpectralGroupModel</a></li>
+<li><a class="reference internal" href="#dropping-fits-from-spectralgroupmodel">Dropping Fits from SpectralGroupModel</a><ul>
+<li><a class="reference internal" href="#note-on-dropped-or-failed-fits">Note on Dropped or Failed Fits</a></li>
+<li><a class="reference internal" href="#note-on-selecting-from-spectralmodel-objects">Note on Selecting from SpectralModel Objects</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#averaging-across-model-fits">Averaging Across Model Fits</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,7 +145,7 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="manipulating-objects">
-<span id="sphx-glr-auto-examples-manage-plot-manipulating-models-py"></span><h1>Manipulating Objects<a class="headerlink" href="#manipulating-objects" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-examples-manage-plot-manipulating-models-py"></span><h1>Manipulating Objects<a class="headerlink" href="#manipulating-objects" title="Link to this heading">¶</a></h1>
 <p>Examples with combining, sub-selecting, dropping, and averaging power spectrum models.</p>
 <p>As you fit power spectrum models, you may end up with multiple model objects, as you fit
 models within and across subjects, conditions, trials, etc. To help manage and organize
@@ -131,16 +159,16 @@ utilities offered for managing and organizing within and between model objects.<
 <li><p>average across groups of model fits</p></li>
 </ul>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import model object</span>
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 
 <span class="c1"># Import Bands object, to manage frequency band definitions</span>
-<span class="kn">from</span> <span class="nn">specparam.bands</span> <span class="kn">import</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.bands</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
 
 <span class="c1"># Import utility functions for working with model objects</span>
-<span class="kn">from</span> <span class="nn">specparam.models.utils</span> <span class="kn">import</span> <a href="../../generated/specparam.models.average_group.html#specparam.models.average_group" title="specparam.models.average_group" class="sphx-glr-backref-module-specparam-models sphx-glr-backref-type-py-function"><span class="n">average_group</span></a><span class="p">,</span> <a href="../../generated/specparam.models.combine_model_objs.html#specparam.models.combine_model_objs" title="specparam.models.combine_model_objs" class="sphx-glr-backref-module-specparam-models sphx-glr-backref-type-py-function"><span class="n">combine_model_objs</span></a><span class="p">,</span> <a href="../../generated/specparam.models.compare_model_objs.html#specparam.models.compare_model_objs" title="specparam.models.compare_model_objs" class="sphx-glr-backref-module-specparam-models sphx-glr-backref-type-py-function"><span class="n">compare_model_objs</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.models.utils</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.models.average_group.html#specparam.models.average_group" title="specparam.models.average_group" class="sphx-glr-backref-module-specparam-models sphx-glr-backref-type-py-function"><span class="n">average_group</span></a><span class="p">,</span> <a href="../../generated/specparam.models.combine_model_objs.html#specparam.models.combine_model_objs" title="specparam.models.combine_model_objs" class="sphx-glr-backref-module-specparam-models sphx-glr-backref-type-py-function"><span class="n">combine_model_objs</span></a><span class="p">,</span> <a href="../../generated/specparam.models.compare_model_objs.html#specparam.models.compare_model_objs" title="specparam.models.compare_model_objs" class="sphx-glr-backref-module-specparam-models sphx-glr-backref-type-py-function"><span class="n">compare_model_objs</span></a>
 
 <span class="c1"># Import simulation functions to create our example data</span>
-<span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
 </pre></div>
 </div>
 <p>First, we will simulate some example data, and fit some individual power spectrum models.</p>
@@ -169,7 +197,7 @@ utilities offered for managing and organizing within and between model objects.<
 </pre></div>
 </div>
 <section id="combining-model-objects">
-<h2>Combining Model Objects<a class="headerlink" href="#combining-model-objects" title="Permalink to this heading">¶</a></h2>
+<h2>Combining Model Objects<a class="headerlink" href="#combining-model-objects" title="Link to this heading">¶</a></h2>
 <p>Sometimes, when working with models in <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a>
 or <a class="reference internal" href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> objects, you may want to combine them together,
 to check some group properties.</p>
@@ -189,7 +217,7 @@ a SpectralGroupModel object.</p>
 </pre></div>
 </div>
 <section id="note-on-manipulating-model-objects">
-<h3>Note on Manipulating Model Objects<a class="headerlink" href="#note-on-manipulating-model-objects" title="Permalink to this heading">¶</a></h3>
+<h3>Note on Manipulating Model Objects<a class="headerlink" href="#note-on-manipulating-model-objects" title="Link to this heading">¶</a></h3>
 <p>Note that these functions that manipulate model objects typically do more than just
 copy results data - they also check and manage settings and meta-data of objects.</p>
 <p>For example, combining SpectralModel objects returns a new SpectralGroupModel object
@@ -208,7 +236,7 @@ you are comparing model results that were fit with equivalent settings.</p>
 </section>
 </section>
 <section id="sub-select-from-spectralgroupmodel">
-<h2>Sub-Select from SpectralGroupModel<a class="headerlink" href="#sub-select-from-spectralgroupmodel" title="Permalink to this heading">¶</a></h2>
+<h2>Sub-Select from SpectralGroupModel<a class="headerlink" href="#sub-select-from-spectralgroupmodel" title="Link to this heading">¶</a></h2>
 <p>When you have a <a class="reference internal" href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> object, you may also want to sub-select
 a group of models.</p>
 <p>Example use cases for this could be:</p>
@@ -239,7 +267,7 @@ use the <a class="reference internal" href="../../generated/specparam.SpectralGr
 SpectralGroupModel object, which contains only our models of interest.</p>
 </section>
 <section id="dropping-fits-from-spectralgroupmodel">
-<h2>Dropping Fits from SpectralGroupModel<a class="headerlink" href="#dropping-fits-from-spectralgroupmodel" title="Permalink to this heading">¶</a></h2>
+<h2>Dropping Fits from SpectralGroupModel<a class="headerlink" href="#dropping-fits-from-spectralgroupmodel" title="Link to this heading">¶</a></h2>
 <p>Another option is to ‘drop’ model fits from a SpectralGroupModel object. You can do this with
 the <code class="xref py py-meth docutils literal notranslate"><span class="pre">drop()</span></code> method from a
 <a class="reference internal" href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> object.</p>
@@ -253,7 +281,7 @@ have particularly high error.</p>
 </pre></div>
 </div>
 <section id="note-on-dropped-or-failed-fits">
-<h3>Note on Dropped or Failed Fits<a class="headerlink" href="#note-on-dropped-or-failed-fits" title="Permalink to this heading">¶</a></h3>
+<h3>Note on Dropped or Failed Fits<a class="headerlink" href="#note-on-dropped-or-failed-fits" title="Link to this heading">¶</a></h3>
 <p>When models are dropped from <a class="reference internal" href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralGroupModel</span></code></a> objects,
 they are set as null models. They are therefore cleared of results, but not literally dropped,
 which is done to preserve the ordering of the SpectralGroupModel, so that the <cite>n-th</cite> model
@@ -284,7 +312,7 @@ Number of model fits   :         3
 </div>
 </section>
 <section id="note-on-selecting-from-spectralmodel-objects">
-<h3>Note on Selecting from SpectralModel Objects<a class="headerlink" href="#note-on-selecting-from-spectralmodel-objects" title="Permalink to this heading">¶</a></h3>
+<h3>Note on Selecting from SpectralModel Objects<a class="headerlink" href="#note-on-selecting-from-spectralmodel-objects" title="Link to this heading">¶</a></h3>
 <p>Both the <a class="reference internal" href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.get_group" title="specparam.SpectralGroupModel.get_group"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_group()</span></code></a> and
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">drop()</span></code> methods take an input of the indices of the
 model(s) to select or drop.</p>
@@ -293,7 +321,7 @@ the indices as a list of integers, or boolean masks.</p>
 </section>
 </section>
 <section id="averaging-across-model-fits">
-<h2>Averaging Across Model Fits<a class="headerlink" href="#averaging-across-model-fits" title="Permalink to this heading">¶</a></h2>
+<h2>Averaging Across Model Fits<a class="headerlink" href="#averaging-across-model-fits" title="Link to this heading">¶</a></h2>
 <p>Finally, let’s average across the models in our SpectralGroupModel object, to examine
 the average model of the data.</p>
 <p>Note that in order to be able to average across individual models, we need to define
@@ -310,13 +338,16 @@ to average across all the peaks across all models.</p>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">afm</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_manipulating_models_001.png" srcset="../../_images/sphx_glr_plot_manipulating_models_001.png" alt="plot manipulating models" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.284 seconds)</p>
+<img src="../../_images/sphx_glr_plot_manipulating_models_001.png" srcset="../../_images/sphx_glr_plot_manipulating_models_001.png" alt="plot manipulating models" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.166 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-manage-plot-manipulating-models-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/3691bea31530416ecd6a44f092b50ad3/plot_manipulating_models.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_manipulating_models.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/81ccb63a62dcb348f68733eddeca9e1c/plot_manipulating_models.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_manipulating_models.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/f1152dff6e69e8e59586ea47f95ca59f/plot_manipulating_models.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_manipulating_models.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -335,8 +366,8 @@ to average across all the peaks across all models.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

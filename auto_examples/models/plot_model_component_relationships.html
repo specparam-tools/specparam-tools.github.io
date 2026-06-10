@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Component Combinations &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <title>Component Combinations &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,33 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Component Combinations</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#some-notes-on-logging">Some Notes on Logging</a><ul>
+<li><a class="reference internal" href="#so-why-do-we-use-logs">So, why do we use logs?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model-component-combinations">Model Component Combinations</a></li>
+<li><a class="reference internal" href="#additive-vs-multiplicative-component-combinations">Additive vs. Multiplicative Component Combinations</a><ul>
+<li><a class="reference internal" href="#does-it-matter-which-form-i-choose">Does it matter which form I choose?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,28 +144,30 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="component-combinations">
-<span id="sphx-glr-auto-examples-models-plot-model-component-relationships-py"></span><h1>Component Combinations<a class="headerlink" href="#component-combinations" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-examples-models-plot-model-component-relationships-py"></span><h1>Component Combinations<a class="headerlink" href="#component-combinations" title="Link to this heading">¶</a></h1>
 <p>Explore different approaches combining model components.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 
-<span class="kn">from</span> <span class="nn">specparam.plts</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
 
-<span class="kn">from</span> <span class="nn">specparam.utils.array</span> <span class="kn">import</span> <a href="../../generated/specparam.utils.array.unlog.html#specparam.utils.array.unlog" title="specparam.utils.array.unlog" class="sphx-glr-backref-module-specparam-utils-array sphx-glr-backref-type-py-function"><span class="n">unlog</span></a>
-<span class="kn">from</span> <span class="nn">specparam.utils.select</span> <span class="kn">import</span> <span class="n">nearest_ind</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">load_example_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.array</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.utils.array.unlog.html#specparam.utils.array.unlog" title="specparam.utils.array.unlog" class="sphx-glr-backref-module-specparam-utils-array sphx-glr-backref-type-py-function"><span class="n">unlog</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.select</span><span class="w"> </span><span class="kn">import</span> <span class="n">nearest_ind</span>
+
+<span class="c1"># Import utility to load example data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_example_data</span>
 
 <span class="c1"># Import function to directly compute peak heights</span>
-<span class="kn">from</span> <span class="nn">specparam.convert.params</span> <span class="kn">import</span> <span class="n">compute_peak_height</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.params.periodic</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.params.periodic.compute_peak_height.html#specparam.params.periodic.compute_peak_height" title="specparam.params.periodic.compute_peak_height" class="sphx-glr-backref-module-specparam-params-periodic sphx-glr-backref-type-py-function"><span class="n">compute_peak_height</span></a>
 
 <span class="c1"># Import the default parameter conversions</span>
-<span class="kn">from</span> <span class="nn">specparam.modes.convert</span> <span class="kn">import</span> <span class="n">DEFAULT_CONVERTERS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.params.definitions</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEFAULT_CONVERTERS</span>
 </pre></div>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>In general, the approach taken for doing spectral parameterization considers the power
 spectrum to be a combination of multiple components. Notably, however, there is more than
 one possible way to combine the components, for example, components could be added
@@ -158,7 +187,7 @@ relates to model component combinations and related measures, such as peak heigh
 </div>
 </section>
 <section id="some-notes-on-logging">
-<h2>Some Notes on Logging<a class="headerlink" href="#some-notes-on-logging" title="Permalink to this heading">¶</a></h2>
+<h2>Some Notes on Logging<a class="headerlink" href="#some-notes-on-logging" title="Link to this heading">¶</a></h2>
 <p>In order to explore the implications of how the different components are combined, we will first
 briefly revisit some rules for how logs work in mathematics.</p>
 <p>Specifically, the relationship between adding &amp; subtracting log values, and how this relates
@@ -184,7 +213,7 @@ is not equivalent of doing addition of subtraction of the linear values.</p>
 </pre></div>
 </div>
 <section id="so-why-do-we-use-logs">
-<h3>So, why do we use logs?<a class="headerlink" href="#so-why-do-we-use-logs" title="Permalink to this heading">¶</a></h3>
+<h3>So, why do we use logs?<a class="headerlink" href="#so-why-do-we-use-logs" title="Link to this heading">¶</a></h3>
 <p>Given this, it is perhaps worth a brief interlude to consider why we so often use log
 transforms when examining power spectra. One reason is simply that power values are
 extremely skewed, with huge differences in the measured power values between, for example,
@@ -209,7 +238,7 @@ power than other frequencies.</p>
 </section>
 </section>
 <section id="model-component-combinations">
-<h2>Model Component Combinations<a class="headerlink" href="#model-component-combinations" title="Permalink to this heading">¶</a></h2>
+<h2>Model Component Combinations<a class="headerlink" href="#model-component-combinations" title="Link to this heading">¶</a></h2>
 <p>Having explored typical representations of neural power spectra, and some notes on logging,
 let’s come back to the main topic of model component combinations.</p>
 <p>Broadly,when considering how the components relate to each other, in terms of how they are
@@ -228,17 +257,17 @@ combined to create the full model fit, we can start with considering two key asp
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_model_component_relationships_002.png" srcset="../../_images/sphx_glr_plot_model_component_relationships_002.png" alt="plot model component relationships" class = "sphx-glr-single-img"/><p>To compute different possible versions of the peak height, we can use the
-<code class="xref py py-func docutils literal notranslate"><span class="pre">compute_peak_height()</span></code> function. Using this function, we can compute measures of
+<a class="reference internal" href="../../generated/specparam.params.periodic.compute_peak_height.html#specparam.params.periodic.compute_peak_height" title="specparam.params.periodic.compute_peak_height"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_peak_height()</span></code></a> function. Using this function, we can compute measures of
 the peak height, specifying different data representations and difference measures.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define which peak ind to compute height for</span>
 <span class="n">peak_ind</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="c1"># Compute 4 different measures of the peak height</span>
 <span class="n">peak_heights</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;log_sub&#39;</span> <span class="p">:</span> <span class="n">compute_peak_height</span><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">peak_ind</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="s1">&#39;subtract&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;log_div&#39;</span> <span class="p">:</span> <span class="n">compute_peak_height</span><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">peak_ind</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="s1">&#39;divide&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;lin_sub&#39;</span> <span class="p">:</span> <span class="n">compute_peak_height</span><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">peak_ind</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;subtract&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;lin_div&#39;</span> <span class="p">:</span> <span class="n">compute_peak_height</span><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">peak_ind</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;divide&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;log_sub&#39;</span> <span class="p">:</span> <a href="../../generated/specparam.params.periodic.compute_peak_height.html#specparam.params.periodic.compute_peak_height" title="specparam.params.periodic.compute_peak_height" class="sphx-glr-backref-module-specparam-params-periodic sphx-glr-backref-type-py-function"><span class="n">compute_peak_height</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">peak_ind</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="s1">&#39;subtract&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;log_div&#39;</span> <span class="p">:</span> <a href="../../generated/specparam.params.periodic.compute_peak_height.html#specparam.params.periodic.compute_peak_height" title="specparam.params.periodic.compute_peak_height" class="sphx-glr-backref-module-specparam-params-periodic sphx-glr-backref-type-py-function"><span class="n">compute_peak_height</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">peak_ind</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="s1">&#39;divide&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;lin_sub&#39;</span> <span class="p">:</span> <a href="../../generated/specparam.params.periodic.compute_peak_height.html#specparam.params.periodic.compute_peak_height" title="specparam.params.periodic.compute_peak_height" class="sphx-glr-backref-module-specparam-params-periodic sphx-glr-backref-type-py-function"><span class="n">compute_peak_height</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">peak_ind</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;subtract&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;lin_div&#39;</span> <span class="p">:</span> <a href="../../generated/specparam.params.periodic.compute_peak_height.html#specparam.params.periodic.compute_peak_height" title="specparam.params.periodic.compute_peak_height" class="sphx-glr-backref-module-specparam-params-periodic sphx-glr-backref-type-py-function"><span class="n">compute_peak_height</span></a><span class="p">(</span><a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="p">,</span> <span class="n">peak_ind</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;divide&#39;</span><span class="p">),</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -309,7 +338,7 @@ discuss when to select and use these different estimates.</p>
 </div>
 <img src="../../_images/sphx_glr_plot_model_component_relationships_003.png" srcset="../../_images/sphx_glr_plot_model_component_relationships_003.png" alt="Peak Height: log_sub, Peak Height: lin_sub" class = "sphx-glr-single-img"/></section>
 <section id="additive-vs-multiplicative-component-combinations">
-<h2>Additive vs. Multiplicative Component Combinations<a class="headerlink" href="#additive-vs-multiplicative-component-combinations" title="Permalink to this heading">¶</a></h2>
+<h2>Additive vs. Multiplicative Component Combinations<a class="headerlink" href="#additive-vs-multiplicative-component-combinations" title="Link to this heading">¶</a></h2>
 <p>Given these different possible measures of the peak height, the natural next question
 is which is ‘correct’ or ‘best’.</p>
 <p>The short answer is that there is not a singular definitive answer. Depending on
@@ -345,15 +374,15 @@ parameter conversions.</p>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[ 9.36187382  1.04444622  1.58733674]
- [11.1723471   0.23008765  2.87693709]
- [18.24843214  0.33140755  2.84640768]]
-[[9.36187382e+00 4.92221811e-22 1.58733674e+00]
- [1.11723471e+01 2.97585557e-23 2.87693709e+00]
- [1.82484321e+01 3.46992592e-23 2.84640768e+00]]
+ [11.17234702  0.23008765  2.87693723]
+ [18.24843214  0.33140755  2.84640764]]
+[[9.36187382e+00 4.92221814e-22 1.58733674e+00]
+ [1.11723470e+01 2.97585559e-23 2.87693723e+00]
+ [1.82484321e+01 3.46992593e-23 2.84640764e+00]]
 </pre></div>
 </div>
 <section id="does-it-matter-which-form-i-choose">
-<h3>Does it matter which form I choose?<a class="headerlink" href="#does-it-matter-which-form-i-choose" title="Permalink to this heading">¶</a></h3>
+<h3>Does it matter which form I choose?<a class="headerlink" href="#does-it-matter-which-form-i-choose" title="Link to this heading">¶</a></h3>
 <p>In the above, we have shown that choosing the peak height estimations does lead to different
 computed values. However, in most analyses, it is not the absolute values or absolute
 differences of these measures that is of interest, but their relative differences.</p>
@@ -363,13 +392,16 @@ general pattern of things (in terms of which parameters change). However it coul
 change effect size measures (and as such, potentially the results of significant tests),
 such that it is plausible that the results of different model combination forms could
 be at least somewhat different.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.778 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.048 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-models-plot-model-component-relationships-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/3ad0f44b4c6f8446f445d4344d2bfdfc/plot_model_component_relationships.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_model_component_relationships.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/25b2de70a6ab6d67ce09101f6d1e498a/plot_model_component_relationships.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_model_component_relationships.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/163b8bedce67dc6d1f2601b8afd6ed1f/plot_model_component_relationships.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_model_component_relationships.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -389,8 +421,8 @@ be at least somewhat different.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

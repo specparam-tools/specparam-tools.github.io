@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>‘Oscillations’ as Peaks &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <title>‘Oscillations’ as Peaks &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,28 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">‘Oscillations’ as Peaks</a><ul>
+<li><a class="reference internal" href="#frequency-specific-power">Frequency Specific Power</a><ul>
+<li><a class="reference internal" href="#interim-conclusion">Interim Conclusion</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#harmonic-peaks">Harmonic Peaks</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,16 +139,16 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="oscillations-as-peaks">
-<span id="sphx-glr-auto-motivations-concepts-plot-wigglypeaks-py"></span><h1>‘Oscillations’ as Peaks<a class="headerlink" href="#oscillations-as-peaks" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-motivations-concepts-plot-wigglypeaks-py"></span><h1>‘Oscillations’ as Peaks<a class="headerlink" href="#oscillations-as-peaks" title="Link to this heading">¶</a></h1>
 <p>Exploring the idea of oscillations as peaks of power.</p>
 <p>This example uses the
 <a class="reference external" href="https://neurodsp-tools.github.io/">neurodsp</a>
 module for time series simulations &amp; analyses.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports from NeuroDSP to simulate &amp; plot time series</span>
-<span class="kn">from</span> <span class="nn">neurodsp.sim</span> <span class="kn">import</span> <span class="n">sim_powerlaw</span><span class="p">,</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.sim.sim_oscillation.html#neurodsp.sim.sim_oscillation" title="neurodsp.sim.sim_oscillation" class="sphx-glr-backref-module-neurodsp-sim sphx-glr-backref-type-py-function"><span class="n">sim_oscillation</span></a><span class="p">,</span> <span class="n">sim_combined</span><span class="p">,</span> <span class="n">set_random_seed</span>
-<span class="kn">from</span> <span class="nn">neurodsp.spectral</span> <span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.spectral.compute_spectrum.html#neurodsp.spectral.compute_spectrum" title="neurodsp.spectral.compute_spectrum" class="sphx-glr-backref-module-neurodsp-spectral sphx-glr-backref-type-py-function"><span class="n">compute_spectrum</span></a>
-<span class="kn">from</span> <span class="nn">neurodsp.plts</span> <span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.plts.plot_time_series.html#neurodsp.plts.plot_time_series" title="neurodsp.plts.plot_time_series" class="sphx-glr-backref-module-neurodsp-plts sphx-glr-backref-type-py-function"><span class="n">plot_time_series</span></a><span class="p">,</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.plts.plot_power_spectra.html#neurodsp.plts.plot_power_spectra" title="neurodsp.plts.plot_power_spectra" class="sphx-glr-backref-module-neurodsp-plts sphx-glr-backref-type-py-function"><span class="n">plot_power_spectra</span></a>
-<span class="kn">from</span> <span class="nn">neurodsp.utils</span> <span class="kn">import</span> <span class="n">create_times</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">neurodsp.sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_powerlaw</span><span class="p">,</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.sim.sim_oscillation.html#neurodsp.sim.sim_oscillation" title="neurodsp.sim.sim_oscillation" class="sphx-glr-backref-module-neurodsp-sim sphx-glr-backref-type-py-function"><span class="n">sim_oscillation</span></a><span class="p">,</span> <span class="n">sim_combined</span><span class="p">,</span> <span class="n">set_random_seed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">neurodsp.spectral</span><span class="w"> </span><span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.spectral.compute_spectrum.html#neurodsp.spectral.compute_spectrum" title="neurodsp.spectral.compute_spectrum" class="sphx-glr-backref-module-neurodsp-spectral sphx-glr-backref-type-py-function"><span class="n">compute_spectrum</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">neurodsp.plts</span><span class="w"> </span><span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.plts.plot_time_series.html#neurodsp.plts.plot_time_series" title="neurodsp.plts.plot_time_series" class="sphx-glr-backref-module-neurodsp-plts sphx-glr-backref-type-py-function"><span class="n">plot_time_series</span></a><span class="p">,</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.plts.plot_power_spectra.html#neurodsp.plts.plot_power_spectra" title="neurodsp.plts.plot_power_spectra" class="sphx-glr-backref-module-neurodsp-plts sphx-glr-backref-type-py-function"><span class="n">plot_power_spectra</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">neurodsp.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_times</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define simulation settings</span>
@@ -138,7 +160,7 @@ module for time series simulations &amp; analyses.</p>
 </pre></div>
 </div>
 <section id="frequency-specific-power">
-<h2>Frequency Specific Power<a class="headerlink" href="#frequency-specific-power" title="Permalink to this heading">¶</a></h2>
+<h2>Frequency Specific Power<a class="headerlink" href="#frequency-specific-power" title="Link to this heading">¶</a></h2>
 <p>Part of the motivation behind spectral parameterization is dissociating aperiodic
 activity, with no characteristic frequency, to periodic power, which is defined as
 having frequency specific power. This leads to the idea of oscillations as ‘peaks’
@@ -189,7 +211,7 @@ component, as well as an aperiodic component, which contributes power across all
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_WigglyPeaks_004.png" srcset="../../_images/sphx_glr_plot_WigglyPeaks_004.png" alt="plot WigglyPeaks" class = "sphx-glr-single-img"/><section id="interim-conclusion">
-<h3>Interim Conclusion<a class="headerlink" href="#interim-conclusion" title="Permalink to this heading">¶</a></h3>
+<h3>Interim Conclusion<a class="headerlink" href="#interim-conclusion" title="Link to this heading">¶</a></h3>
 <p>In the power spectrum of the combined signal, we can still the peak of power at 10 Hz, as
 well as the pattern of power across all frequencies contributed by the aperiodic component.</p>
 <p>This basic example serves as the basic motivation for spectral parameterization. In this
@@ -199,7 +221,7 @@ provides a method to measuring these components in the data.</p>
 </section>
 </section>
 <section id="harmonic-peaks">
-<h2>Harmonic Peaks<a class="headerlink" href="#harmonic-peaks" title="Permalink to this heading">¶</a></h2>
+<h2>Harmonic Peaks<a class="headerlink" href="#harmonic-peaks" title="Link to this heading">¶</a></h2>
 <p>The above seeks to demonstrate the basic idea whereby a peak of power _may_ reflect
 an oscillation at that frequency, where as patterns of power across all frequencies
 likely reflect aperiodic activity.</p>
@@ -251,13 +273,16 @@ the non-sinusoidality of the time domain signal.</p>
 independent oscillation, this need not be the case, as a given peak could simply be the harmonic
 of an asymmetric oscillation at a different frequency. For this reason, the number of peaks in
 a model can not be interpreted as the number of oscillations in a signal.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.518 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.345 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-motivations-concepts-plot-wigglypeaks-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/fecff9e7a6734e3ad683b96c3c92b484/plot_WigglyPeaks.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_WigglyPeaks.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/ec180706d849ba370152a1a7a5a30b46/plot_WigglyPeaks.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_WigglyPeaks.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/f58a99998119f2fcc6fd5082e606edd5/plot_WigglyPeaks.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_WigglyPeaks.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -276,8 +301,8 @@ a model can not be interpreted as the number of oscillations in a signal.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

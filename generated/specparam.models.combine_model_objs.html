@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>specparam.models.combine_model_objs &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.models.combine_model_objs &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,13 +110,31 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">specparam.models.combine_model_objs</a><ul>
+<li><a class="reference internal" href="#specparam.models.combine_model_objs"><code class="docutils literal notranslate"><span class="pre">combine_model_objs()</span></code></a></li>
+<li><a class="reference internal" href="#examples-using-specparam-models-combine-model-objs">Examples using <code class="docutils literal notranslate"><span class="pre">specparam.models.combine_model_objs</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="specparam-models-combine-model-objs">
-<h1>specparam.models.combine_model_objs<a class="headerlink" href="#specparam-models-combine-model-objs" title="Permalink to this heading">¶</a></h1>
+<h1>specparam.models.combine_model_objs<a class="headerlink" href="#specparam-models-combine-model-objs" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="specparam.models.combine_model_objs">
-<span class="sig-prename descclassname"><span class="pre">specparam.models.</span></span><span class="sig-name descname"><span class="pre">combine_model_objs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_objs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/utils.html#combine_model_objs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.models.combine_model_objs" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">specparam.models.</span></span><span class="sig-name descname"><span class="pre">combine_model_objs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_objs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/utils.html#combine_model_objs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.models.combine_model_objs" title="Link to this definition">¶</a></dt>
 <dd><p>Combine a group of model objects into a single group model object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -139,22 +158,22 @@
 </dl>
 <p class="rubric">Examples</p>
 <p>Combine model objects together (where <cite>fm1</cite>, <cite>fm2</cite> &amp; <cite>fm3</cite> are assumed to be defined and fit):</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">combine_model_objs</span><span class="p">([</span><span class="n">fm1</span><span class="p">,</span> <span class="n">fm2</span><span class="p">,</span> <span class="n">fm3</span><span class="p">])</span>  
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">combine_model_objs</span><span class="p">([</span><span class="n">fm1</span><span class="p">,</span> <span class="n">fm2</span><span class="p">,</span> <span class="n">fm3</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Combine group model objects together (where <cite>fg1</cite> &amp; <cite>fg2</cite> are assumed to be defined and fit):</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">combine_model_objs</span><span class="p">([</span><span class="n">fg1</span><span class="p">,</span> <span class="n">fg2</span><span class="p">])</span>  
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">combine_model_objs</span><span class="p">([</span><span class="n">fg1</span><span class="p">,</span> <span class="n">fg2</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <section id="examples-using-specparam-models-combine-model-objs">
-<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.models.combine_model_objs</span></code><a class="headerlink" href="#examples-using-specparam-models-combine-model-objs" title="Permalink to this heading">¶</a></h2>
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.models.combine_model_objs</span></code><a class="headerlink" href="#examples-using-specparam-models-combine-model-objs" title="Link to this heading">¶</a></h2>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Fitting power spectrum models across 3D arrays of power spectra."><img alt="" src="../_images/sphx_glr_plot_fit_models_3d_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/manage/plot_fit_models_3d.html#sphx-glr-auto-examples-manage-plot-fit-models-3d-py"><span class="std std-ref">Fitting Power Spectrum Models Across 3D Arrays</span></a></p>
+<p><a class="reference internal" href="../auto_examples/manage/plot_fit_models_3d.html"><span class="doc">Fitting Power Spectrum Models Across 3D Arrays</span></a></p>
   <div class="sphx-glr-thumbnail-title">Fitting Power Spectrum Models Across 3D Arrays</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Examples with combining, sub-selecting, dropping, and averaging power spectrum models."><img alt="" src="../_images/sphx_glr_plot_manipulating_models_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/manage/plot_manipulating_models.html#sphx-glr-auto-examples-manage-plot-manipulating-models-py"><span class="std std-ref">Manipulating Objects</span></a></p>
+<p><a class="reference internal" href="../auto_examples/manage/plot_manipulating_models.html"><span class="doc">Manipulating Objects</span></a></p>
   <div class="sphx-glr-thumbnail-title">Manipulating Objects</div>
 </div></div><div style='clear:both'></div></section>
 </section>
@@ -171,8 +190,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

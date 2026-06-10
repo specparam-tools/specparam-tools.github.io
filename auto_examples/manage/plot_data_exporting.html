@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Exporting Model Results &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <title>Exporting Model Results &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,29 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Exporting Model Results</a><ul>
+<li><a class="reference internal" href="#exporting-results">Exporting Results</a><ul>
+<li><a class="reference internal" href="#defining-oscillation-bands">Defining Oscillation Bands</a></li>
+<li><a class="reference internal" href="#using-band-definitions">Using Band Definitions</a></li>
+<li><a class="reference internal" href="#example-on-group-object">Example on Group Object</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,19 +140,19 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="exporting-model-results">
-<span id="sphx-glr-auto-examples-manage-plot-data-exporting-py"></span><h1>Exporting Model Results<a class="headerlink" href="#exporting-model-results" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-examples-manage-plot-data-exporting-py"></span><h1>Exporting Model Results<a class="headerlink" href="#exporting-model-results" title="Link to this heading">¶</a></h1>
 <p>This example covers utilities for extracting and exporting model fit results.</p>
 <p>Note that the functionality to export to pandas DataFrames was added in version 1.1,
 and requires the optional dependency <cite>pandas</cite> to be installed.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import model objects, and Bands object to define bands of interest</span>
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">,</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">,</span> <a href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a><span class="p">,</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
 
 <span class="c1"># Import simulation functions to create some example data</span>
-<span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">,</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">,</span> <a href="../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a>
 </pre></div>
 </div>
 <section id="exporting-results">
-<h2>Exporting Results<a class="headerlink" href="#exporting-results" title="Permalink to this heading">¶</a></h2>
+<h2>Exporting Results<a class="headerlink" href="#exporting-results" title="Link to this heading">¶</a></h2>
 <p>In this example we will explore available functionality for extracting model fit results,
 specifically the options available for exporting results to pandas objects.</p>
 <p>Note that the main use case of exporting models to pandas DataFrames is for
@@ -137,7 +160,7 @@ analysis across models. If you are just trying to access the model fit results f
 a fit model, you may want the <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_results()</span></code> and/or
 <a class="reference internal" href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.get_params" title="specparam.SpectralModel.get_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_params()</span></code></a> methods.</p>
 <section id="defining-oscillation-bands">
-<h3>Defining Oscillation Bands<a class="headerlink" href="#defining-oscillation-bands" title="Permalink to this heading">¶</a></h3>
+<h3>Defining Oscillation Bands<a class="headerlink" href="#defining-oscillation-bands" title="Link to this heading">¶</a></h3>
 <p>A difficulty with exporting and collecting model results across model fits is that the
 models may be different sizes - most notably, they may contain different numbers of peaks.</p>
 <p>This means that we need to define some kind of strategy to organize the peak
@@ -164,10 +187,10 @@ fit results to pandas objects.</p>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.to_df" title="specparam.SpectralModel.to_df" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">to_df</span></a><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>offset         -0.897748
-exponent        0.497090
-error_mae       0.014381
-gof_rsquared    0.991421
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>offset         -0.891189
+exponent        0.499828
+error_mae       0.014408
+gof_rsquared    0.991434
 dtype: float64
 </pre></div>
 </div>
@@ -180,19 +203,19 @@ of peaks to extract.</p>
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.to_df" title="specparam.SpectralModel.to_df" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">to_df</span></a><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>offset         -0.897748
-exponent        0.497090
-cf_0            9.843930
-pw_0            0.324458
-bw_0            4.979879
-error_mae       0.014381
-gof_rsquared    0.991421
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>offset         -0.891189
+exponent        0.499828
+cf_0            9.838805
+pw_0            0.318770
+bw_0            4.913431
+error_mae       0.014408
+gof_rsquared    0.991434
 dtype: float64
 </pre></div>
 </div>
 </section>
 <section id="using-band-definitions">
-<h3>Using Band Definitions<a class="headerlink" href="#using-band-definitions" title="Permalink to this heading">¶</a></h3>
+<h3>Using Band Definitions<a class="headerlink" href="#using-band-definitions" title="Link to this heading">¶</a></h3>
 <p>In the above, we extract the results specifying to extract 1 peak. By default, this approach
 will extract the dominant (highest power) peak.</p>
 <p>Notably, specifying a set number of peaks to extract does allow for combining across peaks
@@ -204,13 +227,13 @@ as can be done by passing a <cite>Bands</cite> object in to the <cite>to_df</cit
 <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel.to_df" title="specparam.SpectralModel.to_df" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">to_df</span></a><span class="p">(</span><a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bands1</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>offset         -0.897748
-exponent        0.497090
-alpha_cf        9.843930
-alpha_pw        0.324458
-alpha_bw        4.979879
-error_mae       0.014381
-gof_rsquared    0.991421
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>offset         -0.891189
+exponent        0.499828
+alpha_cf        9.838805
+alpha_pw        0.318770
+alpha_bw        4.913431
+error_mae       0.014408
+gof_rsquared    0.991434
 dtype: float64
 </pre></div>
 </div>
@@ -220,7 +243,7 @@ select the dominant peak per band. However, this may not fully reflect the full 
 if there are, for example, multiple peaks fit within a band.</p>
 </section>
 <section id="example-on-group-object">
-<h3>Example on Group Object<a class="headerlink" href="#example-on-group-object" title="Permalink to this heading">¶</a></h3>
+<h3>Example on Group Object<a class="headerlink" href="#example-on-group-object" title="Link to this heading">¶</a></h3>
 <p>In the above, we used the model object to show the basic exporting functionalities.</p>
 <p>This functionality is more useful when considering multiple model fits together, such as can
 be done using the <a class="reference internal" href="../../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel.to_df" title="specparam.SpectralGroupModel.to_df"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_df()</span></code></a> method from the Group  object,
@@ -269,38 +292,38 @@ which allows for exporting DataFrames of organized model fit parameters across p
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.003057</td>
-      <td>1.001569</td>
-      <td>0.004021</td>
-      <td>0.999831</td>
+      <td>-0.000854</td>
+      <td>0.999010</td>
+      <td>0.003915</td>
+      <td>0.999853</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.003464</td>
-      <td>1.001961</td>
-      <td>0.003841</td>
-      <td>0.999848</td>
+      <td>0.002866</td>
+      <td>1.001231</td>
+      <td>0.004043</td>
+      <td>0.999838</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.003541</td>
-      <td>1.001951</td>
-      <td>0.004238</td>
-      <td>0.999826</td>
+      <td>-0.002209</td>
+      <td>0.998152</td>
+      <td>0.003717</td>
+      <td>0.999868</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.011279</td>
-      <td>1.006842</td>
-      <td>0.003949</td>
-      <td>0.999839</td>
+      <td>0.002604</td>
+      <td>1.001883</td>
+      <td>0.003801</td>
+      <td>0.999846</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.007783</td>
-      <td>1.005293</td>
-      <td>0.004490</td>
-      <td>0.999806</td>
+      <td>0.004044</td>
+      <td>1.002659</td>
+      <td>0.004287</td>
+      <td>0.999819</td>
     </tr>
   </tbody>
 </table>
@@ -342,53 +365,53 @@ which allows for exporting DataFrames of organized model fit parameters across p
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.003057</td>
-      <td>1.001569</td>
-      <td>9.942051</td>
-      <td>0.248113</td>
-      <td>3.705590</td>
-      <td>0.004021</td>
-      <td>0.999831</td>
+      <td>-0.000854</td>
+      <td>0.999010</td>
+      <td>10.013006</td>
+      <td>0.249216</td>
+      <td>3.935349</td>
+      <td>0.003915</td>
+      <td>0.999853</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.003464</td>
-      <td>1.001961</td>
-      <td>10.028574</td>
-      <td>0.244339</td>
-      <td>3.952278</td>
-      <td>0.003841</td>
-      <td>0.999848</td>
+      <td>0.002866</td>
+      <td>1.001231</td>
+      <td>10.009152</td>
+      <td>0.247577</td>
+      <td>3.925508</td>
+      <td>0.004043</td>
+      <td>0.999838</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.003541</td>
-      <td>1.001951</td>
-      <td>9.999113</td>
-      <td>0.245791</td>
-      <td>3.988404</td>
-      <td>0.004238</td>
-      <td>0.999826</td>
+      <td>-0.002209</td>
+      <td>0.998152</td>
+      <td>9.981832</td>
+      <td>0.248698</td>
+      <td>4.022717</td>
+      <td>0.003717</td>
+      <td>0.999868</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.011279</td>
-      <td>1.006842</td>
-      <td>10.035322</td>
-      <td>0.242424</td>
-      <td>3.851084</td>
-      <td>0.003949</td>
-      <td>0.999839</td>
+      <td>0.002604</td>
+      <td>1.001883</td>
+      <td>9.992200</td>
+      <td>0.251530</td>
+      <td>3.868910</td>
+      <td>0.003801</td>
+      <td>0.999846</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.007783</td>
-      <td>1.005293</td>
-      <td>10.038404</td>
-      <td>0.251812</td>
-      <td>3.827832</td>
-      <td>0.004490</td>
-      <td>0.999806</td>
+      <td>0.004044</td>
+      <td>1.002659</td>
+      <td>10.000780</td>
+      <td>0.247386</td>
+      <td>3.972249</td>
+      <td>0.004287</td>
+      <td>0.999819</td>
     </tr>
   </tbody>
 </table>
@@ -430,53 +453,53 @@ which allows for exporting DataFrames of organized model fit parameters across p
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.003057</td>
-      <td>1.001569</td>
-      <td>9.942051</td>
-      <td>0.248113</td>
-      <td>3.705590</td>
-      <td>0.004021</td>
-      <td>0.999831</td>
+      <td>-0.000854</td>
+      <td>0.999010</td>
+      <td>10.013006</td>
+      <td>0.249216</td>
+      <td>3.935349</td>
+      <td>0.003915</td>
+      <td>0.999853</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.003464</td>
-      <td>1.001961</td>
-      <td>10.028574</td>
-      <td>0.244339</td>
-      <td>3.952278</td>
-      <td>0.003841</td>
-      <td>0.999848</td>
+      <td>0.002866</td>
+      <td>1.001231</td>
+      <td>10.009152</td>
+      <td>0.247577</td>
+      <td>3.925508</td>
+      <td>0.004043</td>
+      <td>0.999838</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.003541</td>
-      <td>1.001951</td>
-      <td>9.999113</td>
-      <td>0.245791</td>
-      <td>3.988404</td>
-      <td>0.004238</td>
-      <td>0.999826</td>
+      <td>-0.002209</td>
+      <td>0.998152</td>
+      <td>9.981832</td>
+      <td>0.248698</td>
+      <td>4.022717</td>
+      <td>0.003717</td>
+      <td>0.999868</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.011279</td>
-      <td>1.006842</td>
-      <td>10.035322</td>
-      <td>0.242424</td>
-      <td>3.851084</td>
-      <td>0.003949</td>
-      <td>0.999839</td>
+      <td>0.002604</td>
+      <td>1.001883</td>
+      <td>9.992200</td>
+      <td>0.251530</td>
+      <td>3.868910</td>
+      <td>0.003801</td>
+      <td>0.999846</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.007783</td>
-      <td>1.005293</td>
-      <td>10.038404</td>
-      <td>0.251812</td>
-      <td>3.827832</td>
-      <td>0.004490</td>
-      <td>0.999806</td>
+      <td>0.004044</td>
+      <td>1.002659</td>
+      <td>10.000780</td>
+      <td>0.247386</td>
+      <td>3.972249</td>
+      <td>0.004287</td>
+      <td>0.999819</td>
     </tr>
   </tbody>
 </table>
@@ -530,68 +553,68 @@ as demonstrated in the following example.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.003057</td>
-      <td>1.001569</td>
-      <td>9.942051</td>
-      <td>0.248113</td>
-      <td>3.705590</td>
+      <td>-0.000854</td>
+      <td>0.999010</td>
+      <td>10.013006</td>
+      <td>0.249216</td>
+      <td>3.935349</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>0.004021</td>
-      <td>0.999831</td>
+      <td>0.003915</td>
+      <td>0.999853</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.003464</td>
-      <td>1.001961</td>
-      <td>10.028574</td>
-      <td>0.244339</td>
-      <td>3.952278</td>
+      <td>0.002866</td>
+      <td>1.001231</td>
+      <td>10.009152</td>
+      <td>0.247577</td>
+      <td>3.925508</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>0.003841</td>
-      <td>0.999848</td>
+      <td>0.004043</td>
+      <td>0.999838</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.003541</td>
-      <td>1.001951</td>
-      <td>9.999113</td>
-      <td>0.245791</td>
-      <td>3.988404</td>
+      <td>-0.002209</td>
+      <td>0.998152</td>
+      <td>9.981832</td>
+      <td>0.248698</td>
+      <td>4.022717</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>0.004238</td>
-      <td>0.999826</td>
+      <td>0.003717</td>
+      <td>0.999868</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.011279</td>
-      <td>1.006842</td>
-      <td>10.035322</td>
-      <td>0.242424</td>
-      <td>3.851084</td>
+      <td>0.002604</td>
+      <td>1.001883</td>
+      <td>9.992200</td>
+      <td>0.251530</td>
+      <td>3.868910</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>0.003949</td>
-      <td>0.999839</td>
+      <td>0.003801</td>
+      <td>0.999846</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.007783</td>
-      <td>1.005293</td>
-      <td>10.038404</td>
-      <td>0.251812</td>
-      <td>3.827832</td>
+      <td>0.004044</td>
+      <td>1.002659</td>
+      <td>10.000780</td>
+      <td>0.247386</td>
+      <td>3.972249</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>0.004490</td>
-      <td>0.999806</td>
+      <td>0.004287</td>
+      <td>0.999819</td>
     </tr>
   </tbody>
 </table>
@@ -599,13 +622,16 @@ as demonstrated in the following example.</p>
 </div>
 <br />
 <br /><p>That covers the pandas export functionality available from the model objects.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.094 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.046 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-manage-plot-data-exporting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/c8102b67a528eed85b861137f14ade9a/plot_data_exporting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_data_exporting.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/95d526fd1c3dba8ce2b3e75487d81703/plot_data_exporting.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_data_exporting.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/3c085ec02b3f3240f71dfa72acaea293/plot_data_exporting.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_data_exporting.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -625,8 +651,8 @@ as demonstrated in the following example.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

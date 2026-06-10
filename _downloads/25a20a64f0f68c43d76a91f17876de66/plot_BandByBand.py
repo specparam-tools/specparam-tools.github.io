@@ -21,9 +21,9 @@ from specparam import SpectralModel
 # Import simulation, utility, and plotting tools
 from specparam.bands import Bands
 from specparam.sim import sim_power_spectrum
-from specparam.sim.utils import set_random_seed
-from specparam.data.periodic import get_band_peak
+from specparam.utils.random import set_random_seed
 from specparam.utils.spectral import trim_spectrum
+from specparam.data.periodic import get_band_peak
 from specparam.plts.spectra import plot_spectra_shading
 
 ###################################################################################################
@@ -203,7 +203,7 @@ fm_bands_g2.fit(freqs, g2_spectrum_bands)
 
 # Plot the power spectra differences
 plot_spectra_shading(freqs,
-                     [fm_bands_g1.get_data('peak'), fm_bands_g2.get_data('peak')],
+                     [fm_bands_g1.data.get_data('peak'), fm_bands_g2.data.get_data('peak')],
                      log_powers=False, linewidth=3,
                      shades=bands.definitions, shade_colors=shade_cols,
                      labels=labels)
@@ -294,7 +294,7 @@ fm_pa_g2.fit(freqs, g2_spectrum_pa)
 
 # Plot the power spectra differences
 plot_spectra_shading(freqs,
-                     [fm_pa_g1.get_data('peak'), fm_pa_g2.get_data('peak')],
+                     [fm_pa_g1.data.get_data('peak'), fm_pa_g2.data.get_data('peak')],
                      log_powers=False, linewidth=3,
                      shades=bands.definitions, shade_colors=shade_cols,
                      labels=labels)

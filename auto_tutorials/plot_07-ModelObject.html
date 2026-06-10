@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>07: Exploring the Model Object &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>07: Exploring the Model Object &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,41 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">07: Exploring the Model Object</a><ul>
+<li><a class="reference internal" href="#description-of-methods-and-attributes">Description of methods and attributes</a><ul>
+<li><a class="reference internal" href="#settings-attributes">1) Settings (attributes)</a><ul>
+<li><a class="reference internal" href="#controlling-peak-fits">Controlling Peak Fits</a></li>
+<li><a class="reference internal" href="#peak-search-stopping-criteria">Peak Search Stopping Criteria</a></li>
+<li><a class="reference internal" href="#verbosity">Verbosity</a></li>
+<li><a class="reference internal" href="#changing-settings">Changing Settings</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-attributes">2) Data (attributes)</a></li>
+<li><a class="reference internal" href="#results-attributes">3) Results (attributes)</a></li>
+<li><a class="reference internal" href="#methods">4) Methods</a><ul>
+<li><a class="reference internal" href="#saving-data-results">Saving Data &amp; Results</a></li>
+<li><a class="reference internal" href="#creating-reports">Creating Reports</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,13 +152,13 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="exploring-the-model-object">
-<span id="sphx-glr-auto-tutorials-plot-07-modelobject-py"></span><h1>07: Exploring the Model Object<a class="headerlink" href="#exploring-the-model-object" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-tutorials-plot-07-modelobject-py"></span><h1>07: Exploring the Model Object<a class="headerlink" href="#exploring-the-model-object" title="Link to this heading">¶</a></h1>
 <p>Further exploring the SpectralModel object, including algorithm settings and available methods.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the model object</span>
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 
 <span class="c1"># Import utility to download and load example data</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">load_example_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_example_data</span>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object</span>
@@ -131,7 +166,7 @@ to download the full example code.</p>
 </pre></div>
 </div>
 <section id="description-of-methods-and-attributes">
-<h2>Description of methods and attributes<a class="headerlink" href="#description-of-methods-and-attributes" title="Permalink to this heading">¶</a></h2>
+<h2>Description of methods and attributes<a class="headerlink" href="#description-of-methods-and-attributes" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object contents consist of 4 main components
 (groups of data / code):</p>
 <ul class="simple">
@@ -163,7 +198,7 @@ to download the full example code.</p>
 </li>
 </ul>
 <section id="settings-attributes">
-<h3>1) Settings (attributes)<a class="headerlink" href="#settings-attributes" title="Permalink to this heading">¶</a></h3>
+<h3>1) Settings (attributes)<a class="headerlink" href="#settings-attributes" title="Link to this heading">¶</a></h3>
 <p>There are a number of settings that control the fitting algorithm, that
 can be set by the user when initializing the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object.</p>
 <p>There are some internal settings that are not exposed at initialization.
@@ -171,7 +206,7 @@ These settings are unlikely to need to be accessed by the user, but can be if de
 they are all defined and documented in the code in the object’s __init__ (there are no
 other settings, or ‘magic numbers’ in any other parts of the code).</p>
 <section id="controlling-peak-fits">
-<h4>Controlling Peak Fits<a class="headerlink" href="#controlling-peak-fits" title="Permalink to this heading">¶</a></h4>
+<h4>Controlling Peak Fits<a class="headerlink" href="#controlling-peak-fits" title="Link to this heading">¶</a></h4>
 <p><strong>peak_width_limits (Hz)</strong> default: [0.5, 12]</p>
 <p>Enforced limits on the minimum and maximum widths of extracted peaks, given as a list of
 [minimum bandwidth, maximum bandwidth]. We recommend that the minimum bandwidth be set to
@@ -179,7 +214,7 @@ be at last twice the frequency resolution of the power spectrum, so that single 
 can not be fit as peaks.</p>
 </section>
 <section id="peak-search-stopping-criteria">
-<h4>Peak Search Stopping Criteria<a class="headerlink" href="#peak-search-stopping-criteria" title="Permalink to this heading">¶</a></h4>
+<h4>Peak Search Stopping Criteria<a class="headerlink" href="#peak-search-stopping-criteria" title="Link to this heading">¶</a></h4>
 <p>An iterative procedure searches for candidate peaks in the flattened spectrum. Candidate
 peaks are extracted in order of decreasing height, until some stopping criterion is met,
 which is controlled by the following settings:</p>
@@ -207,20 +242,19 @@ used and the peak search will halt when a candidate peak fails to pass either th
 or relative threshold.</p>
 </section>
 <section id="verbosity">
-<h4>Verbosity<a class="headerlink" href="#verbosity" title="Permalink to this heading">¶</a></h4>
+<h4>Verbosity<a class="headerlink" href="#verbosity" title="Link to this heading">¶</a></h4>
 <p><strong>verbose (boolean)</strong> default=’True’</p>
 <p>Whether to print out status updates and warnings.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can check all the user defined settings with check_settings</span>
-<span class="c1">#  The description parameter here is set to print out quick descriptions of the settings</span>
-<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_settings" title="specparam.SpectralModel.print_settings" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">print_settings</span></a><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can check all the user defined settings by printing from the model object</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print" title="specparam.SpectralModel.print" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">print</span></a><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                     ALGORITHM: spectral_fit
+                                            ALGORITHM
+                                           spectral_fit
 
                                         ALGORITHM SETTINGS
-
                                  peak_width_limits : (0.5, 12.0)
                                         max_n_peaks : inf
                                       min_peak_height : 0.0
@@ -231,7 +265,7 @@ or relative threshold.</p>
 </div>
 </section>
 <section id="changing-settings">
-<h4>Changing Settings<a class="headerlink" href="#changing-settings" title="Permalink to this heading">¶</a></h4>
+<h4>Changing Settings<a class="headerlink" href="#changing-settings" title="Link to this heading">¶</a></h4>
 <p>Note that if you wish to change settings, then you should re-initialize
 a new <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object with new settings.</p>
 <p>Simply changing the value of the relevant attribute may not appropriately propagate
@@ -245,7 +279,7 @@ the settings properly during fit and returning erroneous results.</p>
 </section>
 </section>
 <section id="data-attributes">
-<h3>2) Data (attributes)<a class="headerlink" href="#data-attributes" title="Permalink to this heading">¶</a></h3>
+<h3>2) Data (attributes)<a class="headerlink" href="#data-attributes" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object stores the following data attributes:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">freqs</span></code>: the frequency values of the power spectrum</p></li>
@@ -273,7 +307,7 @@ overall model object (<code class="docutils literal notranslate"><span class="pr
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Power Values: </span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">power_spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Frequency Range:         [2.441406250001353, 39.55078125002192]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Frequency Range:         [np.float64(2.441406250001353), np.float64(39.55078125002192)]
 Frequency Resolution:    0.48828125000027045
 Frequency Values:        [2.44140625 2.9296875  3.41796875 3.90625    4.39453125]
 Power Values:            [-21.99921865 -21.99669556 -22.02605736 -21.96875308 -22.15436702]
@@ -295,7 +329,7 @@ if the current object has data loaded.</p>
 </div>
 </section>
 <section id="results-attributes">
-<h3>3) Results (attributes)<a class="headerlink" href="#results-attributes" title="Permalink to this heading">¶</a></h3>
+<h3>3) Results (attributes)<a class="headerlink" href="#results-attributes" title="Link to this heading">¶</a></h3>
 <p>With our model fit, the results attributes should now hold values.</p>
 <p>Recall that by convention, any attributes that contain model results are
 indicated by a trailing underscore.</p>
@@ -320,12 +354,12 @@ overall model object (<code class="docutils literal notranslate"><span class="pr
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;r-squared: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;gof_rsquared&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic params:        [-21.44373536   1.0751011 ]
-peak params:     [[ 9.81640203  0.72771297  3.00583448]
- [13.04631978  0.2596321   2.5372394 ]
- [18.12686014  0.15093619  4.62823406]]
-fit error:       0.029371515172274657
-r-squared:       0.9922996526520488
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>aperiodic params:        [-21.44373534   1.07510111]
+peak params:     [[ 9.81640201  0.72771296  3.00583442]
+ [13.04631968  0.2596321   2.5372395 ]
+ [18.12686018  0.15093619  4.62823414]]
+fit error:       0.02937151526182348
+r-squared:       0.9922996524962877
 </pre></div>
 </div>
 <p>The <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object also has an indicator attribute, <code class="docutils literal notranslate"><span class="pre">has_model</span></code>
@@ -339,7 +373,7 @@ which indicates if the current object has model results available.</p>
 </div>
 </section>
 <section id="methods">
-<h3>4) Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h3>
+<h3>4) Methods<a class="headerlink" href="#methods" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object contains a number of methods that are either used
 to fit models and access data, and/or offer extra functionality.</p>
 <p>In addition to the exposed methods, there are some internal private methods,
@@ -360,8 +394,6 @@ copy
         Return a copy of the current object.
 fit
         Fit a power spectrum as a combination of periodic and aperiodic components.
-get_data
-        Get a data component.
 get_metrics
         Get requested metric(s) from the object.
 get_params
@@ -370,12 +402,8 @@ load
         Load in a data file to the current object.
 plot
         Plot the power spectrum and model fit results from a model object.
-print_report_issue
-        Prints instructions on how to report bugs and/or problematic fits.
-print_results
-        Print out model fitting results.
-print_settings
-        Print out the current settings.
+print
+        Print out information.
 report
         Run model fit, and display a report, which includes a plot, and printed results.
 save
@@ -385,11 +413,11 @@ save_report
 to_df
         Convert and extract the model results as a pandas object.
 
-[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None, None, None, None]
 </pre></div>
 </div>
 <section id="saving-data-results">
-<h4>Saving Data &amp; Results<a class="headerlink" href="#saving-data-results" title="Permalink to this heading">¶</a></h4>
+<h4>Saving Data &amp; Results<a class="headerlink" href="#saving-data-results" title="Link to this heading">¶</a></h4>
 <p>There is also functionality for saving out, and loading back in, data and results.</p>
 <p>You have the option to specify which data to save.</p>
 <ul class="simple">
@@ -414,19 +442,19 @@ or append to, or pass in a JSON file object.</p>
 </div>
 <img src="../_images/sphx_glr_plot_07-ModelObject_001.png" srcset="../_images/sphx_glr_plot_07-ModelObject_001.png" alt="plot 07 ModelObject" class = "sphx-glr-single-img"/></section>
 <section id="creating-reports">
-<h4>Creating Reports<a class="headerlink" href="#creating-reports" title="Permalink to this heading">¶</a></h4>
+<h4>Creating Reports<a class="headerlink" href="#creating-reports" title="Link to this heading">¶</a></h4>
 <p>There is also functionality to save out a ‘report’ of a particular model fit.</p>
 <p>This generates and saves a PDF which contains the same output as
-<a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_results" title="specparam.SpectralModel.print_results"><code class="xref py py-meth docutils literal notranslate"><span class="pre">print_results()</span></code></a>,
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">print('results')()</span></code>,
 <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a>, and
-<a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_settings" title="specparam.SpectralModel.print_settings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">print_settings()</span></code></a>.</p>
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">print('settings')()</span></code>.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save out a report of the current model fit &amp; results</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.save_report" title="specparam.SpectralModel.save_report" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">save_report</span></a><span class="p">(</span><span class="s1">&#39;report&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/reports/save.py:63: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/miniconda3/envs/sphinx/lib/python3.13/site-packages/specparam/reports/save.py:63: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(create_file_path(file_name, file_path, SAVE_FORMAT))
-/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/reports/save.py:63: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/Users/tom/miniconda3/envs/sphinx/lib/python3.13/site-packages/specparam/reports/save.py:63: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(create_file_path(file_name, file_path, SAVE_FORMAT))
 </pre></div>
 </div>
@@ -434,17 +462,20 @@ or append to, or pass in a JSON file object.</p>
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h2>
 <p>We have now fully explored the <a class="reference internal" href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectralModel</span></code></a> object, and all it contains.
 Next, we will take a deeper dive into how to choose different modes for fitting
 the aperiodic component of power spectra.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.939 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.691 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-07-modelobject-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/dc557c3d7324b27fd9805affde63e53a/plot_07-ModelObject.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_07-ModelObject.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/d1db112fd93b95e0fc8f76f0d865c6d5/plot_07-ModelObject.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_07-ModelObject.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/07178b8d52f1fda69ecc972a1b406693/plot_07-ModelObject.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_07-ModelObject.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -463,8 +494,8 @@ the aperiodic component of power spectra.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

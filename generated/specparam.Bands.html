@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>specparam.Bands &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.Bands &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,19 +110,41 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">specparam.Bands</a><ul>
+<li><a class="reference internal" href="#specparam.Bands"><code class="docutils literal notranslate"><span class="pre">Bands</span></code></a><ul>
+<li><a class="reference internal" href="#specparam.Bands.__init__"><code class="docutils literal notranslate"><span class="pre">Bands.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.Bands.add_band"><code class="docutils literal notranslate"><span class="pre">Bands.add_band()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.Bands.definitions"><code class="docutils literal notranslate"><span class="pre">Bands.definitions</span></code></a></li>
+<li><a class="reference internal" href="#specparam.Bands.labels"><code class="docutils literal notranslate"><span class="pre">Bands.labels</span></code></a></li>
+<li><a class="reference internal" href="#specparam.Bands.n_bands"><code class="docutils literal notranslate"><span class="pre">Bands.n_bands</span></code></a></li>
+<li><a class="reference internal" href="#specparam.Bands.print"><code class="docutils literal notranslate"><span class="pre">Bands.print()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.Bands.remove_band"><code class="docutils literal notranslate"><span class="pre">Bands.remove_band()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples-using-specparam-bands">Examples using <code class="docutils literal notranslate"><span class="pre">specparam.Bands</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="specparam-bands">
-<h1>specparam.Bands<a class="headerlink" href="#specparam-bands" title="Permalink to this heading">¶</a></h1>
+<h1>specparam.Bands<a class="headerlink" href="#specparam-bands" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="specparam.Bands">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.</span></span><span class="sig-name descname"><span class="pre">Bands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/bands/bands.html#Bands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.Bands" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.</span></span><span class="sig-name descname"><span class="pre">Bands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/bands/bands.html#Bands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.Bands" title="Link to this definition">¶</a></dt>
 <dd><p>Frequency band definitions.</p>
-<p class="rubric">Examples</p>
-<p>Define a bands object storing canonical frequency bands:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bands</span> <span class="o">=</span> <span class="n">Bands</span><span class="p">({</span><span class="s1">&#39;theta&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="s1">&#39;alpha&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span> <span class="s1">&#39;beta&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">]})</span>
-</pre></div>
-</div>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -130,9 +153,14 @@
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Define a bands object storing canonical frequency bands:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bands</span> <span class="o">=</span> <span class="n">Bands</span><span class="p">({</span><span class="s1">&#39;theta&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="s1">&#39;alpha&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span> <span class="s1">&#39;beta&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">]})</span>
+</pre></div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.Bands.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/bands/bands.html#Bands.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.Bands.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/bands/bands.html#Bands.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.Bands.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize the Bands object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -162,7 +190,10 @@ Can only be specified if not providing <cite>input_bands</cite>.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#specparam.Bands.add_band" title="specparam.Bands.add_band"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_band</span></code></a>(label, band_definition)</p></td>
 <td><p>Add a new oscillation band definition.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.Bands.remove_band" title="specparam.Bands.remove_band"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_band</span></code></a>(label)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.Bands.print" title="specparam.Bands.print"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print</span></code></a>([concise])</p></td>
+<td><p>Print out the current band definitions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.Bands.remove_band" title="specparam.Bands.remove_band"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_band</span></code></a>(label)</p></td>
 <td><p>Remove a previously defined oscillation band.</p></td>
 </tr>
 </tbody>
@@ -183,7 +214,7 @@ Can only be specified if not providing <cite>input_bands</cite>.</p>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.Bands.add_band">
-<span class="sig-name descname"><span class="pre">add_band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band_definition</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/bands/bands.html#Bands.add_band"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.Bands.add_band" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band_definition</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/bands/bands.html#Bands.add_band"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.Bands.add_band" title="Link to this definition">¶</a></dt>
 <dd><p>Add a new oscillation band definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -199,25 +230,39 @@ Can only be specified if not providing <cite>input_bands</cite>.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="specparam.Bands.definitions">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">definitions</span></span><a class="headerlink" href="#specparam.Bands.definitions" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">definitions</span></span><a class="headerlink" href="#specparam.Bands.definitions" title="Link to this definition">¶</a></dt>
 <dd><p>Frequency definitions for all the bands defined in the object.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="specparam.Bands.labels">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">labels</span></span><a class="headerlink" href="#specparam.Bands.labels" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">labels</span></span><a class="headerlink" href="#specparam.Bands.labels" title="Link to this definition">¶</a></dt>
 <dd><p>Labels for all the bands defined in the object.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="specparam.Bands.n_bands">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_bands</span></span><a class="headerlink" href="#specparam.Bands.n_bands" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_bands</span></span><a class="headerlink" href="#specparam.Bands.n_bands" title="Link to this definition">¶</a></dt>
 <dd><p>The number of bands defined in the object.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="specparam.Bands.print">
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/bands/bands.html#Bands.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.Bands.print" title="Link to this definition">¶</a></dt>
+<dd><p>Print out the current band definitions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print a concise version of the report.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="specparam.Bands.remove_band">
-<span class="sig-name descname"><span class="pre">remove_band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/bands/bands.html#Bands.remove_band"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.Bands.remove_band" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">remove_band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/bands/bands.html#Bands.remove_band"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.Bands.remove_band" title="Link to this definition">¶</a></dt>
 <dd><p>Remove a previously defined oscillation band.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -232,42 +277,42 @@ Can only be specified if not providing <cite>input_bands</cite>.</p>
 </dd></dl>
 
 <section id="examples-using-specparam-bands">
-<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.Bands</span></code><a class="headerlink" href="#examples-using-specparam-bands" title="Permalink to this heading">¶</a></h2>
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.Bands</span></code><a class="headerlink" href="#examples-using-specparam-bands" title="Link to this heading">¶</a></h2>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example covers utilities for extracting and exporting model fit results."><img alt="" src="../_images/sphx_glr_plot_data_exporting_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/manage/plot_data_exporting.html#sphx-glr-auto-examples-manage-plot-data-exporting-py"><span class="std std-ref">Exporting Model Results</span></a></p>
+<p><a class="reference internal" href="../auto_examples/manage/plot_data_exporting.html"><span class="doc">Exporting Model Results</span></a></p>
   <div class="sphx-glr-thumbnail-title">Exporting Model Results</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Examples with combining, sub-selecting, dropping, and averaging power spectrum models."><img alt="" src="../_images/sphx_glr_plot_manipulating_models_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/manage/plot_manipulating_models.html#sphx-glr-auto-examples-manage-plot-manipulating-models-py"><span class="std std-ref">Manipulating Objects</span></a></p>
+<p><a class="reference internal" href="../auto_examples/manage/plot_manipulating_models.html"><span class="doc">Manipulating Objects</span></a></p>
   <div class="sphx-glr-thumbnail-title">Manipulating Objects</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Plotting power spectrum model parameters and components."><img alt="" src="../_images/sphx_glr_plot_model_components_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/plots/plot_model_components.html#sphx-glr-auto-examples-plots-plot-model-components-py"><span class="std std-ref">Plot Model Components</span></a></p>
+<p><a class="reference internal" href="../auto_examples/plots/plot_model_components.html"><span class="doc">Plot Model Components</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot Model Components</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Introducing the objects used within the model object."><img alt="" src="../_images/sphx_glr_plot_sub_objects_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html#sphx-glr-auto-examples-customize-plot-sub-objects-py"><span class="std std-ref">Model Sub-Objects</span></a></p>
+<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html"><span class="doc">Model Sub-Objects</span></a></p>
   <div class="sphx-glr-thumbnail-title">Model Sub-Objects</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="An example analysis applied to developmental data, demonstrating best practices."><img alt="" src="../_images/sphx_glr_plot_dev_demo_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/analyses/plot_dev_demo.html#sphx-glr-auto-examples-analyses-plot-dev-demo-py"><span class="std std-ref">Developmental Data Demo</span></a></p>
+<p><a class="reference internal" href="../auto_examples/analyses/plot_dev_demo.html"><span class="doc">Developmental Data Demo</span></a></p>
   <div class="sphx-glr-thumbnail-title">Developmental Data Demo</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Parameterizing neural power spectra with MNE, doing a topographical analysis."><img alt="" src="../_images/sphx_glr_plot_mne_example_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/analyses/plot_mne_example.html#sphx-glr-auto-examples-analyses-plot-mne-example-py"><span class="std std-ref">Topographical Analyses with MNE</span></a></p>
+<p><a class="reference internal" href="../auto_examples/analyses/plot_mne_example.html"><span class="doc">Topographical Analyses with MNE</span></a></p>
   <div class="sphx-glr-thumbnail-title">Topographical Analyses with MNE</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Use extensions of the model object to fit power spectra across time."><img alt="" src="../_images/sphx_glr_plot_09-TimeModels_thumb.png" />
-<p><a class="reference internal" href="../auto_tutorials/plot_09-TimeModels.html#sphx-glr-auto-tutorials-plot-09-timemodels-py"><span class="std std-ref">09: Fitting Models over Time</span></a></p>
+<p><a class="reference internal" href="../auto_tutorials/plot_09-TimeModels.html"><span class="doc">09: Fitting Models over Time</span></a></p>
   <div class="sphx-glr-thumbnail-title">09: Fitting Models over Time</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Analyze results from fitting power spectrum models."><img alt="" src="../_images/sphx_glr_plot_11-FurtherAnalysis_thumb.png" />
-<p><a class="reference internal" href="../auto_tutorials/plot_11-FurtherAnalysis.html#sphx-glr-auto-tutorials-plot-11-furtheranalysis-py"><span class="std std-ref">11: Further Analysis</span></a></p>
+<p><a class="reference internal" href="../auto_tutorials/plot_11-FurtherAnalysis.html"><span class="doc">11: Further Analysis</span></a></p>
   <div class="sphx-glr-thumbnail-title">11: Further Analysis</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Examining the results of filtering aperiodic signals."><img alt="" src="../_images/sphx_glr_plot_IfYouFilterTheyWillCome_thumb.png" />
-<p><a class="reference internal" href="../auto_motivations/concepts/plot_IfYouFilterTheyWillCome.html#sphx-glr-auto-motivations-concepts-plot-ifyoufiltertheywillcome-py"><span class="std std-ref">Finding ‘Oscillations’ With Filters</span></a></p>
+<p><a class="reference internal" href="../auto_motivations/concepts/plot_IfYouFilterTheyWillCome.html"><span class="doc">Finding ‘Oscillations’ With Filters</span></a></p>
   <div class="sphx-glr-thumbnail-title">Finding 'Oscillations' With Filters</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Comparing how &#x27;Band-by-Band&#x27; approaches relate to periodic &amp; aperiodic components."><img alt="" src="../_images/sphx_glr_plot_BandByBand_thumb.png" />
-<p><a class="reference internal" href="../auto_motivations/measurements/plot_BandByBand.html#sphx-glr-auto-motivations-measurements-plot-bandbyband-py"><span class="std std-ref">Band-by-Band</span></a></p>
+<p><a class="reference internal" href="../auto_motivations/measurements/plot_BandByBand.html"><span class="doc">Band-by-Band</span></a></p>
   <div class="sphx-glr-thumbnail-title">Band-by-Band</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Exploring how band ratio measures relate to periodic &amp; aperiodic activity."><img alt="" src="../_images/sphx_glr_plot_BandRatios_thumb.png" />
-<p><a class="reference internal" href="../auto_motivations/measurements/plot_BandRatios.html#sphx-glr-auto-motivations-measurements-plot-bandratios-py"><span class="std std-ref">Band Ratio Measures</span></a></p>
+<p><a class="reference internal" href="../auto_motivations/measurements/plot_BandRatios.html"><span class="doc">Band Ratio Measures</span></a></p>
   <div class="sphx-glr-thumbnail-title">Band Ratio Measures</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Demonstrating how changes in periodic &amp; aperiodic parameters can be conflated."><img alt="" src="../_images/sphx_glr_plot_PeriodicAperiodicFeatures_thumb.png" />
-<p><a class="reference internal" href="../auto_motivations/measurements/plot_PeriodicAperiodicFeatures.html#sphx-glr-auto-motivations-measurements-plot-periodicaperiodicfeatures-py"><span class="std std-ref">Conflating Periodic &amp; Aperiodic Changes</span></a></p>
+<p><a class="reference internal" href="../auto_motivations/measurements/plot_PeriodicAperiodicFeatures.html"><span class="doc">Conflating Periodic &amp; Aperiodic Changes</span></a></p>
   <div class="sphx-glr-thumbnail-title">Conflating Periodic & Aperiodic Changes</div>
 </div></div></section>
 </section>
@@ -284,8 +329,8 @@ Can only be specified if not providing <cite>input_bands</cite>.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

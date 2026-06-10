@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.algorithms.algorithm &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.algorithms.algorithm &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -55,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -108,24 +109,37 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <h1>Source code for specparam.algorithms.algorithm</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Define object to manage algorithm implementations.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_input_options</span>
-<span class="kn">from</span> <span class="nn">specparam.algorithms.settings</span> <span class="kn">import</span> <span class="n">SettingsDefinition</span><span class="p">,</span> <span class="n">SettingsValues</span>
-<span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="n">docs_get_section</span><span class="p">,</span> <span class="n">replace_docstring_sections</span>
-<span class="kn">from</span> <span class="nn">specparam.reports.strings</span> <span class="kn">import</span> <span class="n">gen_settings_str</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.checks</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_input_options</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.algorithms.settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">SettingsDefinition</span><span class="p">,</span> <span class="n">SettingsValues</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.modutils.docs</span><span class="w"> </span><span class="kn">import</span> <span class="n">docs_get_section</span><span class="p">,</span> <span class="n">replace_docstring_sections</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.reports.strings</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_settings_str</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
 <span class="n">DATA_FORMATS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;spectrum&#39;</span><span class="p">,</span> <span class="s1">&#39;spectra&#39;</span><span class="p">,</span> <span class="s1">&#39;spectrogram&#39;</span><span class="p">,</span> <span class="s1">&#39;spectrograms&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Algorithm"><a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm">[docs]</a><span class="k">class</span> <span class="nc">Algorithm</span><span class="p">():</span>
+<div class="viewcode-block" id="Algorithm">
+<a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Algorithm</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Template object for defining a fit algorithm.</span>
 
 <span class="sd">    Parameters</span>
@@ -146,12 +160,17 @@
 <span class="sd">        Data object with spectral data and metadata.</span>
 <span class="sd">    results : Results</span>
 <span class="sd">        Results object with model fit results and metrics.</span>
+<span class="sd">    model : SpectralModel, optional</span>
+<span class="sd">        The model object this object is linked to, to provide access to other attributes.</span>
 <span class="sd">    debug :  bool</span>
 <span class="sd">        Whether to run in debug state, raising an error if encountered during fitting.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Algorithm.__init__"><a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">public_settings</span><span class="p">,</span> <span class="n">private_settings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;spectrum&#39;</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm.__init__">
+<a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">public_settings</span><span class="p">,</span> <span class="n">private_settings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;spectrum&#39;</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Algorithm object.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
@@ -177,18 +196,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset_subobjects</span><span class="p">(</span><span class="n">modes</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_debug</span><span class="p">(</span><span class="n">debug</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_debug</span><span class="p">(</span><span class="n">debug</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">model</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_fit_prechecks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fit_prechecks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Pre-checks to run before the fit function - if are some, overload this function.&quot;&quot;&quot;</span>
 
 
-    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Required fit function, to be overloaded.&quot;&quot;&quot;</span>
 
 
-<div class="viewcode-block" id="Algorithm.add_settings"><a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.add_settings">[docs]</a>    <span class="k">def</span> <span class="nf">add_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">settings</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm.add_settings">
+<a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.add_settings">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">settings</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add settings into object from a ModelSettings object.</span>
 
 <span class="sd">        Parameters</span>
@@ -201,7 +225,10 @@
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">,</span> <span class="n">setting</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">setting</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Algorithm.get_settings"><a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.get_settings">[docs]</a>    <span class="k">def</span> <span class="nf">get_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Algorithm.get_settings">
+<a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.get_settings">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return user defined settings of the current object.</span>
 
 <span class="sd">        Returns</span>
@@ -214,13 +241,19 @@
             <span class="o">**</span><span class="p">{</span><span class="n">key</span> <span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">public_settings</span><span class="o">.</span><span class="n">names</span><span class="p">})</span></div>
 
 
-<div class="viewcode-block" id="Algorithm.get_debug"><a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.get_debug">[docs]</a>    <span class="k">def</span> <span class="nf">get_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Algorithm.get_debug">
+<a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.get_debug">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return object debug status.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debug</span></div>
 
 
-<div class="viewcode-block" id="Algorithm.set_debug"><a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.set_debug">[docs]</a>    <span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debug</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Algorithm.set_debug">
+<a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.set_debug">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debug</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set debug state, which controls if an error is raised if model fitting is unsuccessful.</span>
 
 <span class="sd">        Parameters</span>
@@ -232,7 +265,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_debug</span> <span class="o">=</span> <span class="n">debug</span></div>
 
 
-<div class="viewcode-block" id="Algorithm.print"><a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.print">[docs]</a>    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Algorithm.print">
+<a class="viewcode-back" href="../../../generated/specparam.algorithms.algorithm.Algorithm.html#specparam.algorithms.algorithm.Algorithm.print">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Print out the algorithm name and fit settings.</span>
 
 <span class="sd">        Parameters</span>
@@ -240,13 +276,14 @@
 <span class="sd">        description : bool, optional, default: False</span>
 <span class="sd">            Whether to print out a description with current settings.</span>
 <span class="sd">        concise : bool, optional, default: False</span>
-<span class="sd">            Whether to print the report in a concise mode, or not.</span>
+<span class="sd">            Whether to print a concise version of the report.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="n">gen_settings_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">concise</span><span class="p">))</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_reset_subobjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reset_subobjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset links to sub-objects (mode / data / results).</span>
 
 <span class="sd">        Parameters</span>
@@ -267,6 +304,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">results</span></div>
 
 
+
 <span class="c1">## AlgorithmCF</span>
 
 <span class="n">CURVE_FIT_SETTINGS</span> <span class="o">=</span> <span class="n">SettingsDefinition</span><span class="p">({</span>
@@ -282,7 +320,7 @@
 <span class="p">})</span>
 
 <span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">Algorithm</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">)])</span>
-<span class="k">class</span> <span class="nc">AlgorithmCF</span><span class="p">(</span><span class="n">Algorithm</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AlgorithmCF</span><span class="p">(</span><span class="n">Algorithm</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Template object for defining a fit algorithm that uses `curve_fit`.</span>
 
 <span class="sd">    Parameters</span>
@@ -290,20 +328,21 @@
 <span class="sd">    % copied in from Algorithm</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">public_settings</span><span class="p">,</span> <span class="n">private_settings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;spectrum&#39;</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">public_settings</span><span class="p">,</span> <span class="n">private_settings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;spectrum&#39;</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Algorithm object.&quot;&quot;&quot;</span>
 
         <span class="n">Algorithm</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
                            <span class="n">public_settings</span><span class="o">=</span><span class="n">public_settings</span><span class="p">,</span> <span class="n">private_settings</span><span class="o">=</span><span class="n">private_settings</span><span class="p">,</span>
                            <span class="n">data_format</span><span class="o">=</span><span class="n">data_format</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span>
-                           <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span>
+                           <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_cf_settings_desc</span> <span class="o">=</span> <span class="n">CURVE_FIT_SETTINGS</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_cf_settings</span> <span class="o">=</span> <span class="n">SettingsValues</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cf_settings_desc</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">_initialize_bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_initialize_bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a bounds definition.</span>
 
 <span class="sd">        Parameters</span>
@@ -334,7 +373,7 @@
         <span class="k">return</span> <span class="n">bounds</span>
 
 
-    <span class="k">def</span> <span class="nf">_initialize_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_initialize_guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a guess definition.</span>
 
 <span class="sd">        Parameters</span>
@@ -364,8 +403,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

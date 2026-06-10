@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>specparam.SpectralTimeEventModel &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.SpectralTimeEventModel &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,28 +110,70 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">specparam.SpectralTimeEventModel</a><ul>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel</span></code></a><ul>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.__init__"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.add_data"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.add_data()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.add_modes"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.add_modes()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.convert_results"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.convert_results()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.copy"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.copy()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.fit"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.fit()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_group"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.get_group()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_metrics"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.get_metrics()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_model"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.get_model()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_params"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.get_params()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.load"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.load()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.plot"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.plot()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.print"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.print()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.report"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.report()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.save"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.save()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.save_model_report"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.save_model_report()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.save_report"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.save_report()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.SpectralTimeEventModel.to_df"><code class="docutils literal notranslate"><span class="pre">SpectralTimeEventModel.to_df()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples-using-specparam-spectraltimeeventmodel">Examples using <code class="docutils literal notranslate"><span class="pre">specparam.SpectralTimeEventModel</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="specparam-spectraltimeeventmodel">
-<h1>specparam.SpectralTimeEventModel<a class="headerlink" href="#specparam-spectraltimeeventmodel" title="Permalink to this heading">¶</a></h1>
+<h1>specparam.SpectralTimeEventModel<a class="headerlink" href="#specparam-spectraltimeeventmodel" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.</span></span><span class="sig-name descname"><span class="pre">SpectralTimeEventModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.</span></span><span class="sig-name descname"><span class="pre">SpectralTimeEventModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel" title="Link to this definition">¶</a></dt>
 <dd><p>Model a set of event as a combination of aperiodic and periodic components.</p>
 <p>WARNING: frequency and power values inputs must be in linear space. Passing in logged
 frequencies and/or power spectra is not detected, and will silently produce incorrect results.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>peak_width_limits</strong><span class="classifier">tuple of (float, float), optional, default: (0.5, 12.0)</span></dt><dd><p>Limits on possible peak width, in Hz, as (lower_bound, upper_bound).</p>
+<dd class="field-odd"><dl>
+<dt><strong>peak_width_limits</strong><span class="classifier">tuple of (float, float), optional, default: (0.5, 12.0)</span></dt><dd><blockquote>
+<div><p>Limits on possible peak width, in Hz, as (lower_bound, upper_bound).</p>
+</div></blockquote>
+<dl class="simple">
+<dt>max_n_peaks<span class="classifier">int, optional, default: inf</span></dt><dd><p>Maximum number of peaks to fit.</p>
 </dd>
-<dt><strong>max_n_peaks</strong><span class="classifier">int, optional, default: inf</span></dt><dd><p>Maximum number of peaks to fit.</p>
-</dd>
-<dt><strong>min_peak_height</strong><span class="classifier">float, optional, default: 0</span></dt><dd><p>Absolute threshold for detecting peaks.
+<dt>min_peak_height<span class="classifier">float, optional, default: 0</span></dt><dd><p>Absolute threshold for detecting peaks.
 This threshold is defined in absolute units of the power spectrum (log power).</p>
 </dd>
-<dt><strong>peak_threshold</strong><span class="classifier">float, optional, default: 2.0</span></dt><dd><p>Relative threshold for detecting peaks.
+<dt>peak_threshold<span class="classifier">float, optional, default: 2.0</span></dt><dd><p>Relative threshold for detecting peaks.
 Threshold is defined in relative units of the power spectrum (standard deviation).</p>
+</dd>
+</dl>
 </dd>
 <dt><strong>aperiodic_mode</strong><span class="classifier">{‘fixed’, ‘knee’} or Mode</span></dt><dd><p>Which approach to take for fitting the aperiodic component.</p>
 </dd>
@@ -156,6 +199,18 @@ These are passed into the algorithm object.</p>
 </dd>
 </dl>
 </dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>algorithm</strong><span class="classifier">Algorithm</span></dt><dd><p>Algorithm object with model fitting settings and procedures.</p>
+</dd>
+<dt><strong>modes</strong><span class="classifier">Modes</span></dt><dd><p>Modes object with fit mode definitions.</p>
+</dd>
+<dt><strong>data</strong><span class="classifier">Data</span></dt><dd><p>Data object with spectral data and metadata.</p>
+</dd>
+<dt><strong>results</strong><span class="classifier">Results</span></dt><dd><p>Results object with model fit results and metrics.</p>
+</dd>
+</dl>
+</dd>
 </dl>
 <p class="rubric">Notes</p>
 <ul class="simple">
@@ -172,23 +227,9 @@ Event related, temporally organized results are collected into the
 per band (depending on settings). Note that the <cite>results.event_group_results</cite> attribute
 is also available, which maintains the full model results.</p></li>
 </ul>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>algorithm</strong><span class="classifier">Algorithm</span></dt><dd><p>Algorithm object with model fitting settings and procedures.</p>
-</dd>
-<dt><strong>modes</strong><span class="classifier">Modes</span></dt><dd><p>Modes object with fit mode definitions.</p>
-</dd>
-<dt><strong>data</strong><span class="classifier">Data</span></dt><dd><p>Data object with spectral data and metadata.</p>
-</dd>
-<dt><strong>results</strong><span class="classifier">Results</span></dt><dd><p>Results object with model fit results and metrics.</p>
-</dd>
-</dl>
-</dd>
-</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize event model object.</p>
 </dd></dl>
 
@@ -213,56 +254,47 @@ is also available, which maintains the full model results.</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.fit" title="specparam.SpectralTimeEventModel.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>([freqs, spectrograms, freq_range, ...])</p></td>
 <td><p>Fit a set of events.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_data" title="specparam.SpectralTimeEventModel.get_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_data</span></code></a>([component, space])</p></td>
-<td><p>Get a data component.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_group" title="specparam.SpectralTimeEventModel.get_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_group</span></code></a>(event_inds, window_inds[, output_type])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_group" title="specparam.SpectralTimeEventModel.get_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_group</span></code></a>(event_inds, window_inds[, output_type])</p></td>
 <td><p>Get a new model object with the specified sub-selection of model fits.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_metrics" title="specparam.SpectralTimeEventModel.get_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metrics</span></code></a>(category[, measure])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_metrics" title="specparam.SpectralTimeEventModel.get_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metrics</span></code></a>(category[, measure])</p></td>
 <td><p>Get requested metric(s) from the object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_model" title="specparam.SpectralTimeEventModel.get_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_model</span></code></a>([event_ind, window_ind, regenerate])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_model" title="specparam.SpectralTimeEventModel.get_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_model</span></code></a>([event_ind, window_ind, regenerate])</p></td>
 <td><p>Get a model fit object for a specified index.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_params" title="specparam.SpectralTimeEventModel.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>(component[, field])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.get_params" title="specparam.SpectralTimeEventModel.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>(component[, field])</p></td>
 <td><p>Return model fit parameters for specified feature(s).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.load" title="specparam.SpectralTimeEventModel.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file_name[, file_path, convert_results])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.load" title="specparam.SpectralTimeEventModel.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file_name[, file_path, convert_results])</p></td>
 <td><p>Load data from file(s).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.plot" title="specparam.SpectralTimeEventModel.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([save_fig, file_name, file_path])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.plot" title="specparam.SpectralTimeEventModel.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([save_fig, file_name, file_path])</p></td>
 <td><p>Plot a figure with subplots visualizing the parameters from a SpectralTimeEventModel object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.print_report_issue" title="specparam.SpectralTimeEventModel.print_report_issue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_report_issue</span></code></a>([concise])</p></td>
-<td><p>Prints instructions on how to report bugs and/or problematic fits.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.print" title="specparam.SpectralTimeEventModel.print"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print</span></code></a>([info, concise])</p></td>
+<td><p>Print out information.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.print_results" title="specparam.SpectralTimeEventModel.print_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_results</span></code></a>([concise])</p></td>
-<td><p>Print out SpectralTimeEventModel results.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.print_settings" title="specparam.SpectralTimeEventModel.print_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_settings</span></code></a>([description, concise])</p></td>
-<td><p>Print out the current settings.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.report" title="specparam.SpectralTimeEventModel.report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">report</span></code></a>([freqs, spectrograms, freq_range, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.report" title="specparam.SpectralTimeEventModel.report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">report</span></code></a>([freqs, spectrograms, freq_range, ...])</p></td>
 <td><p>Fit a set of events and display a report, with a plot and printed results.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.save" title="specparam.SpectralTimeEventModel.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(file_name[, file_path, append, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.save" title="specparam.SpectralTimeEventModel.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(file_name[, file_path, append, ...])</p></td>
 <td><p>Save out results and/or settings from event object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.save_model_report" title="specparam.SpectralTimeEventModel.save_model_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_model_report</span></code></a>(event_index, window_index, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.save_model_report" title="specparam.SpectralTimeEventModel.save_model_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_model_report</span></code></a>(event_index, window_index, ...)</p></td>
 <td><p>&quot;Save out an individual model report for a specified model fit.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.save_report" title="specparam.SpectralTimeEventModel.save_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_report</span></code></a>(file_name[, file_path, add_settings])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.save_report" title="specparam.SpectralTimeEventModel.save_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_report</span></code></a>(file_name[, file_path, add_settings])</p></td>
 <td><p>Generate and save out a PDF report for models of a set of events.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.to_df" title="specparam.SpectralTimeEventModel.to_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_df</span></code></a>([bands])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.SpectralTimeEventModel.to_df" title="specparam.SpectralTimeEventModel.to_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_df</span></code></a>([bands])</p></td>
 <td><p>Convert and extract the model results as a pandas object.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.add_data">
-<span class="sig-name descname"><span class="pre">add_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrograms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.add_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.add_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrograms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.add_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.add_data" title="Link to this definition">¶</a></dt>
 <dd><p>Add data (frequencies and spectrograms) to the current object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -288,7 +320,7 @@ by this method call, unless explicitly set not to.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.add_modes">
-<span class="sig-name descname"><span class="pre">add_modes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aperiodic_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeEventModel.add_modes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_modes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aperiodic_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeEventModel.add_modes" title="Link to this definition">¶</a></dt>
 <dd><p>Add modes definition to the object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -304,7 +336,7 @@ by this method call, unless explicitly set not to.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.convert_results">
-<span class="sig-name descname"><span class="pre">convert_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.convert_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.convert_results" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">convert_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.convert_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.convert_results" title="Link to this definition">¶</a></dt>
 <dd><p>Convert results to be organized across time &amp; events.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -320,13 +352,13 @@ If not provided, uses band definition available in object.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.copy">
-<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeEventModel.copy" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeEventModel.copy" title="Link to this definition">¶</a></dt>
 <dd><p>Return a copy of the current object.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrograms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prechecks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.fit" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrograms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prechecks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.fit" title="Link to this definition">¶</a></dt>
 <dd><p>Fit a set of events.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -359,45 +391,8 @@ If Bands or dict, uses band definitions. If int, extracts the first ‘n’ peak
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.get_data">
-<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeEventModel.get_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a data component.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>component</strong><span class="classifier">{‘full’, ‘aperiodic’, ‘peak’}</span></dt><dd><dl class="simple">
-<dt>Which data component to return.</dt><dd><p>‘full’ - full power spectrum
-‘aperiodic’ - isolated aperiodic data component
-‘peak’ - isolated peak data component</p>
-</dd>
-</dl>
-</dd>
-<dt><strong>space</strong><span class="classifier">{‘log’, ‘linear’}</span></dt><dd><dl class="simple">
-<dt>Which space to return the data component in.</dt><dd><p>‘log’ - returns in log10 space.
-‘linear’ - returns in linear space.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>output</strong><span class="classifier">1d array</span></dt><dd><p>Specified data component, in specified spacing.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>The ‘space’ parameter doesn’t just define the spacing of the data component
-values, but rather defines the space of the additive data definition such that
-<cite>power_spectrum = aperiodic_component + peak_component</cite>.
-With space set as ‘log’, this combination holds in log space.
-With space set as ‘linear’, this combination holds in linear space.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.get_group">
-<span class="sig-name descname"><span class="pre">get_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_inds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_inds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'event'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.get_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.get_group" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_inds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_inds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'event'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.get_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.get_group" title="Link to this definition">¶</a></dt>
 <dd><p>Get a new model object with the specified sub-selection of model fits.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -425,12 +420,16 @@ If None, selects all available indices.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.get_metrics">
-<span class="sig-name descname"><span class="pre">get_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeEventModel.get_metrics" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeEventModel.get_metrics" title="Link to this definition">¶</a></dt>
 <dd><p>Get requested metric(s) from the object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>Name of the specific measure(s) to return.</strong></dt><dd></dd>
+<dt><strong>category</strong><span class="classifier">str</span></dt><dd><p>Category of metric to extract, e.g. ‘error’ or ‘gof’.
+If ‘all’, returns all available metrics.</p>
+</dd>
+<dt><strong>measure</strong><span class="classifier">str, optional</span></dt><dd><p>Name of the specific measure(s) to return.</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -444,7 +443,7 @@ If None, selects all available indices.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.get_model">
-<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_ind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_ind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regenerate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.get_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.get_model" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_ind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_ind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regenerate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.get_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.get_model" title="Link to this definition">¶</a></dt>
 <dd><p>Get a model fit object for a specified index.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -468,11 +467,13 @@ If None, selects all available indices.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeEventModel.get_params" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeEventModel.get_params" title="Link to this definition">¶</a></dt>
 <dd><p>Return model fit parameters for specified feature(s).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>component</strong><span class="classifier">{‘aperiodic’, ‘periodic’}</span></dt><dd><p>Name of the component to extract parameters for.</p>
+</dd>
 <dt><strong>field</strong><span class="classifier">str or int, optional</span></dt><dd><p>Column name / index to extract from selected data, if requested.
 If str, should align with a parameter label for the component fit mode.</p>
 </dd>
@@ -500,7 +501,7 @@ returned array, indicating the index that the peak came from.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.load">
-<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.load" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.load" title="Link to this definition">¶</a></dt>
 <dd><p>Load data from file(s).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -518,7 +519,7 @@ returned array, indicating the index that the peak came from.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.plot">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plot_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.plot" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plot_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.plot" title="Link to this definition">¶</a></dt>
 <dd><p>Plot a figure with subplots visualizing the parameters from a SpectralTimeEventModel object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -537,43 +538,24 @@ returned array, indicating the index that the peak came from.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.print_report_issue">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">print_report_issue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeEventModel.print_report_issue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prints instructions on how to report bugs and/or problematic fits.</p>
+<dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.print">
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'results'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.print" title="Link to this definition">¶</a></dt>
+<dd><p>Print out information.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print the report in a concise mode, or not.</p>
+<dt><strong>info</strong><span class="classifier">{‘results’, ‘algorithm’, ‘settings’, ‘data’, ‘modes’, ‘metrics’, ‘bands’, ‘issue’}</span></dt><dd><dl class="simple">
+<dt>Which information to print:</dt><dd><p>‘results’ : print information on the fit results
+‘algorithm’ or ‘settings: print information on the fit algorithm &amp; settings
+‘data’ : print information on the data
+‘modes’ : print information on the fit modes
+‘metrics’ : print information on the defined fit metrics
+‘bands’ : print information on any defined frequency bands
+‘issue’ : print instructions on how to report bugs and/or problematic fits</p>
 </dd>
 </dl>
 </dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.print_results">
-<span class="sig-name descname"><span class="pre">print_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.print_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.print_results" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print out SpectralTimeEventModel results.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print the report in a concise mode, or not.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.print_settings">
-<span class="sig-name descname"><span class="pre">print_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#specparam.SpectralTimeEventModel.print_settings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print out the current settings.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>description</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out a description with current settings.</p>
-</dd>
-<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print the report in a concise mode, or not.</p>
+<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print a concise version of the report.</p>
 </dd>
 </dl>
 </dd>
@@ -582,7 +564,7 @@ returned array, indicating the index that the peak came from.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.report">
-<span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrograms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.report" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrograms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.report" title="Link to this definition">¶</a></dt>
 <dd><p>Fit a set of events and display a report, with a plot and printed results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -612,7 +594,7 @@ If Bands or dict, uses band definitions. If int, extracts the first ‘n’ peak
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.save" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.save" title="Link to this definition">¶</a></dt>
 <dd><p>Save out results and/or settings from event object. Saves out to a JSON file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -643,7 +625,7 @@ This option is only valid (and only used) if ‘file_name’ is a str.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.save_model_report">
-<span class="sig-name descname"><span class="pre">save_model_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plot_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.save_model_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.save_model_report" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">save_model_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plot_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.save_model_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.save_model_report" title="Link to this definition">¶</a></dt>
 <dd><p>“Save out an individual model report for a specified model fit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -667,7 +649,7 @@ This option is only valid (and only used) if ‘file_name’ is a str.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.save_report">
-<span class="sig-name descname"><span class="pre">save_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.save_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.save_report" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">save_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.save_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.save_report" title="Link to this definition">¶</a></dt>
 <dd><p>Generate and save out a PDF report for models of a set of events.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -685,7 +667,7 @@ This option is only valid (and only used) if ‘file_name’ is a str.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.SpectralTimeEventModel.to_df">
-<span class="sig-name descname"><span class="pre">to_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.to_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.to_df" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">to_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/models/event.html#SpectralTimeEventModel.to_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.SpectralTimeEventModel.to_df" title="Link to this definition">¶</a></dt>
 <dd><p>Convert and extract the model results as a pandas object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -708,12 +690,12 @@ If provided, re-extracts peak features; if not, converts from <cite>event_group_
 </dd></dl>
 
 <section id="examples-using-specparam-spectraltimeeventmodel">
-<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.SpectralTimeEventModel</span></code><a class="headerlink" href="#examples-using-specparam-spectraltimeeventmodel" title="Permalink to this heading">¶</a></h2>
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.SpectralTimeEventModel</span></code><a class="headerlink" href="#examples-using-specparam-spectraltimeeventmodel" title="Link to this heading">¶</a></h2>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Introducing the objects used within the model object."><img alt="" src="../_images/sphx_glr_plot_sub_objects_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html#sphx-glr-auto-examples-customize-plot-sub-objects-py"><span class="std std-ref">Model Sub-Objects</span></a></p>
+<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html"><span class="doc">Model Sub-Objects</span></a></p>
   <div class="sphx-glr-thumbnail-title">Model Sub-Objects</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Use extensions of the model object to fit power spectra across time."><img alt="" src="../_images/sphx_glr_plot_09-TimeModels_thumb.png" />
-<p><a class="reference internal" href="../auto_tutorials/plot_09-TimeModels.html#sphx-glr-auto-tutorials-plot-09-timemodels-py"><span class="std std-ref">09: Fitting Models over Time</span></a></p>
+<p><a class="reference internal" href="../auto_tutorials/plot_09-TimeModels.html"><span class="doc">09: Fitting Models over Time</span></a></p>
   <div class="sphx-glr-thumbnail-title">09: Fitting Models over Time</div>
 </div></div></section>
 </section>
@@ -730,8 +712,8 @@ If provided, re-extracts peak features; if not, converts from <cite>event_group_
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Rhythmicity of Time Series &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <title>Rhythmicity of Time Series &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,55 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Rhythmicity of Time Series</a><ul>
+<li><a class="reference internal" href="#id1">Rhythmicity of Time Series</a><ul>
+<li><a class="reference internal" href="#the-fourier-theorem">The Fourier Theorem</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#frequency-representations-of-aperiodic-signals">Frequency Representations of Aperiodic Signals</a><ul>
+<li><a class="reference internal" href="#the-dirac-delta">The Dirac Delta</a><ul>
+<li><a class="reference internal" href="#section-conclusions">Section Conclusions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#colored-noise-signals">Colored Noise Signals</a><ul>
+<li><a class="reference internal" href="#white-noise">White Noise</a></li>
+<li><a class="reference internal" href="#pink-noise">Pink Noise</a></li>
+<li><a class="reference internal" href="#section-conclusion">Section Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#frequency-representations-of-rhythmic-signals">Frequency Representations of Rhythmic Signals</a><ul>
+<li><a class="reference internal" href="#sinusoidal-signals">Sinusoidal Signals</a><ul>
+<li><a class="reference internal" href="#id2">Section Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#frequency-representations-of-complex-signals">Frequency Representations of Complex Signals</a><ul>
+<li><a class="reference internal" href="#combined-aperiodic-periodic-signals">Combined Aperiodic &amp; Periodic Signals</a><ul>
+<li><a class="reference internal" href="#id3">Section Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,13 +166,13 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="rhythmicity-of-time-series">
-<span id="sphx-glr-auto-motivations-concepts-plot-doyouevenoscillate-py"></span><h1>Rhythmicity of Time Series<a class="headerlink" href="#rhythmicity-of-time-series" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-motivations-concepts-plot-doyouevenoscillate-py"></span><h1>Rhythmicity of Time Series<a class="headerlink" href="#rhythmicity-of-time-series" title="Link to this heading">¶</a></h1>
 <p>Exploring the rhythmicity of time series and their frequency representations.</p>
 <p>This example uses the
 <a class="reference external" href="https://neurodsp-tools.github.io/">neurodsp</a>
 module for time series simulations &amp; analyses.</p>
 <section id="id1">
-<h2>Rhythmicity of Time Series<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<h2>Rhythmicity of Time Series<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>Central to the motivation for parameterizing neural power is the claim that power at a
 given frequency is not sufficient to claim that there is evidence for rhythmic, or
 periodic, activity at that frequency.</p>
@@ -131,7 +180,7 @@ periodic, activity at that frequency.</p>
 time domain, and their frequency domain representations. We will use these signals to
 motivate if and when signals should be interpreted as containing periodic activity.</p>
 <section id="the-fourier-theorem">
-<h3>The Fourier Theorem<a class="headerlink" href="#the-fourier-theorem" title="Permalink to this heading">¶</a></h3>
+<h3>The Fourier Theorem<a class="headerlink" href="#the-fourier-theorem" title="Link to this heading">¶</a></h3>
 <p>Stated informally, the Fourier theorem tells us that any time series can be represented
 as a sum of sinusoids.</p>
 <p>This is a powerful and useful theorem, as it means that we can use tools such as the
@@ -143,15 +192,15 @@ should be conceptualized as being comprised of rhythmic components.</p>
 <p>The power spectrum is just a possible representation of the original data, not a
 descriptive claim of the actual components of the data.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import numpy</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Import simulation functions from neurodsp to simulate time series</span>
-<span class="kn">from</span> <span class="nn">neurodsp.sim</span> <span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.sim.sim_powerlaw.html#neurodsp.sim.sim_powerlaw" title="neurodsp.sim.sim_powerlaw" class="sphx-glr-backref-module-neurodsp-sim sphx-glr-backref-type-py-function"><span class="n">sim_powerlaw</span></a><span class="p">,</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.sim.sim_oscillation.html#neurodsp.sim.sim_oscillation" title="neurodsp.sim.sim_oscillation" class="sphx-glr-backref-module-neurodsp-sim sphx-glr-backref-type-py-function"><span class="n">sim_oscillation</span></a><span class="p">,</span> <span class="n">sim_combined</span><span class="p">,</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.sim.set_random_seed.html#neurodsp.sim.set_random_seed" title="neurodsp.sim.set_random_seed" class="sphx-glr-backref-module-neurodsp-sim sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">neurodsp.sim</span><span class="w"> </span><span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.sim.sim_powerlaw.html#neurodsp.sim.sim_powerlaw" title="neurodsp.sim.sim_powerlaw" class="sphx-glr-backref-module-neurodsp-sim sphx-glr-backref-type-py-function"><span class="n">sim_powerlaw</span></a><span class="p">,</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.sim.sim_oscillation.html#neurodsp.sim.sim_oscillation" title="neurodsp.sim.sim_oscillation" class="sphx-glr-backref-module-neurodsp-sim sphx-glr-backref-type-py-function"><span class="n">sim_oscillation</span></a><span class="p">,</span> <span class="n">sim_combined</span><span class="p">,</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.sim.set_random_seed.html#neurodsp.sim.set_random_seed" title="neurodsp.sim.set_random_seed" class="sphx-glr-backref-module-neurodsp-sim sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a>
 
 <span class="c1"># Import additional utilities from neurodsp</span>
-<span class="kn">from</span> <span class="nn">neurodsp.utils</span> <span class="kn">import</span> <span class="n">create_times</span>
-<span class="kn">from</span> <span class="nn">neurodsp.spectral</span> <span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.spectral.compute_spectrum_welch.html#neurodsp.spectral.compute_spectrum_welch" title="neurodsp.spectral.compute_spectrum_welch" class="sphx-glr-backref-module-neurodsp-spectral sphx-glr-backref-type-py-function"><span class="n">compute_spectrum_welch</span></a>
-<span class="kn">from</span> <span class="nn">neurodsp.plts</span> <span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.plts.plot_time_series.html#neurodsp.plts.plot_time_series" title="neurodsp.plts.plot_time_series" class="sphx-glr-backref-module-neurodsp-plts sphx-glr-backref-type-py-function"><span class="n">plot_time_series</span></a><span class="p">,</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.plts.plot_power_spectra.html#neurodsp.plts.plot_power_spectra" title="neurodsp.plts.plot_power_spectra" class="sphx-glr-backref-module-neurodsp-plts sphx-glr-backref-type-py-function"><span class="n">plot_power_spectra</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">neurodsp.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_times</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">neurodsp.spectral</span><span class="w"> </span><span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.spectral.compute_spectrum_welch.html#neurodsp.spectral.compute_spectrum_welch" title="neurodsp.spectral.compute_spectrum_welch" class="sphx-glr-backref-module-neurodsp-spectral sphx-glr-backref-type-py-function"><span class="n">compute_spectrum_welch</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">neurodsp.plts</span><span class="w"> </span><span class="kn">import</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.plts.plot_time_series.html#neurodsp.plts.plot_time_series" title="neurodsp.plts.plot_time_series" class="sphx-glr-backref-module-neurodsp-plts sphx-glr-backref-type-py-function"><span class="n">plot_time_series</span></a><span class="p">,</span> <a href="https://neurodsp-tools.github.io/neurodsp/generated/neurodsp.plts.plot_power_spectra.html#neurodsp.plts.plot_power_spectra" title="neurodsp.plts.plot_power_spectra" class="sphx-glr-backref-module-neurodsp-plts sphx-glr-backref-type-py-function"><span class="n">plot_power_spectra</span></a>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed, for consistency creating simulated data</span>
@@ -169,11 +218,11 @@ descriptive claim of the actual components of the data.</p>
 </section>
 </section>
 <section id="frequency-representations-of-aperiodic-signals">
-<h2>Frequency Representations of Aperiodic Signals<a class="headerlink" href="#frequency-representations-of-aperiodic-signals" title="Permalink to this heading">¶</a></h2>
+<h2>Frequency Representations of Aperiodic Signals<a class="headerlink" href="#frequency-representations-of-aperiodic-signals" title="Link to this heading">¶</a></h2>
 <p>Let’s start with aperiodic signals, and examine how different types of aperiodic
 signals are represented in the frequency domain.</p>
 <section id="the-dirac-delta">
-<h3>The Dirac Delta<a class="headerlink" href="#the-dirac-delta" title="Permalink to this heading">¶</a></h3>
+<h3>The Dirac Delta<a class="headerlink" href="#the-dirac-delta" title="Link to this heading">¶</a></h3>
 <p>The Dirac delta is arguably the simplest signal, as it’s a signal of all zeros,
 except for a single value of 1.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate a delta function</span>
@@ -195,7 +244,7 @@ except for a single value of 1.</p>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_DoYouEvenOscillate_002.png" srcset="../../_images/sphx_glr_plot_DoYouEvenOscillate_002.png" alt="plot DoYouEvenOscillate" class = "sphx-glr-single-img"/><section id="section-conclusions">
-<h4>Section Conclusions<a class="headerlink" href="#section-conclusions" title="Permalink to this heading">¶</a></h4>
+<h4>Section Conclusions<a class="headerlink" href="#section-conclusions" title="Link to this heading">¶</a></h4>
 <p>As we can see above, the power spectrum of the Dirac delta function has
 power across all frequencies.</p>
 <p>This is despite it containing containing a single non-zero value, and thus having
@@ -211,7 +260,7 @@ signals typically look very broadband in the frequency domain.</p>
 </section>
 </section>
 <section id="colored-noise-signals">
-<h3>Colored Noise Signals<a class="headerlink" href="#colored-noise-signals" title="Permalink to this heading">¶</a></h3>
+<h3>Colored Noise Signals<a class="headerlink" href="#colored-noise-signals" title="Link to this heading">¶</a></h3>
 <p>Let’s now look at ‘noise’ signals.</p>
 <p>In the signals below, we will simulate colored noise signals, in which samples are
 drawn randomly from noise distributions, with no rhythmic properties.</p>
@@ -219,7 +268,7 @@ drawn randomly from noise distributions, with no rhythmic properties.</p>
 with specific patterns of powers across frequencies, which is dependent on the ‘color’
 of the noise.</p>
 <section id="white-noise">
-<h4>White Noise<a class="headerlink" href="#white-noise" title="Permalink to this heading">¶</a></h4>
+<h4>White Noise<a class="headerlink" href="#white-noise" title="Link to this heading">¶</a></h4>
 <p>A ‘white noise’ signal is one that is created with uncorrelated samples drawn from
 a random distribution. Since each element of the signal is sampled randomly,
 there is no consistent rhythmic structure in the signal.</p>
@@ -246,7 +295,7 @@ with equal power across all frequencies. This is the definition of white noise.<
 frequencies is representing continuous aperiodic activity, rather than a single transient.</p>
 </section>
 <section id="pink-noise">
-<h4>Pink Noise<a class="headerlink" href="#pink-noise" title="Permalink to this heading">¶</a></h4>
+<h4>Pink Noise<a class="headerlink" href="#pink-noise" title="Link to this heading">¶</a></h4>
 <p>Other ‘colors’ of noise refer to different patterns of power distributions
 in the power spectrum.</p>
 <p>For example, pink noise is a signal where power systematically decreases across
@@ -269,7 +318,7 @@ frequencies in the power spectrum.</p>
 </div>
 <img src="../../_images/sphx_glr_plot_DoYouEvenOscillate_006.png" srcset="../../_images/sphx_glr_plot_DoYouEvenOscillate_006.png" alt="plot DoYouEvenOscillate" class = "sphx-glr-single-img"/></section>
 <section id="section-conclusion">
-<h4>Section Conclusion<a class="headerlink" href="#section-conclusion" title="Permalink to this heading">¶</a></h4>
+<h4>Section Conclusion<a class="headerlink" href="#section-conclusion" title="Link to this heading">¶</a></h4>
 <p>The ‘colored noise’ signals above are simulated signals with no rhythmic properties,
 in the sense that there are no characteristic frequencies or visible rhythms in the data.</p>
 <p>Nevertheless, and by definition, in the power spectra of such signals, there is power across
@@ -280,11 +329,11 @@ aperiodic noise signal. These signals are statistically, by definition, aperiodi
 </section>
 </section>
 <section id="frequency-representations-of-rhythmic-signals">
-<h2>Frequency Representations of Rhythmic Signals<a class="headerlink" href="#frequency-representations-of-rhythmic-signals" title="Permalink to this heading">¶</a></h2>
+<h2>Frequency Representations of Rhythmic Signals<a class="headerlink" href="#frequency-representations-of-rhythmic-signals" title="Link to this heading">¶</a></h2>
 <p>Next, lets check what frequency representations look like for time series that do have
 rhythmic activity.</p>
 <section id="sinusoidal-signals">
-<h3>Sinusoidal Signals<a class="headerlink" href="#sinusoidal-signals" title="Permalink to this heading">¶</a></h3>
+<h3>Sinusoidal Signals<a class="headerlink" href="#sinusoidal-signals" title="Link to this heading">¶</a></h3>
 <p>There are many different rhythmic signals we could simulate, in terms of different
 rhythmic shapes, and or temporal properties (such as rhythmic bursts). For this
 example, we will stick to simulating continuous sinusoidal signals.</p>
@@ -305,7 +354,7 @@ example, we will stick to simulating continuous sinusoidal signals.</p>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_DoYouEvenOscillate_008.png" srcset="../../_images/sphx_glr_plot_DoYouEvenOscillate_008.png" alt="plot DoYouEvenOscillate" class = "sphx-glr-single-img"/><section id="id2">
-<h4>Section Conclusion<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<h4>Section Conclusion<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
 <p>When there is rhythmic activity at a particular frequency, this exhibits as a ‘peak’
 of power in the frequency domain. This peak indicates high power at a specific frequency,
 where as the power values at all other frequencies are effectively zero.</p>
@@ -313,11 +362,11 @@ where as the power values at all other frequencies are effectively zero.</p>
 </section>
 </section>
 <section id="frequency-representations-of-complex-signals">
-<h2>Frequency Representations of Complex Signals<a class="headerlink" href="#frequency-representations-of-complex-signals" title="Permalink to this heading">¶</a></h2>
+<h2>Frequency Representations of Complex Signals<a class="headerlink" href="#frequency-representations-of-complex-signals" title="Link to this heading">¶</a></h2>
 <p>Now let’s consider the case whereby one could have a signal comprised of multiple
 components, for example one or more oscillations combined with an aperiodic component.</p>
 <section id="combined-aperiodic-periodic-signals">
-<h3>Combined Aperiodic &amp; Periodic Signals<a class="headerlink" href="#combined-aperiodic-periodic-signals" title="Permalink to this heading">¶</a></h3>
+<h3>Combined Aperiodic &amp; Periodic Signals<a class="headerlink" href="#combined-aperiodic-periodic-signals" title="Link to this heading">¶</a></h3>
 <p>To examine this, we will simulate combined signals, comprising both periodic and aperiodic
 components, and see what the frequency representations look like.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define component of a combined signal: an oscillation and an aperiodic component</span>
@@ -343,7 +392,7 @@ components, and see what the frequency representations look like.</p>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_plot_DoYouEvenOscillate_010.png" srcset="../../_images/sphx_glr_plot_DoYouEvenOscillate_010.png" alt="plot DoYouEvenOscillate" class = "sphx-glr-single-img"/><section id="id3">
-<h4>Section Conclusion<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<h4>Section Conclusion<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <p>In the power spectrum above, we can see that combined signals, with aperiodic &amp; periodic
 activity reflect elements of both components. The periodic power can be seen as a
 peak of power over and above the rest of the spectrum, at the frequency of the simulated
@@ -352,7 +401,7 @@ rhythm. Across all frequencies, we also see the power contributed by the aperiod
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h2>
 <p>In this example, we have seen that, in the frequency domain:</p>
 <ul class="simple">
 <li><p>transients and aperiodic activity exhibit power across all frequencies</p></li>
@@ -369,13 +418,16 @@ do not tell us how to interpret neural power spectra. However, here we take them
 starting point that motivate why prominent rhythms in the time series can be measured
 as peaks in the power spectrum, but that absent a peak, we should not automatically
 interpret power at any given frequency as necessarily reflecting rhythmic activity.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.531 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.068 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-motivations-concepts-plot-doyouevenoscillate-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/b5b2c9277c4315e5778cb46a8f532c69/plot_DoYouEvenOscillate.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_DoYouEvenOscillate.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/d82e87bb1616655889a497b5b2019172/plot_DoYouEvenOscillate.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_DoYouEvenOscillate.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/1d3f840785bc4b198be73fac7f6606fb/plot_DoYouEvenOscillate.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_DoYouEvenOscillate.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -394,8 +446,8 @@ interpret power at any given frequency as necessarily reflecting rhythmic activi
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

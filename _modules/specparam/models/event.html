@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.models.event &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.models.event &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -55,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -108,35 +109,48 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <h1>Source code for specparam.models.event</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Event model object and associated code for fitting the model to spectrograms across events.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">specparam.models</span> <span class="kn">import</span> <span class="n">SpectralModel</span><span class="p">,</span> <span class="n">SpectralTimeModel</span>
-<span class="kn">from</span> <span class="nn">specparam.results.results</span> <span class="kn">import</span> <span class="n">Results3D</span>
-<span class="kn">from</span> <span class="nn">specparam.results.utils</span> <span class="kn">import</span> <span class="n">run_parallel_event</span><span class="p">,</span> <span class="n">pbar</span>
-<span class="kn">from</span> <span class="nn">specparam.data.data</span> <span class="kn">import</span> <span class="n">Data3D</span>
-<span class="kn">from</span> <span class="nn">specparam.data.conversions</span> <span class="kn">import</span> <span class="n">event_group_to_dataframe</span><span class="p">,</span> <span class="n">dict_to_df</span>
-<span class="kn">from</span> <span class="nn">specparam.data.utils</span> <span class="kn">import</span> <span class="n">flatten_results_dict</span>
-<span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="p">(</span><span class="n">copy_doc_func_to_method</span><span class="p">,</span> <span class="n">docs_get_section</span><span class="p">,</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpectralModel</span><span class="p">,</span> <span class="n">SpectralTimeModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.results.results</span><span class="w"> </span><span class="kn">import</span> <span class="n">Results3D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.results.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_parallel_event</span><span class="p">,</span> <span class="n">pbar</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.data.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">Data3D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.data.conversions</span><span class="w"> </span><span class="kn">import</span> <span class="n">event_group_to_dataframe</span><span class="p">,</span> <span class="n">dict_to_df</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.data.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">flatten_results_dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.modutils.docs</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">copy_func_docstring_drop_first</span><span class="p">,</span> <span class="n">docs_get_section</span><span class="p">,</span>
                                      <span class="n">replace_docstring_sections</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">specparam.reports.save</span> <span class="kn">import</span> <span class="n">save_event_report</span>
-<span class="kn">from</span> <span class="nn">specparam.reports.strings</span> <span class="kn">import</span> <span class="n">gen_event_results_str</span>
-<span class="kn">from</span> <span class="nn">specparam.plts.event</span> <span class="kn">import</span> <span class="n">plot_event_model</span>
-<span class="kn">from</span> <span class="nn">specparam.io.utils</span> <span class="kn">import</span> <span class="n">get_files</span>
-<span class="kn">from</span> <span class="nn">specparam.io.models</span> <span class="kn">import</span> <span class="n">save_event</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_inds</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.reports.save</span><span class="w"> </span><span class="kn">import</span> <span class="n">save_event_report</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.reports.strings</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_event_results_str</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.event</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_event_model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.io.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_files</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.io.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">save_event</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.checks</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_inds</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="SpectralTimeEventModel"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel">[docs]</a><span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">SpectralModel</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
+<div class="viewcode-block" id="SpectralTimeEventModel">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel">[docs]</a>
+<span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">SpectralModel</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
                              <span class="n">docs_get_section</span><span class="p">(</span><span class="n">SpectralModel</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Attributes&#39;</span><span class="p">),</span>
                              <span class="n">docs_get_section</span><span class="p">(</span><span class="n">SpectralModel</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Notes&#39;</span><span class="p">)])</span>
-<span class="k">class</span> <span class="nc">SpectralTimeEventModel</span><span class="p">(</span><span class="n">SpectralTimeModel</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpectralTimeEventModel</span><span class="p">(</span><span class="n">SpectralTimeModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Model a set of event as a combination of aperiodic and periodic components.</span>
 
 <span class="sd">    WARNING: frequency and power values inputs must be in linear space. Passing in logged</span>
@@ -161,7 +175,9 @@
 <span class="sd">      is also available, which maintains the full model results.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SpectralTimeEventModel.__init__"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="SpectralTimeEventModel.__init__">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize event model object.&quot;&quot;&quot;</span>
 
         <span class="n">SpectralTimeModel</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span>
@@ -170,16 +186,20 @@
                                    <span class="n">verbose</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;verbose&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
                                    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">Data3D</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">Data3D</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">Results3D</span><span class="p">(</span><span class="n">modes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span>
                                  <span class="n">metrics</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;metrics&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-                                 <span class="n">bands</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;bands&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+                                 <span class="n">bands</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;bands&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                                 <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">_reset_subobjects</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.add_data"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.add_data">[docs]</a>    <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spectrograms</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.add_data">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.add_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">spectrograms</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add data (frequencies and spectrograms) to the current object.</span>
 
 <span class="sd">        Parameters</span>
@@ -208,7 +228,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrograms</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="n">freq_range</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.fit"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spectrograms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.fit">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spectrograms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">prechecks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">convert_results</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit a set of events.</span>
 
@@ -270,7 +293,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">convert_results</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.report"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spectrograms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.report">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.report">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spectrograms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">freq_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit a set of events and display a report, with a plot and printed results.</span>
 
@@ -300,42 +326,59 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">spectrograms</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">n_jobs</span><span class="p">,</span> <span class="n">progress</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_results</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.print_results"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.print_results">[docs]</a>    <span class="k">def</span> <span class="nf">print_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Print out SpectralTimeEventModel results.</span>
+<div class="viewcode-block" id="SpectralTimeEventModel.print">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.print">[docs]</a>
+    <span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">SpectralModel</span><span class="o">.</span><span class="n">print</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">)])</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="s1">&#39;results&#39;</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Print out information.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        concise : bool, optional, default: False</span>
-<span class="sd">            Whether to print the report in a concise mode, or not.</span>
+<span class="sd">        % copied in from SpectralModel object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="n">gen_event_results_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concise</span><span class="p">))</span></div>
+        <span class="k">if</span> <span class="n">info</span> <span class="o">==</span> <span class="s1">&#39;results&#39;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">gen_event_results_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="n">concise</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">concise</span><span class="o">=</span><span class="n">concise</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.plot"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.plot">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">plot_event_model</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_fig</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.plot">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.plot">[docs]</a>
+    <span class="nd">@copy_func_docstring_drop_first</span><span class="p">(</span><span class="n">plot_event_model</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_fig</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
 
         <span class="n">plot_event_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_fig</span><span class="o">=</span><span class="n">save_fig</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span>
                          <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.save_report"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.save_report">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">save_event_report</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">save_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.save_report">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.save_report">[docs]</a>
+    <span class="nd">@copy_func_docstring_drop_first</span><span class="p">(</span><span class="n">save_event_report</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 
         <span class="n">save_event_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">add_settings</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.save"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.save">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">save_event</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.save">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.save">[docs]</a>
+    <span class="nd">@copy_func_docstring_drop_first</span><span class="p">(</span><span class="n">save_event</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
              <span class="n">save_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_settings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 
         <span class="n">save_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">append</span><span class="p">,</span> <span class="n">save_results</span><span class="p">,</span> <span class="n">save_settings</span><span class="p">,</span> <span class="n">save_data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.load"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">convert_results</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.load">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.load">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">convert_results</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load data from file(s).</span>
 
 <span class="sd">        Parameters</span>
@@ -363,7 +406,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">convert_results</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.get_model"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.get_model">[docs]</a>    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_ind</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window_ind</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">regenerate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.get_model">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.get_model">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_ind</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window_ind</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">regenerate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a model fit object for a specified index.</span>
 
 <span class="sd">        Parameters</span>
@@ -397,7 +443,10 @@
         <span class="k">return</span> <span class="n">model</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.get_group"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.get_group">[docs]</a>    <span class="k">def</span> <span class="nf">get_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_inds</span><span class="p">,</span> <span class="n">window_inds</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;event&#39;</span><span class="p">):</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.get_group">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.get_group">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_inds</span><span class="p">,</span> <span class="n">window_inds</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;event&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a new model object with the specified sub-selection of model fits.</span>
 
 <span class="sd">        Parameters</span>
@@ -424,7 +473,7 @@
         <span class="k">if</span> <span class="n">output_type</span> <span class="o">==</span> <span class="s1">&#39;event&#39;</span><span class="p">:</span>
 
             <span class="c1"># Local import - avoid circularity</span>
-            <span class="kn">from</span> <span class="nn">specparam.models.utils</span> <span class="kn">import</span> <span class="n">initialize_model_from_source</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">specparam.models.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">initialize_model_from_source</span>
 
             <span class="c1"># Initialize a new model object, with same settings as current object</span>
             <span class="n">output</span> <span class="o">=</span> <span class="n">initialize_model_from_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">)</span>
@@ -468,7 +517,10 @@
         <span class="k">return</span> <span class="n">output</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.save_model_report"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.save_model_report">[docs]</a>    <span class="k">def</span> <span class="nf">save_model_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_index</span><span class="p">,</span> <span class="n">window_index</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.save_model_report">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.save_model_report">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_model_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_index</span><span class="p">,</span> <span class="n">window_index</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span>
                           <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add_settings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;Save out an individual model report for a specified model fit.</span>
 
@@ -492,7 +544,10 @@
             <span class="n">file_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">add_settings</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.to_df"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.to_df">[docs]</a>    <span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.to_df">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.to_df">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert and extract the model results as a pandas object.</span>
 
 <span class="sd">        Parameters</span>
@@ -516,7 +571,10 @@
         <span class="k">return</span> <span class="n">df</span></div>
 
 
-<div class="viewcode-block" id="SpectralTimeEventModel.convert_results"><a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.convert_results">[docs]</a>    <span class="k">def</span> <span class="nf">convert_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="SpectralTimeEventModel.convert_results">
+<a class="viewcode-back" href="../../../generated/specparam.SpectralTimeEventModel.html#specparam.SpectralTimeEventModel.convert_results">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert results to be organized across time &amp; events.</span>
 
 <span class="sd">        Parameters</span>
@@ -532,7 +590,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">convert_results</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_reset_data_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reset_data_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_freqs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                             <span class="n">clear_spectra</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_spectrograms</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, data &amp; results attributes to empty.</span>
 
@@ -552,6 +611,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">_reset_data</span><span class="p">(</span><span class="n">clear_freqs</span><span class="p">,</span> <span class="n">clear_spectrum</span><span class="p">,</span> <span class="n">clear_spectra</span><span class="p">,</span> <span class="n">clear_spectrograms</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">_reset_results</span><span class="p">(</span><span class="n">clear_results</span><span class="p">)</span></div>
+
 </pre></div>
 
     </div>
@@ -565,8 +625,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Code Changelog &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <title>Code Changelog &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=78551f50"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,21 +110,53 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Code Changelog</a><ul>
+<li><a class="reference internal" href="#in-development">2.0.0 (in development)</a><ul>
+<li><a class="reference internal" href="#key-updates">Key Updates</a></li>
+<li><a class="reference internal" href="#relationship-to-fooof">Relationship to fooof</a></li>
+<li><a class="reference internal" href="#naming-updates">Naming Updates</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">1.1.0</a></li>
+<li><a class="reference internal" href="#id3">1.0.0</a><ul>
+<li><a class="reference internal" href="#code-organization">Code Organization</a></li>
+<li><a class="reference internal" href="#id4">Naming Updates</a></li>
+<li><a class="reference internal" href="#code-updates">Code Updates</a></li>
+<li><a class="reference internal" href="#documentation-updates">Documentation Updates</a></li>
+<li><a class="reference internal" href="#a-note-on-previously-saved-data">A Note on Previously Saved Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#x">0.1.X</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="code-changelog">
-<h1>Code Changelog<a class="headerlink" href="#code-changelog" title="Permalink to this heading">¶</a></h1>
+<h1>Code Changelog<a class="headerlink" href="#code-changelog" title="Link to this heading">¶</a></h1>
 <p>This page contains the changelog for the <cite>specparam</cite> / <cite>fooof</cite> module,
 including release notes and guidance on updating between versions.</p>
 <p>This page primarily notes changes for major version updates.
 For notes on the specific updates for minor releases, see the
 <a class="reference external" href="https://github.com/fooof-tools/fooof/releases">release page</a>.</p>
 <section id="in-development">
-<h2>2.0.0 (in development)<a class="headerlink" href="#in-development" title="Permalink to this heading">¶</a></h2>
+<h2>2.0.0 (in development)<a class="headerlink" href="#in-development" title="Link to this heading">¶</a></h2>
 <p>WARNING: the specparam 2.0 release is not yet a a stable release, and may still change!</p>
 <p>Note that the new <cite>specparam 2.0</cite> version includes a significant refactoring or the internals of the module, and broad changes to the naming of entities (including classes, functions, methods, etc) across the module. As such, this update is a major, breaking change to the module (see below for updates). See below for notes on the major updates, and relationships to previous versions of the module.</p>
 <section id="key-updates">
-<h3>Key Updates<a class="headerlink" href="#key-updates" title="Permalink to this heading">¶</a></h3>
+<h3>Key Updates<a class="headerlink" href="#key-updates" title="Link to this heading">¶</a></h3>
 <p>The <cite>specparam</cite> 2.0 version contains the following notable feature updates:</p>
 <ul class="simple">
 <li><p>an extension of the module to support time-resolved and event-related analyses</p>
@@ -151,12 +184,12 @@ For notes on the specific updates for minor releases, see the
 <a class="reference external" href="https://github.com/fooof-tools/fooof/releases">release page</a>.</p>
 </section>
 <section id="relationship-to-fooof">
-<h3>Relationship to fooof<a class="headerlink" href="#relationship-to-fooof" title="Permalink to this heading">¶</a></h3>
+<h3>Relationship to fooof<a class="headerlink" href="#relationship-to-fooof" title="Link to this heading">¶</a></h3>
 <p>As compared to the fooof releases, the specparam module is an extension of the spectral parameterization approach, including the same functionality as the original module, with significant extensions. This means that, for example, if choosing the same fit functions and algorithms in specparam 2.0 as are used in fooof 1.X, the results should be functionally identical.</p>
 <p>Notably, there are no changes to the default settings and models in specparam 2.0, such that fitting a spectral model with the default settings in specparam should provide the same as doing the equivalent in fooof 1.X.</p>
 </section>
 <section id="naming-updates">
-<h3>Naming Updates<a class="headerlink" href="#naming-updates" title="Permalink to this heading">¶</a></h3>
+<h3>Naming Updates<a class="headerlink" href="#naming-updates" title="Link to this heading">¶</a></h3>
 <p>The following functions, objects, and attributes have changed name in the new version:</p>
 <p>Model Objects:</p>
 <ul class="simple">
@@ -201,7 +234,7 @@ For notes on the specific updates for minor releases, see the
 </section>
 </section>
 <section id="id2">
-<h2>1.1.0<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<h2>1.1.0<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>The 1.1.X release is a minor (non-breaking) update to the 1.X.X release series.
 More detailed information on what is updated in 1.1.0 is on the release page.</p>
 <p>Note that 1.1.0 is the last planned release in the 1.X.X, and under the <cite>fooof</cite> name.
@@ -209,7 +242,7 @@ All future development will be under the new <cite>specparam</cite> module name,
 the upcoming <cite>specparam 2.0.0</cite> release.</p>
 </section>
 <section id="id3">
-<h2>1.0.0<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<h2>1.0.0<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p>Warning: the 1.X.X release series is an API breaking release from the prior versions,
 in the beta release series (0.X.X). It is a stable release version of the module.</p>
 <p>As compared to the prior series (0.X.X), some names and module organizations have changed.
@@ -222,7 +255,7 @@ with the new version should be roughly equivalent to those with older versions. 
 there are bug fixes and tweaks such that new model fits are not guaranteed to be the
 identical to prior fits.</p>
 <section id="code-organization">
-<h3>Code Organization<a class="headerlink" href="#code-organization" title="Permalink to this heading">¶</a></h3>
+<h3>Code Organization<a class="headerlink" href="#code-organization" title="Link to this heading">¶</a></h3>
 <p>The internal organization of the module has changed with the 1.X.X series.</p>
 <p>These internal organization changes mostly reflect turning internal files into
 sub-modules. Overall, this means that although the main functions and objects can
@@ -231,7 +264,7 @@ still be imported the same as in the 0.X.X series, some items have changed name 
 <a class="reference external" href="https://fooof-tools.github.io/fooof/api.html">API page</a>.</p>
 </section>
 <section id="id4">
-<h3>Naming Updates<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<h3>Naming Updates<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <p>There are a series of name changes with the new 1.X.X series.</p>
 <p>These name changes were done to update the module to reflect the current vocabulary
 and conceptual ideas relating to work on parameterizing neural power spectra.</p>
@@ -255,7 +288,7 @@ and conceptual ideas relating to work on parameterizing neural power spectra.</p
 </ul>
 </section>
 <section id="code-updates">
-<h3>Code Updates<a class="headerlink" href="#code-updates" title="Permalink to this heading">¶</a></h3>
+<h3>Code Updates<a class="headerlink" href="#code-updates" title="Link to this heading">¶</a></h3>
 <p>The 1.X.X series adds a large number of code updates &amp; additions, including:</p>
 <ul class="simple">
 <li><p>A big extension of the plotting sub-module</p></li>
@@ -276,7 +309,7 @@ and conceptual ideas relating to work on parameterizing neural power spectra.</p
 </ul>
 </section>
 <section id="documentation-updates">
-<h3>Documentation Updates<a class="headerlink" href="#documentation-updates" title="Permalink to this heading">¶</a></h3>
+<h3>Documentation Updates<a class="headerlink" href="#documentation-updates" title="Link to this heading">¶</a></h3>
 <p>The 1.X.X series comes with an updated documentation site.</p>
 <p>As well as updating the tutorials, API list, and other existing documentation, there are
 also new materials, including:</p>
@@ -287,7 +320,7 @@ also new materials, including:</p>
 </ul>
 </section>
 <section id="a-note-on-previously-saved-data">
-<h3>A Note on Previously Saved Data<a class="headerlink" href="#a-note-on-previously-saved-data" title="Permalink to this heading">¶</a></h3>
+<h3>A Note on Previously Saved Data<a class="headerlink" href="#a-note-on-previously-saved-data" title="Link to this heading">¶</a></h3>
 <p>Note that if you have data saved out from the 0.X.X release series of the module, then the
 code update to the 1.X.X series won’t be able to properly load this data out of the box.</p>
 <p>This is due to the naming changes, and in particular the change from ‘background’ to
@@ -298,7 +331,7 @@ the name of <cite>min_peak_amplitude</cite> to <cite>min_peak_height</cite> as w
 </section>
 </section>
 <section id="x">
-<h2>0.1.X<a class="headerlink" href="#x" title="Permalink to this heading">¶</a></h2>
+<h2>0.1.X<a class="headerlink" href="#x" title="Link to this heading">¶</a></h2>
 <p>The 0.1.X series was the initial release series of beta versions of the module.</p>
 <p>The old series of releases has a different naming scheme and module organization to the
 current 1.X.X series, and is now deprecated, with no plans to update or maintain this version.</p>
@@ -319,8 +352,8 @@ current 1.X.X series, and is now deprecated, with no plans to update or maintain
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

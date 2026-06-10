@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>specparam.sim.sim_power_spectrum &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.sim.sim_power_spectrum &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,13 +110,31 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">specparam.sim.sim_power_spectrum</a><ul>
+<li><a class="reference internal" href="#specparam.sim.sim_power_spectrum"><code class="docutils literal notranslate"><span class="pre">sim_power_spectrum()</span></code></a></li>
+<li><a class="reference internal" href="#examples-using-specparam-sim-sim-power-spectrum">Examples using <code class="docutils literal notranslate"><span class="pre">specparam.sim.sim_power_spectrum</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="specparam-sim-sim-power-spectrum">
-<h1>specparam.sim.sim_power_spectrum<a class="headerlink" href="#specparam-sim-sim-power-spectrum" title="Permalink to this heading">¶</a></h1>
+<h1>specparam.sim.sim_power_spectrum<a class="headerlink" href="#specparam-sim-sim-power-spectrum" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="specparam.sim.sim_power_spectrum">
-<span class="sig-prename descclassname"><span class="pre">specparam.sim.</span></span><span class="sig-name descname"><span class="pre">sim_power_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aperiodic_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/sim/sim.html#sim_power_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.sim.sim_power_spectrum" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">specparam.sim.</span></span><span class="sig-name descname"><span class="pre">sim_power_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aperiodic_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/sim/sim.html#sim_power_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.sim.sim_power_spectrum" title="Link to this definition">¶</a></dt>
 <dd><p>Simulate a power spectrum.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -123,17 +142,22 @@
 <dt><strong>freq_range</strong><span class="classifier">list of [float, float]</span></dt><dd><p>Frequency range to simulate power spectrum across, as [f_low, f_high], inclusive.</p>
 </dd>
 <dt><strong>aperiodic_params</strong><span class="classifier">dict of {str</span><span class="classifier">array}</span></dt><dd><p>Mode definition and parameters to create the aperiodic component of a power spectrum.
-Should be organized as {mode : params}.</p>
+Should be organized as {mode : params}, where <cite>mode</cite> is a string label for a mode to
+simulate with and <cite>params</cite> is a set of parameter values of length aperiodic_mode.n_params.</p>
 </dd>
-<dt><strong>periodic_params</strong><span class="classifier">list of float or list of list of float</span></dt><dd><p>Mode definition and parameters to create the periodic component of a power spectrum.
-Should be organized as {mode : params}.</p>
+<dt><strong>periodic_params</strong><span class="classifier">dict of {str</span><span class="classifier">list of float or list of list of float}</span></dt><dd><p>Mode definition and parameters to create the periodic component of a power spectrum.
+Should be organized as {mode : params}, where <cite>mode</cite> is a string label for a mode to
+simulate with and <cite>params</cite> corresponds to the number of desired peaks, with a total number
+of values matching periodic_mode.n_params * n_peaks.
+This can can be a flat list (ex: [10, 1, 1, 20, 0.5, 1]) or be grouped into a
+list of lists (ex: [[10, 1, 1], [20, 0.5, 1]]).</p>
 </dd>
 <dt><strong>nlv</strong><span class="classifier">float, optional, default: 0.005</span></dt><dd><p>Noise level to add to generated power spectrum.</p>
 </dd>
 <dt><strong>freq_res</strong><span class="classifier">float, optional, default: 0.5</span></dt><dd><p>Frequency resolution for the simulated power spectrum.</p>
 </dd>
-<dt><strong>f_rotation</strong><span class="classifier">float, optional</span></dt><dd><p>Frequency value, in Hz, to rotate around.
-Should only be set if spectrum is to be rotated.</p>
+<dt><strong>f_rotation</strong><span class="classifier">float, optional</span></dt><dd><p>Frequency value, in Hz, to rotate around. Should only be set if spectrum is to be rotated.
+Can only be used with <cite>powerlaw</cite> aperiodic mode.</p>
 </dd>
 <dt><strong>return_params</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to return the parameters for the simulated spectrum.</p>
 </dd>
@@ -152,51 +176,21 @@ Only returned if <cite>return_params</cite> is True.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>Aperiodic Parameters:</p>
 <ul class="simple">
-<li><p>The function for the aperiodic process to use is inferred from the provided parameters.</p></li>
-<li><p>If length of 2, the ‘fixed’ aperiodic mode is used, if length of 3, ‘knee’ is used.</p></li>
-</ul>
-<p>Periodic Parameters:</p>
-<ul class="simple">
-<li><p>The periodic component is comprised of a set of ‘peaks’, each of which is described as:</p>
-<ul>
-<li><p>Mean (Center Frequency), height (Power), and standard deviation (Bandwidth).</p></li>
-<li><p>Make sure any center frequencies you request are within the simulated frequency range.</p></li>
-</ul>
-</li>
-<li><p>The total number of parameters that need to be specified is number of peaks * 3</p>
-<ul>
-<li><p>These can be specified in as all together in a flat list (ex: [10, 1, 1, 20, 0.5, 1])</p></li>
-<li><p>They can also be grouped into a list of lists (ex: [[10, 1, 1], [20, 0.5, 1]])</p></li>
-</ul>
-</li>
+<li><p>See <cite>check_modes</cite> for more information on the available modes to use to simulate,
+as well as descriptions of the parameters for each mode.</p></li>
 </ul>
 <p>Rotating Power Spectra:</p>
 <ul class="simple">
-<li><p>You can optionally specify a rotation frequency, such that power spectra will be
-simulated and rotated around that point to the specified aperiodic exponent.</p>
-<ul>
-<li><p>This can be used so that any power spectra simulated with the same ‘f_rotation’
-will relate to each other by having the specified rotation point.</p></li>
-</ul>
-</li>
-<li><p>Note that rotating power spectra changes the offset.</p>
-<ul>
-<li><p>If you specify an offset value to simulate as well as ‘f_rotation’, the returned
-spectrum will NOT have the requested offset. It instead will have the offset
-value required to create the requested aperiodic exponent with the requested
-rotation point.</p></li>
-<li><p>If you return SimParams, the recorded offset will be the calculated offset
+<li><p>For the powerlaw aperiodic component only, you can optionally specify a rotation frequency,
+such that power spectra will be simulated and rotated around that point to the specified
+aperiodic exponent. Any power spectra simulated with the same rotation frequency will relate
+to each other by having the specified rotation point.</p></li>
+<li><p>Note that rotating power spectra changes the offset. If a simulated spectrum is rotated,
+the returned spectrum will NOT have the offset of the input parameters, and will instead
+have offset value required to create the given aperiodic exponent with the requested
+rotation point. If you return SimParams, the recorded offset will be the calculated offset
 of the data post rotation, and not the entered value.</p></li>
-</ul>
-</li>
-<li><p>You cannot rotate power spectra simulated with a knee.</p>
-<ul>
-<li><p>The procedure we use to rotate does not support spectra with a knee, and so
-setting ‘f_rotation’ with a knee will lead to an error.</p></li>
-</ul>
-</li>
 </ul>
 <p class="rubric">Examples</p>
 <p>Generate a power spectrum with a single peak, at 10 Hz:</p>
@@ -217,72 +211,72 @@ setting ‘f_rotation’ with a knee will lead to an error.</p></li>
 </dd></dl>
 
 <section id="examples-using-specparam-sim-sim-power-spectrum">
-<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.sim.sim_power_spectrum</span></code><a class="headerlink" href="#examples-using-specparam-sim-sim-power-spectrum" title="Permalink to this heading">¶</a></h2>
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.sim.sim_power_spectrum</span></code><a class="headerlink" href="#examples-using-specparam-sim-sim-power-spectrum" title="Link to this heading">¶</a></h2>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example covers strategies for dealing with line noise."><img alt="" src="../_images/sphx_glr_plot_line_noise_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/processing/plot_line_noise.html#sphx-glr-auto-examples-processing-plot-line-noise-py"><span class="std std-ref">Dealing with Line Noise</span></a></p>
+<p><a class="reference internal" href="../auto_examples/processing/plot_line_noise.html"><span class="doc">Dealing with Line Noise</span></a></p>
   <div class="sphx-glr-thumbnail-title">Dealing with Line Noise</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This example covers utilities for extracting and exporting model fit results."><img alt="" src="../_images/sphx_glr_plot_data_exporting_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/manage/plot_data_exporting.html#sphx-glr-auto-examples-manage-plot-data-exporting-py"><span class="std std-ref">Exporting Model Results</span></a></p>
+<p><a class="reference internal" href="../auto_examples/manage/plot_data_exporting.html"><span class="doc">Exporting Model Results</span></a></p>
   <div class="sphx-glr-thumbnail-title">Exporting Model Results</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Examples with combining, sub-selecting, dropping, and averaging power spectrum models."><img alt="" src="../_images/sphx_glr_plot_manipulating_models_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/manage/plot_manipulating_models.html#sphx-glr-auto-examples-manage-plot-manipulating-models-py"><span class="std std-ref">Manipulating Objects</span></a></p>
+<p><a class="reference internal" href="../auto_examples/manage/plot_manipulating_models.html"><span class="doc">Manipulating Objects</span></a></p>
   <div class="sphx-glr-thumbnail-title">Manipulating Objects</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Exploring properties and topics related to aperiodic parameters."><img alt="" src="../_images/sphx_glr_plot_aperiodic_params_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/models/plot_aperiodic_params.html#sphx-glr-auto-examples-models-plot-aperiodic-params-py"><span class="std std-ref">Aperiodic Parameters</span></a></p>
+<p><a class="reference internal" href="../auto_examples/models/plot_aperiodic_params.html"><span class="doc">Aperiodic Parameters</span></a></p>
   <div class="sphx-glr-thumbnail-title">Aperiodic Parameters</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example explores the different data components, exploring the isolated aperiodic and perio..."><img alt="" src="../_images/sphx_glr_plot_data_components_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/models/plot_data_components.html#sphx-glr-auto-examples-models-plot-data-components-py"><span class="std std-ref">Exploring Data Components</span></a></p>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example explores the different data components, exploring the isolated aperiodic and periodic components as they are extracted from the data."><img alt="" src="../_images/sphx_glr_plot_data_components_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/models/plot_data_components.html"><span class="doc">Exploring Data Components</span></a></p>
   <div class="sphx-glr-thumbnail-title">Exploring Data Components</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Check the error of power spectrum models across frequencies."><img alt="" src="../_images/sphx_glr_plot_freq_by_freq_error_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/models/plot_freq_by_freq_error.html#sphx-glr-auto-examples-models-plot-freq-by-freq-error-py"><span class="std std-ref">Frequency-by-Frequency Errors</span></a></p>
+<p><a class="reference internal" href="../auto_examples/models/plot_freq_by_freq_error.html"><span class="doc">Frequency-by-Frequency Errors</span></a></p>
   <div class="sphx-glr-thumbnail-title">Frequency-by-Frequency Errors</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Exploring properties and topics related to peak parameters."><img alt="" src="../_images/sphx_glr_plot_peak_params_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/models/plot_peak_params.html#sphx-glr-auto-examples-models-plot-peak-params-py"><span class="std std-ref">Periodic Parameters</span></a></p>
+<p><a class="reference internal" href="../auto_examples/models/plot_peak_params.html"><span class="doc">Periodic Parameters</span></a></p>
   <div class="sphx-glr-thumbnail-title">Periodic Parameters</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Plotting power spectrum models, directly from specparam objects."><img alt="" src="../_images/sphx_glr_plot_models_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/plots/plot_models.html#sphx-glr-auto-examples-plots-plot-models-py"><span class="std std-ref">Plot Power Spectrum Models</span></a></p>
+<p><a class="reference internal" href="../auto_examples/plots/plot_models.html"><span class="doc">Plot Power Spectrum Models</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot Power Spectrum Models</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Visualizing power spectra."><img alt="" src="../_images/sphx_glr_plot_power_spectra_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/plots/plot_power_spectra.html#sphx-glr-auto-examples-plots-plot-power-spectra-py"><span class="std std-ref">Plot Power Spectra</span></a></p>
+<p><a class="reference internal" href="../auto_examples/plots/plot_power_spectra.html"><span class="doc">Plot Power Spectra</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot Power Spectra</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This example covers defining and using custom fit algorithms."><img alt="" src="../_images/sphx_glr_plot_custom_algorithms_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/customize/plot_custom_algorithms.html#sphx-glr-auto-examples-customize-plot-custom-algorithms-py"><span class="std std-ref">Custom Algorithms</span></a></p>
+<p><a class="reference internal" href="../auto_examples/customize/plot_custom_algorithms.html"><span class="doc">Custom Algorithms</span></a></p>
   <div class="sphx-glr-thumbnail-title">Custom Algorithms</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This example covers defining and using custom metrics."><img alt="" src="../_images/sphx_glr_plot_custom_metrics_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/customize/plot_custom_metrics.html#sphx-glr-auto-examples-customize-plot-custom-metrics-py"><span class="std std-ref">Custom Metrics</span></a></p>
+<p><a class="reference internal" href="../auto_examples/customize/plot_custom_metrics.html"><span class="doc">Custom Metrics</span></a></p>
   <div class="sphx-glr-thumbnail-title">Custom Metrics</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This example covers defining and using custom fit modes."><img alt="" src="../_images/sphx_glr_plot_custom_modes_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/customize/plot_custom_modes.html#sphx-glr-auto-examples-customize-plot-custom-modes-py"><span class="std std-ref">Custom Modes</span></a></p>
+<p><a class="reference internal" href="../auto_examples/customize/plot_custom_modes.html"><span class="doc">Custom Modes</span></a></p>
   <div class="sphx-glr-thumbnail-title">Custom Modes</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Introducing the objects used within the model object."><img alt="" src="../_images/sphx_glr_plot_sub_objects_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html#sphx-glr-auto-examples-customize-plot-sub-objects-py"><span class="std std-ref">Model Sub-Objects</span></a></p>
+<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html"><span class="doc">Model Sub-Objects</span></a></p>
   <div class="sphx-glr-thumbnail-title">Model Sub-Objects</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Manage parameters for creating simulated power spectra."><img alt="" src="../_images/sphx_glr_plot_sim_params_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/sims/plot_sim_params.html#sphx-glr-auto-examples-sims-plot-sim-params-py"><span class="std std-ref">Simulation Parameters</span></a></p>
+<p><a class="reference internal" href="../auto_examples/sims/plot_sim_params.html"><span class="doc">Simulation Parameters</span></a></p>
   <div class="sphx-glr-thumbnail-title">Simulation Parameters</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Creating simulated power spectra."><img alt="" src="../_images/sphx_glr_plot_simulated_power_spectra_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/sims/plot_simulated_power_spectra.html#sphx-glr-auto-examples-sims-plot-simulated-power-spectra-py"><span class="std std-ref">Simulating Neural Power Spectra</span></a></p>
+<p><a class="reference internal" href="../auto_examples/sims/plot_simulated_power_spectra.html"><span class="doc">Simulating Neural Power Spectra</span></a></p>
   <div class="sphx-glr-thumbnail-title">Simulating Neural Power Spectra</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Apply transformations to power spectra."><img alt="" src="../_images/sphx_glr_plot_transforms_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/sims/plot_transforms.html#sphx-glr-auto-examples-sims-plot-transforms-py"><span class="std std-ref">Transforming Power Spectra</span></a></p>
+<p><a class="reference internal" href="../auto_examples/sims/plot_transforms.html"><span class="doc">Transforming Power Spectra</span></a></p>
   <div class="sphx-glr-thumbnail-title">Transforming Power Spectra</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="A description of and introduction to the spectral parameterization module."><img alt="" src="../_images/sphx_glr_plot_01-ModelDescription_thumb.png" />
-<p><a class="reference internal" href="../auto_tutorials/plot_01-ModelDescription.html#sphx-glr-auto-tutorials-plot-01-modeldescription-py"><span class="std std-ref">01: Model Description</span></a></p>
+<p><a class="reference internal" href="../auto_tutorials/plot_01-ModelDescription.html"><span class="doc">01: Model Description</span></a></p>
   <div class="sphx-glr-thumbnail-title">01: Model Description</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Tips &amp; tricks for choosing algorithm settings, tuning fits, and troubleshooting."><img alt="" src="../_images/sphx_glr_plot_10-TroubleShooting_thumb.png" />
-<p><a class="reference internal" href="../auto_tutorials/plot_10-TroubleShooting.html#sphx-glr-auto-tutorials-plot-10-troubleshooting-py"><span class="std std-ref">10: Tuning &amp; Troubleshooting</span></a></p>
+<p><a class="reference internal" href="../auto_tutorials/plot_10-TroubleShooting.html"><span class="doc">10: Tuning &amp; Troubleshooting</span></a></p>
   <div class="sphx-glr-thumbnail-title">10: Tuning & Troubleshooting</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This section covers how to access reporting info and reference use of the module."><img alt="" src="../_images/sphx_glr_plot_12-Reporting_thumb.png" />
-<p><a class="reference internal" href="../auto_tutorials/plot_12-Reporting.html#sphx-glr-auto-tutorials-plot-12-reporting-py"><span class="std std-ref">12: Reporting &amp; Referencing</span></a></p>
+<p><a class="reference internal" href="../auto_tutorials/plot_12-Reporting.html"><span class="doc">12: Reporting &amp; Referencing</span></a></p>
   <div class="sphx-glr-thumbnail-title">12: Reporting & Referencing</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Comparing how &#x27;Band-by-Band&#x27; approaches relate to periodic &amp; aperiodic components."><img alt="" src="../_images/sphx_glr_plot_BandByBand_thumb.png" />
-<p><a class="reference internal" href="../auto_motivations/measurements/plot_BandByBand.html#sphx-glr-auto-motivations-measurements-plot-bandbyband-py"><span class="std std-ref">Band-by-Band</span></a></p>
+<p><a class="reference internal" href="../auto_motivations/measurements/plot_BandByBand.html"><span class="doc">Band-by-Band</span></a></p>
   <div class="sphx-glr-thumbnail-title">Band-by-Band</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Exploring how band ratio measures relate to periodic &amp; aperiodic activity."><img alt="" src="../_images/sphx_glr_plot_BandRatios_thumb.png" />
-<p><a class="reference internal" href="../auto_motivations/measurements/plot_BandRatios.html#sphx-glr-auto-motivations-measurements-plot-bandratios-py"><span class="std std-ref">Band Ratio Measures</span></a></p>
+<p><a class="reference internal" href="../auto_motivations/measurements/plot_BandRatios.html"><span class="doc">Band Ratio Measures</span></a></p>
   <div class="sphx-glr-thumbnail-title">Band Ratio Measures</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Demonstrating how changes in periodic &amp; aperiodic parameters can be conflated."><img alt="" src="../_images/sphx_glr_plot_PeriodicAperiodicFeatures_thumb.png" />
-<p><a class="reference internal" href="../auto_motivations/measurements/plot_PeriodicAperiodicFeatures.html#sphx-glr-auto-motivations-measurements-plot-periodicaperiodicfeatures-py"><span class="std std-ref">Conflating Periodic &amp; Aperiodic Changes</span></a></p>
+<p><a class="reference internal" href="../auto_motivations/measurements/plot_PeriodicAperiodicFeatures.html"><span class="doc">Conflating Periodic &amp; Aperiodic Changes</span></a></p>
   <div class="sphx-glr-thumbnail-title">Conflating Periodic & Aperiodic Changes</div>
 </div></div><div style='clear:both'></div></section>
 </section>
@@ -299,8 +293,8 @@ setting ‘f_rotation’ with a knee will lead to an error.</p></li>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

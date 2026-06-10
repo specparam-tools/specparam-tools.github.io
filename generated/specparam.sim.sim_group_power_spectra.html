@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>specparam.sim.sim_group_power_spectra &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.sim.sim_group_power_spectra &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,13 +110,31 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">specparam.sim.sim_group_power_spectra</a><ul>
+<li><a class="reference internal" href="#specparam.sim.sim_group_power_spectra"><code class="docutils literal notranslate"><span class="pre">sim_group_power_spectra()</span></code></a></li>
+<li><a class="reference internal" href="#examples-using-specparam-sim-sim-group-power-spectra">Examples using <code class="docutils literal notranslate"><span class="pre">specparam.sim.sim_group_power_spectra</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="specparam-sim-sim-group-power-spectra">
-<h1>specparam.sim.sim_group_power_spectra<a class="headerlink" href="#specparam-sim-sim-group-power-spectra" title="Permalink to this heading">¶</a></h1>
+<h1>specparam.sim.sim_group_power_spectra<a class="headerlink" href="#specparam-sim-sim-group-power-spectra" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="specparam.sim.sim_group_power_spectra">
-<span class="sig-prename descclassname"><span class="pre">specparam.sim.</span></span><span class="sig-name descname"><span class="pre">sim_group_power_spectra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_spectra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aperiodic_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlvs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/sim/sim.html#sim_group_power_spectra"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.sim.sim_group_power_spectra" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">specparam.sim.</span></span><span class="sig-name descname"><span class="pre">sim_group_power_spectra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_spectra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aperiodic_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlvs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/sim/sim.html#sim_group_power_spectra"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.sim.sim_group_power_spectra" title="Link to this definition">¶</a></dt>
 <dd><p>Simulate multiple power spectra.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -124,21 +143,21 @@
 </dd>
 <dt><strong>freq_range</strong><span class="classifier">list of [float, float]</span></dt><dd><p>Frequency range to simulate power spectra across, as [f_low, f_high], inclusive.</p>
 </dd>
-<dt><strong>aperiodic_params</strong><span class="classifier">list of float or generator</span></dt><dd><p>Parameters for the aperiodic component of the power spectra.</p>
+<dt><strong>aperiodic_params</strong><span class="classifier">dict of {str</span><span class="classifier">array}</span></dt><dd><p>Mode definition and parameters to create the aperiodic components of the power spectra.
+Should be organized as {mode : params}, where <cite>mode</cite> is a string label for a mode to
+simulate with and <cite>params</cite> (array_like or generator) defines the aperiodic parameters.</p>
 </dd>
-<dt><strong>aperiodic_mode</strong><span class="classifier">Mode or str</span></dt><dd><p>Which kind of aperiodic component to simulate.</p>
-</dd>
-<dt><strong>periodic_params</strong><span class="classifier">list of float or generator</span></dt><dd><p>Parameters for the periodic component of the power spectra.
-Length of n_peaks * 3.</p>
-</dd>
-<dt><strong>periodic_mode</strong><span class="classifier">Mode or str</span></dt><dd><p>Which kind of periodic component to simulate.</p>
+<dt><strong>periodic_params</strong><span class="classifier">dict of {str</span><span class="classifier">list of float or list of list of float}</span></dt><dd><p>Mode definition and parameters to create the periodic components of the power spectras.
+Should be organized as {mode : params}, where <cite>mode</cite> is a string label for a mode to
+simulate with and <cite>params</cite> (array_like or generator) defines the periodic parameters.</p>
 </dd>
 <dt><strong>nlvs</strong><span class="classifier">float or list of float or generator, optional, default: 0.005</span></dt><dd><p>Noise level to add to generated power spectrum.</p>
 </dd>
 <dt><strong>freq_res</strong><span class="classifier">float, optional, default: 0.5</span></dt><dd><p>Frequency resolution for the simulated power spectra.</p>
 </dd>
-<dt><strong>f_rotation</strong><span class="classifier">float, optional</span></dt><dd><p>Frequency value, in Hz, to rotate around.
-Should only be set if spectra are to be rotated.</p>
+<dt><strong>f_rotation</strong><span class="classifier">float, optional</span></dt><dd><p>Frequency value, in Hz, to rotate around. Should only be set if spectrum is to be rotated.
+Can only be used with <cite>powerlaw</cite> aperiodic mode.
+See additional notes in <cite>sim_power_spectra</cite> on rotating simulated power spectra.</p>
 </dd>
 <dt><strong>return_params</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to return the parameters for the simulated spectra.</p>
 </dd>
@@ -166,46 +185,6 @@ If so, each successive parameter set is such for each successive spectrum.</p></
 <li><p>A generator object that returns parameters for a power spectrum.
 If so, each spectrum has parameters sampled from the generator.</p></li>
 </ul>
-<p>Aperiodic Parameters:</p>
-<ul class="simple">
-<li><p>The function for the aperiodic process to use is inferred from the provided parameters.</p></li>
-<li><p>If length of 2, the ‘fixed’ aperiodic mode is used, if length of 3, ‘knee’ is used.</p></li>
-</ul>
-<p>Periodic Parameters:</p>
-<ul class="simple">
-<li><p>The periodic component is comprised of a set of ‘peaks’, each of which is described as:</p>
-<ul>
-<li><p>Mean (Center Frequency), height (Power), and standard deviation (Bandwidth).</p></li>
-<li><p>Make sure any center frequencies you request are within the simulated frequency range.</p></li>
-</ul>
-</li>
-</ul>
-<p>Rotating Power Spectra:</p>
-<ul class="simple">
-<li><p>You can optionally specify a rotation frequency, such that power spectra will be
-simulated and rotated around that point to the specified aperiodic exponent.</p>
-<ul>
-<li><p>This can be used so that any power spectra simulated with the same ‘f_rotation’
-will relate to each other by having the specified rotation point.</p></li>
-</ul>
-</li>
-<li><p>Note that rotating power spectra changes the offset.</p>
-<ul>
-<li><p>If you specify an offset value to simulate as well as ‘f_rotation’, the returned
-spectrum will NOT have the requested offset. It instead will have the offset
-value required to create the requested aperiodic exponent with the requested
-rotation point.</p></li>
-<li><p>If you return SimParams, the recorded offset will be the calculated offset
-of the data post rotation, and not the entered value.</p></li>
-</ul>
-</li>
-<li><p>You cannot rotate power spectra simulated with a knee.</p>
-<ul>
-<li><p>The procedure we use to rotate does not support spectra with a knee, and so
-setting ‘f_rotation’ with a knee will lead to an error.</p></li>
-</ul>
-</li>
-</ul>
 <p class="rubric">Examples</p>
 <p>Generate 2 power spectra using the same parameters:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <span class="n">sim_group_power_spectra</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]},</span>
@@ -213,7 +192,7 @@ setting ‘f_rotation’ with a knee will lead to an error.</p></li>
 </pre></div>
 </div>
 <p>Generate 10 power spectra, randomly sampling possible parameters:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">specparam.sim.params</span> <span class="kn">import</span> <span class="n">param_sampler</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.params</span><span class="w"> </span><span class="kn">import</span> <span class="n">param_sampler</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ap_opts</span> <span class="o">=</span> <span class="n">param_sampler</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pe_opts</span> <span class="o">=</span> <span class="n">param_sampler</span><span class="p">([[],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span> <span class="o">=</span> <span class="n">sim_group_power_spectra</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
@@ -228,7 +207,7 @@ setting ‘f_rotation’ with a knee will lead to an error.</p></li>
 </pre></div>
 </div>
 <p>Generate power spectra stepping across exponent values, and return parameter values:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">specparam.sim.params</span> <span class="kn">import</span> <span class="n">Stepper</span><span class="p">,</span> <span class="n">param_iter</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.params</span><span class="w"> </span><span class="kn">import</span> <span class="n">Stepper</span><span class="p">,</span> <span class="n">param_iter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ap_params</span> <span class="o">=</span> <span class="n">param_iter</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">Stepper</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pe_params</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">,</span> <span class="n">sps</span> <span class="o">=</span> <span class="n">sim_group_power_spectra</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="n">ap_params</span><span class="p">},</span>
@@ -238,42 +217,42 @@ setting ‘f_rotation’ with a knee will lead to an error.</p></li>
 </dd></dl>
 
 <section id="examples-using-specparam-sim-sim-group-power-spectra">
-<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.sim.sim_group_power_spectra</span></code><a class="headerlink" href="#examples-using-specparam-sim-sim-group-power-spectra" title="Permalink to this heading">¶</a></h2>
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.sim.sim_group_power_spectra</span></code><a class="headerlink" href="#examples-using-specparam-sim-sim-group-power-spectra" title="Link to this heading">¶</a></h2>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example covers utilities for extracting and exporting model fit results."><img alt="" src="../_images/sphx_glr_plot_data_exporting_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/manage/plot_data_exporting.html#sphx-glr-auto-examples-manage-plot-data-exporting-py"><span class="std std-ref">Exporting Model Results</span></a></p>
+<p><a class="reference internal" href="../auto_examples/manage/plot_data_exporting.html"><span class="doc">Exporting Model Results</span></a></p>
   <div class="sphx-glr-thumbnail-title">Exporting Model Results</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Example of model fit failures and how to debug them."><img alt="" src="../_images/sphx_glr_plot_failed_fits_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/manage/plot_failed_fits.html#sphx-glr-auto-examples-manage-plot-failed-fits-py"><span class="std std-ref">Failed Model Fits</span></a></p>
+<p><a class="reference internal" href="../auto_examples/manage/plot_failed_fits.html"><span class="doc">Failed Model Fits</span></a></p>
   <div class="sphx-glr-thumbnail-title">Failed Model Fits</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Fitting power spectrum models across 3D arrays of power spectra."><img alt="" src="../_images/sphx_glr_plot_fit_models_3d_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/manage/plot_fit_models_3d.html#sphx-glr-auto-examples-manage-plot-fit-models-3d-py"><span class="std std-ref">Fitting Power Spectrum Models Across 3D Arrays</span></a></p>
+<p><a class="reference internal" href="../auto_examples/manage/plot_fit_models_3d.html"><span class="doc">Fitting Power Spectrum Models Across 3D Arrays</span></a></p>
   <div class="sphx-glr-thumbnail-title">Fitting Power Spectrum Models Across 3D Arrays</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Exploring properties and topics related to aperiodic parameters."><img alt="" src="../_images/sphx_glr_plot_aperiodic_params_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/models/plot_aperiodic_params.html#sphx-glr-auto-examples-models-plot-aperiodic-params-py"><span class="std std-ref">Aperiodic Parameters</span></a></p>
+<p><a class="reference internal" href="../auto_examples/models/plot_aperiodic_params.html"><span class="doc">Aperiodic Parameters</span></a></p>
   <div class="sphx-glr-thumbnail-title">Aperiodic Parameters</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Check the error of power spectrum models across frequencies."><img alt="" src="../_images/sphx_glr_plot_freq_by_freq_error_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/models/plot_freq_by_freq_error.html#sphx-glr-auto-examples-models-plot-freq-by-freq-error-py"><span class="std std-ref">Frequency-by-Frequency Errors</span></a></p>
+<p><a class="reference internal" href="../auto_examples/models/plot_freq_by_freq_error.html"><span class="doc">Frequency-by-Frequency Errors</span></a></p>
   <div class="sphx-glr-thumbnail-title">Frequency-by-Frequency Errors</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Plotting power spectrum model parameters and components."><img alt="" src="../_images/sphx_glr_plot_model_components_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/plots/plot_model_components.html#sphx-glr-auto-examples-plots-plot-model-components-py"><span class="std std-ref">Plot Model Components</span></a></p>
+<p><a class="reference internal" href="../auto_examples/plots/plot_model_components.html"><span class="doc">Plot Model Components</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot Model Components</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Visualizing power spectra."><img alt="" src="../_images/sphx_glr_plot_power_spectra_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/plots/plot_power_spectra.html#sphx-glr-auto-examples-plots-plot-power-spectra-py"><span class="std std-ref">Plot Power Spectra</span></a></p>
+<p><a class="reference internal" href="../auto_examples/plots/plot_power_spectra.html"><span class="doc">Plot Power Spectra</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot Power Spectra</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Manage parameters for creating simulated power spectra."><img alt="" src="../_images/sphx_glr_plot_sim_params_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/sims/plot_sim_params.html#sphx-glr-auto-examples-sims-plot-sim-params-py"><span class="std std-ref">Simulation Parameters</span></a></p>
+<p><a class="reference internal" href="../auto_examples/sims/plot_sim_params.html"><span class="doc">Simulation Parameters</span></a></p>
   <div class="sphx-glr-thumbnail-title">Simulation Parameters</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Creating simulated power spectra."><img alt="" src="../_images/sphx_glr_plot_simulated_power_spectra_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/sims/plot_simulated_power_spectra.html#sphx-glr-auto-examples-sims-plot-simulated-power-spectra-py"><span class="std std-ref">Simulating Neural Power Spectra</span></a></p>
+<p><a class="reference internal" href="../auto_examples/sims/plot_simulated_power_spectra.html"><span class="doc">Simulating Neural Power Spectra</span></a></p>
   <div class="sphx-glr-thumbnail-title">Simulating Neural Power Spectra</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Tips &amp; tricks for choosing algorithm settings, tuning fits, and troubleshooting."><img alt="" src="../_images/sphx_glr_plot_10-TroubleShooting_thumb.png" />
-<p><a class="reference internal" href="../auto_tutorials/plot_10-TroubleShooting.html#sphx-glr-auto-tutorials-plot-10-troubleshooting-py"><span class="std std-ref">10: Tuning &amp; Troubleshooting</span></a></p>
+<p><a class="reference internal" href="../auto_tutorials/plot_10-TroubleShooting.html"><span class="doc">10: Tuning &amp; Troubleshooting</span></a></p>
   <div class="sphx-glr-thumbnail-title">10: Tuning & Troubleshooting</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Analyze results from fitting power spectrum models."><img alt="" src="../_images/sphx_glr_plot_11-FurtherAnalysis_thumb.png" />
-<p><a class="reference internal" href="../auto_tutorials/plot_11-FurtherAnalysis.html#sphx-glr-auto-tutorials-plot-11-furtheranalysis-py"><span class="std std-ref">11: Further Analysis</span></a></p>
+<p><a class="reference internal" href="../auto_tutorials/plot_11-FurtherAnalysis.html"><span class="doc">11: Further Analysis</span></a></p>
   <div class="sphx-glr-thumbnail-title">11: Further Analysis</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This section covers how to access reporting info and reference use of the module."><img alt="" src="../_images/sphx_glr_plot_12-Reporting_thumb.png" />
-<p><a class="reference internal" href="../auto_tutorials/plot_12-Reporting.html#sphx-glr-auto-tutorials-plot-12-reporting-py"><span class="std std-ref">12: Reporting &amp; Referencing</span></a></p>
+<p><a class="reference internal" href="../auto_tutorials/plot_12-Reporting.html"><span class="doc">12: Reporting &amp; Referencing</span></a></p>
   <div class="sphx-glr-thumbnail-title">12: Reporting & Referencing</div>
 </div></div><div style='clear:both'></div></section>
 </section>
@@ -290,8 +269,8 @@ setting ‘f_rotation’ with a knee will lead to an error.</p></li>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

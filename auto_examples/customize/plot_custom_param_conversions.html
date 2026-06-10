@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Custom Parameter Conversions &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <title>Custom Parameter Conversions &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,33 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Custom Parameter Conversions</a><ul>
+<li><a class="reference internal" href="#parameter-conversions">Parameter Conversions</a></li>
+<li><a class="reference internal" href="#default-converters">Default Converters</a><ul>
+<li><a class="reference internal" href="#change-default-converters">Change Default Converters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-custom-converters">Create Custom Converters</a></li>
+<li><a class="reference internal" href="#parameter-converter-objects">Parameter Converter Objects</a><ul>
+<li><a class="reference internal" href="#adding-new-parameter-conversions-to-the-module">Adding New Parameter Conversions to the Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,21 +144,22 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="custom-parameter-conversions">
-<span id="sphx-glr-auto-examples-customize-plot-custom-param-conversions-py"></span><h1>Custom Parameter Conversions<a class="headerlink" href="#custom-parameter-conversions" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-examples-customize-plot-custom-param-conversions-py"></span><h1>Custom Parameter Conversions<a class="headerlink" href="#custom-parameter-conversions" title="Link to this heading">¶</a></h1>
 <p>This example covers defining and using custom parameter post-fitting conversions.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 
-<span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">load_example_data</span>
+<span class="c1"># Import utility to load example data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_example_data</span>
 
 <span class="c1"># Import the default set of parameter conversions</span>
-<span class="kn">from</span> <span class="nn">specparam.convert.definitions</span> <span class="kn">import</span> <span class="n">check_converters</span><span class="p">,</span> <span class="n">DEFAULT_CONVERTERS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.params.definitions</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_converters</span><span class="p">,</span> <span class="n">DEFAULT_CONVERTERS</span>
 
 <span class="c1"># Import objects to define parameter conversions</span>
-<span class="kn">from</span> <span class="nn">specparam.convert.converter</span> <span class="kn">import</span> <span class="n">PeriodicParamConverter</span><span class="p">,</span> <span class="n">AperiodicParamConverter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.params.converter</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.params.converter.PeriodicParamConverter.html#specparam.params.converter.PeriodicParamConverter" title="specparam.params.converter.PeriodicParamConverter" class="sphx-glr-backref-module-specparam-params-converter sphx-glr-backref-type-py-class"><span class="n">PeriodicParamConverter</span></a><span class="p">,</span> <a href="../../generated/specparam.params.converter.AperiodicParamConverter.html#specparam.params.converter.AperiodicParamConverter" title="specparam.params.converter.AperiodicParamConverter" class="sphx-glr-backref-module-specparam-params-converter sphx-glr-backref-type-py-class"><span class="n">AperiodicParamConverter</span></a>
 </pre></div>
 </div>
 <section id="parameter-conversions">
-<h2>Parameter Conversions<a class="headerlink" href="#parameter-conversions" title="Permalink to this heading">¶</a></h2>
+<h2>Parameter Conversions<a class="headerlink" href="#parameter-conversions" title="Link to this heading">¶</a></h2>
 <p>After model fitting, a model object includes the parameters for the model as defined by the
 fit modes and as arrived at by the fit algorithm. These fit parameters define the model fit,
 as visualized, for example, by the ‘full model’ fit, when plotting the model.</p>
@@ -154,12 +182,12 @@ the fit parameters.</p>
 </div>
 <img src="../../_images/sphx_glr_plot_custom_param_conversions_001.png" srcset="../../_images/sphx_glr_plot_custom_param_conversions_001.png" alt="plot custom param conversions" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.49
         Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
-        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        Too low a limit may lead to over-fitting noise as small bandwidth peaks.
         We recommend a lower bound of approximately 2x the frequency resolution.
 
 ==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 2-40 Hz frequency range with 0.49 Hz resolution
@@ -187,7 +215,7 @@ the fit parameters.</p>
 <span class="nb">print</span><span class="p">(</span><a href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_params" title="specparam.results.results.Results.get_params" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;converted&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[-21.61849957   0.7160227 ]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[-21.61849957   0.71602269]
 [nan nan]
 </pre></div>
 </div>
@@ -199,8 +227,8 @@ aperiodic parameters.</p>
 <span class="nb">print</span><span class="p">(</span><a href="../../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_params" title="specparam.results.results.Results.get_params" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;converted&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[11.1723471   0.16897043  1.43846854]
-[11.1723471   0.23008765  2.87693709]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[11.17234702  0.16897043  1.43846862]
+[11.17234702  0.23008765  2.87693723]
 </pre></div>
 </div>
 <p>In this case, there are both fit and converted versions of the parameters,
@@ -209,7 +237,7 @@ and they are not the same!</p>
 the converted versions of the parameters that are printed in the report above.</p>
 </section>
 <section id="default-converters">
-<h2>Default Converters<a class="headerlink" href="#default-converters" title="Permalink to this heading">¶</a></h2>
+<h2>Default Converters<a class="headerlink" href="#default-converters" title="Link to this heading">¶</a></h2>
 <p>To see what the conversions are that are being defined, we can examine the set of
 DEFAULT_CONVERTERS, which we imported from the module.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the default model fit parameters</span>
@@ -220,13 +248,13 @@ DEFAULT_CONVERTERS, which we imported from the module.</p>
 </pre></div>
 </div>
 <section id="change-default-converters">
-<h3>Change Default Converters<a class="headerlink" href="#change-default-converters" title="Permalink to this heading">¶</a></h3>
+<h3>Change Default Converters<a class="headerlink" href="#change-default-converters" title="Link to this heading">¶</a></h3>
 <p>Next, we can explore changing which converters we use.</p>
 <p>To start with a simple example, let’s turn off all parameter conversions.</p>
 <p>Note that as a shortcut, we can get a parameter definition from the Modes sub-object that
 is part of the model object, specified to return a dictionary.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a dictionary representation of current parameters</span>
-<span class="n">null_converters</span> <span class="o">=</span> <a href="../../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="s1">&#39;dict&#39;</span><span class="p">)</span>
+<span class="n">null_converters</span> <span class="o">=</span> <a href="../../generated/specparam.modes.modes.Modes.html#specparam.modes.modes.Modes.get_params" title="specparam.modes.modes.Modes.get_params" class="sphx-glr-backref-module-specparam-modes-modes sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;dict&#39;</span><span class="p">)</span>
 <span class="n">null_converters</span>
 </pre></div>
 </div>
@@ -240,12 +268,12 @@ is part of the model object, specified to return a dictionary.</p>
 </div>
 <img src="../../_images/sphx_glr_plot_custom_param_conversions_002.png" srcset="../../_images/sphx_glr_plot_custom_param_conversions_002.png" alt="plot custom param conversions" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.49
         Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
-        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        Too low a limit may lead to over-fitting noise as small bandwidth peaks.
         We recommend a lower bound of approximately 2x the frequency resolution.
 
 ==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 2-40 Hz frequency range with 0.49 Hz resolution
@@ -318,12 +346,12 @@ bw
 </div>
 <img src="../../_images/sphx_glr_plot_custom_param_conversions_003.png" srcset="../../_images/sphx_glr_plot_custom_param_conversions_003.png" alt="plot custom param conversions" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.49
         Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
-        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        Too low a limit may lead to over-fitting noise as small bandwidth peaks.
         We recommend a lower bound of approximately 2x the frequency resolution.
 
 ==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 2-40 Hz frequency range with 0.49 Hz resolution
@@ -348,7 +376,7 @@ bw
 </section>
 </section>
 <section id="create-custom-converters">
-<h2>Create Custom Converters<a class="headerlink" href="#create-custom-converters" title="Permalink to this heading">¶</a></h2>
+<h2>Create Custom Converters<a class="headerlink" href="#create-custom-converters" title="Link to this heading">¶</a></h2>
 <p>Finally, let’s explore defining some custom parameter conversions.</p>
 <p>To do so, for any parameter that we wish to define a conversion for, we can define a
 callable that implements our desired conversion.</p>
@@ -373,10 +401,10 @@ conversion of the fit center frequency value that finds and update to the closes
 value that actually occurs in the frequency definition. For this case, we will implement
 conversion function.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import utility function to find nearest index</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.select</span> <span class="kn">import</span> <span class="n">nearest_ind</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.select</span><span class="w"> </span><span class="kn">import</span> <span class="n">nearest_ind</span>
 
 <span class="c1"># Define a function to update the center frequency</span>
-<span class="k">def</span> <span class="nf">update_cf</span><span class="p">(</span><span class="n">fit_value</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">peak_ind</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">update_cf</span><span class="p">(</span><span class="n">fit_value</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">peak_ind</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Updates center frequency to be closest existing frequency value.&quot;&quot;&quot;</span>
 
     <span class="n">f_ind</span> <span class="o">=</span> <span class="n">nearest_ind</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <span class="n">fit_value</span><span class="p">)</span>
@@ -397,12 +425,12 @@ conversion function.</p>
 </div>
 <img src="../../_images/sphx_glr_plot_custom_param_conversions_004.png" srcset="../../_images/sphx_glr_plot_custom_param_conversions_004.png" alt="plot custom param conversions" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.49
         Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
-        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        Too low a limit may lead to over-fitting noise as small bandwidth peaks.
         We recommend a lower bound of approximately 2x the frequency resolution.
 
 ==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 2-40 Hz frequency range with 0.49 Hz resolution
@@ -426,16 +454,16 @@ conversion function.</p>
 <p>In the above report, our custom parameter conversions were used.</p>
 </section>
 <section id="parameter-converter-objects">
-<h2>Parameter Converter Objects<a class="headerlink" href="#parameter-converter-objects" title="Permalink to this heading">¶</a></h2>
+<h2>Parameter Converter Objects<a class="headerlink" href="#parameter-converter-objects" title="Link to this heading">¶</a></h2>
 <p>In the above, we defined custom parameter converters by directly passing in callables that
 implement our desired conversions. As we’ve seen above, this works to pass in conversions</p>
 <p>However, only passing in the callable is a bit light on details and description. If you
 want to implement parameter conversions using an approach that keeps track of additional
 description of the approach, you can use the
-<code class="xref py py-class docutils literal notranslate"><span class="pre">AperiodicParamConverter</span></code> and
-<code class="xref py py-class docutils literal notranslate"><span class="pre">PeriodicParamConverter</span></code> objects to</p>
+<a class="reference internal" href="../../generated/specparam.params.converter.AperiodicParamConverter.html#specparam.params.converter.AperiodicParamConverter" title="specparam.params.converter.AperiodicParamConverter"><code class="xref py py-class docutils literal notranslate"><span class="pre">AperiodicParamConverter</span></code></a> and
+<a class="reference internal" href="../../generated/specparam.params.converter.PeriodicParamConverter.html#specparam.params.converter.PeriodicParamConverter" title="specparam.params.converter.PeriodicParamConverter"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeriodicParamConverter</span></code></a> objects to</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the exponent to slope conversion as a converter object</span>
-<span class="n">exp_slope_converter</span> <span class="o">=</span> <span class="n">AperiodicParamConverter</span><span class="p">(</span>
+<a href="../../generated/specparam.params.converter.AperiodicParamConverter.html#specparam.params.converter.AperiodicParamConverter" title="specparam.params.converter.AperiodicParamConverter" class="sphx-glr-backref-module-specparam-params-converter sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">exp_slope_converter</span></a> <span class="o">=</span> <a href="../../generated/specparam.params.converter.AperiodicParamConverter.html#specparam.params.converter.AperiodicParamConverter" title="specparam.params.converter.AperiodicParamConverter" class="sphx-glr-backref-module-specparam-params-converter sphx-glr-backref-type-py-class"><span class="n">AperiodicParamConverter</span></a><span class="p">(</span>
     <span class="n">parameter</span><span class="o">=</span><span class="s1">&#39;exponent&#39;</span><span class="p">,</span>
     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;slope&#39;</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Convert the fit exponent value to the equivalent spectral slope value.&#39;</span><span class="p">,</span>
@@ -443,7 +471,7 @@ description of the approach, you can use the
 <span class="p">)</span>
 
 <span class="c1"># Define the center frequency fixed frequency converter as a converter object</span>
-<span class="n">cf_fixed_freq_converter</span> <span class="o">=</span> <span class="n">PeriodicParamConverter</span><span class="p">(</span>
+<a href="../../generated/specparam.params.converter.PeriodicParamConverter.html#specparam.params.converter.PeriodicParamConverter" title="specparam.params.converter.PeriodicParamConverter" class="sphx-glr-backref-module-specparam-params-converter sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cf_fixed_freq_converter</span></a> <span class="o">=</span> <a href="../../generated/specparam.params.converter.PeriodicParamConverter.html#specparam.params.converter.PeriodicParamConverter" title="specparam.params.converter.PeriodicParamConverter" class="sphx-glr-backref-module-specparam-params-converter sphx-glr-backref-type-py-class"><span class="n">PeriodicParamConverter</span></a><span class="p">(</span>
     <span class="n">parameter</span><span class="o">=</span><span class="s1">&#39;cf&#39;</span><span class="p">,</span>
     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fixed_freq&#39;</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Convert the fit center frequency value to a fixed frequency value.&#39;</span><span class="p">,</span>
@@ -453,8 +481,8 @@ description of the approach, you can use the
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Take a new copy of the null converters dictionary &amp; add</span>
 <span class="n">custom_converters2</span> <span class="o">=</span> <span class="n">null_converters</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">custom_converters</span><span class="p">[</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">][</span><span class="s1">&#39;exponent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">exp_slope_converter</span>
-<span class="n">custom_converters2</span><span class="p">[</span><span class="s1">&#39;periodic&#39;</span><span class="p">][</span><span class="s1">&#39;cf&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cf_fixed_freq_converter</span>
+<span class="n">custom_converters</span><span class="p">[</span><span class="s1">&#39;aperiodic&#39;</span><span class="p">][</span><span class="s1">&#39;exponent&#39;</span><span class="p">]</span> <span class="o">=</span> <a href="../../generated/specparam.params.converter.AperiodicParamConverter.html#specparam.params.converter.AperiodicParamConverter" title="specparam.params.converter.AperiodicParamConverter" class="sphx-glr-backref-module-specparam-params-converter sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">exp_slope_converter</span></a>
+<span class="n">custom_converters2</span><span class="p">[</span><span class="s1">&#39;periodic&#39;</span><span class="p">][</span><span class="s1">&#39;cf&#39;</span><span class="p">]</span> <span class="o">=</span> <a href="../../generated/specparam.params.converter.PeriodicParamConverter.html#specparam.params.converter.PeriodicParamConverter" title="specparam.params.converter.PeriodicParamConverter" class="sphx-glr-backref-module-specparam-params-converter sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cf_fixed_freq_converter</span></a>
 </pre></div>
 </div>
 <p>Same as before, we can now use our custom converter definitions in the model fitting process.</p>
@@ -465,12 +493,12 @@ description of the approach, you can use the
 </div>
 <img src="../../_images/sphx_glr_plot_custom_param_conversions_005.png" srcset="../../_images/sphx_glr_plot_custom_param_conversions_005.png" alt="plot custom param conversions" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.49
         Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
-        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        Too low a limit may lead to over-fitting noise as small bandwidth peaks.
         We recommend a lower bound of approximately 2x the frequency resolution.
 
 ==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 2-40 Hz frequency range with 0.49 Hz resolution
@@ -492,7 +520,7 @@ description of the approach, you can use the
 </pre></div>
 </div>
 <section id="adding-new-parameter-conversions-to-the-module">
-<h3>Adding New Parameter Conversions to the Module<a class="headerlink" href="#adding-new-parameter-conversions-to-the-module" title="Permalink to this heading">¶</a></h3>
+<h3>Adding New Parameter Conversions to the Module<a class="headerlink" href="#adding-new-parameter-conversions-to-the-module" title="Link to this heading">¶</a></h3>
 <p>As a final note, if you look into the set of ‘built-in’ parameter conversions that are
 available within the module, you will see that these are defined in the same way as done here,
 using the conversion objects introduced above. The only difference is that they are defined
@@ -502,13 +530,16 @@ rather than the user having to pass in their own full definitions.</p>
 interest to other specparam users, once the ParamConverter object is defined it is quite
 easy to add this to the module as a new default option. If you would be interested in
 suggesting a mode be added to the module, feel free to open an issue and/or pull request.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.961 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.922 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-customize-plot-custom-param-conversions-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/493f7f518f1da3f90bef8ff110601577/plot_custom_param_conversions.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_custom_param_conversions.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/25ddabe955bdd52968cbc7ececf418d4/plot_custom_param_conversions.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_custom_param_conversions.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/4a2545ac19468c3cc174d5548b991de5/plot_custom_param_conversions.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_custom_param_conversions.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -528,8 +559,8 @@ suggesting a mode be added to the module, feel free to open an issue and/or pull
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

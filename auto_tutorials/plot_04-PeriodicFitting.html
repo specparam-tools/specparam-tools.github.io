@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>04: Periodic Component Fitting &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>04: Periodic Component Fitting &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -57,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -110,7 +111,35 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">04: Periodic Component Fitting</a><ul>
+<li><a class="reference internal" href="#component-fit-modes">Component Fit Modes</a></li>
+<li><a class="reference internal" href="#periodic-fitting-approaches">Periodic Fitting Approaches</a><ul>
+<li><a class="reference internal" href="#gaussian-periodic-mode">Gaussian Periodic Mode</a></li>
+<li><a class="reference internal" href="#mathematical-description-of-the-periodic-component">Mathematical Description of the Periodic Component</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fit-vs-converted-parameters">Fit vs. Converted Parameters</a><ul>
+<li><a class="reference internal" href="#converted-peak-parameters">Converted Peak Parameters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#specifying-a-different-fit-mode-skewed-gaussian">Specifying a Different Fit Mode: Skewed Gaussian</a></li>
+<li><a class="reference internal" href="#specifying-a-different-fit-mode-cauchy">Specifying a Different Fit Mode: Cauchy</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -118,20 +147,20 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="periodic-component-fitting">
-<span id="sphx-glr-auto-tutorials-plot-04-periodicfitting-py"></span><h1>04: Periodic Component Fitting<a class="headerlink" href="#periodic-component-fitting" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-tutorials-plot-04-periodicfitting-py"></span><h1>04: Periodic Component Fitting<a class="headerlink" href="#periodic-component-fitting" title="Link to this heading">¶</a></h1>
 <p>Choosing and using different modes for fitting the periodic component.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the model object</span>
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
 
 <span class="c1"># Import function to check available list of modes</span>
-<span class="kn">from</span> <span class="nn">specparam.modes.definitions</span> <span class="kn">import</span> <a href="../generated/specparam.modes.definitions.check_modes.html#specparam.modes.definitions.check_modes" title="specparam.modes.definitions.check_modes" class="sphx-glr-backref-module-specparam-modes-definitions sphx-glr-backref-type-py-function"><span class="n">check_modes</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.modes</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.modes.check_modes.html#specparam.modes.check_modes" title="specparam.modes.check_modes" class="sphx-glr-backref-module-specparam-modes sphx-glr-backref-type-py-function"><span class="n">check_modes</span></a>
 
 <span class="c1"># Import a utility to download and load example data</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.download</span> <span class="kn">import</span> <span class="n">load_example_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_example_data</span>
 </pre></div>
 </div>
 <section id="component-fit-modes">
-<h2>Component Fit Modes<a class="headerlink" href="#component-fit-modes" title="Permalink to this heading">¶</a></h2>
+<h2>Component Fit Modes<a class="headerlink" href="#component-fit-modes" title="Link to this heading">¶</a></h2>
 <p>So far, we have initialized spectral fitting without explicitly specifying what model we want
 to fit the the data. By doing so, we have been using the default model definition.</p>
 <p>However, we can also control which model forms we fit to the data, separately for the
@@ -140,26 +169,38 @@ each model component.</p>
 <p>In this part of the tutorial, we will explore how this works for the periodic component.</p>
 </section>
 <section id="periodic-fitting-approaches">
-<h2>Periodic Fitting Approaches<a class="headerlink" href="#periodic-fitting-approaches" title="Permalink to this heading">¶</a></h2>
+<h2>Periodic Fitting Approaches<a class="headerlink" href="#periodic-fitting-approaches" title="Link to this heading">¶</a></h2>
 <p>As we’ve already seen, to fit putatively periodic activity - operationalized as regions
 of power over above the aperiodic component - the model fits ‘peaks’.</p>
 <p>However, in order to actually do this, we need to specify a mathematical definition of
 how to describe these peaks. Specifying this fit function is what is meant by
 choosing the periodic mode.</p>
 <p>To see the available periodic fit modes, we can use the
-<a class="reference internal" href="../generated/specparam.modes.definitions.check_modes.html#specparam.modes.definitions.check_modes" title="specparam.modes.definitions.check_modes"><code class="xref py py-func docutils literal notranslate"><span class="pre">check_modes()</span></code></a> function.</p>
+<a class="reference internal" href="../generated/specparam.modes.check_modes.html#specparam.modes.check_modes" title="specparam.modes.check_modes"><code class="xref py py-func docutils literal notranslate"><span class="pre">check_modes()</span></code></a> function.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the list of periodic modes</span>
-<a href="../generated/specparam.modes.definitions.check_modes.html#specparam.modes.definitions.check_modes" title="specparam.modes.definitions.check_modes" class="sphx-glr-backref-module-specparam-modes-definitions sphx-glr-backref-type-py-function"><span class="n">check_modes</span></a><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">)</span>
+<a href="../generated/specparam.modes.check_modes.html#specparam.modes.check_modes" title="specparam.modes.check_modes" class="sphx-glr-backref-module-specparam-modes sphx-glr-backref-type-py-function"><span class="n">check_modes</span></a><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Available periodic modes:
-    gaussian      Gaussian peak fit function.
-    skewed_gaussian    Skewed Gaussian peak fit function.
-    cauchy        Cauchy peak fit function.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
+
+                                     AVAILABLE PERIODIC MODES
+
+                                            &#39;gaussian&#39;
+                                   Gaussian peak fit function.
+                                        &#39;skewed_gaussian&#39;
+                                Skewed Gaussian peak fit function.
+                                             &#39;cauchy&#39;
+                                    Cauchy peak fit function.
+                                             &#39;gamma&#39;
+                                    Fit a gamma peak function.
+                                            &#39;triangle&#39;
+                                   Triangle peak fit function.
+
+==================================================================================================
 </pre></div>
 </div>
 <section id="gaussian-periodic-mode">
-<h3>Gaussian Periodic Mode<a class="headerlink" href="#gaussian-periodic-mode" title="Permalink to this heading">¶</a></h3>
+<h3>Gaussian Periodic Mode<a class="headerlink" href="#gaussian-periodic-mode" title="Link to this heading">¶</a></h3>
 <p>We will start with choosing the Gaussian fit mode.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download example data files needed for this example</span>
 <span class="n">freqs</span> <span class="o">=</span> <span class="n">load_example_data</span><span class="p">(</span><span class="s1">&#39;freqs.npy&#39;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
@@ -170,15 +211,16 @@ choosing the periodic mode.</p>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">periodic_mode</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">)</span>
 
 <span class="c1"># Check the defined fit modes of the model object</span>
-<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm1</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+<a href="../generated/specparam.modes.modes.Modes.html#specparam.modes.modes.Modes.print" title="specparam.modes.modes.Modes.print" class="sphx-glr-backref-module-specparam-modes-modes sphx-glr-backref-type-py-method"><span class="n">fm1</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
                                             FIT MODES
 
-                                     Periodic Mode : gaussian
-                                      Aperiodic Mode : fixed
+                                     Aperiodic Mode : &#39;fixed&#39;
+
+                                    Periodic Mode : &#39;gaussian&#39;
 
 ==================================================================================================
 </pre></div>
@@ -189,12 +231,12 @@ choosing the periodic mode.</p>
 </div>
 <img src="../_images/sphx_glr_plot_04-PeriodicFitting_001.png" srcset="../_images/sphx_glr_plot_04-PeriodicFitting_001.png" alt="plot 04 PeriodicFitting" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.49
         Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
-        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        Too low a limit may lead to over-fitting noise as small bandwidth peaks.
         We recommend a lower bound of approximately 2x the frequency resolution.
 
 ==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.49 Hz resolution
@@ -218,7 +260,7 @@ choosing the periodic mode.</p>
 </div>
 </section>
 <section id="mathematical-description-of-the-periodic-component">
-<h3>Mathematical Description of the Periodic Component<a class="headerlink" href="#mathematical-description-of-the-periodic-component" title="Permalink to this heading">¶</a></h3>
+<h3>Mathematical Description of the Periodic Component<a class="headerlink" href="#mathematical-description-of-the-periodic-component" title="Link to this heading">¶</a></h3>
 <p>You might notice that the above model looks the same as what we have fit previously.
 The Gaussian periodic mode is the default periodic mode.</p>
 <p>Now that we have explicitly specified the Gaussian periodic fit mode, we can look into
@@ -237,16 +279,16 @@ how the model is actually fit.</p>
 <a href="../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_params" title="specparam.results.results.Results.get_params" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-method"><span class="n">fm1</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 9.36712112,  0.99082164,  0.78945133],
-       [11.26311335,  0.16434593,  1.32426813],
-       [18.25934079,  0.33386691,  1.44259837],
-       [49.11921998,  0.09105003,  1.03933721]])
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 9.36712113,  0.99082164,  0.78945133],
+       [11.26311337,  0.16434593,  1.32426808],
+       [18.25934079,  0.33386691,  1.44259835],
+       [49.11921998,  0.09105003,  1.03933723]])
 </pre></div>
 </div>
 </section>
 </section>
 <section id="fit-vs-converted-parameters">
-<h2>Fit vs. Converted Parameters<a class="headerlink" href="#fit-vs-converted-parameters" title="Permalink to this heading">¶</a></h2>
+<h2>Fit vs. Converted Parameters<a class="headerlink" href="#fit-vs-converted-parameters" title="Link to this heading">¶</a></h2>
 <p>You might notice in the above, where we printed out the periodic parameters, that in doing
 so we specified explicitly to get the ‘fit’ version of the parameters, and that these
 parameters are actually a bit different than the peak parameters reported in the report above.</p>
@@ -259,14 +301,14 @@ while defining the model, may not reflect what we actually want to analyze as ou
 <a href="../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_params" title="specparam.results.results.Results.get_params" class="sphx-glr-backref-module-specparam-results-results sphx-glr-backref-type-py-method"><span class="n">fm1</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">get_params</span></a><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;converted&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 9.36712112,  1.03782895,  1.57890266],
-       [11.26311335,  0.22542876,  2.64853626],
-       [18.25934079,  0.33089465,  2.88519674],
-       [49.11921998,  0.08942602,  2.07867442]])
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 9.36712113,  1.03782895,  1.57890265],
+       [11.26311337,  0.22542876,  2.64853616],
+       [18.25934079,  0.33089465,  2.8851967 ],
+       [49.11921998,  0.08942602,  2.07867447]])
 </pre></div>
 </div>
 <section id="converted-peak-parameters">
-<h3>Converted Peak Parameters<a class="headerlink" href="#converted-peak-parameters" title="Permalink to this heading">¶</a></h3>
+<h3>Converted Peak Parameters<a class="headerlink" href="#converted-peak-parameters" title="Link to this heading">¶</a></h3>
 <p>The converted peak parameters are labeled as:</p>
 <ul class="simple">
 <li><p>CF: center frequency of the extracted peak</p></li>
@@ -289,22 +331,23 @@ as ‘power’, as the units of the input data are expected to be units of power
 </section>
 </section>
 <section id="specifying-a-different-fit-mode-skewed-gaussian">
-<h2>Specifying a Different Fit Mode: Skewed Gaussian<a class="headerlink" href="#specifying-a-different-fit-mode-skewed-gaussian" title="Permalink to this heading">¶</a></h2>
+<h2>Specifying a Different Fit Mode: Skewed Gaussian<a class="headerlink" href="#specifying-a-different-fit-mode-skewed-gaussian" title="Link to this heading">¶</a></h2>
 <p>As we saw above with <cite>check_modes</cite> there are also other periodic fit modes we can choose.</p>
 <p>Next up, let’s try the <cite>skewed_gaussian</cite> mode.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object, explicitly specifying periodic fit to &#39;gaussian&#39;</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm2</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">periodic_mode</span><span class="o">=</span><span class="s1">&#39;skewed_gaussian&#39;</span><span class="p">)</span>
 
 <span class="c1"># Check the defined fit modes of the model object</span>
-<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm2</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+<a href="../generated/specparam.modes.modes.Modes.html#specparam.modes.modes.Modes.print" title="specparam.modes.modes.Modes.print" class="sphx-glr-backref-module-specparam-modes-modes sphx-glr-backref-type-py-method"><span class="n">fm2</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
                                             FIT MODES
 
-                                 Periodic Mode : skewed_gaussian
-                                      Aperiodic Mode : fixed
+                                     Aperiodic Mode : &#39;fixed&#39;
+
+                                Periodic Mode : &#39;skewed_gaussian&#39;
 
 ==================================================================================================
 </pre></div>
@@ -315,12 +358,12 @@ as ‘power’, as the units of the input data are expected to be units of power
 </div>
 <img src="../_images/sphx_glr_plot_04-PeriodicFitting_002.png" srcset="../_images/sphx_glr_plot_04-PeriodicFitting_002.png" alt="plot 04 PeriodicFitting" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.49
         Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
-        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        Too low a limit may lead to over-fitting noise as small bandwidth peaks.
         We recommend a lower bound of approximately 2x the frequency resolution.
 
 ==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.49 Hz resolution
@@ -346,21 +389,22 @@ as ‘power’, as the units of the input data are expected to be units of power
 <p>Note that the resulting parameters are also different.</p>
 </section>
 <section id="specifying-a-different-fit-mode-cauchy">
-<h2>Specifying a Different Fit Mode: Cauchy<a class="headerlink" href="#specifying-a-different-fit-mode-cauchy" title="Permalink to this heading">¶</a></h2>
+<h2>Specifying a Different Fit Mode: Cauchy<a class="headerlink" href="#specifying-a-different-fit-mode-cauchy" title="Link to this heading">¶</a></h2>
 <p>Finally, we can try the remaining periodic mode, the cauchy distribution!</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a model object, explicitly specifying periodic fit to &#39;gaussian&#39;</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm3</span></a> <span class="o">=</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">(</span><span class="n">periodic_mode</span><span class="o">=</span><span class="s1">&#39;cauchy&#39;</span><span class="p">)</span>
 
 <span class="c1"># Check the defined fit modes of the model object</span>
-<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fm3</span></a><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+<a href="../generated/specparam.modes.modes.Modes.html#specparam.modes.modes.Modes.print" title="specparam.modes.modes.Modes.print" class="sphx-glr-backref-module-specparam-modes-modes sphx-glr-backref-type-py-method"><span class="n">fm3</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">print</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
                                             FIT MODES
 
-                                      Periodic Mode : cauchy
-                                      Aperiodic Mode : fixed
+                                     Aperiodic Mode : &#39;fixed&#39;
+
+                                     Periodic Mode : &#39;cauchy&#39;
 
 ==================================================================================================
 </pre></div>
@@ -371,12 +415,12 @@ as ‘power’, as the units of the input data are expected to be units of power
 </div>
 <img src="../_images/sphx_glr_plot_04-PeriodicFitting_003.png" srcset="../_images/sphx_glr_plot_04-PeriodicFitting_003.png" alt="plot 04 PeriodicFitting" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.49
         Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
-        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        Too low a limit may lead to over-fitting noise as small bandwidth peaks.
         We recommend a lower bound of approximately 2x the frequency resolution.
 
 ==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.49 Hz resolution
@@ -397,13 +441,16 @@ as ‘power’, as the units of the input data are expected to be units of power
 </pre></div>
 </div>
 <p>That covers periodic mode selection!</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.693 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.474 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-04-periodicfitting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/1c54019721ce2e9f618bafd1a0500483/plot_04-PeriodicFitting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_04-PeriodicFitting.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5fa4f9b8a207d532aba0d5e321c6e3fe/plot_04-PeriodicFitting.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_04-PeriodicFitting.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/b2751ff47ad34c4c8a519ee125f39d3b/plot_04-PeriodicFitting.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_04-PeriodicFitting.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -422,8 +469,8 @@ as ‘power’, as the units of the input data are expected to be units of power
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

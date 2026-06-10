@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>10: Tuning &amp; Troubleshooting &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>10: Tuning &amp; Troubleshooting &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,7 +110,37 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">10: Tuning &amp; Troubleshooting</a><ul>
+<li><a class="reference internal" href="#algorithm-settings">Algorithm Settings</a></li>
+<li><a class="reference internal" href="#tuning-the-algorithm">Tuning the Algorithm</a></li>
+<li><a class="reference internal" href="#reducing-overfitting">Reducing Overfitting</a></li>
+<li><a class="reference internal" href="#simulating-power-spectra">Simulating Power Spectra</a><ul>
+<li><a class="reference internal" href="#power-spectra-with-no-peaks">Power Spectra with No Peaks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reducing-underfitting">Reducing Underfitting</a></li>
+<li><a class="reference internal" href="#checking-fits-across-a-group">Checking Fits Across a Group</a><ul>
+<li><a class="reference internal" href="#simulating-a-group-of-power-spectra">Simulating a Group of Power Spectra</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reporting-bad-fits">Reporting Bad Fits</a></li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -117,22 +148,22 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="tuning-troubleshooting">
-<span id="sphx-glr-auto-tutorials-plot-10-troubleshooting-py"></span><h1>10: Tuning &amp; Troubleshooting<a class="headerlink" href="#tuning-troubleshooting" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-tutorials-plot-10-troubleshooting-py"></span><h1>10: Tuning &amp; Troubleshooting<a class="headerlink" href="#tuning-troubleshooting" title="Link to this heading">¶</a></h1>
 <p>Tips &amp; tricks for choosing algorithm settings, tuning fits, and troubleshooting.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># General imports</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Import the model objects</span>
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">,</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a><span class="p">,</span> <a href="../generated/specparam.SpectralGroupModel.html#specparam.SpectralGroupModel" title="specparam.SpectralGroupModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralGroupModel</span></a>
 
 <span class="c1"># Import some utilities for creating simulated power-spectra</span>
-<span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">,</span> <a href="../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a>
-<span class="kn">from</span> <span class="nn">specparam.sim.params</span> <span class="kn">import</span> <a href="../generated/specparam.sim.params.param_sampler.html#specparam.sim.params.param_sampler" title="specparam.sim.params.param_sampler" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-function"><span class="n">param_sampler</span></a>
-<span class="kn">from</span> <span class="nn">specparam.sim.utils</span> <span class="kn">import</span> <a href="../generated/specparam.sim.utils.set_random_seed.html#specparam.sim.utils.set_random_seed" title="specparam.sim.utils.set_random_seed" class="sphx-glr-backref-module-specparam-sim-utils sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">,</span> <a href="../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_group_power_spectra</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.params</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.sim.params.param_sampler.html#specparam.sim.params.param_sampler" title="specparam.sim.params.param_sampler" class="sphx-glr-backref-module-specparam-sim-params sphx-glr-backref-type-py-function"><span class="n">param_sampler</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.random</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.utils.random.set_random_seed.html#specparam.utils.random.set_random_seed" title="specparam.utils.random.set_random_seed" class="sphx-glr-backref-module-specparam-utils-random sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a>
 </pre></div>
 </div>
 <section id="algorithm-settings">
-<h2>Algorithm Settings<a class="headerlink" href="#algorithm-settings" title="Permalink to this heading">¶</a></h2>
+<h2>Algorithm Settings<a class="headerlink" href="#algorithm-settings" title="Link to this heading">¶</a></h2>
 <p>With default settings, the power spectrum model is relatively minimally constrained. It
 defaults as such since there are not universal settings that work across all different
 recording modalities. Appropriate settings also vary with power spectrum quality (noise,
@@ -158,7 +189,7 @@ We therefore recommend first testing fitting the model across some representativ
 spectra, in order to select settings, which you then keep constant for the full analysis.</p>
 </section>
 <section id="tuning-the-algorithm">
-<h2>Tuning the Algorithm<a class="headerlink" href="#tuning-the-algorithm" title="Permalink to this heading">¶</a></h2>
+<h2>Tuning the Algorithm<a class="headerlink" href="#tuning-the-algorithm" title="Link to this heading">¶</a></h2>
 <p>With default settings, the model fit is fairly liberal at fitting peaks, and so
 most commonly this will lead to overfitting, being overzealous at fitting small
 noisy bumps as peaks.</p>
@@ -170,7 +201,7 @@ on aperiodic fitting).</p>
 for different datasets.</p>
 </section>
 <section id="reducing-overfitting">
-<h2>Reducing Overfitting<a class="headerlink" href="#reducing-overfitting" title="Permalink to this heading">¶</a></h2>
+<h2>Reducing Overfitting<a class="headerlink" href="#reducing-overfitting" title="Link to this heading">¶</a></h2>
 <p>If the model appears to be overfitting (for example, fitting too many peaks to small bumps), try:</p>
 <ul class="simple">
 <li><p>Setting a lower-bound bandwidth-limit, to exclude fitting very narrow peaks, that may be noise</p></li>
@@ -183,7 +214,7 @@ for different datasets.</p>
 </ul>
 </section>
 <section id="simulating-power-spectra">
-<h2>Simulating Power Spectra<a class="headerlink" href="#simulating-power-spectra" title="Permalink to this heading">¶</a></h2>
+<h2>Simulating Power Spectra<a class="headerlink" href="#simulating-power-spectra" title="Link to this heading">¶</a></h2>
 <p>For this example, we will use simulated data. The <cite>specparam</cite> module includes utilities
 for creating simulated power-spectra. To do so, we can use the <a class="reference internal" href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_power_spectrum()</span></code></a>
 function to simulate individual power spectra, following the power spectrum model.</p>
@@ -198,7 +229,7 @@ function to simulate individual power spectra, following the power spectrum mode
 <span class="n">nlv</span> <span class="o">=</span> <span class="mf">0.1</span>
 
 <span class="c1"># Set random seed, for consistency creating simulated data</span>
-<a href="../generated/specparam.sim.utils.set_random_seed.html#specparam.sim.utils.set_random_seed" title="specparam.sim.utils.set_random_seed" class="sphx-glr-backref-module-specparam-sim-utils sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+<a href="../generated/specparam.utils.random.set_random_seed.html#specparam.utils.random.set_random_seed" title="specparam.utils.random.set_random_seed" class="sphx-glr-backref-module-specparam-utils-random sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
 
 <span class="c1"># Create a simulated power spectrum</span>
 <span class="n">freqs</span><span class="p">,</span> <span class="n">spectrum</span> <span class="o">=</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">(</span>\
@@ -212,12 +243,12 @@ function to simulate individual power spectra, following the power spectrum mode
 </div>
 <img src="../_images/sphx_glr_plot_10-TroubleShooting_001.png" srcset="../_images/sphx_glr_plot_10-TroubleShooting_001.png" alt="plot 10 TroubleShooting" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING: Lower-bound peak width limit is &lt; or ~= the frequency resolution: 0.50 &lt;= 0.50
         Lower bounds below frequency-resolution have no effect (effective lower bound is the frequency resolution).
-        Too low a limit may lead to overfitting noise as small bandwidth peaks.
+        Too low a limit may lead to over-fitting noise as small bandwidth peaks.
         We recommend a lower bound of approximately 2x the frequency resolution.
 
 ==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.50 Hz resolution
@@ -254,7 +285,7 @@ high, given the amount of noise we in the simulated power spectrum.</p>
 </div>
 <img src="../_images/sphx_glr_plot_10-TroubleShooting_002.png" srcset="../_images/sphx_glr_plot_10-TroubleShooting_002.png" alt="plot 10 TroubleShooting" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.50 Hz resolution
@@ -293,7 +324,7 @@ which is why we compare to the model gaussian parameters here.</p>
 </pre></div>
 </div>
 <section id="power-spectra-with-no-peaks">
-<h3>Power Spectra with No Peaks<a class="headerlink" href="#power-spectra-with-no-peaks" title="Permalink to this heading">¶</a></h3>
+<h3>Power Spectra with No Peaks<a class="headerlink" href="#power-spectra-with-no-peaks" title="Link to this heading">¶</a></h3>
 <p>A known case in which the model can overfit is in power spectra in which no peaks are
 present. In this case, the standard deviation can be very low, and so the relative
 peak height check (<code class="docutils literal notranslate"><span class="pre">min_peak_threshold</span></code>) is very liberal at keeping gaussian fits.</p>
@@ -306,7 +337,7 @@ allowing you to define an absolute threshold for extracting peaks.</p>
 </section>
 </section>
 <section id="reducing-underfitting">
-<h2>Reducing Underfitting<a class="headerlink" href="#reducing-underfitting" title="Permalink to this heading">¶</a></h2>
+<h2>Reducing Underfitting<a class="headerlink" href="#reducing-underfitting" title="Link to this heading">¶</a></h2>
 <p>If you are finding that the model is underfitting:</p>
 <ul class="simple">
 <li><p>First check and perhaps loosen any restrictions from <code class="docutils literal notranslate"><span class="pre">max_n_peaks</span></code> and <code class="docutils literal notranslate"><span class="pre">min_peak_height</span></code></p></li>
@@ -339,7 +370,7 @@ allowing you to define an absolute threshold for extracting peaks.</p>
 </div>
 <img src="../_images/sphx_glr_plot_10-TroubleShooting_003.png" srcset="../_images/sphx_glr_plot_10-TroubleShooting_003.png" alt="plot 10 TroubleShooting" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 1-50 Hz frequency range with 0.50 Hz resolution
@@ -374,7 +405,7 @@ allowing you to define an absolute threshold for extracting peaks.</p>
 </div>
 </section>
 <section id="checking-fits-across-a-group">
-<h2>Checking Fits Across a Group<a class="headerlink" href="#checking-fits-across-a-group" title="Permalink to this heading">¶</a></h2>
+<h2>Checking Fits Across a Group<a class="headerlink" href="#checking-fits-across-a-group" title="Link to this heading">¶</a></h2>
 <p>So far we have explored troubleshooting individual model fits. When starting
 a new analysis, or working with a new dataset, we do recommend starting by
 trying some individual fits like this.</p>
@@ -382,7 +413,7 @@ trying some individual fits like this.</p>
 power spectra, there are some slightly different ways to investigate groups of fits,
 which we’ll step through now, using some simulated data.</p>
 <section id="simulating-a-group-of-power-spectra">
-<h3>Simulating a Group of Power Spectra<a class="headerlink" href="#simulating-a-group-of-power-spectra" title="Permalink to this heading">¶</a></h3>
+<h3>Simulating a Group of Power Spectra<a class="headerlink" href="#simulating-a-group-of-power-spectra" title="Link to this heading">¶</a></h3>
 <p>We will continue using simulated data, this time simulating a group of power spectra.</p>
 <p>To simulate a group of power spectra, we will use the <a class="reference internal" href="../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra" title="specparam.sim.sim_group_power_spectra"><code class="xref py py-func docutils literal notranslate"><span class="pre">sim_group_power_spectra()</span></code></a>
 in combination with called <a class="reference internal" href="../generated/specparam.sim.params.param_sampler.html#specparam.sim.params.param_sampler" title="specparam.sim.params.param_sampler"><code class="xref py py-func docutils literal notranslate"><span class="pre">param_sampler()</span></code></a> that is used to sample across
@@ -448,13 +479,13 @@ and select these fits from the <a class="reference internal" href="../generated/
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check results and visualize the extracted model</span>
-<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_results" title="specparam.SpectralModel.print_results" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">print_results</span></a><span class="p">()</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print" title="specparam.SpectralModel.print" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">print</span></a><span class="p">()</span>
 <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.plot" title="specparam.SpectralModel.plot" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <img src="../_images/sphx_glr_plot_10-TroubleShooting_005.png" srcset="../_images/sphx_glr_plot_10-TroubleShooting_005.png" alt="plot 10 TroubleShooting" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                       POWER SPECTRUM MODEL
+                                      SPECTRUM MODEL RESULTS
 
                        The model was fit with the &#39;spectral_fit&#39; algorithm
                Model was fit to the 3-50 Hz frequency range with 0.50 Hz resolution
@@ -507,11 +538,11 @@ large number of gaussians.</p>
 <li><img src="../_images/sphx_glr_plot_10-TroubleShooting_006.png" srcset="../_images/sphx_glr_plot_10-TroubleShooting_006.png" alt="plot 10 TroubleShooting" class = "sphx-glr-multi-img"/></li>
 <li><img src="../_images/sphx_glr_plot_10-TroubleShooting_007.png" srcset="../_images/sphx_glr_plot_10-TroubleShooting_007.png" alt="plot 10 TroubleShooting" class = "sphx-glr-multi-img"/></li>
 </ul>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/reports/save.py:63: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/tom/miniconda3/envs/sphinx/lib/python3.13/site-packages/specparam/reports/save.py:63: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(create_file_path(file_name, file_path, SAVE_FORMAT))
-/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/reports/save.py:63: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/Users/tom/miniconda3/envs/sphinx/lib/python3.13/site-packages/specparam/reports/save.py:63: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(create_file_path(file_name, file_path, SAVE_FORMAT))
-/Users/tom/opt/anaconda3/lib/python3.8/site-packages/specparam/reports/save.py:63: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/Users/tom/miniconda3/envs/sphinx/lib/python3.13/site-packages/specparam/reports/save.py:63: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(create_file_path(file_name, file_path, SAVE_FORMAT))
 </pre></div>
 </div>
@@ -527,7 +558,7 @@ peaks per model. A particularly high value can indicate overfitting.</p>
 </section>
 </section>
 <section id="reporting-bad-fits">
-<h2>Reporting Bad Fits<a class="headerlink" href="#reporting-bad-fits" title="Permalink to this heading">¶</a></h2>
+<h2>Reporting Bad Fits<a class="headerlink" href="#reporting-bad-fits" title="Link to this heading">¶</a></h2>
 <p>If, after working through these suggestions, you are still getting bad fits, and/or
 are just not sure what is going on, please get in touch! We will hopefully be able to
 make further recommendations, and this also serves as a way for us to investigate when
@@ -536,12 +567,12 @@ and why model fitting fails, so that we can continue to make it better.</p>
 <p>There is also a helper method to print out instructions for reporting
 bad fits / bugs back to us, as demonstrated below.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out instructions to report bad fits</span>
-<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print_report_issue" title="specparam.SpectralModel.print_report_issue" class="sphx-glr-backref-module-specparam-SpectralModel sphx-glr-backref-type-py-method"><span class="n">SpectralModel</span><span class="o">.</span><span class="n">print_report_issue</span></a><span class="p">()</span>
+<a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel.print" title="specparam.SpectralModel.print" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-method"><span class="n">fm</span><span class="o">.</span><span class="n">print</span></a><span class="p">(</span><span class="s1">&#39;issue&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================================
 
-                                   specparam - ISSUE REPORTING
+                                         ISSUE REPORTING
 
                       Please report any bugs or unexpected errors on Github:
                            https://github.com/fooof-tools/fooof/issues
@@ -558,22 +589,23 @@ bad fits / bugs back to us, as demonstrated below.</p>
 ==================================================================================================
 </pre></div>
 </div>
-<p>Note that you can also call this method from SpectralGroupModel
-(ex: <cite>SpectralGroupModel.print_report_issue()</cite>) as well as from instances of these objects
-(ex: <cite>fm.print_report_issue()</cite>, <cite>fg.print_report_issue()</cite>)</p>
+<p>Note that you can also call this method from SpectralGroupModel (ex: <cite>fg.print(‘issue’)</cite>)</p>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h2>
 <p>We have now stepped through the full work-flow of fitting power spectrum models, using
 model objects, picking settings, and troubleshooting model fits. In the next
 and final tutorial, we will introduce how to start analyzing model results.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.284 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.865 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-10-troubleshooting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/b932ccf6b4f0d2d5d9fd9cc4412c53a7/plot_10-TroubleShooting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_10-TroubleShooting.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/87cdf5f33b90cb37ad6729d003459a01/plot_10-TroubleShooting.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_10-TroubleShooting.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/4a68c20c6a65c08f3f25c83c4f2f27c1/plot_10-TroubleShooting.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_10-TroubleShooting.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -592,8 +624,8 @@ and final tutorial, we will introduce how to start analyzing model results.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

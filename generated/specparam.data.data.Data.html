@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>specparam.data.data.Data &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.data.data.Data &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,13 +110,44 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">specparam.data.data.Data</a><ul>
+<li><a class="reference internal" href="#specparam.data.data.Data"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a><ul>
+<li><a class="reference internal" href="#specparam.data.data.Data.__init__"><code class="docutils literal notranslate"><span class="pre">Data.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.data.data.Data.add_data"><code class="docutils literal notranslate"><span class="pre">Data.add_data()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.data.data.Data.add_meta_data"><code class="docutils literal notranslate"><span class="pre">Data.add_meta_data()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.data.data.Data.get_checks"><code class="docutils literal notranslate"><span class="pre">Data.get_checks()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.data.data.Data.get_data"><code class="docutils literal notranslate"><span class="pre">Data.get_data()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.data.data.Data.get_meta_data"><code class="docutils literal notranslate"><span class="pre">Data.get_meta_data()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.data.data.Data.has_data"><code class="docutils literal notranslate"><span class="pre">Data.has_data</span></code></a></li>
+<li><a class="reference internal" href="#specparam.data.data.Data.n_freqs"><code class="docutils literal notranslate"><span class="pre">Data.n_freqs</span></code></a></li>
+<li><a class="reference internal" href="#specparam.data.data.Data.plot"><code class="docutils literal notranslate"><span class="pre">Data.plot()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.data.data.Data.print"><code class="docutils literal notranslate"><span class="pre">Data.print()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.data.data.Data.set_checks"><code class="docutils literal notranslate"><span class="pre">Data.set_checks()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples-using-specparam-data-data-data">Examples using <code class="docutils literal notranslate"><span class="pre">specparam.data.data.Data</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="specparam-data-data-data">
-<h1>specparam.data.data.Data<a class="headerlink" href="#specparam-data-data-data" title="Permalink to this heading">¶</a></h1>
+<h1>specparam.data.data.Data<a class="headerlink" href="#specparam-data-data-data" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="specparam.data.data.Data">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.data.data.</span></span><span class="sig-name descname"><span class="pre">Data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'power'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.data.data.</span></span><span class="sig-name descname"><span class="pre">Data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'power'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data" title="Link to this definition">¶</a></dt>
 <dd><p>Object for managing data for spectral parameterization - for 1D data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -126,14 +158,12 @@
 </dd>
 <dt><strong>format</strong><span class="classifier">{‘power’}</span></dt><dd><p>The representation format of the data.</p>
 </dd>
-</dl>
+<dt><strong>model</strong><span class="classifier">SpectralModel, optional</span></dt><dd><p>The model object this object is linked to, to provide access to other attributes.</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>All power values are stored internally in log10 scale.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
 <dt><strong>checks</strong><span class="classifier">dict</span></dt><dd><p>Specifiers for which aspects of the data to run checks on.</p>
 </dd>
 <dt><strong>freqs</strong><span class="classifier">1d array</span></dt><dd><p>Frequency values for the spectral data.</p>
@@ -147,16 +177,18 @@
 </dl>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>All power values are stored internally in log10 scale.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.data.data.Data.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'power'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'power'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize Data object.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.data.data.Data.__init__" title="specparam.data.data.Data.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([check_freqs, check_data, format])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.data.data.Data.__init__" title="specparam.data.data.Data.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([check_freqs, check_data, format, ...])</p></td>
 <td><p>Initialize Data object.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#specparam.data.data.Data.add_data" title="specparam.data.data.Data.add_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_data</span></code></a>(freqs, power_spectrum[, freq_range])</p></td>
@@ -168,16 +200,19 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#specparam.data.data.Data.get_checks" title="specparam.data.data.Data.get_checks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_checks</span></code></a>()</p></td>
 <td><p>Return check statuses of the current object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.data.data.Data.get_meta_data" title="specparam.data.data.Data.get_meta_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_meta_data</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.data.data.Data.get_data" title="specparam.data.data.Data.get_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_data</span></code></a>([component, space])</p></td>
+<td><p>Get a data component.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.data.data.Data.get_meta_data" title="specparam.data.data.Data.get_meta_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_meta_data</span></code></a>()</p></td>
 <td><p>Return data information from the current object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.data.data.Data.plot" title="specparam.data.data.Data.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([plt_log])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.data.data.Data.plot" title="specparam.data.data.Data.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([plt_log])</p></td>
 <td><p>Plot the power spectrum.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.data.data.Data.print" title="specparam.data.data.Data.print"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print</span></code></a>([concise])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#specparam.data.data.Data.print" title="specparam.data.data.Data.print"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print</span></code></a>([concise])</p></td>
 <td><p>Print out a data summary.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#specparam.data.data.Data.set_checks" title="specparam.data.data.Data.set_checks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_checks</span></code></a>([check_freqs, check_data])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#specparam.data.data.Data.set_checks" title="specparam.data.data.Data.set_checks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_checks</span></code></a>([check_freqs, check_data])</p></td>
 <td><p>Set check statuses, which control if an error is raised based on check on the inputs.</p></td>
 </tr>
 </tbody>
@@ -195,7 +230,7 @@
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.data.data.Data.add_data">
-<span class="sig-name descname"><span class="pre">add_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_spectrum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.add_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.add_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_spectrum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.add_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.add_data" title="Link to this definition">¶</a></dt>
 <dd><p>Add data (frequencies, and power spectrum values) to the current object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -216,7 +251,7 @@ If not provided, keeps the entire range.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.data.data.Data.add_meta_data">
-<span class="sig-name descname"><span class="pre">add_meta_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meta_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.add_meta_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.add_meta_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_meta_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meta_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.add_meta_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.add_meta_data" title="Link to this definition">¶</a></dt>
 <dd><p>Add data information into object from a SpectrumMetaData object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -230,7 +265,7 @@ If not provided, keeps the entire range.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.data.data.Data.get_checks">
-<span class="sig-name descname"><span class="pre">get_checks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.get_checks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.get_checks" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_checks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.get_checks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.get_checks" title="Link to this definition">¶</a></dt>
 <dd><p>Return check statuses of the current object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -243,8 +278,45 @@ If not provided, keeps the entire range.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="specparam.data.data.Data.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.get_data" title="Link to this definition">¶</a></dt>
+<dd><p>Get a data component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>component</strong><span class="classifier">{‘full’, ‘aperiodic’, ‘peak’}</span></dt><dd><dl class="simple">
+<dt>Which data component to return.</dt><dd><p>‘full’ - full power spectrum
+‘aperiodic’ - isolated aperiodic data component
+‘peak’ - isolated peak data component</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>space</strong><span class="classifier">{‘log’, ‘linear’}</span></dt><dd><dl class="simple">
+<dt>Which space to return the data component in.</dt><dd><p>‘log’ - returns in log10 space.
+‘linear’ - returns in linear space.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>output</strong><span class="classifier">1d array</span></dt><dd><p>Specified data component, in specified spacing.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The ‘space’ parameter doesn’t just define the spacing of the data component
+values, but rather defines the space of the additive data definition such that
+<cite>power_spectrum = aperiodic_component + peak_component</cite>.
+With space set as ‘log’, this combination holds in log space.
+With space set as ‘linear’, this combination holds in linear space.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="specparam.data.data.Data.get_meta_data">
-<span class="sig-name descname"><span class="pre">get_meta_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.get_meta_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.get_meta_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_meta_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.get_meta_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.get_meta_data" title="Link to this definition">¶</a></dt>
 <dd><p>Return data information from the current object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -258,30 +330,30 @@ If not provided, keeps the entire range.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="specparam.data.data.Data.has_data">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_data</span></span><a class="headerlink" href="#specparam.data.data.Data.has_data" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_data</span></span><a class="headerlink" href="#specparam.data.data.Data.has_data" title="Link to this definition">¶</a></dt>
 <dd><p>Indicator for if the object contains data.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="specparam.data.data.Data.n_freqs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_freqs</span></span><a class="headerlink" href="#specparam.data.data.Data.n_freqs" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_freqs</span></span><a class="headerlink" href="#specparam.data.data.Data.n_freqs" title="Link to this definition">¶</a></dt>
 <dd><p>Indicator for the number of frequency values.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.data.data.Data.plot">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plt_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plt_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.plot" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plt_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plt_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.plot" title="Link to this definition">¶</a></dt>
 <dd><p>Plot the power spectrum.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.data.data.Data.print">
-<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.print" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.print" title="Link to this definition">¶</a></dt>
 <dd><p>Print out a data summary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print the report in a concise mode, or not.</p>
+<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print a concise version of the report.</p>
 </dd>
 </dl>
 </dd>
@@ -290,7 +362,7 @@ If not provided, keeps the entire range.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.data.data.Data.set_checks">
-<span class="sig-name descname"><span class="pre">set_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.set_checks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.set_checks" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/data/data.html#Data.set_checks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.data.data.Data.set_checks" title="Link to this definition">¶</a></dt>
 <dd><p>Set check statuses, which control if an error is raised based on check on the inputs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -307,9 +379,9 @@ If not provided, keeps the entire range.</p>
 </dd></dl>
 
 <section id="examples-using-specparam-data-data-data">
-<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.data.data.Data</span></code><a class="headerlink" href="#examples-using-specparam-data-data-data" title="Permalink to this heading">¶</a></h2>
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.data.data.Data</span></code><a class="headerlink" href="#examples-using-specparam-data-data-data" title="Link to this heading">¶</a></h2>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Introducing the objects used within the model object."><img alt="" src="../_images/sphx_glr_plot_sub_objects_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html#sphx-glr-auto-examples-customize-plot-sub-objects-py"><span class="std std-ref">Model Sub-Objects</span></a></p>
+<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html"><span class="doc">Model Sub-Objects</span></a></p>
   <div class="sphx-glr-thumbnail-title">Model Sub-Objects</div>
 </div></div></section>
 </section>
@@ -326,8 +398,8 @@ If not provided, keeps the entire range.</p>
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Band Ratio Measures &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <title>Band Ratio Measures &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -57,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -110,7 +111,32 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Band Ratio Measures</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#band-ratios-project">Band Ratios Project</a></li>
+<li><a class="reference internal" href="#simulating-data">Simulating Data</a></li>
+<li><a class="reference internal" href="#calculating-band-ratios">Calculating Band Ratios</a></li>
+<li><a class="reference internal" href="#periodic-impacts-on-band-ratio-measures">Periodic Impacts on Band Ratio Measures</a></li>
+<li><a class="reference internal" href="#aperiodic-impacts-on-band-ratio-measures">Aperiodic Impacts on Band Ratio Measures</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -118,10 +144,10 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="band-ratio-measures">
-<span id="sphx-glr-auto-motivations-measurements-plot-bandratios-py"></span><h1>Band Ratio Measures<a class="headerlink" href="#band-ratio-measures" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-motivations-measurements-plot-bandratios-py"></span><h1>Band Ratio Measures<a class="headerlink" href="#band-ratio-measures" title="Link to this heading">¶</a></h1>
 <p>Exploring how band ratio measures relate to periodic &amp; aperiodic activity.</p>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>Band ratios measures are a relatively common measure, proposed to measure oscillatory,
 or periodic, activity.</p>
 <p>They are typically calculated as:</p>
@@ -130,7 +156,7 @@ or periodic, activity.</p>
 <p>In this notebook we will explore this measure in the context of conceptualizing neural power
 spectra as a combination of aperiodic and periodic activity.</p>
 <section id="band-ratios-project">
-<h3>Band Ratios Project<a class="headerlink" href="#band-ratios-project" title="Permalink to this heading">¶</a></h3>
+<h3>Band Ratios Project<a class="headerlink" href="#band-ratios-project" title="Link to this heading">¶</a></h3>
 <p>This example offers a relatively quick demonstration of how band ratios measures
 relate to periodic and aperiodic activity.</p>
 <p>We have completed a full project investigating methodological properties of band
@@ -138,15 +164,15 @@ ratio measures, which is available as a
 <a class="reference external" href="https://doi.org/10.1523/ENEURO.0192-20.2020">published paper</a> and/or on
 <a class="reference external" href="https://github.com/voytekresearch/BandRatios">Github</a>.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import numpy and matplotlib</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Import simulation, utility, and plotting tools</span>
-<span class="kn">from</span> <span class="nn">specparam.bands</span> <span class="kn">import</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
-<span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
-<span class="kn">from</span> <span class="nn">specparam.sim.utils</span> <span class="kn">import</span> <a href="../../generated/specparam.sim.utils.set_random_seed.html#specparam.sim.utils.set_random_seed" title="specparam.sim.utils.set_random_seed" class="sphx-glr-backref-module-specparam-sim-utils sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a>
-<span class="kn">from</span> <span class="nn">specparam.utils.spectral</span> <span class="kn">import</span> <span class="n">trim_spectrum</span>
-<span class="kn">from</span> <span class="nn">specparam.plts.spectra</span> <span class="kn">import</span> <a href="../../generated/specparam.plts.spectra.plot_spectra_shading.html#specparam.plts.spectra.plot_spectra_shading" title="specparam.plts.spectra.plot_spectra_shading" class="sphx-glr-backref-module-specparam-plts-spectra sphx-glr-backref-type-py-function"><span class="n">plot_spectra_shading</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.bands</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.Bands.html#specparam.Bands" title="specparam.Bands" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">Bands</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.spectral</span><span class="w"> </span><span class="kn">import</span> <span class="n">trim_spectrum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.random</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.utils.random.set_random_seed.html#specparam.utils.random.set_random_seed" title="specparam.utils.random.set_random_seed" class="sphx-glr-backref-module-specparam-utils-random sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.spectra</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/specparam.plts.spectra.plot_spectra_shading.html#specparam.plts.spectra.plot_spectra_shading" title="specparam.plts.spectra.plot_spectra_shading" class="sphx-glr-backref-module-specparam-plts-spectra sphx-glr-backref-type-py-function"><span class="n">plot_spectra_shading</span></a>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># General Settings</span>
@@ -163,11 +189,11 @@ ratio measures, which is available as a
 </div>
 </section>
 <section id="simulating-data">
-<h3>Simulating Data<a class="headerlink" href="#simulating-data" title="Permalink to this heading">¶</a></h3>
+<h3>Simulating Data<a class="headerlink" href="#simulating-data" title="Link to this heading">¶</a></h3>
 <p>For this example, we will use simulated data. Let’s start by simulating a
 a baseline power spectrum.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed, for consistency creating simulated data</span>
-<a href="../../generated/specparam.sim.utils.set_random_seed.html#specparam.sim.utils.set_random_seed" title="specparam.sim.utils.set_random_seed" class="sphx-glr-backref-module-specparam-sim-utils sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+<a href="../../generated/specparam.utils.random.set_random_seed.html#specparam.utils.random.set_random_seed" title="specparam.utils.random.set_random_seed" class="sphx-glr-backref-module-specparam-utils-random sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
 
 <span class="c1"># Simulation Settings</span>
 <span class="n">nlv</span> <span class="o">=</span> <span class="mi">0</span>
@@ -193,7 +219,7 @@ a baseline power spectrum.</p>
 </div>
 </section>
 <section id="calculating-band-ratios">
-<h3>Calculating Band Ratios<a class="headerlink" href="#calculating-band-ratios" title="Permalink to this heading">¶</a></h3>
+<h3>Calculating Band Ratios<a class="headerlink" href="#calculating-band-ratios" title="Link to this heading">¶</a></h3>
 <p>Band ratio measures are a ratio of power between defined frequency bands.</p>
 <p>We can now define a function we can use to compute band ratio measures, and
 apply it to our baseline power spectrum.</p>
@@ -202,7 +228,7 @@ most commonly applied band ratio measure.</p>
 <p>Note that it doesn’t matter exactly which ratio measure or which frequency band
 definitions we use, as the general properties demonstrated here generalize
 to different bands and ranges.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_band_ratio</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">,</span> <span class="n">low_band</span><span class="p">,</span> <span class="n">high_band</span><span class="p">):</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_band_ratio</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span><span class="p">,</span> <span class="n">low_band</span><span class="p">,</span> <span class="n">high_band</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function to compute band ratio measures.&quot;&quot;&quot;</span>
 
     <span class="c1"># Extract frequencies within each specified band</span>
@@ -231,7 +257,7 @@ to different bands and ranges.</p>
 </div>
 </section>
 <section id="periodic-impacts-on-band-ratio-measures">
-<h3>Periodic Impacts on Band Ratio Measures<a class="headerlink" href="#periodic-impacts-on-band-ratio-measures" title="Permalink to this heading">¶</a></h3>
+<h3>Periodic Impacts on Band Ratio Measures<a class="headerlink" href="#periodic-impacts-on-band-ratio-measures" title="Link to this heading">¶</a></h3>
 <p>Typical investigations involving band ratios compare differences in band ratio measures
 within and between subjects. The typical interpretation of band ratio measures is that
 they relate to the relative power between two bands.</p>
@@ -239,8 +265,8 @@ they relate to the relative power between two bands.</p>
 see how this changes our measured theta / beta ratio, as compared to our baseline
 power spectrum.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a helper function for updating parameters</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
-<span class="k">def</span> <span class="nf">upd</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">upd</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a updated copy of an array.&quot;&quot;&quot;</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">out</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
@@ -313,7 +339,7 @@ do so in a way that creates an identical change in the measured band ratio measu
 can reflect multiple different changes across multiple different periodic parameters.</p>
 </section>
 <section id="aperiodic-impacts-on-band-ratio-measures">
-<h3>Aperiodic Impacts on Band Ratio Measures<a class="headerlink" href="#aperiodic-impacts-on-band-ratio-measures" title="Permalink to this heading">¶</a></h3>
+<h3>Aperiodic Impacts on Band Ratio Measures<a class="headerlink" href="#aperiodic-impacts-on-band-ratio-measures" title="Link to this heading">¶</a></h3>
 <p>Next, we can also examine if changes in aperiodic properties of the data can also
 impact band ratio measures. We will explore changes in the aperiodic exponent, with
 and without overlying peaks.</p>
@@ -359,7 +385,7 @@ and can be driven by changes in aperiodic activity.</p>
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h2>
 <p>Band ratio measures are supposed to reflect the relative power of rhythmic neural activity.</p>
 <p>However, here we can see that band ratio measures are actually under-determined
 in that many different changes of both periodic and aperiodic parameters can affect
@@ -374,13 +400,16 @@ on this topic in the
 <a class="reference external" href="https://doi.org/10.1523/ENEURO.0192-20.2020">published paper</a>
 and/or explore the code on
 <a class="reference external" href="https://github.com/voytekresearch/BandRatios">Github</a>.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.424 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.193 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-motivations-measurements-plot-bandratios-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/3976940bb1b6dd60ba5a1510d70fd6aa/plot_BandRatios.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_BandRatios.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/61f23ee9a2846fc99f182c81be62666c/plot_BandRatios.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_BandRatios.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/5e1f7f67ee5d27ff06b59f0c805b2c5b/plot_BandRatios.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_BandRatios.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -399,8 +428,8 @@ and/or explore the code on
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

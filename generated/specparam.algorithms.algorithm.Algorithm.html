@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>specparam.algorithms.algorithm.Algorithm &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.algorithms.algorithm.Algorithm &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -56,7 +57,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,13 +110,39 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">specparam.algorithms.algorithm.Algorithm</a><ul>
+<li><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm"><code class="docutils literal notranslate"><span class="pre">Algorithm</span></code></a><ul>
+<li><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.__init__"><code class="docutils literal notranslate"><span class="pre">Algorithm.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.add_settings"><code class="docutils literal notranslate"><span class="pre">Algorithm.add_settings()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.get_debug"><code class="docutils literal notranslate"><span class="pre">Algorithm.get_debug()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.get_settings"><code class="docutils literal notranslate"><span class="pre">Algorithm.get_settings()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.print"><code class="docutils literal notranslate"><span class="pre">Algorithm.print()</span></code></a></li>
+<li><a class="reference internal" href="#specparam.algorithms.algorithm.Algorithm.set_debug"><code class="docutils literal notranslate"><span class="pre">Algorithm.set_debug()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples-using-specparam-algorithms-algorithm-algorithm">Examples using <code class="docutils literal notranslate"><span class="pre">specparam.algorithms.algorithm.Algorithm</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="specparam-algorithms-algorithm-algorithm">
-<h1>specparam.algorithms.algorithm.Algorithm<a class="headerlink" href="#specparam-algorithms-algorithm-algorithm" title="Permalink to this heading">¶</a></h1>
+<h1>specparam.algorithms.algorithm.Algorithm<a class="headerlink" href="#specparam-algorithms-algorithm-algorithm" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.algorithms.algorithm.</span></span><span class="sig-name descname"><span class="pre">Algorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">private_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spectrum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">specparam.algorithms.algorithm.</span></span><span class="sig-name descname"><span class="pre">Algorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">private_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spectrum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm" title="Link to this definition">¶</a></dt>
 <dd><p>Template object for defining a fit algorithm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -136,6 +163,8 @@
 </dd>
 <dt><strong>results</strong><span class="classifier">Results</span></dt><dd><p>Results object with model fit results and metrics.</p>
 </dd>
+<dt><strong>model</strong><span class="classifier">SpectralModel, optional</span></dt><dd><p>The model object this object is linked to, to provide access to other attributes.</p>
+</dd>
 <dt><strong>debug</strong><span class="classifier">bool</span></dt><dd><p>Whether to run in debug state, raising an error if encountered during fitting.</p>
 </dd>
 </dl>
@@ -143,7 +172,7 @@
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">private_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spectrum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">private_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spectrum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize Algorithm object.</p>
 </dd></dl>
 
@@ -172,7 +201,7 @@
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.add_settings">
-<span class="sig-name descname"><span class="pre">add_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.add_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.add_settings" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.add_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.add_settings" title="Link to this definition">¶</a></dt>
 <dd><p>Add settings into object from a ModelSettings object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -186,13 +215,13 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.get_debug">
-<span class="sig-name descname"><span class="pre">get_debug</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.get_debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.get_debug" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_debug</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.get_debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.get_debug" title="Link to this definition">¶</a></dt>
 <dd><p>Return object debug status.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.get_settings">
-<span class="sig-name descname"><span class="pre">get_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.get_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.get_settings" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.get_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.get_settings" title="Link to this definition">¶</a></dt>
 <dd><p>Return user defined settings of the current object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -206,14 +235,14 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.print">
-<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.print" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.print" title="Link to this definition">¶</a></dt>
 <dd><p>Print out the algorithm name and fit settings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>description</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print out a description with current settings.</p>
 </dd>
-<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print the report in a concise mode, or not.</p>
+<dt><strong>concise</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to print a concise version of the report.</p>
 </dd>
 </dl>
 </dd>
@@ -222,7 +251,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="specparam.algorithms.algorithm.Algorithm.set_debug">
-<span class="sig-name descname"><span class="pre">set_debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">debug</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.set_debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.set_debug" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">debug</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/specparam/algorithms/algorithm.html#Algorithm.set_debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#specparam.algorithms.algorithm.Algorithm.set_debug" title="Link to this definition">¶</a></dt>
 <dd><p>Set debug state, which controls if an error is raised if model fitting is unsuccessful.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -237,12 +266,12 @@
 </dd></dl>
 
 <section id="examples-using-specparam-algorithms-algorithm-algorithm">
-<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.algorithms.algorithm.Algorithm</span></code><a class="headerlink" href="#examples-using-specparam-algorithms-algorithm-algorithm" title="Permalink to this heading">¶</a></h2>
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">specparam.algorithms.algorithm.Algorithm</span></code><a class="headerlink" href="#examples-using-specparam-algorithms-algorithm-algorithm" title="Link to this heading">¶</a></h2>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example covers defining and using custom fit algorithms."><img alt="" src="../_images/sphx_glr_plot_custom_algorithms_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/customize/plot_custom_algorithms.html#sphx-glr-auto-examples-customize-plot-custom-algorithms-py"><span class="std std-ref">Custom Algorithms</span></a></p>
+<p><a class="reference internal" href="../auto_examples/customize/plot_custom_algorithms.html"><span class="doc">Custom Algorithms</span></a></p>
   <div class="sphx-glr-thumbnail-title">Custom Algorithms</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Introducing the objects used within the model object."><img alt="" src="../_images/sphx_glr_plot_sub_objects_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html#sphx-glr-auto-examples-customize-plot-sub-objects-py"><span class="std std-ref">Model Sub-Objects</span></a></p>
+<p><a class="reference internal" href="../auto_examples/customize/plot_sub_objects.html"><span class="doc">Model Sub-Objects</span></a></p>
   <div class="sphx-glr-thumbnail-title">Model Sub-Objects</div>
 </div></div></section>
 </section>
@@ -259,8 +288,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

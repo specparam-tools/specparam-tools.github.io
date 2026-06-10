@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.plts.style &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.plts.style &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -55,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -108,16 +109,27 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <h1>Source code for specparam.plts.style</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Style and aesthetics definitions for plots.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">cycle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
 
-<span class="kn">from</span> <span class="nn">specparam.modutils.dependencies</span> <span class="kn">import</span> <span class="n">safe_import</span>
-<span class="kn">from</span> <span class="nn">specparam.plts.settings</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AXIS_STYLE_ARGS</span><span class="p">,</span> <span class="n">LINE_STYLE_ARGS</span><span class="p">,</span> <span class="n">COLLECTION_STYLE_ARGS</span><span class="p">,</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.modutils.dependencies</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_import</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.settings</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">AXIS_STYLE_ARGS</span><span class="p">,</span> <span class="n">LINE_STYLE_ARGS</span><span class="p">,</span> <span class="n">COLLECTION_STYLE_ARGS</span><span class="p">,</span>
                                      <span class="n">CUSTOM_STYLE_ARGS</span><span class="p">,</span> <span class="n">STYLE_ARGS</span><span class="p">,</span> <span class="n">TICK_LABELSIZE</span><span class="p">,</span> <span class="n">TITLE_FONTSIZE</span><span class="p">,</span>
                                      <span class="n">LABEL_SIZE</span><span class="p">,</span> <span class="n">LEGEND_SIZE</span><span class="p">,</span> <span class="n">LEGEND_LOC</span><span class="p">)</span>
 
@@ -126,7 +138,9 @@
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="check_style_options"><a class="viewcode-back" href="../../../generated/specparam.plts.style.check_style_options.html#specparam.plts.style.check_style_options">[docs]</a><span class="k">def</span> <span class="nf">check_style_options</span><span class="p">():</span>
+<div class="viewcode-block" id="check_style_options">
+<a class="viewcode-back" href="../../../generated/specparam.plts.style.check_style_options.html#specparam.plts.style.check_style_options">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_style_options</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Check the list of valid style arguments that can be passed into plot functions.&quot;&quot;&quot;</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Valid style arguments:&#39;</span><span class="p">)</span>
@@ -136,7 +150,8 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    </span><span class="si">{:10s}</span><span class="s1">    </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">options</span><span class="p">)))</span></div>
 
 
-<span class="k">def</span> <span class="nf">style_spectrum_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">log_freqs</span><span class="p">,</span> <span class="n">log_powers</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">style_spectrum_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">log_freqs</span><span class="p">,</span> <span class="n">log_powers</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply style and aesthetics to a power spectrum plot.</span>
 
 <span class="sd">    Parameters</span>
@@ -166,7 +181,7 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">},</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">style_param_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">style_param_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply style and aesthetics to a peaks plot.</span>
 
 <span class="sd">    Parameters</span>
@@ -193,11 +208,16 @@
     <span class="c1"># If labels were provided, add a legend and standardize the dot size</span>
     <span class="k">if</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()[</span><span class="mi">0</span><span class="p">]:</span>
         <span class="n">legend</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
-        <span class="k">for</span> <span class="n">handle</span> <span class="ow">in</span> <span class="n">legend</span><span class="o">.</span><span class="n">legendHandles</span><span class="p">:</span>
+        <span class="c1"># Try / except to cover a change in name in matplotlib</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">handles</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">legend</span><span class="p">,</span> <span class="s1">&#39;legend_handles&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">handles</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">legend</span><span class="p">,</span> <span class="s1">&#39;legendHandles&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">handle</span> <span class="ow">in</span> <span class="n">handles</span><span class="p">:</span>
             <span class="n">handle</span><span class="o">.</span><span class="n">_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">apply_axis_style</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">style_args</span><span class="o">=</span><span class="n">AXIS_STYLE_ARGS</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_axis_style</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">style_args</span><span class="o">=</span><span class="n">AXIS_STYLE_ARGS</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply axis plot style.</span>
 
 <span class="sd">    Parameters</span>
@@ -215,7 +235,7 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">apply_line_style</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">style_args</span><span class="o">=</span><span class="n">LINE_STYLE_ARGS</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_line_style</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">style_args</span><span class="o">=</span><span class="n">LINE_STYLE_ARGS</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply line plot style.</span>
 
 <span class="sd">    Parameters</span>
@@ -245,7 +265,7 @@
             <span class="n">line</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">style</span> <span class="p">:</span> <span class="nb">next</span><span class="p">(</span><span class="n">values</span><span class="p">)})</span>
 
 
-<span class="k">def</span> <span class="nf">apply_collection_style</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">style_args</span><span class="o">=</span><span class="n">COLLECTION_STYLE_ARGS</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_collection_style</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">style_args</span><span class="o">=</span><span class="n">COLLECTION_STYLE_ARGS</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply collection plot style.</span>
 
 <span class="sd">    Parameters</span>
@@ -266,7 +286,7 @@
         <span class="n">collection</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">collection_kwargs</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">apply_custom_style</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_custom_style</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply custom plot style.</span>
 
 <span class="sd">    Parameters</span>
@@ -305,7 +325,7 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">apply_style</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">axis_styler</span><span class="o">=</span><span class="n">apply_axis_style</span><span class="p">,</span> <span class="n">line_styler</span><span class="o">=</span><span class="n">apply_line_style</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_style</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">axis_styler</span><span class="o">=</span><span class="n">apply_axis_style</span><span class="p">,</span> <span class="n">line_styler</span><span class="o">=</span><span class="n">apply_line_style</span><span class="p">,</span>
                 <span class="n">collection_styler</span><span class="o">=</span><span class="n">apply_collection_style</span><span class="p">,</span> <span class="n">custom_styler</span><span class="o">=</span><span class="n">apply_custom_style</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply plot style to a figure axis.</span>
@@ -331,7 +351,7 @@
     <span class="n">custom_styler</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">if</span> <span class="n">custom_styler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
 
 
-<span class="k">def</span> <span class="nf">style_plot</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">style_plot</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator function to apply a plot style function, after plot generation.</span>
 
 <span class="sd">    Parameters</span>
@@ -374,7 +394,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">decorated</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorated</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
         <span class="c1"># Grab a custom style function, if provided, and grab any provided style arguments</span>
         <span class="n">style_func</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;plot_style&#39;</span><span class="p">,</span> <span class="n">apply_style</span><span class="p">)</span>
@@ -411,8 +431,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

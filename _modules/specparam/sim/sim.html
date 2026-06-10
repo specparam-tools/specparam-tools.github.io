@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.sim.sim &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.sim.sim &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -55,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -108,24 +109,37 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <h1>Source code for specparam.sim.sim</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Functions for simulating power spectra.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_iter</span>
-<span class="kn">from</span> <span class="nn">specparam.sim.params</span> <span class="kn">import</span> <span class="n">collect_sim_params</span>
-<span class="kn">from</span> <span class="nn">specparam.sim.gen</span> <span class="kn">import</span> <span class="n">gen_freqs</span><span class="p">,</span> <span class="n">gen_power_vals</span><span class="p">,</span> <span class="n">gen_rotated_power_vals</span>
-<span class="kn">from</span> <span class="nn">specparam.sim.transform</span> <span class="kn">import</span> <span class="n">compute_rotation_offset</span>
-<span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="p">(</span><span class="n">docs_get_section</span><span class="p">,</span> <span class="n">replace_docstring_sections</span><span class="p">,</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.checks</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_iter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.params</span><span class="w"> </span><span class="kn">import</span> <span class="n">collect_sim_params</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.gen</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_freqs</span><span class="p">,</span> <span class="n">gen_power_vals</span><span class="p">,</span> <span class="n">gen_rotated_power_vals</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_rotation_offset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.modutils.docs</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">docs_get_section</span><span class="p">,</span> <span class="n">replace_docstring_sections</span><span class="p">,</span>
                                      <span class="n">docs_replace_param</span><span class="p">)</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="sim_power_spectrum"><a class="viewcode-back" href="../../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum">[docs]</a><span class="k">def</span> <span class="nf">sim_power_spectrum</span><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span>
+<div class="viewcode-block" id="sim_power_spectrum">
+<a class="viewcode-back" href="../../../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sim_power_spectrum</span><span class="p">(</span><span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span>
                        <span class="n">nlv</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">f_rotation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_params</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate a power spectrum.</span>
 
@@ -135,17 +149,22 @@
 <span class="sd">        Frequency range to simulate power spectrum across, as [f_low, f_high], inclusive.</span>
 <span class="sd">    aperiodic_params : dict of {str : array}</span>
 <span class="sd">        Mode definition and parameters to create the aperiodic component of a power spectrum.</span>
-<span class="sd">        Should be organized as {mode : params}.</span>
-<span class="sd">    periodic_params : list of float or list of list of float</span>
+<span class="sd">        Should be organized as {mode : params}, where `mode` is a string label for a mode to</span>
+<span class="sd">        simulate with and `params` is a set of parameter values of length aperiodic_mode.n_params.</span>
+<span class="sd">    periodic_params : dict of {str : list of float or list of list of float}</span>
 <span class="sd">        Mode definition and parameters to create the periodic component of a power spectrum.</span>
-<span class="sd">        Should be organized as {mode : params}.</span>
+<span class="sd">        Should be organized as {mode : params}, where `mode` is a string label for a mode to</span>
+<span class="sd">        simulate with and `params` corresponds to the number of desired peaks, with a total number</span>
+<span class="sd">        of values matching periodic_mode.n_params * n_peaks.</span>
+<span class="sd">        This can can be a flat list (ex: [10, 1, 1, 20, 0.5, 1]) or be grouped into a</span>
+<span class="sd">        list of lists (ex: [[10, 1, 1], [20, 0.5, 1]]).</span>
 <span class="sd">    nlv : float, optional, default: 0.005</span>
 <span class="sd">        Noise level to add to generated power spectrum.</span>
 <span class="sd">    freq_res : float, optional, default: 0.5</span>
 <span class="sd">        Frequency resolution for the simulated power spectrum.</span>
 <span class="sd">    f_rotation : float, optional</span>
-<span class="sd">        Frequency value, in Hz, to rotate around.</span>
-<span class="sd">        Should only be set if spectrum is to be rotated.</span>
+<span class="sd">        Frequency value, in Hz, to rotate around. Should only be set if spectrum is to be rotated.</span>
+<span class="sd">        Can only be used with `powerlaw` aperiodic mode.</span>
 <span class="sd">    return_params : bool, optional, default: False</span>
 <span class="sd">        Whether to return the parameters for the simulated spectrum.</span>
 
@@ -161,44 +180,21 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    Aperiodic Parameters:</span>
-
-<span class="sd">    - The function for the aperiodic process to use is inferred from the provided parameters.</span>
-<span class="sd">    - If length of 2, the &#39;fixed&#39; aperiodic mode is used, if length of 3, &#39;knee&#39; is used.</span>
-
-<span class="sd">    Periodic Parameters:</span>
-
-<span class="sd">    - The periodic component is comprised of a set of &#39;peaks&#39;, each of which is described as:</span>
-
-<span class="sd">      * Mean (Center Frequency), height (Power), and standard deviation (Bandwidth).</span>
-<span class="sd">      * Make sure any center frequencies you request are within the simulated frequency range.</span>
-
-<span class="sd">    - The total number of parameters that need to be specified is number of peaks * 3</span>
-
-<span class="sd">      * These can be specified in as all together in a flat list (ex: [10, 1, 1, 20, 0.5, 1])</span>
-<span class="sd">      * They can also be grouped into a list of lists (ex: [[10, 1, 1], [20, 0.5, 1]])</span>
+<span class="sd">    - See `check_modes` for more information on the available modes to use to simulate,</span>
+<span class="sd">      as well as descriptions of the parameters for each mode.</span>
 
 <span class="sd">    Rotating Power Spectra:</span>
 
-<span class="sd">    - You can optionally specify a rotation frequency, such that power spectra will be</span>
-<span class="sd">      simulated and rotated around that point to the specified aperiodic exponent.</span>
+<span class="sd">    - For the powerlaw aperiodic component only, you can optionally specify a rotation frequency,</span>
+<span class="sd">      such that power spectra will be simulated and rotated around that point to the specified</span>
+<span class="sd">      aperiodic exponent. Any power spectra simulated with the same rotation frequency will relate</span>
+<span class="sd">      to each other by having the specified rotation point.</span>
 
-<span class="sd">      * This can be used so that any power spectra simulated with the same &#39;f_rotation&#39;</span>
-<span class="sd">        will relate to each other by having the specified rotation point.</span>
-
-<span class="sd">    - Note that rotating power spectra changes the offset.</span>
-
-<span class="sd">      * If you specify an offset value to simulate as well as &#39;f_rotation&#39;, the returned</span>
-<span class="sd">        spectrum will NOT have the requested offset. It instead will have the offset</span>
-<span class="sd">        value required to create the requested aperiodic exponent with the requested</span>
-<span class="sd">        rotation point.</span>
-<span class="sd">      * If you return SimParams, the recorded offset will be the calculated offset</span>
-<span class="sd">        of the data post rotation, and not the entered value.</span>
-
-<span class="sd">    - You cannot rotate power spectra simulated with a knee.</span>
-
-<span class="sd">      * The procedure we use to rotate does not support spectra with a knee, and so</span>
-<span class="sd">        setting &#39;f_rotation&#39; with a knee will lead to an error.</span>
+<span class="sd">    - Note that rotating power spectra changes the offset. If a simulated spectrum is rotated,</span>
+<span class="sd">      the returned spectrum will NOT have the offset of the input parameters, and will instead</span>
+<span class="sd">      have offset value required to create the given aperiodic exponent with the requested</span>
+<span class="sd">      rotation point. If you return SimParams, the recorded offset will be the calculated offset</span>
+<span class="sd">      of the data post rotation, and not the entered value.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -241,7 +237,10 @@
         <span class="k">return</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span></div>
 
 
-<div class="viewcode-block" id="sim_group_power_spectra"><a class="viewcode-back" href="../../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra">[docs]</a><span class="k">def</span> <span class="nf">sim_group_power_spectra</span><span class="p">(</span><span class="n">n_spectra</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span>
+
+<div class="viewcode-block" id="sim_group_power_spectra">
+<a class="viewcode-back" href="../../../generated/specparam.sim.sim_group_power_spectra.html#specparam.sim.sim_group_power_spectra">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sim_group_power_spectra</span><span class="p">(</span><span class="n">n_spectra</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span>
                             <span class="n">nlvs</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">f_rotation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                             <span class="n">return_params</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate multiple power spectra.</span>
@@ -252,22 +251,22 @@
 <span class="sd">        The number of power spectra to generate.</span>
 <span class="sd">    freq_range : list of [float, float]</span>
 <span class="sd">        Frequency range to simulate power spectra across, as [f_low, f_high], inclusive.</span>
-<span class="sd">    aperiodic_params : list of float or generator</span>
-<span class="sd">        Parameters for the aperiodic component of the power spectra.</span>
-<span class="sd">    aperiodic_mode : Mode or str</span>
-<span class="sd">        Which kind of aperiodic component to simulate.</span>
-<span class="sd">    periodic_params : list of float or generator</span>
-<span class="sd">        Parameters for the periodic component of the power spectra.</span>
-<span class="sd">        Length of n_peaks * 3.</span>
-<span class="sd">    periodic_mode : Mode or str</span>
-<span class="sd">        Which kind of periodic component to simulate.</span>
+<span class="sd">    aperiodic_params : dict of {str : array}</span>
+<span class="sd">        Mode definition and parameters to create the aperiodic components of the power spectra.</span>
+<span class="sd">        Should be organized as {mode : params}, where `mode` is a string label for a mode to</span>
+<span class="sd">        simulate with and `params` (array_like or generator) defines the aperiodic parameters.</span>
+<span class="sd">    periodic_params : dict of {str : list of float or list of list of float}</span>
+<span class="sd">        Mode definition and parameters to create the periodic components of the power spectras.</span>
+<span class="sd">        Should be organized as {mode : params}, where `mode` is a string label for a mode to</span>
+<span class="sd">        simulate with and `params` (array_like or generator) defines the periodic parameters.</span>
 <span class="sd">    nlvs : float or list of float or generator, optional, default: 0.005</span>
 <span class="sd">        Noise level to add to generated power spectrum.</span>
 <span class="sd">    freq_res : float, optional, default: 0.5</span>
 <span class="sd">        Frequency resolution for the simulated power spectra.</span>
 <span class="sd">    f_rotation : float, optional</span>
-<span class="sd">        Frequency value, in Hz, to rotate around.</span>
-<span class="sd">        Should only be set if spectra are to be rotated.</span>
+<span class="sd">        Frequency value, in Hz, to rotate around. Should only be set if spectrum is to be rotated.</span>
+<span class="sd">        Can only be used with `powerlaw` aperiodic mode.</span>
+<span class="sd">        See additional notes in `sim_power_spectra` on rotating simulated power spectra.</span>
 <span class="sd">    return_params : bool, optional, default: False</span>
 <span class="sd">        Whether to return the parameters for the simulated spectra.</span>
 
@@ -291,40 +290,6 @@
 <span class="sd">      If so, each successive parameter set is such for each successive spectrum.</span>
 <span class="sd">    - A generator object that returns parameters for a power spectrum.</span>
 <span class="sd">      If so, each spectrum has parameters sampled from the generator.</span>
-
-<span class="sd">    Aperiodic Parameters:</span>
-
-<span class="sd">    - The function for the aperiodic process to use is inferred from the provided parameters.</span>
-<span class="sd">    - If length of 2, the &#39;fixed&#39; aperiodic mode is used, if length of 3, &#39;knee&#39; is used.</span>
-
-<span class="sd">    Periodic Parameters:</span>
-
-<span class="sd">    - The periodic component is comprised of a set of &#39;peaks&#39;, each of which is described as:</span>
-
-<span class="sd">      * Mean (Center Frequency), height (Power), and standard deviation (Bandwidth).</span>
-<span class="sd">      * Make sure any center frequencies you request are within the simulated frequency range.</span>
-
-<span class="sd">    Rotating Power Spectra:</span>
-
-<span class="sd">    - You can optionally specify a rotation frequency, such that power spectra will be</span>
-<span class="sd">      simulated and rotated around that point to the specified aperiodic exponent.</span>
-
-<span class="sd">      * This can be used so that any power spectra simulated with the same &#39;f_rotation&#39;</span>
-<span class="sd">        will relate to each other by having the specified rotation point.</span>
-
-<span class="sd">    - Note that rotating power spectra changes the offset.</span>
-
-<span class="sd">      * If you specify an offset value to simulate as well as &#39;f_rotation&#39;, the returned</span>
-<span class="sd">        spectrum will NOT have the requested offset. It instead will have the offset</span>
-<span class="sd">        value required to create the requested aperiodic exponent with the requested</span>
-<span class="sd">        rotation point.</span>
-<span class="sd">      * If you return SimParams, the recorded offset will be the calculated offset</span>
-<span class="sd">        of the data post rotation, and not the entered value.</span>
-
-<span class="sd">    - You cannot rotate power spectra simulated with a knee.</span>
-
-<span class="sd">      * The procedure we use to rotate does not support spectra with a knee, and so</span>
-<span class="sd">        setting &#39;f_rotation&#39; with a knee will lead to an error.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -390,11 +355,14 @@
         <span class="k">return</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">powers</span></div>
 
 
-<div class="viewcode-block" id="sim_spectrogram"><a class="viewcode-back" href="../../../generated/specparam.sim.sim_spectrogram.html#specparam.sim.sim_spectrogram">[docs]</a><span class="nd">@replace_docstring_sections</span><span class="p">(</span>\
+
+<div class="viewcode-block" id="sim_spectrogram">
+<a class="viewcode-back" href="../../../generated/specparam.sim.sim_spectrogram.html#specparam.sim.sim_spectrogram">[docs]</a>
+<span class="nd">@replace_docstring_sections</span><span class="p">(</span>\
     <span class="n">docs_replace_param</span><span class="p">(</span><span class="n">docs_get_section</span><span class="p">(</span>\
         <span class="n">sim_group_power_spectra</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
         <span class="s1">&#39;n_spectra&#39;</span><span class="p">,</span> <span class="s1">&#39;n_windows : int</span><span class="se">\n</span><span class="s1">        The number of time windows to generate.&#39;</span><span class="p">))</span>
-<span class="k">def</span> <span class="nf">sim_spectrogram</span><span class="p">(</span><span class="n">n_windows</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sim_spectrogram</span><span class="p">(</span><span class="n">n_windows</span><span class="p">,</span> <span class="n">freq_range</span><span class="p">,</span> <span class="n">aperiodic_params</span><span class="p">,</span> <span class="n">periodic_params</span><span class="p">,</span>
                     <span class="n">nlvs</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">freq_res</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">f_rotation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_params</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate spectrogram.</span>
 
@@ -425,6 +393,7 @@
     <span class="n">outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
 
     <span class="k">return</span> <span class="n">outputs</span></div>
+
 </pre></div>
 
     </div>
@@ -438,8 +407,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

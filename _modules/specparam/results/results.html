@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>specparam.results.results &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <title>specparam.results.results &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -55,7 +56,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -108,30 +109,41 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <h1>Source code for specparam.results.results</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Define results objects.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">repeat</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">repeat</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">specparam.bands.bands</span> <span class="kn">import</span> <span class="n">check_bands</span>
-<span class="kn">from</span> <span class="nn">specparam.modes.modes</span> <span class="kn">import</span> <span class="n">Modes</span>
-<span class="kn">from</span> <span class="nn">specparam.results.params</span> <span class="kn">import</span> <span class="n">ModelParameters</span>
-<span class="kn">from</span> <span class="nn">specparam.results.components</span> <span class="kn">import</span> <span class="n">ModelComponents</span>
-<span class="kn">from</span> <span class="nn">specparam.metrics.metrics</span> <span class="kn">import</span> <span class="n">Metrics</span>
-<span class="kn">from</span> <span class="nn">specparam.utils.checks</span> <span class="kn">import</span> <span class="n">check_inds</span>
-<span class="kn">from</span> <span class="nn">specparam.modutils.errors</span> <span class="kn">import</span> <span class="n">NoModelError</span>
-<span class="kn">from</span> <span class="nn">specparam.modutils.docs</span> <span class="kn">import</span> <span class="p">(</span><span class="n">copy_doc_func_to_method</span><span class="p">,</span> <span class="n">docs_get_section</span><span class="p">,</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.bands.bands</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_bands</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.modes.modes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Modes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.results.params</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelParameters</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.results.components</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelComponents</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.metrics.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">Metrics</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.checks</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_inds</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.modutils.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">NoModelError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.modutils.docs</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">copy_func_docstring</span><span class="p">,</span> <span class="n">docs_get_section</span><span class="p">,</span>
                                      <span class="n">replace_docstring_sections</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">specparam.data.stores</span> <span class="kn">import</span> <span class="n">FitResults</span>
-<span class="kn">from</span> <span class="nn">specparam.data.conversions</span> <span class="kn">import</span> <span class="n">group_to_dict</span><span class="p">,</span> <span class="n">event_group_to_dict</span>
-<span class="kn">from</span> <span class="nn">specparam.data.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">get_group_params</span><span class="p">,</span> <span class="n">get_group_metrics</span><span class="p">,</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.data.stores</span><span class="w"> </span><span class="kn">import</span> <span class="n">FitResults</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.data.conversions</span><span class="w"> </span><span class="kn">import</span> <span class="n">group_to_dict</span><span class="p">,</span> <span class="n">event_group_to_dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.data.utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">get_group_params</span><span class="p">,</span> <span class="n">get_group_metrics</span><span class="p">,</span>
                                   <span class="n">get_results_by_ind</span><span class="p">,</span> <span class="n">get_results_by_row</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">specparam.sim.gen</span> <span class="kn">import</span> <span class="n">gen_model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim.gen</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_model</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
@@ -140,7 +152,9 @@
 <span class="n">DEFAULT_METRICS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;error_mae&#39;</span><span class="p">,</span> <span class="s1">&#39;gof_rsquared&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="Results"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results">[docs]</a><span class="k">class</span> <span class="nc">Results</span><span class="p">():</span>
+<div class="viewcode-block" id="Results">
+<a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Results</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Object for managing results - base / 1D version.</span>
 
 <span class="sd">    Parameters</span>
@@ -151,6 +165,8 @@
 <span class="sd">        Metrics object with metric definitions.</span>
 <span class="sd">    bands : Bands or dict or int or None</span>
 <span class="sd">        Bands object with band definitions, or definition that can be turned into a Bands object.</span>
+<span class="sd">    model : SpectralModel, optional</span>
+<span class="sd">        The model object this object is linked to, to provide access to other attributes.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -167,7 +183,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># pylint: disable=attribute-defined-outside-init, arguments-differ</span>
 
-<div class="viewcode-block" id="Results.__init__"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Results.__init__">
+<a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Results object.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="o">=</span> <span class="n">modes</span> <span class="k">if</span> <span class="n">modes</span> <span class="k">else</span> <span class="n">Modes</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -179,11 +197,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">ModelParameters</span><span class="p">(</span><span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">)</span>
 
         <span class="c1"># Initialize results attributes</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_results</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_results</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">model</span></div>
+
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">has_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator for if the object contains a model fit.</span>
 
 <span class="sd">        Notes</span>
@@ -195,7 +216,7 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;How many peaks were fit in the model.&quot;&quot;&quot;</span>
 
         <span class="n">n_peaks</span> <span class="o">=</span> <span class="kc">None</span>
@@ -206,7 +227,7 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The total number of parameters fit in the model.&quot;&quot;&quot;</span>
 
         <span class="n">n_params</span> <span class="o">=</span> <span class="kc">None</span>
@@ -217,7 +238,9 @@
         <span class="k">return</span> <span class="n">n_params</span>
 
 
-<div class="viewcode-block" id="Results.add_bands"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.add_bands">[docs]</a>    <span class="k">def</span> <span class="nf">add_bands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bands</span><span class="p">):</span>
+<div class="viewcode-block" id="Results.add_bands">
+<a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.add_bands">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_bands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bands</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add bands definition to object.</span>
 
 <span class="sd">        Parameters</span>
@@ -232,7 +255,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">bands</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">check_bands</span><span class="p">(</span><span class="n">bands</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Results.add_metrics"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.add_metrics">[docs]</a>    <span class="k">def</span> <span class="nf">add_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Results.add_metrics">
+<a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.add_metrics">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add metrics definition to object.</span>
 
 <span class="sd">        Parameters</span>
@@ -251,7 +277,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="n">Metrics</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Results.add_results"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.add_results">[docs]</a>    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Results.add_results">
+<a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.add_results">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add results data into object from a FitResults object.</span>
 
 <span class="sd">        Parameters</span>
@@ -271,7 +300,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">add_results</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Results.get_results"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_results">[docs]</a>    <span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Results.get_results">
+<a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_results">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return model fit parameters and metrics.</span>
 
 <span class="sd">        Returns</span>
@@ -283,7 +315,10 @@
         <span class="k">return</span> <span class="n">FitResults</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">asdict</span><span class="p">(),</span> <span class="n">metrics</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">results</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Results.get_params"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Results.get_params">
+<a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return model fit parameters for specified feature(s).</span>
 
 <span class="sd">        Parameters</span>
@@ -319,13 +354,17 @@
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">component</span><span class="p">)</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Results.get_metrics"><a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_metrics">[docs]</a>    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">Metrics</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Results.get_metrics">
+<a class="viewcode-back" href="../../../generated/specparam.results.results.Results.html#specparam.results.results.Results.get_metrics">[docs]</a>
+    <span class="nd">@copy_func_docstring</span><span class="p">(</span><span class="n">Metrics</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_reset_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reset_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, results attributes to empty.</span>
 
 <span class="sd">        Parameters</span>
@@ -340,7 +379,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
 
-    <span class="k">def</span> <span class="nf">_regenerate_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_regenerate_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freqs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Regenerate model fit from parameters.</span>
 
 <span class="sd">        Parameters</span>
@@ -355,9 +394,10 @@
                       <span class="n">return_components</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
+
 <span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
                              <span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Attributes&#39;</span><span class="p">)])</span>
-<span class="k">class</span> <span class="nc">Results2D</span><span class="p">(</span><span class="n">Results</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Results2D</span><span class="p">(</span><span class="n">Results</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Object for managing results - 2D version.</span>
 
 <span class="sd">    Parameters</span>
@@ -371,34 +411,34 @@
 <span class="sd">        Results of the model fit for each power spectrum.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Results2D object.&quot;&quot;&quot;</span>
 
-        <span class="n">Results</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="n">bands</span><span class="p">)</span>
+        <span class="n">Results</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="n">bands</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset_group_results</span><span class="p">()</span>
 
 
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Define the length of the object as the number of model fit results available.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow for iterating across the object by stepping across model fit results.&quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">:</span>
             <span class="k">yield</span> <span class="n">result</span>
 
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow for indexing into the object to select model fit results.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
 
 
-    <span class="k">def</span> <span class="nf">_reset_group_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reset_group_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, results to be empty.</span>
 
 <span class="sd">        Parameters</span>
@@ -410,21 +450,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">length</span>
 
 
-    <span class="k">def</span> <span class="nf">_get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an alias to SpectralModel.get_results for the group object, for internal use.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">has_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator for if the object contains model fits.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">)</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;How many peaks were fit for each model.&quot;&quot;&quot;</span>
 
         <span class="n">n_peaks</span> <span class="o">=</span> <span class="kc">None</span>
@@ -435,7 +475,7 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_null</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_null</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;How many model fits are null.&quot;&quot;&quot;</span>
 
         <span class="n">n_null</span> <span class="o">=</span> <span class="kc">None</span>
@@ -446,7 +486,7 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">null_inds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">null_inds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The indices for model fits that are null.&quot;&quot;&quot;</span>
 
         <span class="n">null_inds</span> <span class="o">=</span> <span class="kc">None</span>
@@ -457,7 +497,7 @@
         <span class="k">return</span> <span class="n">null_inds</span>
 
 
-    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add results data into object.</span>
 
 <span class="sd">        Parameters</span>
@@ -469,13 +509,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span> <span class="o">=</span> <span class="n">results</span>
 
 
-    <span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the results run across a group of power spectra.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span>
 
 
-    <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inds</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop one or more model fit results from the object.</span>
 
 <span class="sd">        Parameters</span>
@@ -493,7 +533,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">null_results</span>
 
 
-    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return model fit parameters for specified feature(s).</span>
 
 <span class="sd">        Parameters</span>
@@ -528,15 +568,15 @@
         <span class="k">return</span> <span class="n">get_group_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
 
 
-    <span class="nd">@copy_doc_func_to_method</span><span class="p">(</span><span class="n">Metrics</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="nd">@copy_func_docstring</span><span class="p">(</span><span class="n">Metrics</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
         <span class="k">return</span> <span class="n">get_group_metrics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">measure</span><span class="p">)</span>
 
 
 <span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
                              <span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results2D</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Attributes&#39;</span><span class="p">)])</span>
-<span class="k">class</span> <span class="nc">Results2DT</span><span class="p">(</span><span class="n">Results2D</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Results2DT</span><span class="p">(</span><span class="n">Results2D</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Object for managing results - 2D transpose version.</span>
 
 <span class="sd">    Parameters</span>
@@ -550,33 +590,33 @@
 <span class="sd">        Results of the model fit across each time window.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Results2DT object.&quot;&quot;&quot;</span>
 
-        <span class="n">Results2D</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="n">bands</span><span class="p">)</span>
+        <span class="n">Results2D</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="n">bands</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset_time_results</span><span class="p">()</span>
 
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow for indexing into the object to select fit results for a specific time window.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="n">get_results_by_ind</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_results</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">_reset_time_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reset_time_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, time results to be empty.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span> <span class="o">=</span> <span class="p">{}</span>
 
 
-    <span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the results run across a spectrogram.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span>
 
 
-    <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inds</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop one or more model fit results from the object.</span>
 
 <span class="sd">        Parameters</span>
@@ -594,7 +634,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">inds</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
 
-    <span class="k">def</span> <span class="nf">convert_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the model results to be organized across time windows.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">time_results</span> <span class="o">=</span> <span class="n">group_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_results</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bands</span><span class="p">)</span>
@@ -602,7 +642,7 @@
 
 <span class="nd">@replace_docstring_sections</span><span class="p">([</span><span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Parameters&#39;</span><span class="p">),</span>
                              <span class="n">docs_get_section</span><span class="p">(</span><span class="n">Results2DT</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="s1">&#39;Attributes&#39;</span><span class="p">)])</span>
-<span class="k">class</span> <span class="nc">Results3D</span><span class="p">(</span><span class="n">Results2DT</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Results3D</span><span class="p">(</span><span class="n">Results2DT</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Object for managing results - 3D version.</span>
 
 <span class="sd">    Parameters</span>
@@ -619,27 +659,27 @@
 <span class="sd">        Each value in the dictionary stores a model fit parameter, as [n_events, n_time_windows].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Results3D object.&quot;&quot;&quot;</span>
 
-        <span class="n">Results2DT</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="n">bands</span><span class="p">)</span>
+        <span class="n">Results2DT</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="n">modes</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="n">bands</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset_event_results</span><span class="p">()</span>
 
 
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Redefine the length of the objects as the number of event results.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow for indexing into the object to select fit results for a specific event.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="n">get_results_by_row</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_time_results</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">_reset_event_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reset_event_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set, or reset, event results to be empty.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="n">length</span>
@@ -647,14 +687,14 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">has_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Redefine has_model marker to reflect the event results.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">)</span>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;How many peaks were fit for each model, for each event.&quot;&quot;&quot;</span>
 
         <span class="n">n_peaks</span> <span class="o">=</span> <span class="kc">None</span>
@@ -665,7 +705,7 @@
         <span class="k">return</span> <span class="n">n_peaks</span>
 
 
-    <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drop_inds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window_inds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drop_inds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window_inds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop one or more model fit results from the object.</span>
 
 <span class="sd">        Parameters</span>
@@ -697,7 +737,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">event_time_results</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">eind</span><span class="p">,</span> <span class="n">winds</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
 
-    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add results data into object.</span>
 
 <span class="sd">        Parameters</span>
@@ -714,13 +754,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span> <span class="o">=</span> <span class="n">results</span>
 
 
-    <span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the results from across the set of events.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_time_results</span>
 
 
-    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return model fit parameters for specified feature(s).</span>
 
 <span class="sd">        Parameters</span>
@@ -753,7 +793,7 @@
                     <span class="k">for</span> <span class="n">gres</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_group_results</span><span class="p">]</span>
 
 
-    <span class="k">def</span> <span class="nf">convert_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the event results to be organized across events and time windows.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">event_time_results</span> <span class="o">=</span> <span class="n">event_group_to_dict</span><span class="p">(</span>\
@@ -771,8 +811,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

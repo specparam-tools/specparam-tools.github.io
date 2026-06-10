@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>01: Model Description &#8212; specparam 2.0.0rc6 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <title>01: Model Description &#8212; specparam 2.0.0rc7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css?v=ba41382c" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=78551f50"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=cb8e26dc"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -57,7 +58,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           specparam</a>
-        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>2.0.0rc7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -110,7 +111,39 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">01: Model Description</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#example-power-spectra-and-models">Example Power Spectra and Models</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conceptual-overview">Conceptual Overview</a><ul>
+<li><a class="reference internal" href="#visualizing-power-spectrum-models">Visualizing Power Spectrum Models</a></li>
+<li><a class="reference internal" href="#mathematical-description-of-overall-model">Mathematical Description of Overall Model</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#periodic-component">Periodic Component</a></li>
+<li><a class="reference internal" href="#aperiodic-component">Aperiodic Component</a><ul>
+<li><a class="reference internal" href="#a-note-on-logging">A Note on Logging</a></li>
+<li><a class="reference internal" href="#fitting-knees">Fitting Knees</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -118,10 +151,10 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="model-description">
-<span id="sphx-glr-auto-tutorials-plot-01-modeldescription-py"></span><h1>01: Model Description<a class="headerlink" href="#model-description" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-tutorials-plot-01-modeldescription-py"></span><h1>01: Model Description<a class="headerlink" href="#model-description" title="Link to this heading">¶</a></h1>
 <p>A description of and introduction to the spectral parameterization module.</p>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>Welcome to the tutorials!</p>
 <p>In this first tutorial, we will introduce an overview and description of the
 spectral parameterization module, as well as visualizing some examples.</p>
@@ -132,21 +165,21 @@ and/or the
 <a class="reference external" href="https://specparam-tools.github.io/auto_tutorials/index.html">motivations</a>
 section of the site.</p>
 <section id="example-power-spectra-and-models">
-<h3>Example Power Spectra and Models<a class="headerlink" href="#example-power-spectra-and-models" title="Permalink to this heading">¶</a></h3>
+<h3>Example Power Spectra and Models<a class="headerlink" href="#example-power-spectra-and-models" title="Link to this heading">¶</a></h3>
 <p>First, we will import and run some code to simulate some example power spectra, and
 fit some power spectrum models to them, to use as examples.</p>
 <p>Note that for the purpose of this tutorial, you don’t need to know exactly how this code works
 yet, as the details of what is happening will be clarified across the rest of the tutorials.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import required code for simulating and visualizing example models</span>
-<span class="kn">from</span> <span class="nn">specparam</span> <span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
-<span class="kn">from</span> <span class="nn">specparam.sim</span> <span class="kn">import</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
-<span class="kn">from</span> <span class="nn">specparam.sim.utils</span> <span class="kn">import</span> <a href="../generated/specparam.sim.utils.set_random_seed.html#specparam.sim.utils.set_random_seed" title="specparam.sim.utils.set_random_seed" class="sphx-glr-backref-module-specparam-sim-utils sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a>
-<span class="kn">from</span> <span class="nn">specparam.plts.spectra</span> <span class="kn">import</span> <a href="../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
-<span class="kn">from</span> <span class="nn">specparam.plts.annotate</span> <span class="kn">import</span> <a href="../generated/specparam.plts.annotate.plot_annotated_model.html#specparam.plts.annotate.plot_annotated_model" title="specparam.plts.annotate.plot_annotated_model" class="sphx-glr-backref-module-specparam-plts-annotate sphx-glr-backref-type-py-function"><span class="n">plot_annotated_model</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.SpectralModel.html#specparam.SpectralModel" title="specparam.SpectralModel" class="sphx-glr-backref-module-specparam sphx-glr-backref-type-py-class"><span class="n">SpectralModel</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.sim</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.utils.random</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.utils.random.set_random_seed.html#specparam.utils.random.set_random_seed" title="specparam.utils.random.set_random_seed" class="sphx-glr-backref-module-specparam-utils-random sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.spectra</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.plts.plot_spectra.html#specparam.plts.plot_spectra" title="specparam.plts.plot_spectra" class="sphx-glr-backref-module-specparam-plts sphx-glr-backref-type-py-function"><span class="n">plot_spectra</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">specparam.plts.annotate</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/specparam.plts.annotate.plot_annotated_model.html#specparam.plts.annotate.plot_annotated_model" title="specparam.plts.annotate.plot_annotated_model" class="sphx-glr-backref-module-specparam-plts-annotate sphx-glr-backref-type-py-function"><span class="n">plot_annotated_model</span></a>
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed, for consistency simulating data</span>
-<a href="../generated/specparam.sim.utils.set_random_seed.html#specparam.sim.utils.set_random_seed" title="specparam.sim.utils.set_random_seed" class="sphx-glr-backref-module-specparam-sim-utils sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+<a href="../generated/specparam.utils.random.set_random_seed.html#specparam.utils.random.set_random_seed" title="specparam.utils.random.set_random_seed" class="sphx-glr-backref-module-specparam-utils-random sphx-glr-backref-type-py-function"><span class="n">set_random_seed</span></a><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
 
 <span class="c1"># Simulate example power spectra</span>
 <span class="n">freqs1</span><span class="p">,</span> <span class="n">powers1</span> <span class="o">=</span> <a href="../generated/specparam.sim.sim_power_spectrum.html#specparam.sim.sim_power_spectrum" title="specparam.sim.sim_power_spectrum" class="sphx-glr-backref-module-specparam-sim sphx-glr-backref-type-py-function"><span class="n">sim_power_spectrum</span></a><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;fixed&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span>
@@ -178,7 +211,7 @@ with overlying peaks - are considered to be hallmarks of neural field data.</p>
 <img src="../_images/sphx_glr_plot_01-ModelDescription_001.png" srcset="../_images/sphx_glr_plot_01-ModelDescription_001.png" alt="plot 01 ModelDescription" class = "sphx-glr-single-img"/></section>
 </section>
 <section id="conceptual-overview">
-<h2>Conceptual Overview<a class="headerlink" href="#conceptual-overview" title="Permalink to this heading">¶</a></h2>
+<h2>Conceptual Overview<a class="headerlink" href="#conceptual-overview" title="Link to this heading">¶</a></h2>
 <p>The goal of this module is to fit models to parameterize neural power spectra.</p>
 <p>One reason to do so is the idea that there are multiple distinct ‘components’ within
 neural field data. The model is therefore designed to measure these different
@@ -189,7 +222,7 @@ that neural data contains both periodic and aperiodic components.</p>
 <p>The goal of the model is to measure these components, separately and explicitly,
 from frequency representations of neural field data (neural power spectra).</p>
 <section id="visualizing-power-spectrum-models">
-<h3>Visualizing Power Spectrum Models<a class="headerlink" href="#visualizing-power-spectrum-models" title="Permalink to this heading">¶</a></h3>
+<h3>Visualizing Power Spectrum Models<a class="headerlink" href="#visualizing-power-spectrum-models" title="Link to this heading">¶</a></h3>
 <p>First, let’s start by revisiting the example power spectrum, this time also adding the model
 fit to the plot.</p>
 <p>In the plot below, black is the data, same as before, and in red we’ve added the
@@ -224,7 +257,7 @@ the aperiodic component and the periodic component (the set of peaks).</p>
 fit, in a way that accurately and quantitatively describes the data.</p>
 </section>
 <section id="mathematical-description-of-overall-model">
-<h3>Mathematical Description of Overall Model<a class="headerlink" href="#mathematical-description-of-overall-model" title="Permalink to this heading">¶</a></h3>
+<h3>Mathematical Description of Overall Model<a class="headerlink" href="#mathematical-description-of-overall-model" title="Link to this heading">¶</a></h3>
 <p>To enact the conceptual idea described above, we will need to formalize the model. To do
 so, throughout the rest of this tutorial, we will lay out the mathematical description of
 how neural power spectra can be modeled as a combination of periodic and aperiodic activity.</p>
@@ -238,7 +271,7 @@ each component is a function of frequency.</p>
 </section>
 </section>
 <section id="periodic-component">
-<h2>Periodic Component<a class="headerlink" href="#periodic-component" title="Permalink to this heading">¶</a></h2>
+<h2>Periodic Component<a class="headerlink" href="#periodic-component" title="Link to this heading">¶</a></h2>
 <p>By periodic activity, we mean activity that has a characteristic frequency.
 This includes what are typically referred to as neural oscillations, often described
 in particular frequency bands such as delta, theta, alpha, beta, gamma, etc.</p>
@@ -270,7 +303,7 @@ where as horizontal labels reflect parameters measured in y-axis units, so power
 to describe this component of the data.</p>
 </section>
 <section id="aperiodic-component">
-<h2>Aperiodic Component<a class="headerlink" href="#aperiodic-component" title="Permalink to this heading">¶</a></h2>
+<h2>Aperiodic Component<a class="headerlink" href="#aperiodic-component" title="Link to this heading">¶</a></h2>
 <p>By ‘aperiodic’ activity, we mean activity that is not rhythmic, or activity that has
 no characteristic frequency.</p>
 <p>In the power spectrum, we typically see this as 1/f-like activity, whereby (in linear space)
@@ -289,7 +322,7 @@ activity (peaks).</p>
 </ul>
 <p>Note that diagonal labels indicate unit-less measures (in neither units of frequency or power).</p>
 <section id="a-note-on-logging">
-<h3>A Note on Logging<a class="headerlink" href="#a-note-on-logging" title="Permalink to this heading">¶</a></h3>
+<h3>A Note on Logging<a class="headerlink" href="#a-note-on-logging" title="Link to this heading">¶</a></h3>
 <p>So far, we have been plotting in semi-log, meaning the x-axis (frequency) is in linear
 spacing, and the y-axis (power) is in log10 space. This is common practice, as power values
 are exponentially distributed.</p>
@@ -305,7 +338,7 @@ spacing. This is a hallmark of <cite>1/f</cite> activity.</p>
 </div>
 <img src="../_images/sphx_glr_plot_01-ModelDescription_005.png" srcset="../_images/sphx_glr_plot_01-ModelDescription_005.png" alt="plot 01 ModelDescription" class = "sphx-glr-single-img"/></section>
 <section id="fitting-knees">
-<h3>Fitting Knees<a class="headerlink" href="#fitting-knees" title="Permalink to this heading">¶</a></h3>
+<h3>Fitting Knees<a class="headerlink" href="#fitting-knees" title="Link to this heading">¶</a></h3>
 <p>In the original model we fit and explored, there was no aperiodic ‘knee’. Depending on
 the data, or the frequency range, there may or may not be a knee present in the data
 (more on that later in the tutorial).</p>
@@ -322,7 +355,7 @@ references the knee as the dot on the plot at the bend point.</p>
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h2>
 <p>So far, we have explored how neural power spectra, <span class="math notranslate nohighlight">\(NPS\)</span>, across a set of frequencies
 <span class="math notranslate nohighlight">\(F\)</span> can be modeled as a combination of an aperiodic component, <span class="math notranslate nohighlight">\(L\)</span>, and the
 periodic component (P), which is comprised of a group of <cite>N</cite> peaks.</p>
@@ -347,13 +380,16 @@ the <cite>offset</cite>, <cite>knee</cite> and <cite>exponent</cite>, respective
 <p>For more technical details on the model formulation and fitting process, check out the
 <a class="reference external" href="https://doi.org/10.1038/s41593-020-00744-x">paper</a>.</p>
 <p>In the next tutorial, we will start to use this model.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.538 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.799 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-tutorials-plot-01-modeldescription-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/8bfec2e3f0f74ee4d9194f322c31b51e/plot_01-ModelDescription.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_01-ModelDescription.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/cc804a6d6a719c9e628feb4f056bbd74/plot_01-ModelDescription.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_01-ModelDescription.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/00f822fb68ffc82a203a028e32232052/plot_01-ModelDescription.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_01-ModelDescription.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -372,8 +408,8 @@ the <cite>offset</cite>, <cite>knee</cite> and <cite>exponent</cite>, respective
       
     </p>
     <p>
-        &copy; Copyright 2018-2025, VoytekLab.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2018-2026.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>
